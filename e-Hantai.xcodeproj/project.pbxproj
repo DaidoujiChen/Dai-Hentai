@@ -13,14 +13,14 @@
 		0199269319ADDB83009F814B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0199269119ADDB83009F814B /* InfoPlist.strings */; };
 		0199269519ADDB83009F814B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269419ADDB83009F814B /* main.m */; };
 		0199269919ADDB83009F814B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269819ADDB83009F814B /* AppDelegate.m */; };
-		0199269C19ADDB83009F814B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0199269A19ADDB83009F814B /* Main.storyboard */; };
-		0199269F19ADDB83009F814B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269E19ADDB83009F814B /* ViewController.m */; };
 		019926A119ADDB83009F814B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019926A019ADDB83009F814B /* Images.xcassets */; };
 		019926A819ADDB83009F814B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019926A719ADDB83009F814B /* XCTest.framework */; };
 		019926A919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
 		019926AA19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
 		019926B219ADDB83009F814B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019926B019ADDB83009F814B /* InfoPlist.strings */; };
 		019926B419ADDB83009F814B /* e_HantaiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926B319ADDB83009F814B /* e_HantaiTests.m */; };
+		019926C019ADDBAD009F814B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926BE19ADDBAD009F814B /* MainViewController.m */; };
+		019926C119ADDBAD009F814B /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019926BF19ADDBAD009F814B /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +44,15 @@
 		0199269619ADDB83009F814B /* e-Hantai-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "e-Hantai-Prefix.pch"; sourceTree = "<group>"; };
 		0199269719ADDB83009F814B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0199269819ADDB83009F814B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0199269B19ADDB83009F814B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0199269D19ADDB83009F814B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0199269E19ADDB83009F814B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		019926A019ADDB83009F814B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		019926A619ADDB83009F814B /* e-HantaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "e-HantaiTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		019926A719ADDB83009F814B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		019926AF19ADDB83009F814B /* e-HantaiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "e-HantaiTests-Info.plist"; sourceTree = "<group>"; };
 		019926B119ADDB83009F814B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		019926B319ADDB83009F814B /* e_HantaiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = e_HantaiTests.m; sourceTree = "<group>"; };
+		019926BD19ADDBAD009F814B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		019926BE19ADDBAD009F814B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		019926BF19ADDBAD009F814B /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +114,9 @@
 			children = (
 				0199269719ADDB83009F814B /* AppDelegate.h */,
 				0199269819ADDB83009F814B /* AppDelegate.m */,
-				0199269A19ADDB83009F814B /* Main.storyboard */,
-				0199269D19ADDB83009F814B /* ViewController.h */,
-				0199269E19ADDB83009F814B /* ViewController.m */,
+				019926BD19ADDBAD009F814B /* MainViewController.h */,
+				019926BE19ADDBAD009F814B /* MainViewController.m */,
+				019926BF19ADDBAD009F814B /* MainViewController.xib */,
 				019926A019ADDB83009F814B /* Images.xcassets */,
 				0199268F19ADDB83009F814B /* Supporting Files */,
 			);
@@ -229,8 +229,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
+				019926C119ADDBAD009F814B /* MainViewController.xib in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
-				0199269C19ADDB83009F814B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,8 +249,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0199269F19ADDB83009F814B /* ViewController.m in Sources */,
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
+				019926C019ADDBAD009F814B /* MainViewController.m in Sources */,
 				0199269519ADDB83009F814B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,14 +280,6 @@
 				0199269219ADDB83009F814B /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		0199269A19ADDB83009F814B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0199269B19ADDB83009F814B /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		019926B019ADDB83009F814B /* InfoPlist.strings */ = {
