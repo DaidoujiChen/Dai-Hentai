@@ -38,8 +38,8 @@
 	static NSString *cellIdentifier = @"HentaiCell";
 	HentaiCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-	cell.typeLabel.text = hentaiInfo[@"type"];
-	cell.publishedLabel.text = hentaiInfo[@"published"];
+	cell.typeLabel.text = hentaiInfo[@"category"];
+	cell.publishedLabel.text = hentaiInfo[@"posted"];
 	cell.titleLabel.text = hentaiInfo[@"title"];
 	cell.uploaderLabel.text = hentaiInfo[@"uploader"];
 	return cell;
