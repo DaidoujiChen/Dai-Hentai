@@ -10,7 +10,8 @@
 
 @interface MainViewController ()
 
-@property (nonatomic, strong) NSArray *listArray;
+@property (nonatomic, assign) NSUInteger listIndex;
+@property (nonatomic, strong) NSMutableArray *listArray;
 
 @end
 
@@ -26,6 +27,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //無限滾
+    if (indexPath.row >= [self.listArray count]-15 && [self.listArray count] == (self.listIndex+1)*25) {
+        self.listIndex++;
+        [HantaiParser requestListAtIndex:self.listIndex completion: ^(HantaiParserStatus status, NSArray *listArray) {
+            [self.listArray addObjectsFromArray:listArray];
+            [self.listTableView reloadData];
+        }];
+    }
 	static NSString *cellIdentifier = @"HantaiCell";
 	HantaiCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 	NSDictionary *hantaiInfo = self.listArray[indexPath.row];
@@ -50,6 +59,18 @@
 	[SVProgressHUD show];
 	[HantaiParser requestImagesAtURL:[NSURL URLWithString:hantaiInfo[@"url"]] completion: ^(HantaiParserStatus status, NSArray *images) {
 	    NSLog(@"%@", images);
+        
+        HantaiNavigationController *hantaiNavigation = (HantaiNavigationController*)self.navigationController;
+        hantaiNavigation.hantaiMask = UIInterfaceOrientationMaskLandscape;
+        
+        FakeViewController *fakeViewController = [FakeViewController new];
+        fakeViewController.BackBlock = ^() {
+            [hantaiNavigation pushViewController:[PhotoViewController new] animated:YES];
+        };
+        [self presentViewController:fakeViewController animated:NO completion:^{
+            [fakeViewController whenPresentCompletion];
+        }];
+        
 	    [SVProgressHUD dismiss];
 	}];
 }
@@ -60,11 +81,15 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+    self.listIndex = 0;
+    self.listArray = [NSMutableArray array];
 	[self.listTableView registerClass:[HantaiCell class] forCellReuseIdentifier:@"HantaiCell"];
-	[HantaiParser requestListAtIndex:0 completion: ^(HantaiParserStatus status, NSArray *listArray) {
-	    self.listArray = listArray;
+    
+	[HantaiParser requestListAtIndex:self.listIndex completion: ^(HantaiParserStatus status, NSArray *listArray) {
+	    [self.listArray addObjectsFromArray:listArray];
 	    [self.listTableView reloadData];
 	}];
 }
+
 
 @end

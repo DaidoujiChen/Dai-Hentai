@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "HantaiNavigationController.h"
 #import "MainViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

@@ -10,6 +10,9 @@
 
 #import "HantaiParser.h"
 #import "HantaiCell.h"
+#import "HantaiNavigationController.h"
+#import "PhotoViewController.h"
+#import "FakeViewController.h"
 
 @interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

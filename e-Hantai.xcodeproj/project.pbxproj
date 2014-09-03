@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080719B6F06200FE0DA1 /* FakeViewController.m */; };
+		0118081619B6F06200FE0DA1 /* HantaiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080919B6F06200FE0DA1 /* HantaiNavigationController.m */; };
+		0118081719B6F06200FE0DA1 /* HantaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080C19B6F06200FE0DA1 /* HantaiCell.m */; };
+		0118081819B6F06200FE0DA1 /* HantaiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118080D19B6F06200FE0DA1 /* HantaiCell.xib */; };
+		0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080F19B6F06200FE0DA1 /* MainViewController.m */; };
+		0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118081019B6F06200FE0DA1 /* MainViewController.xib */; };
+		0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118081319B6F06200FE0DA1 /* PhotoViewController.m */; };
+		0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118081419B6F06200FE0DA1 /* PhotoViewController.xib */; };
 		0150034319B6E5E90055F47D /* HantaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033519B6E5E90055F47D /* HantaiParser.m */; };
 		0150034419B6E5E90055F47D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033919B6E5E90055F47D /* TFHpple.m */; };
 		0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033B19B6E5E90055F47D /* TFHppleElement.m */; };
 		0150034619B6E5E90055F47D /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033D19B6E5E90055F47D /* XPathQuery.m */; };
 		0150034719B6E5E90055F47D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0150034019B6E5E90055F47D /* SVProgressHUD.bundle */; };
 		0150034819B6E5E90055F47D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150034219B6E5E90055F47D /* SVProgressHUD.m */; };
-		0150034C19B6E6A40055F47D /* HantaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150034A19B6E6A40055F47D /* HantaiCell.m */; };
-		0150034D19B6E6A40055F47D /* HantaiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0150034B19B6E6A40055F47D /* HantaiCell.xib */; };
 		0199268919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
 		0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268A19ADDB83009F814B /* CoreGraphics.framework */; };
 		0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
@@ -27,8 +33,6 @@
 		019926AA19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
 		019926B219ADDB83009F814B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019926B019ADDB83009F814B /* InfoPlist.strings */; };
 		019926B419ADDB83009F814B /* e_HantaiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926B319ADDB83009F814B /* e_HantaiTests.m */; };
-		019926C019ADDBAD009F814B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926BE19ADDBAD009F814B /* MainViewController.m */; };
-		019926C119ADDBAD009F814B /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019926BF19ADDBAD009F814B /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0118080619B6F06200FE0DA1 /* FakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeViewController.h; sourceTree = "<group>"; };
+		0118080719B6F06200FE0DA1 /* FakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeViewController.m; sourceTree = "<group>"; };
+		0118080819B6F06200FE0DA1 /* HantaiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HantaiNavigationController.h; sourceTree = "<group>"; };
+		0118080919B6F06200FE0DA1 /* HantaiNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HantaiNavigationController.m; sourceTree = "<group>"; };
+		0118080B19B6F06200FE0DA1 /* HantaiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HantaiCell.h; sourceTree = "<group>"; };
+		0118080C19B6F06200FE0DA1 /* HantaiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HantaiCell.m; sourceTree = "<group>"; };
+		0118080D19B6F06200FE0DA1 /* HantaiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HantaiCell.xib; sourceTree = "<group>"; };
+		0118080E19B6F06200FE0DA1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		0118080F19B6F06200FE0DA1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		0118081019B6F06200FE0DA1 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		0118081219B6F06200FE0DA1 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		0118081319B6F06200FE0DA1 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		0118081419B6F06200FE0DA1 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		0150033419B6E5E90055F47D /* HantaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HantaiParser.h; sourceTree = "<group>"; };
 		0150033519B6E5E90055F47D /* HantaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HantaiParser.m; sourceTree = "<group>"; };
 		0150033819B6E5E90055F47D /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
@@ -54,9 +71,6 @@
 		0150034019B6E5E90055F47D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		0150034119B6E5E90055F47D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		0150034219B6E5E90055F47D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		0150034919B6E6A40055F47D /* HantaiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HantaiCell.h; sourceTree = "<group>"; };
-		0150034A19B6E6A40055F47D /* HantaiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HantaiCell.m; sourceTree = "<group>"; };
-		0150034B19B6E6A40055F47D /* HantaiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HantaiCell.xib; sourceTree = "<group>"; };
 		0199268519ADDB83009F814B /* e-Hantai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-Hantai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0199268819ADDB83009F814B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0199268A19ADDB83009F814B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,9 +87,6 @@
 		019926AF19ADDB83009F814B /* e-HantaiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "e-HantaiTests-Info.plist"; sourceTree = "<group>"; };
 		019926B119ADDB83009F814B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		019926B319ADDB83009F814B /* e_HantaiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = e_HantaiTests.m; sourceTree = "<group>"; };
-		019926BD19ADDBAD009F814B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		019926BE19ADDBAD009F814B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		019926BF19ADDBAD009F814B /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +113,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0118080519B6F06200FE0DA1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0118080619B6F06200FE0DA1 /* FakeViewController.h */,
+				0118080719B6F06200FE0DA1 /* FakeViewController.m */,
+				0118080819B6F06200FE0DA1 /* HantaiNavigationController.h */,
+				0118080919B6F06200FE0DA1 /* HantaiNavigationController.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0118080A19B6F06200FE0DA1 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0118080B19B6F06200FE0DA1 /* HantaiCell.h */,
+				0118080C19B6F06200FE0DA1 /* HantaiCell.m */,
+				0118080D19B6F06200FE0DA1 /* HantaiCell.xib */,
+				0118080E19B6F06200FE0DA1 /* MainViewController.h */,
+				0118080F19B6F06200FE0DA1 /* MainViewController.m */,
+				0118081019B6F06200FE0DA1 /* MainViewController.xib */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		0118081119B6F06200FE0DA1 /* PhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0118081219B6F06200FE0DA1 /* PhotoViewController.h */,
+				0118081319B6F06200FE0DA1 /* PhotoViewController.m */,
+				0118081419B6F06200FE0DA1 /* PhotoViewController.xib */,
+			);
+			path = PhotoViewController;
+			sourceTree = "<group>";
+		};
 		0150033319B6E5E90055F47D /* HantaiParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,14 +224,11 @@
 			children = (
 				0150033319B6E5E90055F47D /* HantaiParser */,
 				0150033619B6E5E90055F47D /* ThirdParty */,
+				0118080519B6F06200FE0DA1 /* Common */,
 				0199269719ADDB83009F814B /* AppDelegate.h */,
 				0199269819ADDB83009F814B /* AppDelegate.m */,
-				019926BD19ADDBAD009F814B /* MainViewController.h */,
-				019926BE19ADDBAD009F814B /* MainViewController.m */,
-				019926BF19ADDBAD009F814B /* MainViewController.xib */,
-				0150034919B6E6A40055F47D /* HantaiCell.h */,
-				0150034A19B6E6A40055F47D /* HantaiCell.m */,
-				0150034B19B6E6A40055F47D /* HantaiCell.xib */,
+				0118080A19B6F06200FE0DA1 /* MainViewController */,
+				0118081119B6F06200FE0DA1 /* PhotoViewController */,
 				019926A019ADDB83009F814B /* Images.xcassets */,
 				0199268F19ADDB83009F814B /* Supporting Files */,
 			);
@@ -298,11 +340,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0118081819B6F06200FE0DA1 /* HantaiCell.xib in Resources */,
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
-				019926C119ADDBAD009F814B /* MainViewController.xib in Resources */,
+				0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */,
+				0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
 				0150034719B6E5E90055F47D /* SVProgressHUD.bundle in Resources */,
-				0150034D19B6E6A40055F47D /* HantaiCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,13 +364,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */,
 				0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */,
 				0150034819B6E5E90055F47D /* SVProgressHUD.m in Sources */,
 				0150034619B6E5E90055F47D /* XPathQuery.m in Sources */,
+				0118081619B6F06200FE0DA1 /* HantaiNavigationController.m in Sources */,
+				0118081719B6F06200FE0DA1 /* HantaiCell.m in Sources */,
 				0150034419B6E5E90055F47D /* TFHpple.m in Sources */,
-				0150034C19B6E6A40055F47D /* HantaiCell.m in Sources */,
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
-				019926C019ADDBAD009F814B /* MainViewController.m in Sources */,
+				0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */,
+				0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */,
 				0199269519ADDB83009F814B /* main.m in Sources */,
 				0150034319B6E5E90055F47D /* HantaiParser.m in Sources */,
 			);
