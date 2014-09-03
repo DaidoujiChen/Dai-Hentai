@@ -12,6 +12,6 @@
 
 @property (nonatomic, copy) void (^BackBlock)(void);
 
-- (void)whenPresentCompletion;
+- (void)onPresentCompletion;
 
 @end

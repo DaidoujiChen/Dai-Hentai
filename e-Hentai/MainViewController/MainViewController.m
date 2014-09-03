@@ -68,7 +68,7 @@
             [hentaiNavigation pushViewController:[PhotoViewController new] animated:YES];
         };
         [self presentViewController:fakeViewController animated:NO completion:^{
-            [fakeViewController whenPresentCompletion];
+            [fakeViewController onPresentCompletion];
         }];
         
 	    [SVProgressHUD dismiss];

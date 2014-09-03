@@ -14,25 +14,31 @@
 
 @implementation PhotoViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+#pragma mark - private
+
+- (void)backAction
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    HentaiNavigationController *hentaiNavigation = (HentaiNavigationController*)self.navigationController;
+    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
+    
+    FakeViewController *fakeViewController = [FakeViewController new];
+    fakeViewController.BackBlock = ^() {
+        [hentaiNavigation popViewControllerAnimated:YES];
+    };
+    [self presentViewController:fakeViewController animated:NO completion:^{
+        [fakeViewController onPresentCompletion];
+    }];
 }
+
+#pragma mark - life cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backAction)];
+    self.navigationItem.leftBarButtonItem = newBackButton;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
