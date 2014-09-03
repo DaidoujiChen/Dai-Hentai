@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "HentaiNavigationController.h"
+#import "FakeViewController.h"
+
 @interface PhotoViewController : UIViewController
 
 @end
