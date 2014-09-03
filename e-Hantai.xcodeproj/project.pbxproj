@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0150034319B6E5E90055F47D /* HantaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033519B6E5E90055F47D /* HantaiParser.m */; };
+		0150034419B6E5E90055F47D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033919B6E5E90055F47D /* TFHpple.m */; };
+		0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033B19B6E5E90055F47D /* TFHppleElement.m */; };
+		0150034619B6E5E90055F47D /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033D19B6E5E90055F47D /* XPathQuery.m */; };
+		0150034719B6E5E90055F47D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0150034019B6E5E90055F47D /* SVProgressHUD.bundle */; };
+		0150034819B6E5E90055F47D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150034219B6E5E90055F47D /* SVProgressHUD.m */; };
+		0150034C19B6E6A40055F47D /* HantaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150034A19B6E6A40055F47D /* HantaiCell.m */; };
+		0150034D19B6E6A40055F47D /* HantaiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0150034B19B6E6A40055F47D /* HantaiCell.xib */; };
 		0199268919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
 		0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268A19ADDB83009F814B /* CoreGraphics.framework */; };
 		0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
@@ -34,6 +42,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0150033419B6E5E90055F47D /* HantaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HantaiParser.h; sourceTree = "<group>"; };
+		0150033519B6E5E90055F47D /* HantaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HantaiParser.m; sourceTree = "<group>"; };
+		0150033819B6E5E90055F47D /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		0150033919B6E5E90055F47D /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		0150033A19B6E5E90055F47D /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		0150033B19B6E5E90055F47D /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		0150033C19B6E5E90055F47D /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		0150033D19B6E5E90055F47D /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		0150033F19B6E5E90055F47D /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		0150034019B6E5E90055F47D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		0150034119B6E5E90055F47D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		0150034219B6E5E90055F47D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		0150034919B6E6A40055F47D /* HantaiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HantaiCell.h; sourceTree = "<group>"; };
+		0150034A19B6E6A40055F47D /* HantaiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HantaiCell.m; sourceTree = "<group>"; };
+		0150034B19B6E6A40055F47D /* HantaiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HantaiCell.xib; sourceTree = "<group>"; };
 		0199268519ADDB83009F814B /* e-Hantai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-Hantai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0199268819ADDB83009F814B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0199268A19ADDB83009F814B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -79,6 +102,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0150033319B6E5E90055F47D /* HantaiParser */ = {
+			isa = PBXGroup;
+			children = (
+				0150033419B6E5E90055F47D /* HantaiParser.h */,
+				0150033519B6E5E90055F47D /* HantaiParser.m */,
+			);
+			path = HantaiParser;
+			sourceTree = "<group>";
+		};
+		0150033619B6E5E90055F47D /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				0150033719B6E5E90055F47D /* Hpple */,
+				0150033E19B6E5E90055F47D /* SVProgressHUD */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		0150033719B6E5E90055F47D /* Hpple */ = {
+			isa = PBXGroup;
+			children = (
+				0150033819B6E5E90055F47D /* TFHpple.h */,
+				0150033919B6E5E90055F47D /* TFHpple.m */,
+				0150033A19B6E5E90055F47D /* TFHppleElement.h */,
+				0150033B19B6E5E90055F47D /* TFHppleElement.m */,
+				0150033C19B6E5E90055F47D /* XPathQuery.h */,
+				0150033D19B6E5E90055F47D /* XPathQuery.m */,
+			);
+			path = Hpple;
+			sourceTree = "<group>";
+		};
+		0150033E19B6E5E90055F47D /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				0150033F19B6E5E90055F47D /* SVProgressHUD-Prefix.pch */,
+				0150034019B6E5E90055F47D /* SVProgressHUD.bundle */,
+				0150034119B6E5E90055F47D /* SVProgressHUD.h */,
+				0150034219B6E5E90055F47D /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		0199267C19ADDB83009F814B = {
 			isa = PBXGroup;
 			children = (
@@ -112,11 +177,16 @@
 		0199268E19ADDB83009F814B /* e-Hantai */ = {
 			isa = PBXGroup;
 			children = (
+				0150033319B6E5E90055F47D /* HantaiParser */,
+				0150033619B6E5E90055F47D /* ThirdParty */,
 				0199269719ADDB83009F814B /* AppDelegate.h */,
 				0199269819ADDB83009F814B /* AppDelegate.m */,
 				019926BD19ADDBAD009F814B /* MainViewController.h */,
 				019926BE19ADDBAD009F814B /* MainViewController.m */,
 				019926BF19ADDBAD009F814B /* MainViewController.xib */,
+				0150034919B6E6A40055F47D /* HantaiCell.h */,
+				0150034A19B6E6A40055F47D /* HantaiCell.m */,
+				0150034B19B6E6A40055F47D /* HantaiCell.xib */,
 				019926A019ADDB83009F814B /* Images.xcassets */,
 				0199268F19ADDB83009F814B /* Supporting Files */,
 			);
@@ -231,6 +301,8 @@
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
 				019926C119ADDBAD009F814B /* MainViewController.xib in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
+				0150034719B6E5E90055F47D /* SVProgressHUD.bundle in Resources */,
+				0150034D19B6E6A40055F47D /* HantaiCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +321,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */,
+				0150034819B6E5E90055F47D /* SVProgressHUD.m in Sources */,
+				0150034619B6E5E90055F47D /* XPathQuery.m in Sources */,
+				0150034419B6E5E90055F47D /* TFHpple.m in Sources */,
+				0150034C19B6E6A40055F47D /* HantaiCell.m in Sources */,
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
 				019926C019ADDBAD009F814B /* MainViewController.m in Sources */,
 				0199269519ADDB83009F814B /* main.m in Sources */,
+				0150034319B6E5E90055F47D /* HantaiParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +448,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "e-Hantai/e-Hantai-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SDKROOT}/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "e-Hantai/e-Hantai-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -383,7 +467,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "e-Hantai/e-Hantai-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SDKROOT}/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "e-Hantai/e-Hantai-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -448,6 +538,7 @@
 				019926B919ADDB83009F814B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		019926BA19ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-HantaiTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +547,7 @@
 				019926BC19ADDB83009F814B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

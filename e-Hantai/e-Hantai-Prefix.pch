@@ -13,4 +13,9 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    //from project
+    #import "SVProgressHUD.h"
+    #import "TFHpple.h"
+
 #endif
