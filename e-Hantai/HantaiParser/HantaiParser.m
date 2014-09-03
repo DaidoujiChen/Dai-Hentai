@@ -39,10 +39,12 @@
 		} else {
 #warning  改進的空間, 這邊會慢些
 	        TFHpple * xpathParser = [[TFHpple alloc] initWithHTMLData:data];
+            
 	        NSArray *type  = [xpathParser searchWithXPathQuery:@"//td [@class='itdc']//img"];
 	        NSArray *published = [xpathParser searchWithXPathQuery:@"//td [@style='white-space:nowrap']"];
 	        NSArray *titleWithURL = [xpathParser searchWithXPathQuery:@"//div [@class='it5']//a"];
 	        NSArray *uploader = [xpathParser searchWithXPathQuery:@"//td [@class='itu']//div//a"];
+            NSArray *star = [xpathParser searchWithXPathQuery:@"//div [@class='ir it4r']"];
             
 	        NSMutableArray *returnArray = [NSMutableArray array];
             
@@ -51,16 +53,11 @@
 	            TFHppleElement *eachPublished = published[i];
 	            TFHppleElement *eachTitleWithURL = titleWithURL[i];
 	            TFHppleElement *eachUploader = uploader[i];
-	            [returnArray addObject:@{ @"type": [eachType attributes][@"alt"], @"published": [eachPublished text], @"title": [eachTitleWithURL text], @"url": [eachTitleWithURL attributes][@"href"], @"uploader":[eachUploader text] }];
+                TFHppleElement *eachStar = star[i];
+                
+	            [returnArray addObject:@{ @"type": [eachType attributes][@"alt"], @"published": [eachPublished text], @"title": [eachTitleWithURL text], @"url": [eachTitleWithURL attributes][@"href"], @"uploader":[eachUploader text], @"star":@([self starCalculateWith:eachStar])}];
 			}
-            
 	        completion(HantaiParserStatusSuccess, returnArray);
-            
-#warning 保留, pa 星星的部分要算, 懶惰算
-	        /*NSArray *star = [xpathParser searchWithXPathQuery:@"//div [@class='it4']//div"];
-             for (TFHppleElement *e in star) {
-             NSLog(@"%@", [e attributes][@"style"]);
-             }*/
 		}
 	}];
 }
@@ -100,6 +97,50 @@
 
 
 #pragma mark - private
+
++ (float)starCalculateWith:(TFHppleElement *)starElement
+{
+	//format::background-position:-16px -21px; opacity:1
+	NSString *eachStarStyle = [starElement attributes][@"style"];
+    
+	//分離px出來
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"-?([0-9]+)px" options:0 error:NULL];
+	NSArray *pxMatchResults = [regex matchesInString:eachStarStyle options:0 range:NSMakeRange(0, [eachStarStyle length])];
+	CGPoint starPoint = CGPointZero;
+    
+	for (int i = 0; i < [pxMatchResults count]; i++) {
+		NSTextCheckingResult *match = pxMatchResults[i];
+        
+		if (i == 0) {
+			//x
+			NSString *pointStrX = [eachStarStyle substringWithRange:match.range];
+			starPoint.x = [pointStrX intValue];
+		} else {
+			//y
+			NSString *pointStrY = [eachStarStyle substringWithRange:match.range];
+			starPoint.y = [pointStrY intValue];
+		}
+	}
+    
+	float star = 0;
+	int starOffetPx = 16;
+    
+	/*
+     y 為  -1的代表是整數的星
+     y 為 -21的代表是尾數有0.5 (使用少半顆星星的素材)
+	 */
+	if (starPoint.y == -1) {
+		//(5顆星的xOffset是0，4顆是-16...依此類推)
+		int x = starPoint.x;
+		star = 5 - abs(x / starOffetPx);
+	} else {
+		//y為-21的情況  (4.5顆星的xOffset是0，3.5顆是-16...依此類推)
+		int x = starPoint.x;
+		star = 4 - abs(x / starOffetPx) + 0.5;
+	}
+    
+	return star;
+}
 
 + (void)requestCurrentImage:(NSURL *)url atIndex:(NSUInteger)index completion:(void (^)(HantaiParserStatus status, NSString *imageString, NSUInteger index))completion
 {
