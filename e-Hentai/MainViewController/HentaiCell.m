@@ -1,14 +1,14 @@
 //
-//  HantaiCell.m
+//  HentaiCell.m
 //  TEST_2014_9_2
 //
 //  Created by 啟倫 陳 on 2014/9/2.
 //  Copyright (c) 2014年 ChilunChen. All rights reserved.
 //
 
-#import "HantaiCell.h"
+#import "HentaiCell.h"
 
-@implementation HantaiCell
+@implementation HentaiCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

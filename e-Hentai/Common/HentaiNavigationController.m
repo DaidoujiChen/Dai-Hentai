@@ -1,18 +1,18 @@
 //
-//  HantaiNavigationController.m
+//  HentaiNavigationController.m
 //  TEST_2014_9_2
 //
 //  Created by 啟倫 陳 on 2014/9/3.
 //  Copyright (c) 2014年 ChilunChen. All rights reserved.
 //
 
-#import "HantaiNavigationController.h"
+#import "HentaiNavigationController.h"
 
-@interface HantaiNavigationController ()
+@interface HentaiNavigationController ()
 
 @end
 
-@implementation HantaiNavigationController
+@implementation HentaiNavigationController
 
 
 #pragma mark - Configuring the View Rotation Settings
@@ -24,7 +24,7 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return self.hantaiMask;
+    return self.hentaiMask;
 }
 
 

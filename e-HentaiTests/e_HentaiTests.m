@@ -1,6 +1,6 @@
 //
-//  e_HantaiTests.m
-//  e-HantaiTests
+//  e_HentaiTests.m
+//  e-HentaiTests
 //
 //  Created by 啟倫 陳 on 2014/8/27.
 //  Copyright (c) 2014年 ChilunChen. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface e_HantaiTests : XCTestCase
+@interface e_HentaiTests : XCTestCase
 
 @end
 
-@implementation e_HantaiTests
+@implementation e_HentaiTests
 
 - (void)setUp
 {

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "HantaiParser.h"
-#import "HantaiCell.h"
-#import "HantaiNavigationController.h"
+#import "HentaiParser.h"
+#import "HentaiCell.h"
+#import "HentaiNavigationController.h"
 #import "PhotoViewController.h"
 #import "FakeViewController.h"
 

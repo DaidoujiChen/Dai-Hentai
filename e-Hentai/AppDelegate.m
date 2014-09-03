@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  e-Hantai
+//  e-Hentai
 //
 //  Created by 啟倫 陳 on 2014/8/27.
 //  Copyright (c) 2014年 ChilunChen. All rights reserved.
@@ -13,9 +13,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    HantaiNavigationController *hantaiNavigation = [[HantaiNavigationController alloc] initWithRootViewController:[MainViewController new]];
-    hantaiNavigation.hantaiMask = UIInterfaceOrientationMaskPortrait;
-	self.window.rootViewController = hantaiNavigation;
+    HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:[MainViewController new]];
+    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
+	self.window.rootViewController = hentaiNavigation;
 	[self.window makeKeyAndVisible];
 	return YES;
 }

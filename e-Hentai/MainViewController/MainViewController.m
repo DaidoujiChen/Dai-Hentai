@@ -30,18 +30,18 @@
     //無限滾
     if (indexPath.row >= [self.listArray count]-15 && [self.listArray count] == (self.listIndex+1)*25) {
         self.listIndex++;
-        [HantaiParser requestListAtIndex:self.listIndex completion: ^(HantaiParserStatus status, NSArray *listArray) {
+        [HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
             [self.listArray addObjectsFromArray:listArray];
             [self.listTableView reloadData];
         }];
     }
-	static NSString *cellIdentifier = @"HantaiCell";
-	HantaiCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-	NSDictionary *hantaiInfo = self.listArray[indexPath.row];
-	cell.typeLabel.text = hantaiInfo[@"type"];
-	cell.publishedLabel.text = hantaiInfo[@"published"];
-	cell.titleLabel.text = hantaiInfo[@"title"];
-	cell.uploaderLabel.text = hantaiInfo[@"uploader"];
+	static NSString *cellIdentifier = @"HentaiCell";
+	HentaiCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
+	cell.typeLabel.text = hentaiInfo[@"type"];
+	cell.publishedLabel.text = hentaiInfo[@"published"];
+	cell.titleLabel.text = hentaiInfo[@"title"];
+	cell.uploaderLabel.text = hentaiInfo[@"uploader"];
 	return cell;
 }
 
@@ -55,17 +55,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSDictionary *hantaiInfo = self.listArray[indexPath.row];
+	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
 	[SVProgressHUD show];
-	[HantaiParser requestImagesAtURL:[NSURL URLWithString:hantaiInfo[@"url"]] completion: ^(HantaiParserStatus status, NSArray *images) {
+	[HentaiParser requestImagesAtURL:[NSURL URLWithString:hentaiInfo[@"url"]] completion: ^(HentaiParserStatus status, NSArray *images) {
 	    NSLog(@"%@", images);
         
-        HantaiNavigationController *hantaiNavigation = (HantaiNavigationController*)self.navigationController;
-        hantaiNavigation.hantaiMask = UIInterfaceOrientationMaskLandscape;
+        HentaiNavigationController *hentaiNavigation = (HentaiNavigationController*)self.navigationController;
+        hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskLandscape;
         
         FakeViewController *fakeViewController = [FakeViewController new];
         fakeViewController.BackBlock = ^() {
-            [hantaiNavigation pushViewController:[PhotoViewController new] animated:YES];
+            [hentaiNavigation pushViewController:[PhotoViewController new] animated:YES];
         };
         [self presentViewController:fakeViewController animated:NO completion:^{
             [fakeViewController whenPresentCompletion];
@@ -83,9 +83,9 @@
 	[super viewDidLoad];
     self.listIndex = 0;
     self.listArray = [NSMutableArray array];
-	[self.listTableView registerClass:[HantaiCell class] forCellReuseIdentifier:@"HantaiCell"];
+	[self.listTableView registerClass:[HentaiCell class] forCellReuseIdentifier:@"HentaiCell"];
     
-	[HantaiParser requestListAtIndex:self.listIndex completion: ^(HantaiParserStatus status, NSArray *listArray) {
+	[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
 	    [self.listArray addObjectsFromArray:listArray];
 	    [self.listTableView reloadData];
 	}];

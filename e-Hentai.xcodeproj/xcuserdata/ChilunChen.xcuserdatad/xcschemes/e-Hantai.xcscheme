@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0199268419ADDB83009F814B"
-               BuildableName = "e-Hantai.app"
-               BlueprintName = "e-Hantai"
-               ReferencedContainer = "container:e-Hantai.xcodeproj">
+               BuildableName = "e-Hentai.app"
+               BlueprintName = "e-Hentai"
+               ReferencedContainer = "container:e-Hentai.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "019926A519ADDB83009F814B"
-               BuildableName = "e-HantaiTests.xctest"
-               BlueprintName = "e-HantaiTests"
-               ReferencedContainer = "container:e-Hantai.xcodeproj">
+               BuildableName = "e-HentaiTests.xctest"
+               BlueprintName = "e-HentaiTests"
+               ReferencedContainer = "container:e-Hentai.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0199268419ADDB83009F814B"
-            BuildableName = "e-Hantai.app"
-            BlueprintName = "e-Hantai"
-            ReferencedContainer = "container:e-Hantai.xcodeproj">
+            BuildableName = "e-Hentai.app"
+            BlueprintName = "e-Hentai"
+            ReferencedContainer = "container:e-Hentai.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0199268419ADDB83009F814B"
-            BuildableName = "e-Hantai.app"
-            BlueprintName = "e-Hantai"
-            ReferencedContainer = "container:e-Hantai.xcodeproj">
+            BuildableName = "e-Hentai.app"
+            BlueprintName = "e-Hentai"
+            ReferencedContainer = "container:e-Hentai.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0199268419ADDB83009F814B"
-            BuildableName = "e-Hantai.app"
-            BlueprintName = "e-Hantai"
-            ReferencedContainer = "container:e-Hantai.xcodeproj">
+            BuildableName = "e-Hentai.app"
+            BlueprintName = "e-Hentai"
+            ReferencedContainer = "container:e-Hentai.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

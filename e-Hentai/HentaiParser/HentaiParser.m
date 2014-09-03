@@ -1,20 +1,20 @@
 //
-//  HantaiParser.m
+//  HentaiParser.m
 //  TEST_2014_9_2
 //
 //  Created by 啟倫 陳 on 2014/9/2.
 //  Copyright (c) 2014年 ChilunChen. All rights reserved.
 //
 
-#import "HantaiParser.h"
+#import "HentaiParser.h"
 
 #import <objc/runtime.h>
 
 #define baseListURL @"http://g.e-hentai.org/?page=%d"
 
-@implementation NSMutableArray (HANTAI)
+@implementation NSMutableArray (HENTAI)
 
-+ (NSMutableArray *)hantai_preAllocWithCapacity:(NSUInteger)capacity
++ (NSMutableArray *)hentai_preAllocWithCapacity:(NSUInteger)capacity
 {
     NSMutableArray *returnArray = [NSMutableArray array];
     for (NSUInteger i=0; i<capacity; i++) {
@@ -25,17 +25,17 @@
 
 @end
 
-@implementation HantaiParser
+@implementation HentaiParser
 
 #pragma mark - class method
 
-+ (void)requestListAtIndex:(NSUInteger)index completion:(void (^)(HantaiParserStatus status, NSArray *listArray))completion
++ (void)requestListAtIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion
 {
 	NSString *urlString = [NSString stringWithFormat:baseListURL, index];
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        completion(HantaiParserStatusFail, nil);
+	        completion(HentaiParserStatusFail, nil);
 		} else {
 #warning  改進的空間, 這邊會慢些
 	        TFHpple * xpathParser = [[TFHpple alloc] initWithHTMLData:data];
@@ -57,30 +57,30 @@
                 
 	            [returnArray addObject:@{ @"type": [eachType attributes][@"alt"], @"published": [eachPublished text], @"title": [eachTitleWithURL text], @"url": [eachTitleWithURL attributes][@"href"], @"uploader":[eachUploader text], @"star":@([self starCalculateWith:eachStar])}];
 			}
-	        completion(HantaiParserStatusSuccess, returnArray);
+	        completion(HentaiParserStatusSuccess, returnArray);
 		}
 	}];
 }
 
-+ (void)requestImagesAtURL:(NSURL *)url completion:(void (^)(HantaiParserStatus status, NSArray *images))completion
++ (void)requestImagesAtURL:(NSURL *)url completion:(void (^)(HentaiParserStatus status, NSArray *images))completion
 {
 #warning 只先 pa 第一頁吧
 	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[NSOperationQueue mainQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        completion(HantaiParserStatusFail, nil);
+	        completion(HentaiParserStatusFail, nil);
 		} else {
 	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
 	        NSArray *pageURL  = [xpathParser searchWithXPathQuery:@"//div [@class='gdtm']//a"];
-	        NSMutableArray *returnArray = [NSMutableArray hantai_preAllocWithCapacity:[pageURL count]];
+	        NSMutableArray *returnArray = [NSMutableArray hentai_preAllocWithCapacity:[pageURL count]];
             
-            dispatch_queue_t hantaiQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-            dispatch_group_t hantaiGroup = dispatch_group_create();
+            dispatch_queue_t hentaiQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+            dispatch_group_t hentaiGroup = dispatch_group_create();
             
             for (NSUInteger i=0; i<[pageURL count]; i++) {
                 TFHppleElement *e = pageURL[i];
-                dispatch_group_async(hantaiGroup, hantaiQueue, ^{
+                dispatch_group_async(hentaiGroup, hentaiQueue, ^{
                     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                    [self requestCurrentImage:[NSURL URLWithString:[e attributes][@"href"]] atIndex:i completion: ^(HantaiParserStatus status, NSString *imageString, NSUInteger index) {
+                    [self requestCurrentImage:[NSURL URLWithString:[e attributes][@"href"]] atIndex:i completion: ^(HentaiParserStatus status, NSString *imageString, NSUInteger index) {
                         if (status) {
                             returnArray[index] = imageString;
                         }
@@ -89,8 +89,8 @@
                     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
                 });
             }
-            dispatch_group_wait(hantaiGroup, DISPATCH_TIME_FOREVER);
-	        completion(HantaiParserStatusSuccess, returnArray);
+            dispatch_group_wait(hentaiGroup, DISPATCH_TIME_FOREVER);
+	        completion(HentaiParserStatusSuccess, returnArray);
 		}
 	}];
 }
@@ -142,23 +142,23 @@
 	return star;
 }
 
-+ (void)requestCurrentImage:(NSURL *)url atIndex:(NSUInteger)index completion:(void (^)(HantaiParserStatus status, NSString *imageString, NSUInteger index))completion
++ (void)requestCurrentImage:(NSURL *)url atIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSString *imageString, NSUInteger index))completion
 {
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[self hantaiOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[self hentaiOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        completion(HantaiParserStatusFail, nil, -1);
+	        completion(HentaiParserStatusFail, nil, -1);
 		} else {
 	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
 	        NSArray *pageURL  = [xpathParser searchWithXPathQuery:@"//div [@id='i3']//img"];
 	        for (TFHppleElement * e in pageURL) {
-	            completion(HantaiParserStatusSuccess, [e attributes][@"src"], index);
+	            completion(HentaiParserStatusSuccess, [e attributes][@"src"], index);
 	            break;
 			}
 		}
 	}];
 }
 
-+ (NSOperationQueue *)hantaiOperationQueue
++ (NSOperationQueue *)hentaiOperationQueue
 {
 	if (!objc_getAssociatedObject(self, _cmd)) {
 		objc_setAssociatedObject(self, _cmd, [NSOperationQueue new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);

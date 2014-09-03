@@ -1,5 +1,5 @@
 //
-//  HantaiCell.h
+//  HentaiCell.h
 //  TEST_2014_9_2
 //
 //  Created by 啟倫 陳 on 2014/9/2.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HantaiCell : UITableViewCell
+@interface HentaiCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *publishedLabel;
