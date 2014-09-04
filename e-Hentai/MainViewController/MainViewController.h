@@ -10,12 +10,13 @@
 
 #import "HentaiParser.h"
 #import "HentaiCell.h"
+#import "GalleryCell.h"
 #import "HentaiNavigationController.h"
 #import "PhotoViewController.h"
 #import "FakeViewController.h"
 
-@interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MainViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
 
 @end

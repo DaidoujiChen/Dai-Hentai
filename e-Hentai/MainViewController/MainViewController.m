@@ -18,44 +18,32 @@
 @implementation MainViewController
 
 
-#pragma mark - UITableViewDataSource
+#pragma mark - UICollectionViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return [self.listArray count];
+    return [self.listArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //無限滾
-    if (indexPath.row >= [self.listArray count]-15 && [self.listArray count] == (self.listIndex+1)*25) {
-        self.listIndex++;
-        [HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
-            [self.listArray addObjectsFromArray:listArray];
-            [self.listTableView reloadData];
-        }];
-    }
-	static NSString *cellIdentifier = @"HentaiCell";
-	HentaiCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-	cell.typeLabel.text = hentaiInfo[@"type"];
-	cell.publishedLabel.text = hentaiInfo[@"published"];
-	cell.titleLabel.text = hentaiInfo[@"title"];
-	cell.uploaderLabel.text = hentaiInfo[@"uploader"];
-	return cell;
+    
+    GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
+    
+    NSDictionary *hentaiInfo = self.listArray[indexPath.row];
+    [cell setGalleryDict:hentaiInfo];
+    
+    return cell;
 }
 
 
-#pragma mark - UITableViewDelegate
+#pragma mark - UICollectionViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return 150.0f;
-}
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
+
+    NSDictionary *hentaiInfo = self.listArray[indexPath.row];
 	[SVProgressHUD show];
 	[HentaiParser requestImagesAtURL:[NSURL URLWithString:hentaiInfo[@"url"]] completion: ^(HentaiParserStatus status, NSArray *images) {
 	    NSLog(@"%@", images);
@@ -76,6 +64,8 @@
 }
 
 
+
+
 #pragma mark - life cycle
 
 - (void)viewDidLoad
@@ -83,11 +73,14 @@
 	[super viewDidLoad];
     self.listIndex = 0;
     self.listArray = [NSMutableArray array];
-	[self.listTableView registerClass:[HentaiCell class] forCellReuseIdentifier:@"HentaiCell"];
+    
+//    [self.listCollectionView registerClass:[GalleryCell class] forCellWithReuseIdentifier:@"GalleryCell"];
+    
+    [self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
     
 	[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
 	    [self.listArray addObjectsFromArray:listArray];
-	    [self.listTableView reloadData];
+	    [self.listCollectionView reloadData];
 	}];
 }
 
