@@ -27,12 +27,9 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
-    
     NSDictionary *hentaiInfo = self.listArray[indexPath.row];
     [cell setGalleryDict:hentaiInfo];
-    
     return cell;
 }
 
