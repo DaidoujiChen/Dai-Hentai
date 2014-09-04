@@ -77,10 +77,13 @@
 	}];
 }
 
-+ (void)requestImagesAtURL:(NSURL *)url completion:(void (^)(HentaiParserStatus status, NSArray *images))completion
++ (void)requestImagesAtURL:(NSString *)urlString atIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSArray *images))completion
 {
-#warning 只先 pa 第一頁吧
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[NSOperationQueue mainQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    //網址的範例
+    //http://g.e-hentai.org/g/735601/35fe0802c8/?p=2
+    NSString *newURLString = [NSString stringWithFormat:@"%@?p=%d", urlString, index];
+    NSURL *newURL = [NSURL URLWithString:newURLString];
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:newURL] queue:[NSOperationQueue mainQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
 	        completion(HentaiParserStatusFail, nil);
 		} else {

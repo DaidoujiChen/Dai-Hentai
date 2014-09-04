@@ -56,7 +56,7 @@
 
     NSDictionary *hentaiInfo = self.listArray[indexPath.row];
 	[SVProgressHUD show];
-	[HentaiParser requestImagesAtURL:[NSURL URLWithString:hentaiInfo[@"url"]] completion: ^(HentaiParserStatus status, NSArray *images) {
+	[HentaiParser requestImagesAtURL:hentaiInfo[@"url"] atIndex:0 completion: ^(HentaiParserStatus status, NSArray *images) {
 	    NSLog(@"%@", images);
         
         HentaiNavigationController *hentaiNavigation = (HentaiNavigationController*)self.navigationController;
