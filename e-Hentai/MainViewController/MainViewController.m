@@ -55,23 +55,26 @@
     
 
     NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-	[SVProgressHUD show];
+	/*[SVProgressHUD show];
 	[HentaiParser requestImagesAtURL:hentaiInfo[@"url"] atIndex:0 completion: ^(HentaiParserStatus status, NSArray *images) {
 	    NSLog(@"%@", images);
-        
-        HentaiNavigationController *hentaiNavigation = (HentaiNavigationController*)self.navigationController;
-        hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskLandscape;
-        
-        FakeViewController *fakeViewController = [FakeViewController new];
-        fakeViewController.BackBlock = ^() {
-            [hentaiNavigation pushViewController:[PhotoViewController new] animated:YES];
-        };
-        [self presentViewController:fakeViewController animated:NO completion:^{
-            [fakeViewController onPresentCompletion];
-        }];
-        
 	    [SVProgressHUD dismiss];
-	}];
+	}];*/
+    
+    HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
+    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskLandscape;
+    
+    PhotoViewController *photoViewController = [PhotoViewController new];
+    photoViewController.hentaiURLString = hentaiInfo[@"url"];
+    photoViewController.maxHentaiCount = hentaiInfo[@"filecount"];
+    
+    FakeViewController *fakeViewController = [FakeViewController new];
+    fakeViewController.BackBlock = ^() {
+        [hentaiNavigation pushViewController:photoViewController animated:YES];
+    };
+    [self presentViewController:fakeViewController animated:NO completion:^{
+        [fakeViewController onPresentCompletion];
+    }];
 }
 
 

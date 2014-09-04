@@ -10,7 +10,14 @@
 
 #import "HentaiNavigationController.h"
 #import "FakeViewController.h"
+#import "HentaiPhotoCell.h"
+#import "HentaiDownloadOperation.h"
 
-@interface PhotoViewController : UIViewController
+@interface PhotoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadOperationDelegate>
+
+@property (nonatomic, strong) NSString *hentaiURLString;
+@property (nonatomic, strong) NSString *maxHentaiCount;
+
+@property (weak, nonatomic) IBOutlet UITableView *hentaiTableView;
 
 @end
