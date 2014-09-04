@@ -27,6 +27,19 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    //無限滾
+    if (indexPath.row >= [self.listArray count]-15 && [self.listArray count] == (self.listIndex+1)*25) {
+        self.listIndex++;
+        [HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
+            [self.listArray addObjectsFromArray:listArray];
+            [self.listCollectionView reloadData];
+        }];
+    }
+    
+    
+    
     GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
     NSDictionary *hentaiInfo = self.listArray[indexPath.row];
     [cell setGalleryDict:hentaiInfo];
@@ -39,6 +52,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 
     NSDictionary *hentaiInfo = self.listArray[indexPath.row];
 	[SVProgressHUD show];

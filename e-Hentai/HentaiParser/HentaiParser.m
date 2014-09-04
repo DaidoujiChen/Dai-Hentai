@@ -64,7 +64,7 @@
 	                    eachDictionary[@"category"] = metaData[@"category"];
 	                    eachDictionary[@"uploader"] = metaData[@"uploader"];
 	                    eachDictionary[@"filecount"] = metaData[@"filecount"];
-	                    eachDictionary[@"filesize"] = metaData[@"filesize"];
+	                    eachDictionary[@"filesize"] = [NSByteCountFormatter stringFromByteCount:[metaData[@"filesize"] floatValue] countStyle:NSByteCountFormatterCountStyleFile];
 	                    eachDictionary[@"rating"] = metaData[@"rating"];
 	                    eachDictionary[@"posted"] = [self dateStringFrom1970:[metaData[@"posted"] doubleValue]];
 					}

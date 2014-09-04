@@ -16,6 +16,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+        self.cellImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return self;
 }
@@ -29,8 +31,10 @@
     
     self.cellLabel.text = dataDict[@"title"];
     
-    //之後換圖
-    [self.cellImageView sd_setImageWithURL:[NSURL URLWithString:@"https://avatars1.githubusercontent.com/u/532720?v=2&s=460"]
+    NSString* imgUrl = @"https://avatars1.githubusercontent.com/u/532720?v=2&s=460"; //貓貓圖(公司用)
+//    NSString* imgUrl = dataDict[@"thumb"]; //(真的H縮圖)
+    
+    [self.cellImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl]
                           placeholderImage:nil
                                    options:SDWebImageRefreshCached];
     
