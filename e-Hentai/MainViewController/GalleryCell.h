@@ -10,4 +10,10 @@
 
 @interface GalleryCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel     *cellLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
+
+//設定資料
+-(void)setGalleryDict:(NSDictionary*)dataDict;
+
 @end

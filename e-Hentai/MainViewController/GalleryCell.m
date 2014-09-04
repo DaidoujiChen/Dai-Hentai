@@ -7,6 +7,7 @@
 //
 
 #import "GalleryCell.h"
+#import "UIImageView+WebCache.h"
 
 @implementation GalleryCell
 
@@ -19,13 +20,20 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+
+#pragma mark -
+
+//設定資料
+-(void)setGalleryDict:(NSDictionary*)dataDict
 {
-    // Drawing code
+    
+    self.cellLabel.text = dataDict[@"title"];
+    
+    //之後換圖
+    [self.cellImageView sd_setImageWithURL:[NSURL URLWithString:@"https://avatars1.githubusercontent.com/u/532720?v=2&s=460"]
+                          placeholderImage:nil
+                                   options:SDWebImageRefreshCached];
+    
 }
-*/
 
 @end
