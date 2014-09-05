@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "HentaiParser.h"
-#import "HentaiCell.h"
 #import "GalleryCell.h"
 #import "HentaiNavigationController.h"
 #import "PhotoViewController.h"
