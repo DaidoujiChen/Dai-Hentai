@@ -49,12 +49,12 @@
     
     CGRect labelFrame = CGRectOffset(self.bounds, 5, 0); //padding 5
     categoryLabel.frame = labelFrame;
-    [categoryLabel setBackgroundColor:[UIColor clearColor]];
-    [categoryLabel setTextColor:CORLOR_TEXT];
+    categoryLabel.backgroundColor = [UIColor clearColor];
+    categoryLabel.textColor = CORLOR_TEXT;
     categoryLabel.font = [UIFont systemFontOfSize:14.0];
     categoryLabel.text = categoryString;
     
-    [self.layer setCornerRadius:CGRectGetHeight(self.bounds) / 4];
+    self.layer.cornerRadius = CGRectGetHeight(self.bounds) / 4;
 }
 
 @end

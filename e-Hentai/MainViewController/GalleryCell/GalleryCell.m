@@ -50,7 +50,7 @@
 {
     self.cellImageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    [self.layer setCornerRadius:CGRectGetHeight(self.cellCategory.frame) / 4];
+     self.layer.cornerRadius = CGRectGetHeight(self.cellCategory.frame) / 4;
 }
 
 @end

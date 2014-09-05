@@ -72,7 +72,7 @@
     CGFloat fontSize = CGRectGetWidth(rect) / 2;
     
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [style setAlignment:NSTextAlignmentCenter];
+    style.alignment = NSTextAlignmentCenter;
     
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize] ,
                                  NSForegroundColorAttributeName:[UIColor blackColor],
