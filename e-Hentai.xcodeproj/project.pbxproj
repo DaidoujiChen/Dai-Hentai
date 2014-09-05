@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080719B6F06200FE0DA1 /* FakeViewController.m */; };
 		0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */; };
-		0118081719B6F06200FE0DA1 /* HentaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080C19B6F06200FE0DA1 /* HentaiCell.m */; };
-		0118081819B6F06200FE0DA1 /* HentaiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118080D19B6F06200FE0DA1 /* HentaiCell.xib */; };
 		0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080F19B6F06200FE0DA1 /* MainViewController.m */; };
 		0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118081019B6F06200FE0DA1 /* MainViewController.xib */; };
 		0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118081319B6F06200FE0DA1 /* PhotoViewController.m */; };
@@ -70,9 +68,6 @@
 		0118080719B6F06200FE0DA1 /* FakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeViewController.m; sourceTree = "<group>"; };
 		0118080819B6F06200FE0DA1 /* HentaiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiNavigationController.h; sourceTree = "<group>"; };
 		0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiNavigationController.m; sourceTree = "<group>"; };
-		0118080B19B6F06200FE0DA1 /* HentaiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiCell.h; sourceTree = "<group>"; };
-		0118080C19B6F06200FE0DA1 /* HentaiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiCell.m; sourceTree = "<group>"; };
-		0118080D19B6F06200FE0DA1 /* HentaiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HentaiCell.xib; sourceTree = "<group>"; };
 		0118080E19B6F06200FE0DA1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		0118080F19B6F06200FE0DA1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		0118081019B6F06200FE0DA1 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -187,9 +182,6 @@
 		0118080A19B6F06200FE0DA1 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0118080B19B6F06200FE0DA1 /* HentaiCell.h */,
-				0118080C19B6F06200FE0DA1 /* HentaiCell.m */,
-				0118080D19B6F06200FE0DA1 /* HentaiCell.xib */,
 				0118080E19B6F06200FE0DA1 /* MainViewController.h */,
 				0118080F19B6F06200FE0DA1 /* MainViewController.m */,
 				0118081019B6F06200FE0DA1 /* MainViewController.xib */,
@@ -456,7 +448,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0118081819B6F06200FE0DA1 /* HentaiCell.xib in Resources */,
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
 				0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */,
 				0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */,
@@ -487,7 +478,6 @@
 				0150034819B6E5E90055F47D /* SVProgressHUD.m in Sources */,
 				0150034619B6E5E90055F47D /* XPathQuery.m in Sources */,
 				0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */,
-				0118081719B6F06200FE0DA1 /* HentaiCell.m in Sources */,
 				040541C119B8182400139AC9 /* SDWebImageDownloaderOperation.m in Sources */,
 				0150034419B6E5E90055F47D /* TFHpple.m in Sources */,
 				040541BD19B8182400139AC9 /* SDImageCache.m in Sources */,
