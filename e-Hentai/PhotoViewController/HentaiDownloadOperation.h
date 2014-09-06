@@ -10,7 +10,7 @@
 
 @protocol HentaiDownloadOperationDelegate;
 
-@interface HentaiDownloadOperation : NSOperation
+@interface HentaiDownloadOperation : NSOperation <NSURLConnectionDelegate>
 
 @property (nonatomic, weak) id <HentaiDownloadOperationDelegate> delegate;
 @property (nonatomic, strong) NSString *downloadURLString;

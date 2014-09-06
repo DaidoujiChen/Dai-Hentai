@@ -16,6 +16,10 @@
 //漫畫每一頁的 url 網址
 @property (nonatomic, strong) NSMutableArray *hentaiImageURLs;
 
+//記錄 fail 了幾次
+@property (nonatomic, strong) NSMutableDictionary *retryMap;
+@property (nonatomic, assign) NSUInteger failCount;
+
 //已經下載好的漫畫結果
 //結構 key 是檔案名稱 (url 網址的 lastPathComponent) NSString
 //value 是該檔案的高度 NSNumber
@@ -113,14 +117,16 @@
 	[self.hentaiTableView registerClass:[HentaiPhotoCell class] forCellReuseIdentifier:@"HentaiPhotoCell"];
 
 	self.hentaiImageURLs = [NSMutableArray array];
+    self.retryMap = [NSMutableDictionary dictionary];
 	if (HentaiLibraryDictionary[self.hentaiKey]) {
 		self.hentaiResults = HentaiLibraryDictionary[self.hentaiKey];
 	} else {
 		self.hentaiResults = [NSMutableDictionary dictionary];
 	}
 	self.hentaiQueue = [NSOperationQueue new];
-	[self.hentaiQueue setMaxConcurrentOperationCount:5];
+    [self.hentaiQueue setMaxConcurrentOperationCount:5];
 	self.hentaiIndex = 0;
+    self.failCount = 0;
 	self.isRemovedHUD = NO;
 	self.realDisplayCount = 0;
 }
@@ -142,11 +148,25 @@
 			[self.hentaiTableView reloadData];
 		}
 	} else {
-		HentaiDownloadOperation *newOperation = [HentaiDownloadOperation new];
-		newOperation.downloadURLString = urlString;
-		newOperation.hentaiKey = self.hentaiKey;
-		newOperation.delegate = self;
-		[self.hentaiQueue addOperation:newOperation];
+        NSNumber *retryCount = self.retryMap[urlString];
+        if (retryCount) {
+            retryCount = [NSNumber numberWithInt:[retryCount integerValue]+1];
+        } else {
+            retryCount = @(1);
+        }
+        self.retryMap[urlString] = retryCount;
+        
+        if ([retryCount integerValue] <= 3) {
+            HentaiDownloadOperation *newOperation = [HentaiDownloadOperation new];
+            newOperation.downloadURLString = urlString;
+            newOperation.hentaiKey = self.hentaiKey;
+            newOperation.delegate = self;
+            [self.hentaiQueue addOperation:newOperation];
+        } else {
+            self.failCount++;
+            self.maxHentaiCount = [NSString stringWithFormat:@"%d", [self.maxHentaiCount integerValue]-1];
+            [self.hentaiImageURLs removeObject:urlString];
+        }
 	}
 }
 
@@ -162,6 +182,19 @@
 {
     // 當前頁數 / ( 可到頁數 / 已下載頁數 / 總共頁數 )
 	self.title = [NSString stringWithFormat:@"%d/(%d/%d/%@)", indexPath.row + 1, self.realDisplayCount, [self.hentaiResults count], self.maxHentaiCount];
+    
+    //無限滾
+    if (indexPath.row >= [self.hentaiImageURLs count]-20 && ([self.hentaiImageURLs count]+self.failCount) == (self.hentaiIndex+1)*40 && [self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
+        self.hentaiIndex++;
+        __weak PhotoViewController *weakSelf = self;
+        [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
+            if (status && weakSelf) {
+                __strong PhotoViewController *strongSelf = weakSelf;
+                [strongSelf.hentaiImageURLs addObjectsFromArray:images];
+                [strongSelf preloadImages:images];
+            }
+        }];
+    }
     
 	static NSString *cellIdentifier = @"HentaiPhotoCell";
 	HentaiPhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];

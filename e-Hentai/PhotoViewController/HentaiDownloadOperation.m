@@ -8,39 +8,116 @@
 
 #import "HentaiDownloadOperation.h"
 
+@interface HentaiDownloadOperation ()
+
+@property (nonatomic, strong) NSMutableData *recvData;
+@property (nonatomic, assign) BOOL isExecuting;
+@property (nonatomic, assign) BOOL isFinished;
+
+@end
+
 @implementation HentaiDownloadOperation
 
-- (void)main
+#pragma mark - Methods to Override
+
+- (BOOL)isConcurrent
 {
-	NSNumber *imageHeight = HentaiLibraryDictionary[self.hentaiKey][[self.downloadURLString lastPathComponent]];
+    return YES;
+}
+
+- (void)start
+{
+    if ([self isCancelled]) {
+        [self hentaiFinish];
+        return;
+    }
     
+    [self hentaiStart];
+    NSNumber *imageHeight = HentaiLibraryDictionary[self.hentaiKey][[self.downloadURLString lastPathComponent]];
+
     //從 imageHeight 的有無可以判斷這個檔案是否已經有了
 	if (!imageHeight) {
 		NSURL *url = [NSURL URLWithString:self.downloadURLString];
-		NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-		UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:data]];
-
-		if (![self isCancelled]) {
-			dispatch_sync(dispatch_get_main_queue(), ^{
-			    if (data.length) {
-			        [[[FilesManager documentFolder] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.7f) filename:[self.downloadURLString lastPathComponent]];
-			        [self.delegate downloadResult:self.downloadURLString heightOfSize:image.size.height isSuccess:YES];
-				} else {
-			        [self.delegate downloadResult:self.downloadURLString heightOfSize:-1 isSuccess:NO];
-				}
-			});
-		}
+        
+        NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0f] delegate:self startImmediately:NO];
+        [conn scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+        [conn start];
 	} else {
 		if (![self isCancelled]) {
 			dispatch_sync(dispatch_get_main_queue(), ^{
 			    [self.delegate downloadResult:self.downloadURLString heightOfSize:[imageHeight floatValue] isSuccess:YES];
+                [self hentaiFinish];
 			});
 		}
 	}
 }
 
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key
+{
+	return YES;
+}
+
+
+#pragma mark - NSURLConnectionDelegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
+{
+    self.recvData = [NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    if (![self isCancelled]) {
+        [self.recvData appendData:data];
+    } else {
+        [self hentaiFinish];
+        [connection cancel];
+        connection = nil;
+    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (![self isCancelled]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:self.recvData]];
+            [[[FilesManager documentFolder] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.7f) filename:[self.downloadURLString lastPathComponent]];
+            
+            //讓檔案轉存這件事情不擋線程
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate downloadResult:self.downloadURLString heightOfSize:image.size.height isSuccess:YES];
+                [self hentaiFinish];
+            });
+        });
+    }
+    [connection cancel];
+    connection = nil;
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    if (![self isCancelled]) {
+        [self.delegate downloadResult:self.downloadURLString heightOfSize:-1 isSuccess:NO];
+    }
+    [self hentaiFinish];
+    [connection cancel];
+    connection = nil;
+}
+
 
 #pragma mark - private
+
+- (void) hentaiStart
+{
+    self.isFinished = NO;
+    self.isExecuting = YES;
+}
+
+- (void) hentaiFinish
+{
+    self.isFinished = YES;
+    self.isExecuting = NO;
+}
 
 //計算符合螢幕 size 的新大小
 - (CGSize)calendarNewSize:(UIImage *)image
