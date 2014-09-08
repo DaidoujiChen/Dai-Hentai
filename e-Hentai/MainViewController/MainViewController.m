@@ -126,7 +126,7 @@
     
     if(enableH_Image)
     {
-        sender.title = @"貓圖"; 
+        sender.title = @"貓圖";
     }
     else
     {
