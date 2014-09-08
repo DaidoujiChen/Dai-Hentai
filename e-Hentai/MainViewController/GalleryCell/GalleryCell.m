@@ -14,16 +14,6 @@
 
 @implementation GalleryCell
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        
-
-    }
-    return self;
-}
 
 
 #pragma mark -
@@ -43,8 +33,6 @@
         imgUrl = dataDict[@"thumb"];//(真的H縮圖)
     }
     
-    
-    
     [self.cellImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl]
                           placeholderImage:nil
                                    options:SDWebImageRefreshCached];
@@ -56,9 +44,11 @@
 
 - (void)layoutSubviews
 {
-    self.cellImageView.contentMode = UIViewContentModeScaleAspectFill;
-    
-     self.layer.cornerRadius = CGRectGetHeight(self.cellCategory.frame) / 4;
+    //Fit並置中
+    self.cellImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.cellImageView setClipsToBounds:YES];
+    self.cellImageView.center = CGPointMake(self.cellImageView.center.x, CGRectGetMidY(self.bounds));
+    self.layer.cornerRadius = CGRectGetHeight(self.cellCategory.frame) / 4;
 }
 
 @end
