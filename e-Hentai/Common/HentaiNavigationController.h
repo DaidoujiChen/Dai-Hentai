@@ -10,6 +10,7 @@
 
 @interface HentaiNavigationController : UINavigationController
 
+@property (nonatomic, assign) BOOL autorotate;
 @property (nonatomic, assign) UIInterfaceOrientationMask hentaiMask;
 
 @end

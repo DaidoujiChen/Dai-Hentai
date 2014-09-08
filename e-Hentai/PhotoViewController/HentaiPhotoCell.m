@@ -10,8 +10,7 @@
 
 @implementation HentaiPhotoCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 	if (self) {
 		NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
@@ -20,8 +19,7 @@
 	return self;
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
 	[super layoutSubviews];
 	self.hentaiImageView.frame = self.bounds;
 }

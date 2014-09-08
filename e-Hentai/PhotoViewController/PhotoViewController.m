@@ -37,6 +37,7 @@
 - (void)preloadImages:(NSArray *)images;
 - (NSInteger)availableCount;
 - (void)setupInitValues;
+- (CGSize)imagePortraitHeight:(CGSize)landscapeSize;
 
 @end
 
@@ -47,31 +48,27 @@
 
 @dynamic hentaiKey;
 
-- (NSString *)hentaiKey
-{
+- (NSString *)hentaiKey {
 	NSArray *splitStrings = [self.hentaiURLString componentsSeparatedByString:@"/"];
 	NSUInteger splitCount = [splitStrings count];
 	return [NSString stringWithFormat:@"%@-%@", splitStrings[splitCount - 3], splitStrings[splitCount - 2]];
 }
 
-
 #pragma mark - ibaction
 
-- (IBAction)singleTapScreenAction:(id)sender
-{
+- (IBAction)singleTapScreenAction:(id)sender {
 	[self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden animated:YES];
 	[self setNeedsStatusBarAppearanceUpdate];
 }
 
-
 #pragma mark - private
 
-- (void)backAction
-{
+- (void)backAction {
 	HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
+	hentaiNavigation.autorotate = NO;
 	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
 
-    //FakeViewController 是一個硬把畫面轉直的媒介
+	//FakeViewController 是一個硬把畫面轉直的媒介
 	FakeViewController *fakeViewController = [FakeViewController new];
 	fakeViewController.BackBlock = ^() {
 		[hentaiNavigation popViewControllerAnimated:YES];
@@ -81,9 +78,8 @@
 	}];
 }
 
-- (void)preloadImages:(NSArray *)images
-{
-    //將要下載的圖片加到 queue 裡面
+- (void)preloadImages:(NSArray *)images {
+	//將要下載的圖片加到 queue 裡面
 	for (NSString *eachImageString in images) {
 		HentaiDownloadOperation *newOperation = [HentaiDownloadOperation new];
 		newOperation.downloadURLString = eachImageString;
@@ -94,22 +90,21 @@
 }
 
 //計算目前到底可以顯示到哪一個 index
-- (NSInteger)availableCount
-{
+- (NSInteger)availableCount {
 	NSInteger returnIndex = -1;
 	for (NSInteger i = self.realDisplayCount; i < [self.hentaiImageURLs count]; i++) {
 		NSString *eachImageString = self.hentaiImageURLs[i];
 		if (self.hentaiResults[[eachImageString lastPathComponent]]) {
 			returnIndex = i;
-		} else {
+		}
+		else {
 			break;
 		}
 	}
 	return returnIndex + 1;
 }
 
-- (void)setupInitValues
-{
+- (void)setupInitValues {
 	UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backAction)];
 	self.title = @"Loading...";
 	self.navigationItem.leftBarButtonItem = newBackButton;
@@ -117,25 +112,32 @@
 	[self.hentaiTableView registerClass:[HentaiPhotoCell class] forCellReuseIdentifier:@"HentaiPhotoCell"];
 
 	self.hentaiImageURLs = [NSMutableArray array];
-    self.retryMap = [NSMutableDictionary dictionary];
+	self.retryMap = [NSMutableDictionary dictionary];
 	if (HentaiLibraryDictionary[self.hentaiKey]) {
 		self.hentaiResults = HentaiLibraryDictionary[self.hentaiKey];
-	} else {
+	}
+	else {
 		self.hentaiResults = [NSMutableDictionary dictionary];
 	}
 	self.hentaiQueue = [NSOperationQueue new];
-    [self.hentaiQueue setMaxConcurrentOperationCount:5];
+	[self.hentaiQueue setMaxConcurrentOperationCount:5];
 	self.hentaiIndex = 0;
-    self.failCount = 0;
+	self.failCount = 0;
 	self.isRemovedHUD = NO;
 	self.realDisplayCount = 0;
 }
 
+- (CGSize)imagePortraitHeight:(CGSize)landscapeSize {
+	CGFloat oldWidth = landscapeSize.width;
+	CGFloat scaleFactor = [UIScreen mainScreen].bounds.size.width / oldWidth;
+	CGFloat newHeight = landscapeSize.height * scaleFactor;
+	CGFloat newWidth = oldWidth * scaleFactor;
+	return CGSizeMake(newWidth, newHeight);
+}
 
 #pragma mark - HentaiDownloadOperationDelegate
 
-- (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess
-{
+- (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess {
 	if (isSuccess) {
 		self.hentaiResults[[urlString lastPathComponent]] = @(height);
 		NSInteger availableCount = [self availableCount];
@@ -147,96 +149,99 @@
 			self.realDisplayCount = availableCount;
 			[self.hentaiTableView reloadData];
 		}
-	} else {
-        NSNumber *retryCount = self.retryMap[urlString];
-        if (retryCount) {
-            retryCount = [NSNumber numberWithInt:[retryCount integerValue]+1];
-        } else {
-            retryCount = @(1);
-        }
-        self.retryMap[urlString] = retryCount;
-        
-        if ([retryCount integerValue] <= 3) {
-            HentaiDownloadOperation *newOperation = [HentaiDownloadOperation new];
-            newOperation.downloadURLString = urlString;
-            newOperation.hentaiKey = self.hentaiKey;
-            newOperation.delegate = self;
-            [self.hentaiQueue addOperation:newOperation];
-        } else {
-            self.failCount++;
-            self.maxHentaiCount = [NSString stringWithFormat:@"%d", [self.maxHentaiCount integerValue]-1];
-            [self.hentaiImageURLs removeObject:urlString];
-        }
+	}
+	else {
+		NSNumber *retryCount = self.retryMap[urlString];
+		if (retryCount) {
+			retryCount = [NSNumber numberWithInt:[retryCount integerValue] + 1];
+		}
+		else {
+			retryCount = @(1);
+		}
+		self.retryMap[urlString] = retryCount;
+
+		if ([retryCount integerValue] <= 3) {
+			HentaiDownloadOperation *newOperation = [HentaiDownloadOperation new];
+			newOperation.downloadURLString = urlString;
+			newOperation.hentaiKey = self.hentaiKey;
+			newOperation.delegate = self;
+			[self.hentaiQueue addOperation:newOperation];
+		}
+		else {
+			self.failCount++;
+			self.maxHentaiCount = [NSString stringWithFormat:@"%d", [self.maxHentaiCount integerValue] - 1];
+			[self.hentaiImageURLs removeObject:urlString];
+		}
 	}
 }
 
-
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return self.realDisplayCount;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // 當前頁數 / ( 可到頁數 / 已下載頁數 / 總共頁數 )
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	// 當前頁數 / ( 可到頁數 / 已下載頁數 / 總共頁數 )
 	self.title = [NSString stringWithFormat:@"%d/(%d/%d/%@)", indexPath.row + 1, self.realDisplayCount, [self.hentaiResults count], self.maxHentaiCount];
-    
-    //無限滾
-    if (indexPath.row >= [self.hentaiImageURLs count]-20 && ([self.hentaiImageURLs count]+self.failCount) == (self.hentaiIndex+1)*40 && [self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
-        self.hentaiIndex++;
-        __weak PhotoViewController *weakSelf = self;
-        [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf) {
-                __strong PhotoViewController *strongSelf = weakSelf;
-                [strongSelf.hentaiImageURLs addObjectsFromArray:images];
-                [strongSelf preloadImages:images];
-            }
-        }];
-    }
-    
+
+	//無限滾
+	if (indexPath.row >= [self.hentaiImageURLs count] - 20 && ([self.hentaiImageURLs count] + self.failCount) == (self.hentaiIndex + 1) * 40 && [self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
+		self.hentaiIndex++;
+		__weak PhotoViewController *weakSelf = self;
+		[HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
+		    if (status && weakSelf) {
+		        __strong PhotoViewController *strongSelf = weakSelf;
+		        [strongSelf.hentaiImageURLs addObjectsFromArray:images];
+		        [strongSelf preloadImages:images];
+			}
+		}];
+	}
+
 	static NSString *cellIdentifier = @"HentaiPhotoCell";
 	HentaiPhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 	NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
 	if (self.hentaiResults[[eachImageString lastPathComponent]]) {
 		cell.hentaiImageView.image = [UIImage imageWithData:[[[FilesManager documentFolder] fcd:self.hentaiKey] read:[eachImageString lastPathComponent]]];
-	} else {
+	}
+	else {
 		cell.hentaiImageView.image = nil;
 	}
 	return cell;
 }
 
-
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
 	if (self.hentaiResults[[eachImageString lastPathComponent]]) {
-		return [self.hentaiResults[[eachImageString lastPathComponent]] floatValue];
-	} else {
+		//如果畫面是直向的時候, 長度要重新算
+		if (self.interfaceOrientation == UIDeviceOrientationPortrait) {
+			CGSize newSize = [self imagePortraitHeight:CGSizeMake([UIScreen mainScreen].bounds.size.height, [self.hentaiResults[[eachImageString lastPathComponent]] floatValue])];
+			return newSize.height;
+		}
+		else {
+			return [self.hentaiResults[[eachImageString lastPathComponent]] floatValue];
+		}
+	}
+	else {
 		return 0;
 	}
 }
 
-
 #pragma mark - Configuring the View’s Layout Behavior
 
-- (BOOL)prefersStatusBarHidden
-{
+- (BOOL)prefersStatusBarHidden {
 	return self.navigationController.navigationBarHidden;
 }
 
-
 #pragma mark - life cycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
 	[super viewDidLoad];
 	[self setupInitValues];
 
-    //從網路上取得 image 列表
+	//從網路上取得 image 列表
 	[SVProgressHUD show];
 	__weak PhotoViewController *weakSelf = self;
 	[HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
@@ -248,11 +253,10 @@
 	}];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-    
-    //結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
+
+	//結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
 	[self.hentaiQueue cancelAllOperations];
 	HentaiLibraryDictionary[self.hentaiKey] = self.hentaiResults;
 	LWPForceWrite();

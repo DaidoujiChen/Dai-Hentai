@@ -17,15 +17,12 @@
 
 #pragma mark - Configuring the View Rotation Settings
 
-- (BOOL)shouldAutorotate
-{
-    return NO;
+- (BOOL)shouldAutorotate {
+	return self.autorotate;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return self.hentaiMask;
+- (NSUInteger)supportedInterfaceOrientations {
+	return self.hentaiMask;
 }
-
 
 @end
