@@ -11,7 +11,6 @@
 #import "CategoryTitle.h"
 #import "RatingStar.h"
 
-
 @implementation GalleryCell
 
 
@@ -23,6 +22,7 @@
 {
     
     self.cellLabel.text = dataDict[@"title"];
+    
     
     BOOL enableImageMode = [dataDict[imageMode] boolValue];
     
