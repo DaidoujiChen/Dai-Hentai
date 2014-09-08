@@ -17,5 +17,12 @@
     //from project
     #import "SVProgressHUD.h"
     #import "TFHpple.h"
+    #import "UIImageView+WebCache.h"
+    #import "HentaiParser.h"
+    #import "FilesManager.h"
+    #import "LightWeightPlist.h"
+
+    //LightWeightPlist
+    #define HentaiLibraryDictionary LWPDictionary(@"HentaiLibrary")
 
 #endif
