@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define imageMode @"IMAGE_MODE"
-
 @class CategoryTitle;
 @class RatingStar;
 

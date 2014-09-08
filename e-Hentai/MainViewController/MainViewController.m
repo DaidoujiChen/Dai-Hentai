@@ -9,10 +9,6 @@
 #import "MainViewController.h"
 
 @interface MainViewController ()
-{
-    UIRefreshControl* refreshControl;
-    BOOL enableH_Image;
-}
 
 @property (nonatomic, assign) NSUInteger listIndex;
 @property (nonatomic, strong) NSMutableArray *listArray;
@@ -42,9 +38,10 @@
         }];
     }
     
+    
+    
     GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
     NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-    [hentaiInfo setValue:[NSNumber numberWithBool:enableH_Image] forKey:imageMode];//設定是否顯示H圖
     [cell setGalleryDict:hentaiInfo];
     return cell;
 }
@@ -87,53 +84,15 @@
 	[super viewDidLoad];
     self.listIndex = 0;
     self.listArray = [NSMutableArray array];
+    
+//    [self.listCollectionView registerClass:[GalleryCell class] forCellWithReuseIdentifier:@"GalleryCell"];
+    
     [self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
-    [HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
+    
+	[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
 	    [self.listArray addObjectsFromArray:listArray];
 	    [self.listCollectionView reloadData];
 	}];
-    
-    //add refresh control
-    refreshControl = [[UIRefreshControl alloc]init];
-    [self.listCollectionView addSubview:refreshControl];
-    [refreshControl addTarget:self
-                       action:@selector(reloadDatas)
-             forControlEvents:UIControlEventValueChanged];
-    
-    UIBarButtonItem* changeModeItem = [[UIBarButtonItem alloc] initWithTitle:@"H圖" style:UIBarButtonItemStylePlain target:self action:@selector(changeImageMode:)];
-    self.navigationItem.rightBarButtonItem = changeModeItem;
-    
-    enableH_Image = NO;
-}
-
-
-#pragma mark - actions
-
-- (void)reloadDatas
-{
-    [HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
-        [self.listArray removeAllObjects];
-	    [self.listArray addObjectsFromArray:listArray];
-	    [self.listCollectionView reloadData];
-        
-        [refreshControl endRefreshing];
-	}];
-}
-
-- (void)changeImageMode:(UIBarButtonItem*)sender
-{
-    enableH_Image = !enableH_Image;
-    
-    if(enableH_Image)
-    {
-        sender.title = @"貓圖";
-    }
-    else
-    {
-        sender.title = @"H圖";
-    }
-    
-    [self.listCollectionView reloadData];
 }
 
 
