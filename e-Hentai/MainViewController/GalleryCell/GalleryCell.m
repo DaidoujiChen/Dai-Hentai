@@ -34,8 +34,16 @@
     
     self.cellLabel.text = dataDict[@"title"];
     
-//    NSString* imgUrl = @"https://avatars1.githubusercontent.com/u/532720?v=2&s=460"; //貓貓圖(公司用)
-    NSString* imgUrl = dataDict[@"thumb"]; //(真的H縮圖)
+    BOOL enableImageMode = [dataDict[imageMode] boolValue];
+    
+    NSString* imgUrl = @"https://avatars1.githubusercontent.com/u/532720?v=2&s=460"; //貓貓圖(公司用)
+    
+    if(enableImageMode)
+    {
+        imgUrl = dataDict[@"thumb"];//(真的H縮圖)
+    }
+    
+    
     
     [self.cellImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl]
                           placeholderImage:nil
