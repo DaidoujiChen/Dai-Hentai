@@ -10,10 +10,10 @@
 
 @interface CategoryTitle : UIView
 {
-    NSString* categoryString;
-    UILabel*  categoryLabel;
+	NSString *categoryString;
+	UILabel *categoryLabel;
 }
 
-- (void)setCategoryStr:(NSString*)category;
+- (void)setCategoryStr:(NSString *)category;
 
 @end

@@ -10,9 +10,9 @@
 
 @interface RatingStar : UIView
 {
-    NSString* starString;
+	NSString *starString;
 }
 
-- (void)setStar:(NSString*)star;
+- (void)setStar:(NSString *)star;
 
 @end

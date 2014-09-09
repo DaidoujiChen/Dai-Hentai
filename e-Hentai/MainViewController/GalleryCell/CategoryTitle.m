@@ -28,7 +28,6 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
-		// Initialization code
 		self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
 		categoryString = @"";
 		categoryLabel = [UILabel new];
@@ -62,7 +61,7 @@
 	categoryLabel.backgroundColor = [UIColor clearColor];
 	categoryLabel.font = [UIFont systemFontOfSize:14.0];
 	categoryLabel.text = categoryString;
-
+    
 	self.layer.cornerRadius = CGRectGetHeight(self.bounds) / 4;
 }
 
