@@ -12,31 +12,38 @@
 
 #pragma mark - class method
 
-+ (FMStream *)documentFolder
-{
++ (FMStream *)documentFolder {
 	FMStream *newStream = [FMStream new];
-	[newStream setBasePath:[self documentFolderPathString]];
+    newStream.basePath = [self documentFolderPathString];
 	return newStream;
 }
 
-+ (FMStream *)resourceFolder
-{
++ (FMStream *)resourceFolder {
 	FMStream *newStream = [FMStream new];
-	[newStream setBasePath:[self resourceFolderPathString]];
+    newStream.basePath = [self resourceFolderPathString];
+	return newStream;
+}
+
++ (FMStream *)cacheFolder {
+	FMStream *newStream = [FMStream new];
+    newStream.basePath = [self cacheFolderPathString];
 	return newStream;
 }
 
 #pragma mark - private
 
-+ (NSString *)documentFolderPathString
-{
++ (NSString *)documentFolderPathString {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	return paths[0];
 }
 
-+ (NSString *)resourceFolderPathString
-{
++ (NSString *)resourceFolderPathString {
 	return [[NSBundle mainBundle] bundlePath];
+}
+
++ (NSString *)cacheFolderPathString {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	return paths[0];
 }
 
 @end

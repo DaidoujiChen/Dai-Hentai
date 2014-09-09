@@ -32,6 +32,7 @@
 @property (nonatomic, assign) NSInteger realDisplayCount;
 @property (nonatomic, assign) BOOL isRemovedHUD;
 @property (nonatomic, strong) NSOperationQueue *hentaiQueue;
+@property (nonatomic, strong) FMStream *hentaiFilesManager;
 
 - (void)backAction;
 - (void)preloadImages:(NSArray *)images;
@@ -67,7 +68,7 @@
 	HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
 	hentaiNavigation.autorotate = NO;
 	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
-
+    
 	//FakeViewController 是一個硬把畫面轉直的媒介
 	FakeViewController *fakeViewController = [FakeViewController new];
 	fakeViewController.BackBlock = ^() {
@@ -114,7 +115,14 @@
 	self.hentaiImageURLs = [NSMutableArray array];
 	self.retryMap = [NSMutableDictionary dictionary];
 	if (HentaiLibraryDictionary[self.hentaiKey]) {
-		self.hentaiResults = HentaiLibraryDictionary[self.hentaiKey];
+		//這邊要多一個判斷, 當 cache 資料夾下如果找不到東西了, 表示圖片已經被清掉
+		if ([[[FilesManager cacheFolder] fcd:@"Hentai"] cd:self.hentaiKey]) {
+			self.hentaiResults = HentaiLibraryDictionary[self.hentaiKey];
+		}
+		else {
+			self.hentaiResults = [NSMutableDictionary dictionary];
+			[HentaiLibraryDictionary removeObjectForKey:self.hentaiKey];
+		}
 	}
 	else {
 		self.hentaiResults = [NSMutableDictionary dictionary];
@@ -125,6 +133,7 @@
 	self.failCount = 0;
 	self.isRemovedHUD = NO;
 	self.realDisplayCount = 0;
+	self.hentaiFilesManager = [[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
 }
 
 - (CGSize)imagePortraitHeight:(CGSize)landscapeSize {
@@ -159,7 +168,7 @@
 			retryCount = @(1);
 		}
 		self.retryMap[urlString] = retryCount;
-
+        
 		if ([retryCount integerValue] <= 3) {
 			HentaiDownloadOperation *newOperation = [HentaiDownloadOperation new];
 			newOperation.downloadURLString = urlString;
@@ -184,7 +193,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	// 當前頁數 / ( 可到頁數 / 已下載頁數 / 總共頁數 )
 	self.title = [NSString stringWithFormat:@"%d/(%d/%d/%@)", indexPath.row + 1, self.realDisplayCount, [self.hentaiResults count], self.maxHentaiCount];
-
+    
 	//無限滾
 	if (indexPath.row >= [self.hentaiImageURLs count] - 20 && ([self.hentaiImageURLs count] + self.failCount) == (self.hentaiIndex + 1) * 40 && [self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
 		self.hentaiIndex++;
@@ -197,12 +206,12 @@
 			}
 		}];
 	}
-
+    
 	static NSString *cellIdentifier = @"HentaiPhotoCell";
 	HentaiPhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 	NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
 	if (self.hentaiResults[[eachImageString lastPathComponent]]) {
-		cell.hentaiImageView.image = [UIImage imageWithData:[[[FilesManager documentFolder] fcd:self.hentaiKey] read:[eachImageString lastPathComponent]]];
+		cell.hentaiImageView.image = [UIImage imageWithData:[self.hentaiFilesManager read:[eachImageString lastPathComponent]]];
 	}
 	else {
 		cell.hentaiImageView.image = nil;
@@ -240,7 +249,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self setupInitValues];
-
+    
 	//從網路上取得 image 列表
 	[SVProgressHUD show];
 	__weak PhotoViewController *weakSelf = self;
@@ -255,7 +264,11 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-
+    
+	if (!self.isRemovedHUD) {
+		[SVProgressHUD dismiss];
+	}
+    
 	//結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
 	[self.hentaiQueue cancelAllOperations];
 	HentaiLibraryDictionary[self.hentaiKey] = self.hentaiResults;
