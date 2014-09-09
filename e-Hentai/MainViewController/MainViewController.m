@@ -37,7 +37,7 @@
 		    [self.listCollectionView reloadData];
 		}];
 	}
-
+    
 	GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
 	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
 	[hentaiInfo setValue:[NSNumber numberWithBool:enableH_Image] forKey:imageMode]; //設定是否顯示H圖
@@ -48,27 +48,24 @@
 #pragma mark - UICollectionViewDelegate
 
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
     
-    NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-
-    HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
-    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskLandscape;
+	HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
+	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskLandscape;
     
-    PhotoViewController *photoViewController = [PhotoViewController new];
-    photoViewController.hentaiURLString = hentaiInfo[@"url"];
-    photoViewController.maxHentaiCount = hentaiInfo[@"filecount"];
+	PhotoViewController *photoViewController = [PhotoViewController new];
+	photoViewController.hentaiURLString = hentaiInfo[@"url"];
+	photoViewController.maxHentaiCount = hentaiInfo[@"filecount"];
     
-    FakeViewController *fakeViewController = [FakeViewController new];
-    fakeViewController.BackBlock = ^() {
-        [hentaiNavigation pushViewController:photoViewController animated:YES];
-    };
-    [self presentViewController:fakeViewController animated:NO completion:^{
-        [fakeViewController onPresentCompletion];
-    }];
+	FakeViewController *fakeViewController = [FakeViewController new];
+	fakeViewController.BackBlock = ^() {
+		[hentaiNavigation pushViewController:photoViewController animated:YES];
+	};
+	[self presentViewController:fakeViewController animated:NO completion: ^{
+	    [fakeViewController onPresentCompletion];
+	}];
 }
-
 
 #pragma mark - life cycle
 
@@ -81,17 +78,17 @@
 	    [self.listArray addObjectsFromArray:listArray];
 	    [self.listCollectionView reloadData];
 	}];
-
+    
 	//add refresh control
 	self.refreshControl = [[UIRefreshControl alloc]init];
 	[self.listCollectionView addSubview:self.refreshControl];
 	[self.refreshControl addTarget:self
 	                        action:@selector(reloadDatas)
 	              forControlEvents:UIControlEventValueChanged];
-
+    
 	UIBarButtonItem *changeModeItem = [[UIBarButtonItem alloc] initWithTitle:@"H圖" style:UIBarButtonItemStylePlain target:self action:@selector(changeImageMode:)];
 	self.navigationItem.rightBarButtonItem = changeModeItem;
-
+    
 	enableH_Image = NO;
 }
 
@@ -120,14 +117,14 @@
 
 - (void)changeImageMode:(UIBarButtonItem *)sender {
 	enableH_Image = !enableH_Image;
-
+    
 	if (enableH_Image) {
 		sender.title = @"貓圖";
 	}
 	else {
 		sender.title = @"H圖";
 	}
-
+    
 	[self.listCollectionView reloadData];
 }
 
