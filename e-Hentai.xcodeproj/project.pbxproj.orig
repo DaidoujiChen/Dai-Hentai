@@ -1,0 +1,811 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080719B6F06200FE0DA1 /* FakeViewController.m */; };
+		0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */; };
+		0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080F19B6F06200FE0DA1 /* MainViewController.m */; };
+		0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118081019B6F06200FE0DA1 /* MainViewController.xib */; };
+		0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118081319B6F06200FE0DA1 /* PhotoViewController.m */; };
+		0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118081419B6F06200FE0DA1 /* PhotoViewController.xib */; };
+		0150034419B6E5E90055F47D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033919B6E5E90055F47D /* TFHpple.m */; };
+		0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033B19B6E5E90055F47D /* TFHppleElement.m */; };
+		0150034619B6E5E90055F47D /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033D19B6E5E90055F47D /* XPathQuery.m */; };
+		0150034719B6E5E90055F47D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0150034019B6E5E90055F47D /* SVProgressHUD.bundle */; };
+		0150034819B6E5E90055F47D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150034219B6E5E90055F47D /* SVProgressHUD.m */; };
+		015A5CEF19B8598C004B0063 /* HentaiPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A5CED19B8598C004B0063 /* HentaiPhotoCell.m */; };
+		015A5CF019B8598C004B0063 /* HentaiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015A5CEE19B8598C004B0063 /* HentaiPhotoCell.xib */; };
+		016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 016A359E19B6FB8A00E3371A /* HentaiParser.m */; };
+		016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBEFB19B94E4F0015E11E /* FilesManager.m */; };
+		016BBF0C19B94E4F0015E11E /* FMStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBEFD19B94E4F0015E11E /* FMStream.m */; };
+		016BBF0D19B94E4F0015E11E /* LightWeightPlist+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0019B94E4F0015E11E /* LightWeightPlist+AccessObject.m */; };
+		016BBF0E19B94E4F0015E11E /* LightWeightPlist+FilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0219B94E4F0015E11E /* LightWeightPlist+FilePath.m */; };
+		016BBF0F19B94E4F0015E11E /* LightWeightPlist+HandleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0419B94E4F0015E11E /* LightWeightPlist+HandleCache.m */; };
+		016BBF1019B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0619B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m */; };
+		016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0819B94E4F0015E11E /* LightWeightPlist.m */; };
+		016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */; };
+		016BBF1519B953D40015E11E /* HentaiDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF1419B953D40015E11E /* HentaiDownloadOperation.m */; };
+		0199268919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
+		0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268A19ADDB83009F814B /* CoreGraphics.framework */; };
+		0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
+		0199269319ADDB83009F814B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0199269119ADDB83009F814B /* InfoPlist.strings */; };
+		0199269519ADDB83009F814B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269419ADDB83009F814B /* main.m */; };
+		0199269919ADDB83009F814B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269819ADDB83009F814B /* AppDelegate.m */; };
+		019926A119ADDB83009F814B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019926A019ADDB83009F814B /* Images.xcassets */; };
+		019926A819ADDB83009F814B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019926A719ADDB83009F814B /* XCTest.framework */; };
+		019926A919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
+		019926AA19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
+		019926B219ADDB83009F814B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019926B019ADDB83009F814B /* InfoPlist.strings */; };
+		019926B419ADDB83009F814B /* e_HentaiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926B319ADDB83009F814B /* e_HentaiTests.m */; };
+		040541BB19B8182400139AC9 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0405419B19B8182400139AC9 /* MKAnnotationView+WebCache.m */; };
+		040541BC19B8182400139AC9 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 0405419D19B8182400139AC9 /* NSData+ImageContentType.m */; };
+		040541BD19B8182400139AC9 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0405419F19B8182400139AC9 /* SDImageCache.m */; };
+		040541BE19B8182400139AC9 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541A119B8182400139AC9 /* SDWebImageCompat.m */; };
+		040541BF19B8182400139AC9 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541A319B8182400139AC9 /* SDWebImageDecoder.m */; };
+		040541C019B8182400139AC9 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541A519B8182400139AC9 /* SDWebImageDownloader.m */; };
+		040541C119B8182400139AC9 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541A719B8182400139AC9 /* SDWebImageDownloaderOperation.m */; };
+		040541C219B8182400139AC9 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541A919B8182400139AC9 /* SDWebImageManager.m */; };
+		040541C319B8182400139AC9 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541AC19B8182400139AC9 /* SDWebImagePrefetcher.m */; };
+		040541C419B8182400139AC9 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541AE19B8182400139AC9 /* UIButton+WebCache.m */; };
+		040541C519B8182400139AC9 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541B019B8182400139AC9 /* UIImage+GIF.m */; };
+		040541C619B8182400139AC9 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541B219B8182400139AC9 /* UIImage+MultiFormat.m */; };
+		040541C719B8182400139AC9 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541B419B8182400139AC9 /* UIImage+WebP.m */; };
+		040541C819B8182400139AC9 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541B619B8182400139AC9 /* UIImageView+HighlightedWebCache.m */; };
+		040541C919B8182400139AC9 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541B819B8182400139AC9 /* UIImageView+WebCache.m */; };
+		040541CA19B8182400139AC9 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541BA19B8182400139AC9 /* UIView+WebCacheOperation.m */; };
+		04376DFC19B96B76001B1599 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04376DFA19B96B76001B1599 /* GalleryCell.m */; };
+		04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04376DFB19B96B76001B1599 /* GalleryCell.xib */; };
+		04376E0019B96B9C001B1599 /* CategoryTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04376DFF19B96B9C001B1599 /* CategoryTitle.m */; };
+		04376E0319B96BAE001B1599 /* RatingStar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04376E0219B96BAE001B1599 /* RatingStar.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		019926AB19ADDB83009F814B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0199267D19ADDB83009F814B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0199268419ADDB83009F814B;
+			remoteInfo = "e-Hentai";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0118080619B6F06200FE0DA1 /* FakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeViewController.h; sourceTree = "<group>"; };
+		0118080719B6F06200FE0DA1 /* FakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeViewController.m; sourceTree = "<group>"; };
+		0118080819B6F06200FE0DA1 /* HentaiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiNavigationController.h; sourceTree = "<group>"; };
+		0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiNavigationController.m; sourceTree = "<group>"; };
+		0118080E19B6F06200FE0DA1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		0118080F19B6F06200FE0DA1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		0118081019B6F06200FE0DA1 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		0118081219B6F06200FE0DA1 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		0118081319B6F06200FE0DA1 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		0118081419B6F06200FE0DA1 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
+		0150033819B6E5E90055F47D /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		0150033919B6E5E90055F47D /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		0150033A19B6E5E90055F47D /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		0150033B19B6E5E90055F47D /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		0150033C19B6E5E90055F47D /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		0150033D19B6E5E90055F47D /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		0150033F19B6E5E90055F47D /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		0150034019B6E5E90055F47D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		0150034119B6E5E90055F47D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		0150034219B6E5E90055F47D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		015A5CEC19B8598C004B0063 /* HentaiPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiPhotoCell.h; sourceTree = "<group>"; };
+		015A5CED19B8598C004B0063 /* HentaiPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiPhotoCell.m; sourceTree = "<group>"; };
+		015A5CEE19B8598C004B0063 /* HentaiPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HentaiPhotoCell.xib; sourceTree = "<group>"; };
+		016A359D19B6FB8A00E3371A /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
+		016A359E19B6FB8A00E3371A /* HentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiParser.m; sourceTree = "<group>"; };
+		016BBEFA19B94E4F0015E11E /* FilesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesManager.h; sourceTree = "<group>"; };
+		016BBEFB19B94E4F0015E11E /* FilesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesManager.m; sourceTree = "<group>"; };
+		016BBEFC19B94E4F0015E11E /* FMStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMStream.h; sourceTree = "<group>"; };
+		016BBEFD19B94E4F0015E11E /* FMStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMStream.m; sourceTree = "<group>"; };
+		016BBEFF19B94E4F0015E11E /* LightWeightPlist+AccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LightWeightPlist+AccessObject.h"; sourceTree = "<group>"; };
+		016BBF0019B94E4F0015E11E /* LightWeightPlist+AccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LightWeightPlist+AccessObject.m"; sourceTree = "<group>"; };
+		016BBF0119B94E4F0015E11E /* LightWeightPlist+FilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LightWeightPlist+FilePath.h"; sourceTree = "<group>"; };
+		016BBF0219B94E4F0015E11E /* LightWeightPlist+FilePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LightWeightPlist+FilePath.m"; sourceTree = "<group>"; };
+		016BBF0319B94E4F0015E11E /* LightWeightPlist+HandleCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LightWeightPlist+HandleCache.h"; sourceTree = "<group>"; };
+		016BBF0419B94E4F0015E11E /* LightWeightPlist+HandleCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LightWeightPlist+HandleCache.m"; sourceTree = "<group>"; };
+		016BBF0519B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LightWeightPlist+SourceFromDisk.h"; sourceTree = "<group>"; };
+		016BBF0619B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LightWeightPlist+SourceFromDisk.m"; sourceTree = "<group>"; };
+		016BBF0719B94E4F0015E11E /* LightWeightPlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightWeightPlist.h; sourceTree = "<group>"; };
+		016BBF0819B94E4F0015E11E /* LightWeightPlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightWeightPlist.m; sourceTree = "<group>"; };
+		016BBF0919B94E4F0015E11E /* LightWeightPlistObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightWeightPlistObjects.h; sourceTree = "<group>"; };
+		016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightWeightPlistObjects.m; sourceTree = "<group>"; };
+		016BBF1319B953D40015E11E /* HentaiDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiDownloadOperation.h; sourceTree = "<group>"; };
+		016BBF1419B953D40015E11E /* HentaiDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiDownloadOperation.m; sourceTree = "<group>"; };
+		0199268519ADDB83009F814B /* e-Hentai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-Hentai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0199268819ADDB83009F814B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0199268A19ADDB83009F814B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0199268C19ADDB83009F814B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0199269019ADDB83009F814B /* e-Hentai-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "e-Hentai-Info.plist"; sourceTree = "<group>"; };
+		0199269219ADDB83009F814B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0199269419ADDB83009F814B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0199269619ADDB83009F814B /* e-Hentai-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "e-Hentai-Prefix.pch"; sourceTree = "<group>"; };
+		0199269719ADDB83009F814B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0199269819ADDB83009F814B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		019926A019ADDB83009F814B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		019926A619ADDB83009F814B /* e-HentaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "e-HentaiTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		019926A719ADDB83009F814B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		019926AF19ADDB83009F814B /* e-HentaiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "e-HentaiTests-Info.plist"; sourceTree = "<group>"; };
+		019926B119ADDB83009F814B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		019926B319ADDB83009F814B /* e_HentaiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = e_HentaiTests.m; sourceTree = "<group>"; };
+		0405419A19B8182400139AC9 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
+		0405419B19B8182400139AC9 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
+		0405419C19B8182400139AC9 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
+		0405419D19B8182400139AC9 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
+		0405419E19B8182400139AC9 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		0405419F19B8182400139AC9 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
+		040541A019B8182400139AC9 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		040541A119B8182400139AC9 /* SDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
+		040541A219B8182400139AC9 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		040541A319B8182400139AC9 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
+		040541A419B8182400139AC9 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
+		040541A519B8182400139AC9 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
+		040541A619B8182400139AC9 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		040541A719B8182400139AC9 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
+		040541A819B8182400139AC9 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
+		040541A919B8182400139AC9 /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
+		040541AA19B8182400139AC9 /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		040541AB19B8182400139AC9 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		040541AC19B8182400139AC9 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
+		040541AD19B8182400139AC9 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		040541AE19B8182400139AC9 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
+		040541AF19B8182400139AC9 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		040541B019B8182400139AC9 /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
+		040541B119B8182400139AC9 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
+		040541B219B8182400139AC9 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
+		040541B319B8182400139AC9 /* UIImage+WebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
+		040541B419B8182400139AC9 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
+		040541B519B8182400139AC9 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
+		040541B619B8182400139AC9 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
+		040541B719B8182400139AC9 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
+		040541B819B8182400139AC9 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		040541B919B8182400139AC9 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
+		040541BA19B8182400139AC9 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		04376DF919B96B76001B1599 /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
+		04376DFA19B96B76001B1599 /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
+		04376DFB19B96B76001B1599 /* GalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
+		04376DFE19B96B9C001B1599 /* CategoryTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTitle.h; sourceTree = "<group>"; };
+		04376DFF19B96B9C001B1599 /* CategoryTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTitle.m; sourceTree = "<group>"; };
+		04376E0119B96BAE001B1599 /* RatingStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingStar.h; sourceTree = "<group>"; };
+		04376E0219B96BAE001B1599 /* RatingStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingStar.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0199268219ADDB83009F814B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */,
+				0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */,
+				0199268919ADDB83009F814B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		019926A319ADDB83009F814B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				019926A819ADDB83009F814B /* XCTest.framework in Frameworks */,
+				019926AA19ADDB83009F814B /* UIKit.framework in Frameworks */,
+				019926A919ADDB83009F814B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0118080519B6F06200FE0DA1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0118080619B6F06200FE0DA1 /* FakeViewController.h */,
+				0118080719B6F06200FE0DA1 /* FakeViewController.m */,
+				0118080819B6F06200FE0DA1 /* HentaiNavigationController.h */,
+				0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0118080A19B6F06200FE0DA1 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0118080E19B6F06200FE0DA1 /* MainViewController.h */,
+				0118080F19B6F06200FE0DA1 /* MainViewController.m */,
+				0118081019B6F06200FE0DA1 /* MainViewController.xib */,
+				04376DF819B96B76001B1599 /* GalleryCell */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		0118081119B6F06200FE0DA1 /* PhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0118081219B6F06200FE0DA1 /* PhotoViewController.h */,
+				0118081319B6F06200FE0DA1 /* PhotoViewController.m */,
+				0118081419B6F06200FE0DA1 /* PhotoViewController.xib */,
+				015A5CEC19B8598C004B0063 /* HentaiPhotoCell.h */,
+				015A5CED19B8598C004B0063 /* HentaiPhotoCell.m */,
+				015A5CEE19B8598C004B0063 /* HentaiPhotoCell.xib */,
+				016BBF1319B953D40015E11E /* HentaiDownloadOperation.h */,
+				016BBF1419B953D40015E11E /* HentaiDownloadOperation.m */,
+			);
+			path = PhotoViewController;
+			sourceTree = "<group>";
+		};
+		0150033319B6E5E90055F47D /* HentaiParser */ = {
+			isa = PBXGroup;
+			children = (
+				016A359D19B6FB8A00E3371A /* HentaiParser.h */,
+				016A359E19B6FB8A00E3371A /* HentaiParser.m */,
+			);
+			path = HentaiParser;
+			sourceTree = "<group>";
+		};
+		0150033619B6E5E90055F47D /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				016BBEF919B94E4F0015E11E /* FilesManager */,
+				016BBEFE19B94E4F0015E11E /* LightWeightPlist */,
+				0405419919B8182400139AC9 /* SDWebImage */,
+				0150033719B6E5E90055F47D /* Hpple */,
+				0150033E19B6E5E90055F47D /* SVProgressHUD */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		0150033719B6E5E90055F47D /* Hpple */ = {
+			isa = PBXGroup;
+			children = (
+				0150033819B6E5E90055F47D /* TFHpple.h */,
+				0150033919B6E5E90055F47D /* TFHpple.m */,
+				0150033A19B6E5E90055F47D /* TFHppleElement.h */,
+				0150033B19B6E5E90055F47D /* TFHppleElement.m */,
+				0150033C19B6E5E90055F47D /* XPathQuery.h */,
+				0150033D19B6E5E90055F47D /* XPathQuery.m */,
+			);
+			path = Hpple;
+			sourceTree = "<group>";
+		};
+		0150033E19B6E5E90055F47D /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				0150033F19B6E5E90055F47D /* SVProgressHUD-Prefix.pch */,
+				0150034019B6E5E90055F47D /* SVProgressHUD.bundle */,
+				0150034119B6E5E90055F47D /* SVProgressHUD.h */,
+				0150034219B6E5E90055F47D /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		016BBEF919B94E4F0015E11E /* FilesManager */ = {
+			isa = PBXGroup;
+			children = (
+				016BBEFA19B94E4F0015E11E /* FilesManager.h */,
+				016BBEFB19B94E4F0015E11E /* FilesManager.m */,
+				016BBEFC19B94E4F0015E11E /* FMStream.h */,
+				016BBEFD19B94E4F0015E11E /* FMStream.m */,
+			);
+			path = FilesManager;
+			sourceTree = "<group>";
+		};
+		016BBEFE19B94E4F0015E11E /* LightWeightPlist */ = {
+			isa = PBXGroup;
+			children = (
+				016BBEFF19B94E4F0015E11E /* LightWeightPlist+AccessObject.h */,
+				016BBF0019B94E4F0015E11E /* LightWeightPlist+AccessObject.m */,
+				016BBF0119B94E4F0015E11E /* LightWeightPlist+FilePath.h */,
+				016BBF0219B94E4F0015E11E /* LightWeightPlist+FilePath.m */,
+				016BBF0319B94E4F0015E11E /* LightWeightPlist+HandleCache.h */,
+				016BBF0419B94E4F0015E11E /* LightWeightPlist+HandleCache.m */,
+				016BBF0519B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.h */,
+				016BBF0619B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m */,
+				016BBF0719B94E4F0015E11E /* LightWeightPlist.h */,
+				016BBF0819B94E4F0015E11E /* LightWeightPlist.m */,
+				016BBF0919B94E4F0015E11E /* LightWeightPlistObjects.h */,
+				016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */,
+			);
+			path = LightWeightPlist;
+			sourceTree = "<group>";
+		};
+		0199267C19ADDB83009F814B = {
+			isa = PBXGroup;
+			children = (
+				0199268E19ADDB83009F814B /* e-Hentai */,
+				019926AD19ADDB83009F814B /* e-HentaiTests */,
+				0199268719ADDB83009F814B /* Frameworks */,
+				0199268619ADDB83009F814B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0199268619ADDB83009F814B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0199268519ADDB83009F814B /* e-Hentai.app */,
+				019926A619ADDB83009F814B /* e-HentaiTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0199268719ADDB83009F814B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0199268819ADDB83009F814B /* Foundation.framework */,
+				0199268A19ADDB83009F814B /* CoreGraphics.framework */,
+				0199268C19ADDB83009F814B /* UIKit.framework */,
+				019926A719ADDB83009F814B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0199268E19ADDB83009F814B /* e-Hentai */ = {
+			isa = PBXGroup;
+			children = (
+				0150033319B6E5E90055F47D /* HentaiParser */,
+				0150033619B6E5E90055F47D /* ThirdParty */,
+				0118080519B6F06200FE0DA1 /* Common */,
+				0199269719ADDB83009F814B /* AppDelegate.h */,
+				0199269819ADDB83009F814B /* AppDelegate.m */,
+				0118080A19B6F06200FE0DA1 /* MainViewController */,
+				0118081119B6F06200FE0DA1 /* PhotoViewController */,
+				019926A019ADDB83009F814B /* Images.xcassets */,
+				0199268F19ADDB83009F814B /* Supporting Files */,
+			);
+			path = "e-Hentai";
+			sourceTree = "<group>";
+		};
+		0199268F19ADDB83009F814B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0199269019ADDB83009F814B /* e-Hentai-Info.plist */,
+				0199269119ADDB83009F814B /* InfoPlist.strings */,
+				0199269419ADDB83009F814B /* main.m */,
+				0199269619ADDB83009F814B /* e-Hentai-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		019926AD19ADDB83009F814B /* e-HentaiTests */ = {
+			isa = PBXGroup;
+			children = (
+				019926B319ADDB83009F814B /* e_HentaiTests.m */,
+				019926AE19ADDB83009F814B /* Supporting Files */,
+			);
+			path = "e-HentaiTests";
+			sourceTree = "<group>";
+		};
+		019926AE19ADDB83009F814B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				019926AF19ADDB83009F814B /* e-HentaiTests-Info.plist */,
+				019926B019ADDB83009F814B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0405419919B8182400139AC9 /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				0405419A19B8182400139AC9 /* MKAnnotationView+WebCache.h */,
+				0405419B19B8182400139AC9 /* MKAnnotationView+WebCache.m */,
+				0405419C19B8182400139AC9 /* NSData+ImageContentType.h */,
+				0405419D19B8182400139AC9 /* NSData+ImageContentType.m */,
+				0405419E19B8182400139AC9 /* SDImageCache.h */,
+				0405419F19B8182400139AC9 /* SDImageCache.m */,
+				040541A019B8182400139AC9 /* SDWebImageCompat.h */,
+				040541A119B8182400139AC9 /* SDWebImageCompat.m */,
+				040541A219B8182400139AC9 /* SDWebImageDecoder.h */,
+				040541A319B8182400139AC9 /* SDWebImageDecoder.m */,
+				040541A419B8182400139AC9 /* SDWebImageDownloader.h */,
+				040541A519B8182400139AC9 /* SDWebImageDownloader.m */,
+				040541A619B8182400139AC9 /* SDWebImageDownloaderOperation.h */,
+				040541A719B8182400139AC9 /* SDWebImageDownloaderOperation.m */,
+				040541A819B8182400139AC9 /* SDWebImageManager.h */,
+				040541A919B8182400139AC9 /* SDWebImageManager.m */,
+				040541AA19B8182400139AC9 /* SDWebImageOperation.h */,
+				040541AB19B8182400139AC9 /* SDWebImagePrefetcher.h */,
+				040541AC19B8182400139AC9 /* SDWebImagePrefetcher.m */,
+				040541AD19B8182400139AC9 /* UIButton+WebCache.h */,
+				040541AE19B8182400139AC9 /* UIButton+WebCache.m */,
+				040541AF19B8182400139AC9 /* UIImage+GIF.h */,
+				040541B019B8182400139AC9 /* UIImage+GIF.m */,
+				040541B119B8182400139AC9 /* UIImage+MultiFormat.h */,
+				040541B219B8182400139AC9 /* UIImage+MultiFormat.m */,
+				040541B319B8182400139AC9 /* UIImage+WebP.h */,
+				040541B419B8182400139AC9 /* UIImage+WebP.m */,
+				040541B519B8182400139AC9 /* UIImageView+HighlightedWebCache.h */,
+				040541B619B8182400139AC9 /* UIImageView+HighlightedWebCache.m */,
+				040541B719B8182400139AC9 /* UIImageView+WebCache.h */,
+				040541B819B8182400139AC9 /* UIImageView+WebCache.m */,
+				040541B919B8182400139AC9 /* UIView+WebCacheOperation.h */,
+				040541BA19B8182400139AC9 /* UIView+WebCacheOperation.m */,
+			);
+			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		04376DF819B96B76001B1599 /* GalleryCell */ = {
+			isa = PBXGroup;
+			children = (
+				04376DF919B96B76001B1599 /* GalleryCell.h */,
+				04376DFA19B96B76001B1599 /* GalleryCell.m */,
+				04376DFB19B96B76001B1599 /* GalleryCell.xib */,
+				04376DFE19B96B9C001B1599 /* CategoryTitle.h */,
+				04376DFF19B96B9C001B1599 /* CategoryTitle.m */,
+				04376E0119B96BAE001B1599 /* RatingStar.h */,
+				04376E0219B96BAE001B1599 /* RatingStar.m */,
+			);
+			path = GalleryCell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0199268419ADDB83009F814B /* e-Hentai */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 019926B719ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-Hentai" */;
+			buildPhases = (
+				0199268119ADDB83009F814B /* Sources */,
+				0199268219ADDB83009F814B /* Frameworks */,
+				0199268319ADDB83009F814B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "e-Hentai";
+			productName = "e-Hentai";
+			productReference = 0199268519ADDB83009F814B /* e-Hentai.app */;
+			productType = "com.apple.product-type.application";
+		};
+		019926A519ADDB83009F814B /* e-HentaiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 019926BA19ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-HentaiTests" */;
+			buildPhases = (
+				019926A219ADDB83009F814B /* Sources */,
+				019926A319ADDB83009F814B /* Frameworks */,
+				019926A419ADDB83009F814B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				019926AC19ADDB83009F814B /* PBXTargetDependency */,
+			);
+			name = "e-HentaiTests";
+			productName = "e-HentaiTests";
+			productReference = 019926A619ADDB83009F814B /* e-HentaiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0199267D19ADDB83009F814B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = ChilunChen;
+				TargetAttributes = {
+					019926A519ADDB83009F814B = {
+						TestTargetID = 0199268419ADDB83009F814B;
+					};
+				};
+			};
+			buildConfigurationList = 0199268019ADDB83009F814B /* Build configuration list for PBXProject "e-Hentai" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0199267C19ADDB83009F814B;
+			productRefGroup = 0199268619ADDB83009F814B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0199268419ADDB83009F814B /* e-Hentai */,
+				019926A519ADDB83009F814B /* e-HentaiTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0199268319ADDB83009F814B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
+				0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */,
+				015A5CF019B8598C004B0063 /* HentaiPhotoCell.xib in Resources */,
+				0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */,
+				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
+				0150034719B6E5E90055F47D /* SVProgressHUD.bundle in Resources */,
+				04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		019926A419ADDB83009F814B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				019926B219ADDB83009F814B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0199268119ADDB83009F814B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */,
+				040541C719B8182400139AC9 /* UIImage+WebP.m in Sources */,
+				016BBF0D19B94E4F0015E11E /* LightWeightPlist+AccessObject.m in Sources */,
+				0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */,
+				0150034819B6E5E90055F47D /* SVProgressHUD.m in Sources */,
+				016BBF0C19B94E4F0015E11E /* FMStream.m in Sources */,
+				0150034619B6E5E90055F47D /* XPathQuery.m in Sources */,
+				016BBF0F19B94E4F0015E11E /* LightWeightPlist+HandleCache.m in Sources */,
+				0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */,
+				040541C119B8182400139AC9 /* SDWebImageDownloaderOperation.m in Sources */,
+				016BBF1519B953D40015E11E /* HentaiDownloadOperation.m in Sources */,
+				0150034419B6E5E90055F47D /* TFHpple.m in Sources */,
+				040541BD19B8182400139AC9 /* SDImageCache.m in Sources */,
+				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
+<<<<<<< HEAD
+				015A5CEF19B8598C004B0063 /* HentaiPhotoCell.m in Sources */,
+				0405419619B80BC700139AC9 /* GalleryCell.m in Sources */,
+=======
+>>>>>>> Main-master
+				0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */,
+				040541BE19B8182400139AC9 /* SDWebImageCompat.m in Sources */,
+				040541BC19B8182400139AC9 /* NSData+ImageContentType.m in Sources */,
+				0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */,
+				040541C219B8182400139AC9 /* SDWebImageManager.m in Sources */,
+				016BBF1019B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m in Sources */,
+				040541C019B8182400139AC9 /* SDWebImageDownloader.m in Sources */,
+				016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */,
+				016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */,
+				040541C919B8182400139AC9 /* UIImageView+WebCache.m in Sources */,
+				040541C819B8182400139AC9 /* UIImageView+HighlightedWebCache.m in Sources */,
+				016BBF0E19B94E4F0015E11E /* LightWeightPlist+FilePath.m in Sources */,
+				040541BB19B8182400139AC9 /* MKAnnotationView+WebCache.m in Sources */,
+				040541C519B8182400139AC9 /* UIImage+GIF.m in Sources */,
+				016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */,
+				0199269519ADDB83009F814B /* main.m in Sources */,
+				040541C319B8182400139AC9 /* SDWebImagePrefetcher.m in Sources */,
+				040541C419B8182400139AC9 /* UIButton+WebCache.m in Sources */,
+				04376E0319B96BAE001B1599 /* RatingStar.m in Sources */,
+				04376E0019B96B9C001B1599 /* CategoryTitle.m in Sources */,
+				040541C619B8182400139AC9 /* UIImage+MultiFormat.m in Sources */,
+				040541BF19B8182400139AC9 /* SDWebImageDecoder.m in Sources */,
+				040541CA19B8182400139AC9 /* UIView+WebCacheOperation.m in Sources */,
+				04376DFC19B96B76001B1599 /* GalleryCell.m in Sources */,
+				016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		019926A219ADDB83009F814B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				019926B419ADDB83009F814B /* e_HentaiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		019926AC19ADDB83009F814B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0199268419ADDB83009F814B /* e-Hentai */;
+			targetProxy = 019926AB19ADDB83009F814B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0199269119ADDB83009F814B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0199269219ADDB83009F814B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		019926B019ADDB83009F814B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				019926B119ADDB83009F814B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		019926B519ADDB83009F814B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		019926B619ADDB83009F814B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		019926B819ADDB83009F814B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "e-Hentai/e-Hentai-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SDKROOT}/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "e-Hentai/e-Hentai-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_NAME = "e-Hentai";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		019926B919ADDB83009F814B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "e-Hentai/e-Hentai-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SDKROOT}/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "e-Hentai/e-Hentai-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_NAME = "e-Hentai";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		019926BB19ADDB83009F814B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/e-Hentai.app/e-Hentai";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "e-Hentai/e-Hentai-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "e-HentaiTests/e-HentaiTests-Info.plist";
+				PRODUCT_NAME = "e-HentaiTests";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		019926BC19ADDB83009F814B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/e-Hentai.app/e-Hentai";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "e-Hentai/e-Hentai-Prefix.pch";
+				INFOPLIST_FILE = "e-HentaiTests/e-HentaiTests-Info.plist";
+				PRODUCT_NAME = "e-HentaiTests";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0199268019ADDB83009F814B /* Build configuration list for PBXProject "e-Hentai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				019926B519ADDB83009F814B /* Debug */,
+				019926B619ADDB83009F814B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		019926B719ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-Hentai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				019926B819ADDB83009F814B /* Debug */,
+				019926B919ADDB83009F814B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		019926BA19ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-HentaiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				019926BB19ADDB83009F814B /* Debug */,
+				019926BC19ADDB83009F814B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0199267D19ADDB83009F814B /* Project object */;
+}
