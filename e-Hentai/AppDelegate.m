@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:[MainViewController new]];
+	hentaiNavigation.autorotate = NO;
 	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
 	self.window.rootViewController = hentaiNavigation;
 	[self.window makeKeyAndVisible];

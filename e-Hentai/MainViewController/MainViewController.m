@@ -37,10 +37,10 @@
 		    [self.listCollectionView reloadData];
 		}];
 	}
-    
+
 	GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
 	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-	[hentaiInfo setValue:[NSNumber numberWithBool:enableH_Image] forKey:imageMode]; //設定是否顯示H圖
+    [hentaiInfo setValue:[NSNumber numberWithBool:enableH_Image] forKey:imageMode];
 	[cell setGalleryDict:hentaiInfo];
 	return cell;
 }
@@ -49,22 +49,17 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
 	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-    
 	HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
-	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskLandscape;
-    
+	hentaiNavigation.autorotate = YES;
+	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
+
 	PhotoViewController *photoViewController = [PhotoViewController new];
 	photoViewController.hentaiURLString = hentaiInfo[@"url"];
 	photoViewController.maxHentaiCount = hentaiInfo[@"filecount"];
+	[hentaiNavigation pushViewController:photoViewController animated:YES];
     
-	FakeViewController *fakeViewController = [FakeViewController new];
-	fakeViewController.BackBlock = ^() {
-		[hentaiNavigation pushViewController:photoViewController animated:YES];
-	};
-	[self presentViewController:fakeViewController animated:NO completion: ^{
-	    [fakeViewController onPresentCompletion];
-	}];
 }
 
 #pragma mark - life cycle
@@ -73,6 +68,7 @@
 	[super viewDidLoad];
 	self.listIndex = 0;
 	self.listArray = [NSMutableArray array];
+
 	[self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
 	[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
 	    [self.listArray addObjectsFromArray:listArray];

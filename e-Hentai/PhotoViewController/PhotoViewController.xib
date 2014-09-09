@@ -15,10 +15,14 @@
             <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-Qo-Eha">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-Qo-Eha">
                     <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="568" id="FeP-UW-LnK"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="320" id="mWp-Gf-MWZ"/>
+                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="hST-Iz-mjz"/>
                         <outlet property="delegate" destination="-1" id="xcR-53-czl"/>
@@ -27,6 +31,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="1HA-Qo-Eha" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4Ge-3f-01B"/>
+                <constraint firstItem="1HA-Qo-Eha" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5bz-G8-kXO"/>
+                <constraint firstAttribute="bottom" secondItem="1HA-Qo-Eha" secondAttribute="bottom" id="L1d-yJ-mel"/>
+                <constraint firstAttribute="trailing" secondItem="1HA-Qo-Eha" secondAttribute="trailing" id="knZ-aj-vjl"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

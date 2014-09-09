@@ -29,14 +29,14 @@
 		[self hentaiFinish];
 		return;
 	}
-    
+
 	[self hentaiStart];
 	NSNumber *imageHeight = HentaiLibraryDictionary[self.hentaiKey][[self.downloadURLString lastPathComponent]];
-    
+
 	//從 imageHeight 的有無可以判斷這個檔案是否已經有了
 	if (!imageHeight) {
 		NSURL *url = [NSURL URLWithString:self.downloadURLString];
-        
+
 		NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0f] delegate:self startImmediately:NO];
 		[conn scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 		[conn start];
@@ -56,6 +56,7 @@
 }
 
 #pragma mark - NSURLConnectionDelegate
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	self.recvData = [NSMutableData data];
@@ -77,7 +78,7 @@
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 		    UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:self.recvData]];
 		    [[[FilesManager documentFolder] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.7f) filename:[self.downloadURLString lastPathComponent]];
-            
+
 		    //讓檔案轉存這件事情不擋線程
 		    dispatch_async(dispatch_get_main_queue(), ^{
 		        [self.delegate downloadResult:self.downloadURLString heightOfSize:image.size.height isSuccess:YES];

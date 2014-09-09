@@ -37,6 +37,7 @@
 - (void)preloadImages:(NSArray *)images;
 - (NSInteger)availableCount;
 - (void)setupInitValues;
+- (CGSize)imagePortraitHeight:(CGSize)landscapeSize;
 
 @end
 
@@ -64,8 +65,9 @@
 
 - (void)backAction {
 	HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
+	hentaiNavigation.autorotate = NO;
 	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
-    
+
 	//FakeViewController 是一個硬把畫面轉直的媒介
 	FakeViewController *fakeViewController = [FakeViewController new];
 	fakeViewController.BackBlock = ^() {
@@ -125,6 +127,14 @@
 	self.realDisplayCount = 0;
 }
 
+- (CGSize)imagePortraitHeight:(CGSize)landscapeSize {
+	CGFloat oldWidth = landscapeSize.width;
+	CGFloat scaleFactor = [UIScreen mainScreen].bounds.size.width / oldWidth;
+	CGFloat newHeight = landscapeSize.height * scaleFactor;
+	CGFloat newWidth = oldWidth * scaleFactor;
+	return CGSizeMake(newWidth, newHeight);
+}
+
 #pragma mark - HentaiDownloadOperationDelegate
 
 - (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess {
@@ -149,7 +159,7 @@
 			retryCount = @(1);
 		}
 		self.retryMap[urlString] = retryCount;
-        
+
 		if ([retryCount integerValue] <= 3) {
 			HentaiDownloadOperation *newOperation = [HentaiDownloadOperation new];
 			newOperation.downloadURLString = urlString;
@@ -174,7 +184,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	// 當前頁數 / ( 可到頁數 / 已下載頁數 / 總共頁數 )
 	self.title = [NSString stringWithFormat:@"%d/(%d/%d/%@)", indexPath.row + 1, self.realDisplayCount, [self.hentaiResults count], self.maxHentaiCount];
-    
+
 	//無限滾
 	if (indexPath.row >= [self.hentaiImageURLs count] - 20 && ([self.hentaiImageURLs count] + self.failCount) == (self.hentaiIndex + 1) * 40 && [self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
 		self.hentaiIndex++;
@@ -187,7 +197,7 @@
 			}
 		}];
 	}
-    
+
 	static NSString *cellIdentifier = @"HentaiPhotoCell";
 	HentaiPhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 	NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
@@ -205,7 +215,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
 	if (self.hentaiResults[[eachImageString lastPathComponent]]) {
-		return [self.hentaiResults[[eachImageString lastPathComponent]] floatValue];
+		//如果畫面是直向的時候, 長度要重新算
+		if (self.interfaceOrientation == UIDeviceOrientationPortrait) {
+			CGSize newSize = [self imagePortraitHeight:CGSizeMake([UIScreen mainScreen].bounds.size.height, [self.hentaiResults[[eachImageString lastPathComponent]] floatValue])];
+			return newSize.height;
+		}
+		else {
+			return [self.hentaiResults[[eachImageString lastPathComponent]] floatValue];
+		}
 	}
 	else {
 		return 0;
@@ -223,7 +240,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self setupInitValues];
-    
+
 	//從網路上取得 image 列表
 	[SVProgressHUD show];
 	__weak PhotoViewController *weakSelf = self;
@@ -238,7 +255,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-    
+
 	//結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
 	[self.hentaiQueue cancelAllOperations];
 	HentaiLibraryDictionary[self.hentaiKey] = self.hentaiResults;
