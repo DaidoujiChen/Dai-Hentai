@@ -49,25 +49,18 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
 	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-	[SVProgressHUD show];
-	[HentaiParser requestImagesAtURL:hentaiInfo[@"url"] atIndex:0 completion: ^(HentaiParserStatus status, NSArray *images) {
-	    NSLog(@"%@", images);
-
-	    HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
-	    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskLandscape;
-
-	    FakeViewController *fakeViewController = [FakeViewController new];
-	    fakeViewController.BackBlock = ^() {
-	        [hentaiNavigation pushViewController:[PhotoViewController new] animated:YES];
-		};
-	    [self presentViewController:fakeViewController animated:NO completion: ^{
-	        [fakeViewController onPresentCompletion];
-		}];
-
-	    [SVProgressHUD dismiss];
-	}];
+	HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
+	hentaiNavigation.autorotate = YES;
+	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
+    
+	PhotoViewController *photoViewController = [PhotoViewController new];
+	photoViewController.hentaiURLString = hentaiInfo[@"url"];
+	photoViewController.maxHentaiCount = hentaiInfo[@"filecount"];
+	[hentaiNavigation pushViewController:photoViewController animated:YES];
 }
+
 
 #pragma mark - life cycle
 
