@@ -9,9 +9,13 @@
 #import "MainViewController.h"
 
 @interface MainViewController ()
+{
+	BOOL enableH_Image;
+}
 
 @property (nonatomic, assign) NSUInteger listIndex;
 @property (nonatomic, strong) NSMutableArray *listArray;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -34,10 +38,9 @@
 		}];
 	}
 
-
-
 	GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
 	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
+    [hentaiInfo setValue:[NSNumber numberWithBool:enableH_Image] forKey:imageMode];
 	[cell setGalleryDict:hentaiInfo];
 	return cell;
 }
@@ -56,6 +59,7 @@
 	photoViewController.hentaiURLString = hentaiInfo[@"url"];
 	photoViewController.maxHentaiCount = hentaiInfo[@"filecount"];
 	[hentaiNavigation pushViewController:photoViewController animated:YES];
+    
 }
 
 #pragma mark - life cycle
@@ -65,13 +69,59 @@
 	self.listIndex = 0;
 	self.listArray = [NSMutableArray array];
 
-	[self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil]
-              forCellWithReuseIdentifier:@"GalleryCell"];
-
+	[self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
 	[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
 	    [self.listArray addObjectsFromArray:listArray];
 	    [self.listCollectionView reloadData];
 	}];
+    
+	//add refresh control
+	self.refreshControl = [[UIRefreshControl alloc]init];
+	[self.listCollectionView addSubview:self.refreshControl];
+	[self.refreshControl addTarget:self
+	                        action:@selector(reloadDatas)
+	              forControlEvents:UIControlEventValueChanged];
+    
+	UIBarButtonItem *changeModeItem = [[UIBarButtonItem alloc] initWithTitle:@"H圖" style:UIBarButtonItemStylePlain target:self action:@selector(changeImageMode:)];
+	self.navigationItem.rightBarButtonItem = changeModeItem;
+    
+	enableH_Image = NO;
+}
+
+#pragma mark - actions
+
+- (void)reloadDatas {
+	self.listIndex = 0;
+	__weak MainViewController *weakSelf = self;
+	[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
+	    if (status && weakSelf) {
+	        [weakSelf.listArray removeAllObjects];
+	        [weakSelf.listArray addObjectsFromArray:listArray];
+	        [weakSelf.listCollectionView reloadData];
+	        [weakSelf.refreshControl endRefreshing];
+		}
+	    else {
+	        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"錯誤"
+	                                                        message:@"讀取失敗"
+	                                                       delegate:nil
+	                                              cancelButtonTitle:@""
+	                                              otherButtonTitles:nil];
+	        [alert show];
+		}
+	}];
+}
+
+- (void)changeImageMode:(UIBarButtonItem *)sender {
+	enableH_Image = !enableH_Image;
+    
+	if (enableH_Image) {
+		sender.title = @"貓圖";
+	}
+	else {
+		sender.title = @"H圖";
+	}
+    
+	[self.listCollectionView reloadData];
 }
 
 @end

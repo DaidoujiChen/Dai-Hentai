@@ -14,7 +14,7 @@
 #import "PhotoViewController.h"
 #import "FakeViewController.h"
 
-@interface MainViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate>
+@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
 

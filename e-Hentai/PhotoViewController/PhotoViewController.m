@@ -108,9 +108,9 @@
 	UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backAction)];
 	self.title = @"Loading...";
 	self.navigationItem.leftBarButtonItem = newBackButton;
-
+    
 	[self.hentaiTableView registerClass:[HentaiPhotoCell class] forCellReuseIdentifier:@"HentaiPhotoCell"];
-
+    
 	self.hentaiImageURLs = [NSMutableArray array];
 	self.retryMap = [NSMutableDictionary dictionary];
 	if (HentaiLibraryDictionary[self.hentaiKey]) {
