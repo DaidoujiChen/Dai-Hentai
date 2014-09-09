@@ -12,5 +12,6 @@
 
 + (FMStream *)documentFolder;
 + (FMStream *)resourceFolder;
++ (FMStream *)cacheFolder;
 
 @end

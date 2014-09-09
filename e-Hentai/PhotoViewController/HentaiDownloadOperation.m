@@ -10,6 +10,7 @@
 
 @interface HentaiDownloadOperation ()
 
+@property (nonatomic, strong) FMStream *hentaiFilesManager;
 @property (nonatomic, strong) NSMutableData *recvData;
 @property (nonatomic, assign) BOOL isExecuting;
 @property (nonatomic, assign) BOOL isFinished;
@@ -29,14 +30,15 @@
 		[self hentaiFinish];
 		return;
 	}
-
+    
 	[self hentaiStart];
+	self.hentaiFilesManager = [[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
 	NSNumber *imageHeight = HentaiLibraryDictionary[self.hentaiKey][[self.downloadURLString lastPathComponent]];
-
+    
 	//從 imageHeight 的有無可以判斷這個檔案是否已經有了
 	if (!imageHeight) {
 		NSURL *url = [NSURL URLWithString:self.downloadURLString];
-
+        
 		NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0f] delegate:self startImmediately:NO];
 		[conn scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 		[conn start];
@@ -77,8 +79,8 @@
 	if (![self isCancelled]) {
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 		    UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:self.recvData]];
-		    [[[FilesManager documentFolder] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.7f) filename:[self.downloadURLString lastPathComponent]];
-
+		    [self.hentaiFilesManager write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
+            
 		    //讓檔案轉存這件事情不擋線程
 		    dispatch_async(dispatch_get_main_queue(), ^{
 		        [self.delegate downloadResult:self.downloadURLString heightOfSize:image.size.height isSuccess:YES];
@@ -123,7 +125,9 @@
 //根據新的大小把圖片縮小, 原網站上面的圖片都過大
 - (UIImage *)resizeImageWithImage:(UIImage *)image {
 	CGSize newSize = [self calendarNewSize:image];
-	UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+	UIGraphicsBeginImageContext(newSize);
+	//retina 的圖片實在太大, 吃不消 所以先不 retina 試試
+	//UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
 	[image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
 	UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();

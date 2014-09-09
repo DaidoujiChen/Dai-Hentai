@@ -10,8 +10,7 @@
 
 @implementation FMStream
 
-- (id)init
-{
+- (id)init {
 	self = [super init];
 	if (self) {
 		self.subPaths = [NSMutableArray array];
@@ -19,8 +18,7 @@
 	return self;
 }
 
-- (NSString *)tmpPath:(NSString *)folder
-{
+- (NSString *)tmpPath:(NSString *)folder {
 	NSMutableArray *tmpSubPaths = [NSMutableArray arrayWithArray:self.subPaths];
 	[tmpSubPaths addObject:folder];
 	return [self.basePath stringByAppendingPathComponent:[tmpSubPaths componentsJoinedByString:@"/"]];
@@ -30,8 +28,7 @@
 
 @implementation FMStream (Information)
 
-- (NSArray *)listFiles
-{
+- (NSArray *)listFiles {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSArray *itemsArray = [fileManager contentsOfDirectoryAtPath:[self currentPath] error:nil];
 	NSMutableArray *filesArray = [NSMutableArray array];
@@ -48,8 +45,7 @@
 	return filesArray;
 }
 
-- (NSArray *)listFolders
-{
+- (NSArray *)listFolders {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSArray *itemsArray = [fileManager contentsOfDirectoryAtPath:[self currentPath] error:nil];
 	NSMutableArray *foldersArray = [NSMutableArray array];
@@ -66,8 +62,7 @@
 	return foldersArray;
 }
 
-- (NSString *)currentPath
-{
+- (NSString *)currentPath {
 	return [self.basePath stringByAppendingPathComponent:[self.subPaths componentsJoinedByString:@"/"]];
 }
 
@@ -76,38 +71,36 @@
 
 @implementation FMStream (Folder)
 
-- (FMStream *)cdpp
-{
+- (FMStream *)cdpp {
 	[self.subPaths removeLastObject];
 	return self;
 }
 
-- (FMStream *)cd:(NSString *)folder
-{
+- (FMStream *)cd:(NSString *)folder {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     
 	if ([fileManager fileExistsAtPath:[self tmpPath:folder]]) {
 		[self.subPaths addObject:folder];
 		return self;
-	} else {
+	}
+	else {
 		return nil;
 	}
 }
 
-- (FMStream *)fcd:(NSString *)folder
-{
+- (FMStream *)fcd:(NSString *)folder {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     
 	if ([fileManager fileExistsAtPath:[self tmpPath:folder]]) {
 		[self.subPaths addObject:folder];
-	} else {
+	}
+	else {
 		[[self md:folder] cd:folder];
 	}
-    return self;
+	return self;
 }
 
-- (FMStream *)md:(NSString *)folder
-{
+- (FMStream *)md:(NSString *)folder {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     
 	if (![fileManager fileExistsAtPath:[self tmpPath:folder]]) {
@@ -115,11 +108,10 @@
 			return self;
 		}
 	}
-    return nil;
+	return nil;
 }
 
-- (FMStream *)rd:(NSString *)folder
-{
+- (FMStream *)rd:(NSString *)folder {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     
 	if ([fileManager fileExistsAtPath:[self tmpPath:folder]]) {
@@ -127,7 +119,7 @@
 			return self;
 		}
 	}
-    return nil;
+	return nil;
 }
 
 @end
@@ -135,13 +127,11 @@
 
 @implementation FMStream (IO)
 
-- (BOOL)write:(NSData *)data filename:(NSString *)name
-{
+- (BOOL)write:(NSData *)data filename:(NSString *)name {
 	return [data writeToFile:[[self currentPath] stringByAppendingPathComponent:name] atomically:YES];
 }
 
-- (NSData *)read:(NSString *)name
-{
+- (NSData *)read:(NSString *)name {
 	return [[NSFileManager defaultManager] contentsAtPath:[[self currentPath] stringByAppendingPathComponent:name]];
 }
 
