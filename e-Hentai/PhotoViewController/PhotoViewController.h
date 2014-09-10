@@ -13,7 +13,7 @@
 #import "HentaiPhotoCell.h"
 #import "HentaiDownloadOperation.h"
 
-@interface PhotoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadOperationDelegate>
+@interface PhotoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadOperationDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSString *hentaiURLString;
 @property (nonatomic, strong) NSString *maxHentaiCount;

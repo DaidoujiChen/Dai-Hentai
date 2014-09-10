@@ -23,6 +23,7 @@
     #import "LightWeightPlist.h"
 
     //LightWeightPlist
-    #define HentaiLibraryDictionary LWPDictionary(@"HentaiLibrary")
+    #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")
+    #define HentaiSaveLibraryArray LWPArray(@"HentaiSaveLibrary")
 
 #endif

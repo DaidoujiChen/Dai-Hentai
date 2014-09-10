@@ -32,6 +32,8 @@
 - (FMStream *)md:(NSString *)folder;
 - (FMStream *)rd:(NSString *)folder;
 
+- (void)moveToPath:(NSString *)toPath;
+
 @end
 
 @interface FMStream (IO)
