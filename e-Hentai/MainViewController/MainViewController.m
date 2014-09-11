@@ -56,8 +56,7 @@
 	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
 
 	PhotoViewController *photoViewController = [PhotoViewController new];
-	photoViewController.hentaiURLString = hentaiInfo[@"url"];
-	photoViewController.maxHentaiCount = hentaiInfo[@"filecount"];
+    photoViewController.hentaiInfo = hentaiInfo;
 	[hentaiNavigation pushViewController:photoViewController animated:YES];
     
 }
