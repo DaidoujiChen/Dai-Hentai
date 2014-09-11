@@ -35,6 +35,9 @@
 @property (nonatomic, strong) NSOperationQueue *hentaiQueue;
 @property (nonatomic, strong) FMStream *hentaiFilesManager;
 
+@property (nonatomic, strong) NSString *hentaiURLString;
+@property (nonatomic, strong) NSString *maxHentaiCount;
+
 - (void)backAction;
 - (void)saveAction;
 - (void)deleteAction;
@@ -62,7 +65,7 @@
 - (NSString *)hentaiKey {
 	NSArray *splitStrings = [self.hentaiURLString componentsSeparatedByString:@"/"];
 	NSUInteger splitCount = [splitStrings count];
-	return [NSString stringWithFormat:@"%@-%@", splitStrings[splitCount - 3], splitStrings[splitCount - 2]];
+	return [NSString stringWithFormat:@"%@-%@-%@", splitStrings[splitCount - 3], splitStrings[splitCount - 2], self.hentaiInfo[@"title"]];
 }
 
 #pragma mark - ibaction
@@ -113,6 +116,9 @@
 
 	//註冊 cell
 	[self.hentaiTableView registerClass:[HentaiPhotoCell class] forCellReuseIdentifier:@"HentaiPhotoCell"];
+    
+    self.hentaiURLString = self.hentaiInfo[@"url"];
+	self.maxHentaiCount = self.hentaiInfo[@"filecount"];
 
 	//OperationQueue 限制數量為 5
 	self.hentaiQueue = [NSOperationQueue new];

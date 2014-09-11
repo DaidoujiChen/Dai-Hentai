@@ -15,8 +15,7 @@
 
 @interface PhotoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadOperationDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, strong) NSString *hentaiURLString;
-@property (nonatomic, strong) NSString *maxHentaiCount;
+@property (nonatomic, strong) NSDictionary *hentaiInfo;
 
 @property (weak, nonatomic) IBOutlet UITableView *hentaiTableView;
 
