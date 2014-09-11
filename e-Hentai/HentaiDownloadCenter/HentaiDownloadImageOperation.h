@@ -8,17 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol HentaiDownloadOperationDelegate;
+@protocol HentaiDownloadImageOperationDelegate;
 
-@interface HentaiDownloadOperation : NSOperation <NSURLConnectionDelegate>
+@interface HentaiDownloadImageOperation : NSOperation <NSURLConnectionDelegate>
 
-@property (nonatomic, weak) id <HentaiDownloadOperationDelegate> delegate;
+@property (nonatomic, weak) id <HentaiDownloadImageOperationDelegate> delegate;
 @property (nonatomic, strong) NSString *downloadURLString;
 @property (nonatomic, strong) NSString *hentaiKey;
+@property (nonatomic, assign) BOOL isCacheOperation;
 
 @end
 
-@protocol HentaiDownloadOperationDelegate <NSObject>
+@protocol HentaiDownloadImageOperationDelegate <NSObject>
 
 @required
 - (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess;

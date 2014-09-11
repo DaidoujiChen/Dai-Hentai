@@ -11,9 +11,9 @@
 #import "HentaiNavigationController.h"
 #import "FakeViewController.h"
 #import "HentaiPhotoCell.h"
-#import "HentaiDownloadOperation.h"
+#import "HentaiDownloadImageOperation.h"
 
-@interface PhotoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadOperationDelegate, UIAlertViewDelegate>
+@interface PhotoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadImageOperationDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSDictionary *hentaiInfo;
 

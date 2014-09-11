@@ -6,18 +6,17 @@
 //  Copyright (c) 2014年 ChilunChen. All rights reserved.
 //
 
-#import "HentaiDownloadOperation.h"
+#import "HentaiDownloadImageOperation.h"
 
-@interface HentaiDownloadOperation ()
+@interface HentaiDownloadImageOperation ()
 
-@property (nonatomic, strong) FMStream *hentaiFilesManager;
 @property (nonatomic, strong) NSMutableData *recvData;
 @property (nonatomic, assign) BOOL isExecuting;
 @property (nonatomic, assign) BOOL isFinished;
 
 @end
 
-@implementation HentaiDownloadOperation
+@implementation HentaiDownloadImageOperation
 
 #pragma mark - Methods to Override
 
@@ -32,7 +31,6 @@
 	}
     
 	[self hentaiStart];
-	self.hentaiFilesManager = [[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
 	NSNumber *imageHeight = HentaiCacheLibraryDictionary[self.hentaiKey][[self.downloadURLString lastPathComponent]];
     
 	//從 imageHeight 的有無可以判斷這個檔案是否已經有了
@@ -79,7 +77,13 @@
 	if (![self isCancelled]) {
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 		    UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:self.recvData]];
-		    [self.hentaiFilesManager write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
+            
+		    if (self.isCacheOperation) {
+		        [[[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
+			}
+		    else {
+		        [[[FilesManager documentFolder] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
+			}
             
 		    //讓檔案轉存這件事情不擋線程
 		    dispatch_async(dispatch_get_main_queue(), ^{
