@@ -21,6 +21,7 @@
     #import "HentaiParser.h"
     #import "FilesManager.h"
     #import "LightWeightPlist.h"
+    #import "HentaiDownloadCenter.h"
 
     //LightWeightPlist
     #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")

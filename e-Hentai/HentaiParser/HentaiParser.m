@@ -51,7 +51,7 @@
 + (void)requestListAtIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
 	NSString *urlString = [NSString stringWithFormat:baseListURL, index];
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
 	        completion(HentaiParserStatusFail, nil);
 		}
@@ -99,9 +99,11 @@
 	//http://g.e-hentai.org/g/735601/35fe0802c8/?p=2
 	NSString *newURLString = [NSString stringWithFormat:@"%@?p=%d", urlString, index];
 	NSURL *newURL = [NSURL URLWithString:newURLString];
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:newURL] queue:[NSOperationQueue mainQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:newURL] queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        completion(HentaiParserStatusFail, nil);
+	        dispatch_sync(dispatch_get_main_queue(), ^{
+	            completion(HentaiParserStatusFail, nil);
+			});
 		}
 	    else {
 	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
@@ -125,7 +127,9 @@
 				});
 			}
 	        dispatch_group_wait(hentaiGroup, DISPATCH_TIME_FOREVER);
-	        completion(HentaiParserStatusSuccess, returnArray);
+	        dispatch_sync(dispatch_get_main_queue(), ^{
+	            completion(HentaiParserStatusSuccess, returnArray);
+			});
 		}
 	}];
 }
@@ -133,11 +137,15 @@
 #pragma mark - private
 
 + (NSString *)dateStringFrom1970:(NSTimeInterval)date1970 {
-	NSDateFormatter *dateFormatter = [NSDateFormatter new];
-	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-	return [dateFormatter stringFromDate:[NSDate date]];
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    });
+	return [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:date1970]];
 }
 
 + (void)requestGDataAPIWithURLStrings:(NSArray *)urlStringArray completion:(void (^)(HentaiParserStatus status, NSArray *gMetaData))completion {
@@ -154,13 +162,17 @@
 	NSDictionary *jsonDictionary = @{ @"method": @"gdata", @"gidlist":idArray };
 	NSMutableURLRequest *request = [self makeJsonPostRequest:jsonDictionary];
     
-	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+	[NSURLConnection sendAsynchronousRequest:request queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        completion(HentaiParserStatusFail, nil);
+	        dispatch_sync(dispatch_get_main_queue(), ^{
+	            completion(HentaiParserStatusFail, nil);
+			});
 		}
 	    else {
 	        NSDictionary *responseResult = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-	        completion(HentaiParserStatusSuccess, responseResult[@"gmetadata"]);
+	        dispatch_sync(dispatch_get_main_queue(), ^{
+	            completion(HentaiParserStatusSuccess, responseResult[@"gmetadata"]);
+			});
 		}
 	}];
 }
@@ -193,6 +205,13 @@
 }
 
 + (NSOperationQueue *)hentaiOperationQueue {
+	if (!objc_getAssociatedObject(self, _cmd)) {
+		objc_setAssociatedObject(self, _cmd, [NSOperationQueue new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	}
+	return objc_getAssociatedObject(self, _cmd);
+}
+
++ (NSOperationQueue *)defaultOperationQueue {
 	if (!objc_getAssociatedObject(self, _cmd)) {
 		objc_setAssociatedObject(self, _cmd, [NSOperationQueue new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	}
