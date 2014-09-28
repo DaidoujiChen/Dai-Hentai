@@ -23,8 +23,8 @@ typedef NS_ENUM(NSInteger, HentaiFilterType) {
 
 @interface HentaiSearchFilter : NSObject
 
-+ (NSString*)getSearchFilterUrlByKeyword:(NSString*)searchWord
-                             filterArray:(NSArray*)filterArray
-                                 baseUrl:(NSString*)baseUrl;
++ (NSString*)searchFilterUrlByKeyword:(NSString*)searchWord
+                          filterArray:(NSArray*)filterArray
+                              baseUrl:(NSString*)baseUrl;
 
 @end

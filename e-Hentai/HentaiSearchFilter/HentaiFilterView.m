@@ -47,7 +47,7 @@
 {
     for(int i = 0; i < filterEnableArray.count;i++)
     {
-        [filterEnableArray replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:YES]];
+        [filterEnableArray replaceObjectAtIndex:i withObject:@(YES)];
     }
     
     for(UIButton* btn in self.subviews)
@@ -56,7 +56,7 @@
     }
 }
 
-- (NSArray*)getFilterResult
+- (NSArray*)filterResult
 {
     NSMutableArray* resultArray = [NSMutableArray array];
     
@@ -64,7 +64,7 @@
         
         NSNumber* filterNum = [filterEnableArray objectAtIndex:i];
         if([filterNum boolValue]){
-            [resultArray addObject:[NSNumber numberWithInt:i]];
+            [resultArray addObject:@(i)];
         }
     }
     
@@ -85,13 +85,13 @@
         CGFloat y = (i / 2) * 40;
         
         //init all Tag YES
-        NSNumber* tapTag = [NSNumber numberWithBool:YES];
+        NSNumber* tapTag = @(YES);
         [filterEnableArray insertObject:tapTag atIndex:i];
         
         UIButton* filterBtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, CGRectGetWidth(self.frame) / 2, 40)];
         filterBtn.tag = i;
         filterBtn.titleLabel.textColor = [UIColor whiteColor];
-        NSNumber* filterTag = [NSNumber numberWithInteger:i];
+        NSNumber* filterTag = @(i);
         filterBtn.backgroundColor = [self colorMapping:filterTag];
         [filterBtn setTitle:[self titleMapping:filterTag] forState:UIControlStateNormal];
         [filterBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
@@ -104,37 +104,37 @@
 
 
 - (UIColor *)colorMapping:(NSNumber *)filterTag {
-	NSDictionary *mapping = @{ [NSNumber numberWithInteger:HentaiFilterTypeDoujinshi] : colorDoujinshi,
-		                       [NSNumber numberWithInteger:HentaiFilterTypeManga]     : colorManga,
-		                       [NSNumber numberWithInteger:HentaiFilterTypeArtistcg]  : colorArtistcg,
-		                       [NSNumber numberWithInteger:HentaiFilterTypeGamecg]    : colorGamecg,
-		                       [NSNumber numberWithInteger:HentaiFilterTypeWestern]   : colorWestern,
-		                       [NSNumber numberWithInteger:HentaiFilterTypeNonh]      : colorNonh,
-		                       [NSNumber numberWithInteger:HentaiFilterTypeImagesets] : colorImageset,
-		                       [NSNumber numberWithInteger:HentaiFilterTypeCosplay]   : colorCosplay,
-		                       [NSNumber numberWithInteger:HentaiFilterTypeAsianporn] : colorAsianporn,
-                               [NSNumber numberWithInteger:HentaiFilterTypeMisc]      : colorMisc};
+	NSDictionary *mapping = @{ @(HentaiFilterTypeDoujinshi) : colorDoujinshi,
+		                       @(HentaiFilterTypeManga)     : colorManga,
+		                       @(HentaiFilterTypeArtistcg)  : colorArtistcg,
+		                       @(HentaiFilterTypeGamecg)    : colorGamecg,
+		                       @(HentaiFilterTypeWestern)   : colorWestern,
+		                       @(HentaiFilterTypeNonh)      : colorNonh,
+		                       @(HentaiFilterTypeImagesets) : colorImageset,
+		                       @(HentaiFilterTypeCosplay)   : colorCosplay,
+		                       @(HentaiFilterTypeAsianporn) : colorAsianporn,
+                               @(HentaiFilterTypeMisc)      : colorMisc};
 	return mapping[filterTag] ? mapping[filterTag] : colorAll;
 }
 
 - (NSString*)titleMapping:(NSNumber *)filterTag {
-	NSDictionary *mapping = @{ [NSNumber numberWithInteger:HentaiFilterTypeDoujinshi] : @"Doujinshi",
-		                       [NSNumber numberWithInteger:HentaiFilterTypeManga]     : @"Manga",
-		                       [NSNumber numberWithInteger:HentaiFilterTypeArtistcg]  : @"Artistcg",
-		                       [NSNumber numberWithInteger:HentaiFilterTypeGamecg]    : @"Gamecg",
-		                       [NSNumber numberWithInteger:HentaiFilterTypeWestern]   : @"Western",
-		                       [NSNumber numberWithInteger:HentaiFilterTypeNonh]      : @"Nonh",
-		                       [NSNumber numberWithInteger:HentaiFilterTypeImagesets] : @"Imageset",
-		                       [NSNumber numberWithInteger:HentaiFilterTypeCosplay]   : @"Cosplay",
-		                       [NSNumber numberWithInteger:HentaiFilterTypeAsianporn] : @"Asianporn",
-                               [NSNumber numberWithInteger:HentaiFilterTypeMisc]      : @"Misc"};
+	NSDictionary *mapping = @{ @(HentaiFilterTypeDoujinshi) : @"Doujinshi",
+		                       @(HentaiFilterTypeManga)     : @"Manga",
+		                       @(HentaiFilterTypeArtistcg)  : @"Artistcg",
+		                       @(HentaiFilterTypeGamecg)    : @"Gamecg",
+		                       @(HentaiFilterTypeWestern)   : @"Western",
+		                       @(HentaiFilterTypeNonh)      : @"Nonh",
+		                       @(HentaiFilterTypeImagesets) : @"Imageset",
+		                       @(HentaiFilterTypeCosplay)   : @"Cosplay",
+		                       @(HentaiFilterTypeAsianporn) : @"Asianporn",
+                               @(HentaiFilterTypeMisc)      : @"Misc"};
 	return mapping[filterTag] ? mapping[filterTag] : @"All";
 }
 
 - (void)setButtonEnableStyle:(UIButton*)btn enable:(BOOL)enable
 {
     
-    NSNumber* filterTag = [NSNumber numberWithInteger:btn.tag];
+    NSNumber* filterTag = @(btn.tag);
     if(enable){
         btn.backgroundColor = [self colorMapping:filterTag];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -149,7 +149,7 @@
 {
     BOOL enable = [[filterEnableArray objectAtIndex:btn.tag] boolValue];
     enable = !enable;
-    [filterEnableArray replaceObjectAtIndex:btn.tag withObject:[NSNumber numberWithBool:enable]];
+    [filterEnableArray replaceObjectAtIndex:btn.tag withObject:@(enable)];
     [self setButtonEnableStyle:btn enable:enable];
     
 }

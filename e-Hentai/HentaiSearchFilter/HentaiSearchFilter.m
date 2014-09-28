@@ -26,9 +26,9 @@
 
 @implementation HentaiSearchFilter
 
-+ (NSString*)getSearchFilterUrlByKeyword:(NSString*)searchWord
-                             filterArray:(NSArray*)filterArray
-                                 baseUrl:(NSString*)baseUrl
++ (NSString*)searchFilterUrlByKeyword:(NSString*)searchWord
+                          filterArray:(NSArray*)filterArray
+                              baseUrl:(NSString*)baseUrl
 {
     
     NSString* filterUrl = [[NSString alloc] initWithString:baseUrl];
@@ -39,16 +39,16 @@
     }
     
     
-    NSDictionary* filterMapping = @{ [NSNumber numberWithInt: HentaiFilterTypeDoujinshi]    : doujinshiFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeManga]        : mangaFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeArtistcg]     : artistcgFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeGamecg]       : gamecgFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeWestern]      : westernFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeNonh]         : nonhFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeImagesets]    : imagesetFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeCosplay]      : cosplayFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeAsianporn]    : asianpornFilter,
-                                     [NSNumber numberWithInt: HentaiFilterTypeMisc]         : miscFilter};
+    NSDictionary* filterMapping = @{ @(HentaiFilterTypeDoujinshi)  : doujinshiFilter,
+                                     @(HentaiFilterTypeManga)      : mangaFilter,
+                                     @(HentaiFilterTypeArtistcg)   : artistcgFilter,
+                                     @(HentaiFilterTypeGamecg)     : gamecgFilter,
+                                     @(HentaiFilterTypeWestern)    : westernFilter,
+                                     @(HentaiFilterTypeNonh)       : nonhFilter,
+                                     @(HentaiFilterTypeImagesets)  : imagesetFilter,
+                                     @(HentaiFilterTypeCosplay)    : cosplayFilter,
+                                     @(HentaiFilterTypeAsianporn)  : asianpornFilter,
+                                     @(HentaiFilterTypeMisc)       : miscFilter};
    
     if(filterArray.count != 0 || filterArray.count != 10){
         for(NSNumber* filterNum in filterArray){

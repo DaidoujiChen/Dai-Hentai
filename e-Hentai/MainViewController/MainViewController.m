@@ -38,7 +38,7 @@
 	if (indexPath.row >= [self.listArray count] - 15 && [self.listArray count] == (self.listIndex + 1) * 25) {
 		self.listIndex++;
         NSString* baseUrlString = [NSString stringWithFormat:@"http://g.e-hentai.org/?page=%d",self.listIndex];
-        NSString* filterString = [HentaiSearchFilter getSearchFilterUrlByKeyword:searchWord filterArray:nil baseUrl:baseUrlString];
+        NSString* filterString = [HentaiSearchFilter searchFilterUrlByKeyword:searchWord filterArray:[filterView filterResult] baseUrl:baseUrlString];
         
         [HentaiParser requestListAtFilterUrl:filterString completion:^(HentaiParserStatus status, NSArray *listArray) {
 		    [self.listArray addObjectsFromArray:listArray];
@@ -204,6 +204,10 @@
     filterView = [[HentaiFilterView alloc] initWithFrame:filterFrame];
     self.searchBar.inputAccessoryView = filterView;
     
+    
+    //清除GalleryCell的圖片暫存
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] clearDisk];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -230,13 +234,14 @@
 	__weak MainViewController *weakSelf = self;
     
     NSString* baseUrlString = [NSString stringWithFormat:@"http://g.e-hentai.org/?page=%d",self.listIndex];
-    NSString* filterString = [HentaiSearchFilter getSearchFilterUrlByKeyword:searchWord filterArray:[filterView getFilterResult] baseUrl:baseUrlString];
+    NSString* filterString = [HentaiSearchFilter searchFilterUrlByKeyword:searchWord filterArray:[filterView filterResult] baseUrl:baseUrlString];
     
     [HentaiParser requestListAtFilterUrl:filterString completion:^(HentaiParserStatus status, NSArray *listArray) {
         if (status && weakSelf) {
 	        [weakSelf.listArray removeAllObjects];
 	        [weakSelf.listArray addObjectsFromArray:listArray];
 	        [weakSelf.listCollectionView reloadData];
+            [weakSelf.listCollectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
 	        [weakSelf.refreshControl endRefreshing];
 		}
 	    else {
