@@ -7,15 +7,20 @@
 //
 
 #import "MainViewController.h"
+#import "HentaiSearchFilter.h"
+#import "HentaiFilterView.h"
 
 @interface MainViewController ()
 {
 	BOOL enableH_Image;
+    NSString* searchWord;
+    HentaiFilterView* filterView;
 }
 
 @property (nonatomic, assign) NSUInteger listIndex;
 @property (nonatomic, strong) NSMutableArray *listArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -32,12 +37,15 @@
 	//無限滾
 	if (indexPath.row >= [self.listArray count] - 15 && [self.listArray count] == (self.listIndex + 1) * 25) {
 		self.listIndex++;
-		[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
+        NSString* baseUrlString = [NSString stringWithFormat:@"http://g.e-hentai.org/?page=%d",self.listIndex];
+        NSString* filterString = [HentaiSearchFilter getSearchFilterUrlByKeyword:searchWord filterArray:nil baseUrl:baseUrlString];
+        
+        [HentaiParser requestListAtFilterUrl:filterString completion:^(HentaiParserStatus status, NSArray *listArray) {
 		    [self.listArray addObjectsFromArray:listArray];
 		    [self.listCollectionView reloadData];
 		}];
 	}
-
+    
 	GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
 	NSDictionary *hentaiInfo = self.listArray[indexPath.row];
     [hentaiInfo setValue:[NSNumber numberWithBool:enableH_Image] forKey:imageMode];
@@ -105,13 +113,68 @@
     [alert show];
 }
 
+#pragma mark -  UISearchBarDelegate
+
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    
+    self.searchBar.showsCancelButton = YES;
+    
+    if([searchBar.text isEqualToString:@""]){
+        [filterView selectAll];
+    }
+    //always enable search button
+    [self enableReturnKeyWithNoText:self.searchBar];
+}
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [self.searchBar resignFirstResponder];
+    searchWord = searchBar.text;
+    [self reloadDatas];
+    
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    searchWord = searchBar.text;
+    self.searchBar.showsCancelButton =NO;
+}
+
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    
+    searchWord = searchBar.text;
+    self.searchBar.showsCancelButton = NO;
+    [self.searchBar resignFirstResponder];
+}
+
+#pragma mark - search bar
+
+-(void)enableReturnKeyWithNoText:(UISearchBar *)searchBar {
+    
+    UITextField* searchField = nil;
+    for (UIView *subView in searchBar.subviews){
+        for (UIView *childSubview in subView.subviews){
+            if ([childSubview isKindOfClass:[UITextField class]])
+            {
+                searchField = (UITextField *)childSubview;
+                break;
+            }
+        }
+    }
+    
+    if (searchField) {
+        searchField.enablesReturnKeyAutomatically = NO;
+    }
+}
+
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.listIndex = 0;
 	self.listArray = [NSMutableArray array];
-
+    
 	[self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
 	[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
 	    [self.listArray addObjectsFromArray:listArray];
@@ -129,6 +192,18 @@
 	self.navigationItem.rightBarButtonItem = changeModeItem;
     
 	enableH_Image = NO;
+    searchWord = @"";
+    
+    //search bar
+    self.searchBar = [[UISearchBar alloc] init];
+    self.navigationItem.titleView = self.searchBar;
+    self.searchBar.delegate = self;
+    
+    CGFloat keyboardHeight = 216;
+    CGRect filterFrame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - keyboardHeight - 64);
+    filterView = [[HentaiFilterView alloc] initWithFrame:filterFrame];
+    self.searchBar.inputAccessoryView = filterView;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -141,13 +216,24 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:HentaiDownloadSuccessNotification object:nil];
 }
 
+- (void)dealloc
+{
+    self.listCollectionView.dataSource = nil;
+    self.listCollectionView.delegate = nil;
+    self.searchBar.delegate = nil;
+}
+
 #pragma mark - actions
 
 - (void)reloadDatas {
 	self.listIndex = 0;
 	__weak MainViewController *weakSelf = self;
-	[HentaiParser requestListAtIndex:self.listIndex completion: ^(HentaiParserStatus status, NSArray *listArray) {
-	    if (status && weakSelf) {
+    
+    NSString* baseUrlString = [NSString stringWithFormat:@"http://g.e-hentai.org/?page=%d",self.listIndex];
+    NSString* filterString = [HentaiSearchFilter getSearchFilterUrlByKeyword:searchWord filterArray:[filterView getFilterResult] baseUrl:baseUrlString];
+    
+    [HentaiParser requestListAtFilterUrl:filterString completion:^(HentaiParserStatus status, NSArray *listArray) {
+        if (status && weakSelf) {
 	        [weakSelf.listArray removeAllObjects];
 	        [weakSelf.listArray addObjectsFromArray:listArray];
 	        [weakSelf.listCollectionView reloadData];
@@ -161,7 +247,8 @@
 	                                              otherButtonTitles:nil];
 	        [alert show];
 		}
-	}];
+    }];
+    
 }
 
 - (void)changeImageMode:(UIBarButtonItem *)sender {

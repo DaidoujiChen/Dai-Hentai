@@ -94,6 +94,52 @@
 	}];
 }
 
+
++ (void)requestListAtFilterUrl:(NSString*)urlString completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
+	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+	    if (connectionError) {
+	        completion(HentaiParserStatusFail, nil);
+		}
+	    else {
+	        //這段是從 e hentai 的網頁 parse 列表
+	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
+	        NSArray *photoURL = [xpathParser searchWithXPathQuery:@"//div [@class='it5']//a"];
+            
+	        NSMutableArray *returnArray = [NSMutableArray array];
+	        NSMutableArray *urlStringArray = [NSMutableArray array];
+            
+	        for (TFHppleElement * eachTitleWithURL in photoURL) {
+	            [urlStringArray addObject:[eachTitleWithURL attributes][@"href"]];
+	            [returnArray addObject:[NSMutableDictionary dictionaryWithDictionary:@{ @"url": [eachTitleWithURL attributes][@"href"] }]];
+			}
+            
+	        //這段是從 e hentai 的 api 抓資料
+	        [self requestGDataAPIWithURLStrings:urlStringArray completion: ^(HentaiParserStatus status, NSArray *gMetaData) {
+	            if (status) {
+	                for (NSUInteger i = 0; i < [gMetaData count]; i++) {
+	                    NSMutableDictionary *eachDictionary = returnArray[i];
+	                    NSDictionary *metaData = gMetaData[i];
+	                    eachDictionary[@"thumb"] = metaData[@"thumb"];
+	                    eachDictionary[@"title"] = metaData[@"title"];
+	                    eachDictionary[@"title_jpn"] = metaData[@"title_jpn"];
+	                    eachDictionary[@"category"] = metaData[@"category"];
+	                    eachDictionary[@"uploader"] = metaData[@"uploader"];
+	                    eachDictionary[@"filecount"] = metaData[@"filecount"];
+	                    eachDictionary[@"filesize"] = [NSByteCountFormatter stringFromByteCount:[metaData[@"filesize"] floatValue] countStyle:NSByteCountFormatterCountStyleFile];
+	                    eachDictionary[@"rating"] = metaData[@"rating"];
+	                    eachDictionary[@"posted"] = [self dateStringFrom1970:[metaData[@"posted"] doubleValue]];
+					}
+	                completion(HentaiParserStatusSuccess, returnArray);
+				}
+	            else {
+	                completion(HentaiParserStatusFail, nil);
+				}
+			}];
+		}
+	}];
+}
+
 + (void)requestImagesAtURL:(NSString *)urlString atIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSArray *images))completion {
 	//網址的範例
 	//http://g.e-hentai.org/g/735601/35fe0802c8/?p=2
