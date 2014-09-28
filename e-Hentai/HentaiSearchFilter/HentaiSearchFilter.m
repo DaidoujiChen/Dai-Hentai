@@ -26,45 +26,42 @@
 
 @implementation HentaiSearchFilter
 
-+ (NSString*)searchFilterUrlByKeyword:(NSString*)searchWord
-                          filterArray:(NSArray*)filterArray
-                              baseUrl:(NSString*)baseUrl
-{
++ (NSString *)searchFilterUrlByKeyword:(NSString *)searchWord
+                           filterArray:(NSArray *)filterArray
+                               baseUrl:(NSString *)baseUrl {
+	NSString *filterUrl = [[NSString alloc] initWithString:baseUrl];
     
-    NSString* filterUrl = [[NSString alloc] initWithString:baseUrl];
-    
-    //do nothing
-    if([searchWord isEqualToString:@""] && filterArray.count == 0){
-        return filterUrl;
-    }
+	//do nothing
+	if ([searchWord isEqualToString:@""] && filterArray.count == 0) {
+		return filterUrl;
+	}
     
     
-    NSDictionary* filterMapping = @{ @(HentaiFilterTypeDoujinshi)  : doujinshiFilter,
-                                     @(HentaiFilterTypeManga)      : mangaFilter,
-                                     @(HentaiFilterTypeArtistcg)   : artistcgFilter,
-                                     @(HentaiFilterTypeGamecg)     : gamecgFilter,
-                                     @(HentaiFilterTypeWestern)    : westernFilter,
-                                     @(HentaiFilterTypeNonh)       : nonhFilter,
-                                     @(HentaiFilterTypeImagesets)  : imagesetFilter,
-                                     @(HentaiFilterTypeCosplay)    : cosplayFilter,
-                                     @(HentaiFilterTypeAsianporn)  : asianpornFilter,
-                                     @(HentaiFilterTypeMisc)       : miscFilter};
-   
-    if(filterArray.count != 0 || filterArray.count != 10){
-        for(NSNumber* filterNum in filterArray){
-            filterUrl = [filterUrl stringByAppendingString:[NSString stringWithFormat:@"&%@",filterMapping[filterNum]]];
-        }
-    }
+	NSDictionary *filterMapping = @{ @(HentaiFilterTypeDoujinshi)  : doujinshiFilter,
+		                             @(HentaiFilterTypeManga)      : mangaFilter,
+		                             @(HentaiFilterTypeArtistcg)   : artistcgFilter,
+		                             @(HentaiFilterTypeGamecg)     : gamecgFilter,
+		                             @(HentaiFilterTypeWestern)    : westernFilter,
+		                             @(HentaiFilterTypeNonh)       : nonhFilter,
+		                             @(HentaiFilterTypeImagesets)  : imagesetFilter,
+		                             @(HentaiFilterTypeCosplay)    : cosplayFilter,
+		                             @(HentaiFilterTypeAsianporn)  : asianpornFilter,
+		                             @(HentaiFilterTypeMisc)       : miscFilter };
     
-    if(![searchWord isEqualToString:@""]){
-        filterUrl = [filterUrl stringByAppendingString:[NSString stringWithFormat:@"&f_search=%@",searchWord]];
-    }
+	if (filterArray.count != 0 || filterArray.count != 10) {
+		for (NSNumber *filterNum in filterArray) {
+			filterUrl = [filterUrl stringByAppendingString:[NSString stringWithFormat:@"&%@", filterMapping[filterNum]]];
+		}
+	}
     
-    //apply
-    filterUrl = [filterUrl stringByAppendingString:@"&f_apply=Apply+Filter"];
+	if (![searchWord isEqualToString:@""]) {
+		filterUrl = [filterUrl stringByAppendingString:[NSString stringWithFormat:@"&f_search=%@", searchWord]];
+	}
     
-    return filterUrl;
+	//apply
+	filterUrl = [filterUrl stringByAppendingString:@"&f_apply=Apply+Filter"];
+    
+	return filterUrl;
 }
-
 
 @end

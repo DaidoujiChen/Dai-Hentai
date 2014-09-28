@@ -94,8 +94,7 @@
 	}];
 }
 
-
-+ (void)requestListAtFilterUrl:(NSString*)urlString completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
++ (void)requestListAtFilterUrl:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
@@ -183,14 +182,14 @@
 #pragma mark - private
 
 + (NSString *)dateStringFrom1970:(NSTimeInterval)date1970 {
-    static NSDateFormatter *dateFormatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dateFormatter = [NSDateFormatter new];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    });
+	static NSDateFormatter *dateFormatter = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+	    dateFormatter = [NSDateFormatter new];
+	    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+	    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+	});
 	return [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:date1970]];
 }
 

@@ -11,6 +11,6 @@
 @interface HentaiFilterView : UIView
 
 - (void)selectAll;
-- (NSArray*)filterResult;
+- (NSArray *)filterResult;
 
 @end
