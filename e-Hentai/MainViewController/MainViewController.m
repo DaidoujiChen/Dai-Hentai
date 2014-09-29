@@ -10,6 +10,9 @@
 #import "HentaiSearchFilter.h"
 #import "HentaiFilterView.h"
 
+//avoid import cycle
+#import "DownloadedViewController.h"
+
 @interface MainViewController ()
 {
 	BOOL enableH_Image;
@@ -218,6 +221,12 @@
 	self.listCollectionView.dataSource = nil;
 	self.listCollectionView.delegate = nil;
 	self.searchBar.delegate = nil;
+}
+
+#pragma mark - ibaction
+
+- (IBAction)pushToDownloadedAction:(id)sender {
+	[self.navigationController pushViewController:[[DownloadedViewController alloc] initWithNibName:@"MainViewController" bundle:nil] animated:YES];
 }
 
 #pragma mark - actions
