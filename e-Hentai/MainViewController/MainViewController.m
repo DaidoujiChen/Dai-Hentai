@@ -194,7 +194,8 @@
 	self.searchBar.delegate = self;
     
 	CGFloat keyboardHeight = 216;
-	CGRect filterFrame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - keyboardHeight - 64);
+    CGRect screenSize = [UIScreen mainScreen].bounds;
+	CGRect filterFrame = CGRectMake(0, 0, CGRectGetWidth(screenSize), CGRectGetHeight(screenSize) - keyboardHeight - 64);
 	filterView = [[HentaiFilterView alloc] initWithFrame:filterFrame];
 	self.searchBar.inputAccessoryView = filterView;
     
