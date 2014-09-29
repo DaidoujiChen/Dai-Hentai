@@ -13,23 +13,6 @@
 #define baseListURL @"http://g.e-hentai.org/?page=%d"
 #define hentaiAPIURL @"http://g.e-hentai.org/api.php"
 
-//Fillter 全開
-//http://g.e-hentai.org/?f_doujinshi=1&f_manga=1&f_artistcg=1&f_gamecg=1&f_western=1&f_non-h=1&f_imageset=1&f_cosplay=1&f_asianporn=1&f_misc=1&f_search=Search+Keywords&f_apply=Apply+Filter
-
-#define doujinshiFilter    @"f_doujinshi=1"
-#define mangaFilter        @"f_manga=1"
-#define artistcgFilter     @"f_artistcg=1"
-#define gamecgFilter       @"f_gamecg=1"
-#define westernFilter      @"f_western=1"
-#define nonhFilter         @"f_non-h=1"
-#define imagesetFilter     @"f_imageset=1"
-#define cosplayFilter      @"f_cosplay=1"
-#define asianpornFilter    @"f_asianporn=1"
-#define miscFilter         @"f_misc=1"
-#define searchKeywords     @"f_search=%@"
-#define applyFilter        @"f_apply=Apply+Filter"
-
-
 @implementation NSMutableArray (HENTAI)
 
 + (NSMutableArray *)hentai_preAllocWithCapacity:(NSUInteger)capacity {
