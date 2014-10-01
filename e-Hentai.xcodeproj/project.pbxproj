@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0107D9AA19DBF656006C5673 /* UIAlertView+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */; };
 		0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080719B6F06200FE0DA1 /* FakeViewController.m */; };
 		0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */; };
 		0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080F19B6F06200FE0DA1 /* MainViewController.m */; };
@@ -80,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0107D9A819DBF656006C5673 /* UIAlertView+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Hentai.h"; sourceTree = "<group>"; };
+		0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Hentai.m"; sourceTree = "<group>"; };
 		0118080619B6F06200FE0DA1 /* FakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeViewController.h; sourceTree = "<group>"; };
 		0118080719B6F06200FE0DA1 /* FakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeViewController.m; sourceTree = "<group>"; };
 		0118080819B6F06200FE0DA1 /* HentaiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiNavigationController.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				0118080719B6F06200FE0DA1 /* FakeViewController.m */,
 				0118080819B6F06200FE0DA1 /* HentaiNavigationController.h */,
 				0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */,
+				0107D9A819DBF656006C5673 /* UIAlertView+Hentai.h */,
+				0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -591,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0107D9AA19DBF656006C5673 /* UIAlertView+Hentai.m in Sources */,
 				0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */,
 				040541C719B8182400139AC9 /* UIImage+WebP.m in Sources */,
 				9F9C3B5719D82DBA007CFF81 /* HentaiFilterView.m in Sources */,

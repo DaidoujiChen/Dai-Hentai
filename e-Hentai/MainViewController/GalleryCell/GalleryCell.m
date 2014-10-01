@@ -20,20 +20,8 @@
 //設定資料
 - (void)setGalleryDict:(NSDictionary *)dataDict {
 	self.cellLabel.text = dataDict[@"title"];
-    
-    
-	BOOL enableImageMode = [dataDict[imageMode] boolValue];
-    
-	NSString *imgUrl = @"http://i.imgur.com/1gzbPf1.jpg"; //貓貓圖(公司用)
-    
-	if (enableImageMode) {
-		imgUrl = dataDict[@"thumb"]; //(真的H縮圖)
-	}
-    
-	[self.cellImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl]
-	                      placeholderImage:nil
-	                               options:SDWebImageRefreshCached];
-    
+	NSString *imgUrl = imgUrl = dataDict[@"thumb"]; //(真的H縮圖)
+	[self.cellImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:nil options:SDWebImageRefreshCached];
 	[self.cellCategory setCategoryStr:dataDict[@"category"]];
 	[self.cellStar setStar:dataDict[@"rating"]];
 }
