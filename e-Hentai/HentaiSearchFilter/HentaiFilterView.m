@@ -22,28 +22,32 @@
 #define colorAll          [UIColor grayColor]
 
 @interface HentaiFilterView ()
-{
-	NSMutableArray *filterEnableArray;
-}
 
+@property (nonatomic, strong) NSMutableArray *filterEnableArray;
 
 @end
 
 @implementation HentaiFilterView
 
+#pragma mark - life cycle
+
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
-		// Initialization code
 		self.backgroundColor = [UIColor blackColor];
-		[self setButtons];
+		self.filterEnableArray = [NSMutableArray array];
+		for (int i = 0; i < 10; i++) {
+			[self.filterEnableArray addObject:@(YES)];
+		}
 	}
 	return self;
 }
 
+#pragma mark - instance method
+
 - (void)selectAll {
-	for (int i = 0; i < filterEnableArray.count; i++) {
-		[filterEnableArray replaceObjectAtIndex:i withObject:@(YES)];
+	for (int i = 0; i < [self.filterEnableArray count]; i++) {
+		[self.filterEnableArray replaceObjectAtIndex:i withObject:@(YES)];
 	}
     
 	for (UIButton *btn in self.subviews) {
@@ -54,36 +58,37 @@
 - (NSArray *)filterResult {
 	NSMutableArray *resultArray = [NSMutableArray array];
     
-	for (int i = 0; i < filterEnableArray.count; i++) {
-		NSNumber *filterNum = [filterEnableArray objectAtIndex:i];
+	for (int i = 0; i < [self.filterEnableArray count]; i++) {
+		NSNumber *filterNum = self.filterEnableArray[i];
 		if ([filterNum boolValue]) {
 			[resultArray addObject:@(i)];
 		}
 	}
-    
 	return resultArray;
+}
+
+#pragma mark - override method
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	[self setButtons];
 }
 
 #pragma mark - private
 
-
 - (void)setButtons {
-	filterEnableArray = [NSMutableArray arrayWithCapacity:10];
+	[self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
 	for (int i = 0; i < 10; i++) {
-		CGFloat x = (i % 2 == 0) ? 0 : CGRectGetWidth(self.frame) / 2;
-		CGFloat y = (i / 2) * 40;
-        
-		//init all Tag YES
-		NSNumber *tapTag = @(YES);
-		[filterEnableArray insertObject:tapTag atIndex:i];
-        
-		UIButton *filterBtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, CGRectGetWidth(self.frame) / 2, 40)];
+		NSNumber *flag = self.filterEnableArray[i];
+		CGSize buttonSize = CGSizeMake(CGRectGetWidth(self.frame) / 2, 40);
+		CGFloat x = (i % 2 == 0) ? 0 : buttonSize.width;
+		CGFloat y = (i / 2) * buttonSize.height;
+		UIButton *filterBtn = [[UIButton alloc] initWithFrame:CGRectMake(x, y, buttonSize.width, buttonSize.height)];
 		filterBtn.tag = i;
 		filterBtn.titleLabel.textColor = [UIColor whiteColor];
-		NSNumber *filterTag = @(i);
-		filterBtn.backgroundColor = [self colorMapping:filterTag];
-		[filterBtn setTitle:[self titleMapping:filterTag] forState:UIControlStateNormal];
+		[self setButtonEnableStyle:filterBtn enable:[flag boolValue]];
+		[filterBtn setTitle:[self titleMapping:@(i)] forState:UIControlStateNormal];
 		[filterBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
 		[filterBtn addTarget:self action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:filterBtn];
@@ -131,9 +136,9 @@
 }
 
 - (void)buttonPress:(UIButton *)btn {
-	BOOL enable = [[filterEnableArray objectAtIndex:btn.tag] boolValue];
+	BOOL enable = [self.filterEnableArray[btn.tag] boolValue];
 	enable = !enable;
-	[filterEnableArray replaceObjectAtIndex:btn.tag withObject:@(enable)];
+	[self.filterEnableArray replaceObjectAtIndex:btn.tag withObject:@(enable)];
 	[self setButtonEnableStyle:btn enable:enable];
 }
 

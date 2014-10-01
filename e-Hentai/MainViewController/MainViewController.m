@@ -13,6 +13,8 @@
 //avoid import cycle
 #import "DownloadedViewController.h"
 
+#define statusBarWithNavigationHeight 64.0f
+
 @interface MainViewController ()
 {
 	BOOL enableH_Image;
@@ -117,6 +119,21 @@
 	[alert show];
 }
 
+- (void)keyboardWillShow:(NSNotification *)notification {
+	NSDictionary *userInfo = [notification userInfo];
+	CGRect keyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+	CGFloat deltaHeight = CGRectGetMinY(keyboardFrame) - statusBarWithNavigationHeight;
+    
+	//當變異值的值不為 0, 以及跟目前 filterView height 不同時需要改變
+	if (deltaHeight != filterView.frame.size.height && deltaHeight != 0) {
+		[self.searchBar resignFirstResponder];
+		CGRect filterFrame = filterView.frame;
+		filterFrame.size.height += deltaHeight;
+		filterView.frame = filterFrame;
+		[self.searchBar becomeFirstResponder];
+	}
+}
+
 #pragma mark -  UISearchBarDelegate
 
 
@@ -196,17 +213,14 @@
 	self.navigationItem.titleView = self.searchBar;
 	self.searchBar.delegate = self;
     
-    //調整畫面的大小
-    CGRect screenSize = [UIScreen mainScreen].bounds;
-    self.view.frame = screenSize;
-    self.listCollectionView.frame = screenSize;
+	//調整畫面的大小
+	CGRect screenSize = [UIScreen mainScreen].bounds;
+	self.view.frame = screenSize;
+	self.listCollectionView.frame = screenSize;
     
-    //調整 filterView 的大小
-	CGFloat keyboardHeight = 216;
-	CGRect filterFrame = CGRectMake(0, 0, CGRectGetWidth(screenSize), CGRectGetHeight(screenSize) - keyboardHeight - 64);
-	filterView = [[HentaiFilterView alloc] initWithFrame:filterFrame];
+	//先放一個 size 為 0 的 view 進去
+	filterView = [[HentaiFilterView alloc] initWithFrame:CGRectZero];
 	self.searchBar.inputAccessoryView = filterView;
-    
     
 	//清除GalleryCell的圖片暫存
 	[[SDImageCache sharedImageCache] clearMemory];
@@ -216,11 +230,13 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hentaiDownloadSuccess:) name:HentaiDownloadSuccessNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:HentaiDownloadSuccessNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)dealloc {
