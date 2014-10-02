@@ -15,9 +15,7 @@
     #import <Foundation/Foundation.h>
 
     //from project
-    #import "SVProgressHUD.h"
     #import "TFHpple.h"
-    #import "UIImageView+WebCache.h"
     #import "HentaiParser.h"
     #import "FilesManager.h"
     #import "LightWeightPlist.h"
@@ -26,6 +24,8 @@
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>
+    #import <SDWebImage/UIImageView+WebCache.h>
+    #import <SVProgressHUD/SVProgressHUD.h>
 
     //LightWeightPlist
     #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")
