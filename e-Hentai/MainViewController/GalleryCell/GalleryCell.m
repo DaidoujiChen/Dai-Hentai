@@ -7,31 +7,18 @@
 //
 
 #import "GalleryCell.h"
-#import "UIImageView+WebCache.h"
-#import "CategoryTitle.h"
-#import "RatingStar.h"
 
 @implementation GalleryCell
 
+#pragma mark - life cycle
 
-
-#pragma mark -
-
-//設定資料
-- (void)setGalleryDict:(NSDictionary *)dataDict {
-	self.cellLabel.text = dataDict[@"title"];
-	NSString *imgUrl = imgUrl = dataDict[@"thumb"]; //(真的H縮圖)
-	[self.cellImageView sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:nil options:SDWebImageRefreshCached];
-	[self.cellCategory setCategoryStr:dataDict[@"category"]];
-	[self.cellStar setStar:dataDict[@"rating"]];
-}
-
-- (void)layoutSubviews {
-	//Fit並置中
-	self.cellImageView.contentMode = UIViewContentModeScaleAspectFit;
-	self.cellImageView.clipsToBounds = YES;
-	self.cellImageView.center = CGPointMake(self.cellImageView.center.x, CGRectGetMidY(self.bounds));
-	self.layer.cornerRadius = CGRectGetHeight(self.cellCategory.frame) / 4;
+- (id)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+	if (self) {
+		NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+		self = arrayOfViews[0];
+	}
+	return self;
 }
 
 @end

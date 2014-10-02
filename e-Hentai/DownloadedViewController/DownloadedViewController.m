@@ -24,9 +24,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
-	NSDictionary *hentaiInfo = HentaiSaveLibraryArray[indexPath.row][@"hentaiInfo"];
-	[hentaiInfo setValue:@(YES) forKey:imageMode];
-	[cell setGalleryDict:hentaiInfo];
+	NSURL *imageURL = [NSURL URLWithString:HentaiSaveLibraryArray[indexPath.row][@"hentaiInfo"][@"thumb"]];
+	[cell.cellImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageRefreshCached];
 	return cell;
 }
 

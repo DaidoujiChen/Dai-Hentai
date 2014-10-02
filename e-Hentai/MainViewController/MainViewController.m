@@ -61,7 +61,9 @@
 		}];
 	}
 	GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
-	[cell setGalleryDict:self.listArray[indexPath.row]];
+	NSURL *imageURL = [NSURL URLWithString:self.listArray[indexPath.row][@"thumb"]];
+	[cell.cellImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageRefreshCached];
+	cell.cellImageView.alpha = ([self.listArray[indexPath.row][@"rating"] floatValue] / 4.5f);
 	return cell;
 }
 
@@ -89,22 +91,25 @@
 	}
 	else {
 		__weak MainViewController *weakSelf = self;
-		[UIAlertView hentai_alertViewWithTitle:@"請問要下載還是直接看" message:@"請搶答~ O3O" cancelButtonTitle:@"下載" otherButtonTitles:@[@"直接看"] onClickIndex: ^(int clickIndex) {
-		    if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
-		        [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
+		[UIAlertView hentai_alertViewWithTitle:hentaiInfo[@"category"] message:[self alertMessage:hentaiInfo] cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex: ^(int clickIndex) {
+		    if (clickIndex) {
+		        if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
+		            [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
+				}
+		        else {
+		            HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)weakSelf.navigationController;
+		            hentaiNavigation.autorotate = YES;
+		            hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
+                    
+		            PhotoViewController *photoViewController = [PhotoViewController new];
+		            photoViewController.hentaiInfo = hentaiInfo;
+		            [hentaiNavigation pushViewController:photoViewController animated:YES];
+				}
 			}
 		    else {
-		        HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)weakSelf.navigationController;
-		        hentaiNavigation.autorotate = YES;
-		        hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
-                
-		        PhotoViewController *photoViewController = [PhotoViewController new];
-		        photoViewController.hentaiInfo = hentaiInfo;
-		        [hentaiNavigation pushViewController:photoViewController animated:YES];
+		        [HentaiDownloadCenter addBook:hentaiInfo];
 			}
-		} onCancel: ^{
-		    [HentaiDownloadCenter addBook:hentaiInfo];
-		}];
+		} onCancel:nil];
 	}
 }
 
@@ -192,6 +197,16 @@
 	}];
 }
 
+//製造來放 alertview 跳出來的訊息
+- (NSString *)alertMessage:(NSDictionary *)hentaiInfo {
+	NSMutableString *alertMessage = [NSMutableString string];
+	[alertMessage appendString:@"這部作品叫做:\n"];
+	[alertMessage appendFormat:@"%@\n", hentaiInfo[@"title"]];
+	[alertMessage appendFormat:@"評價:%@\n", hentaiInfo[@"rating"]];
+	[alertMessage appendFormat:@"總共: %@ 頁, %@\n", hentaiInfo[@"filecount"], hentaiInfo[@"filesize"]];
+	return alertMessage;
+}
+
 #pragma mark viewdidload 中用到的初始方法
 
 - (void)setupInitValues {
@@ -214,7 +229,7 @@
 }
 
 - (void)setupListCollectionViewBehavior {
-	[self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
+	[self.listCollectionView registerClass:[GalleryCell class] forCellWithReuseIdentifier:@"GalleryCell"];
 	//下拉更新
 	self.refreshControl = [UIRefreshControl new];
 	[self.listCollectionView addSubview:self.refreshControl];
