@@ -82,7 +82,7 @@
 		        [[[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
 			}
 		    else {
-		        [[[FilesManager documentFolder] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
+		        [[[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
 			}
             
 		    //讓檔案轉存這件事情不擋線程

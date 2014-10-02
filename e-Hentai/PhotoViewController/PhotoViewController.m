@@ -237,7 +237,7 @@
 	[self.hentaiImageURLs setArray:HentaiSaveLibraryArray[downloadKey][@"images"]];
 	[self.hentaiResults setDictionary:HentaiSaveLibraryArray[downloadKey][@"hentaiResult"]];
 	self.realDisplayCount = [self.hentaiImageURLs count];
-	self.hentaiFilesManager = [[FilesManager documentFolder] fcd:self.hentaiKey];
+	self.hentaiFilesManager = [[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
 	[self.hentaiTableView reloadData];
 }
 
