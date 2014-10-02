@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "HentaiNavigationController.h"
-#import "MainViewController.h"
+#import "SliderViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

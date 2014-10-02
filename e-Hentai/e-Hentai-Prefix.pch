@@ -24,6 +24,9 @@
     #import "HentaiDownloadCenter.h"
     #import "UIAlertView+Hentai.h"
 
+    //from pod
+    #import <ViewDeck/IIViewDeckController.h>
+
     //LightWeightPlist
     #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")
     #define HentaiSaveLibraryArray LWPArray(@"HentaiSaveLibrary")

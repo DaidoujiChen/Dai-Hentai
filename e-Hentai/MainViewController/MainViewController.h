@@ -14,8 +14,18 @@
 #import "PhotoViewController.h"
 #import "FakeViewController.h"
 
+@protocol MainViewControllerDelegate;
+
 @interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
+@property (nonatomic, weak) id <MainViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
+
+@end
+
+@protocol MainViewControllerDelegate <NSObject>
+
+@required
+- (void)needToPushViewController:(UIViewController *)controller;
 
 @end

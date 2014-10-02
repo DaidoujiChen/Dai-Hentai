@@ -81,13 +81,9 @@
 	}
     
 	if (isExist) {
-		HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
-		hentaiNavigation.autorotate = YES;
-		hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
-        
 		PhotoViewController *photoViewController = [PhotoViewController new];
 		photoViewController.hentaiInfo = hentaiInfo;
-		[hentaiNavigation pushViewController:photoViewController animated:YES];
+		[self.delegate needToPushViewController:photoViewController];
 	}
 	else {
 		__weak MainViewController *weakSelf = self;
@@ -97,13 +93,9 @@
 		            [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
 				}
 		        else {
-		            HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)weakSelf.navigationController;
-		            hentaiNavigation.autorotate = YES;
-		            hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
-                    
 		            PhotoViewController *photoViewController = [PhotoViewController new];
 		            photoViewController.hentaiInfo = hentaiInfo;
-		            [hentaiNavigation pushViewController:photoViewController animated:YES];
+		            [weakSelf.delegate needToPushViewController:photoViewController];
 				}
 			}
 		    else {
@@ -256,12 +248,6 @@
 		filterView.frame = filterFrame;
 		[self.searchBar becomeFirstResponder];
 	}
-}
-
-#pragma mark - ibaction
-
-- (IBAction)pushToDownloadedAction:(id)sender {
-	[self.navigationController pushViewController:[[DownloadedViewController alloc] initWithNibName:@"MainViewController" bundle:nil] animated:YES];
 }
 
 #pragma mark - life cycle

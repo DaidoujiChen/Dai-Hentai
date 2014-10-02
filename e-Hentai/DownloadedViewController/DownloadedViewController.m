@@ -33,12 +33,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	NSDictionary *hentaiInfo = HentaiSaveLibraryArray[indexPath.row][@"hentaiInfo"];
-	HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
-	hentaiNavigation.autorotate = YES;
-	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
 	PhotoViewController *photoViewController = [PhotoViewController new];
 	photoViewController.hentaiInfo = hentaiInfo;
-	[hentaiNavigation pushViewController:photoViewController animated:YES];
+    [self.delegate needToPushViewController:photoViewController];
 }
 
 #pragma mark - recv notification
@@ -47,13 +44,14 @@
 	[self.listCollectionView reloadData];
 }
 
-#pragma mark - ibaction
-
-//override 這個 method 避免可以一直 push
-- (IBAction)pushToDownloadedAction:(id)sender {
-}
-
 #pragma mark - life cycle
+
+- (id)init {
+    self = [super initWithNibName:@"MainViewController" bundle:nil];
+    if (self) {
+    }
+    return self;
+}
 
 //這邊我故意沒有放 [super viewDidLoad], 不然會跑到很多 mainviewcontroller 的東西
 - (void)viewDidLoad {

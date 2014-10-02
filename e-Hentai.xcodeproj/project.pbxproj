@@ -14,6 +14,11 @@
 		0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118081019B6F06200FE0DA1 /* MainViewController.xib */; };
 		0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118081319B6F06200FE0DA1 /* PhotoViewController.m */; };
 		0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0118081419B6F06200FE0DA1 /* PhotoViewController.xib */; };
+		011AEA5119DD28DE00A15CA5 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011AEA5019DD28DE00A15CA5 /* SliderViewController.m */; };
+		011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011AEA5419DD296400A15CA5 /* MenuViewController.m */; };
+		011AEA5719DD296400A15CA5 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011AEA5519DD296400A15CA5 /* MenuViewController.xib */; };
+		011AEA5A19DD31B300A15CA5 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 011AEA5919DD31B300A15CA5 /* Menu.plist */; };
+		011AEA5D19DD32DB00A15CA5 /* MenuDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 011AEA5C19DD32DB00A15CA5 /* MenuDefaultCell.m */; };
 		0137F40C19C1688200528359 /* HentaiDownloadCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137F40B19C1688200528359 /* HentaiDownloadCenter.m */; };
 		0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137F40E19C1695800528359 /* HentaiDownloadBookOperation.m */; };
 		0150034419B6E5E90055F47D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033919B6E5E90055F47D /* TFHpple.m */; };
@@ -64,6 +69,7 @@
 		040541CA19B8182400139AC9 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 040541BA19B8182400139AC9 /* UIView+WebCacheOperation.m */; };
 		04376DFC19B96B76001B1599 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04376DFA19B96B76001B1599 /* GalleryCell.m */; };
 		04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04376DFB19B96B76001B1599 /* GalleryCell.xib */; };
+		32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E356769FC894496F8A03AC25 /* libPods.a */; };
 		9F9C3B5719D82DBA007CFF81 /* HentaiFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C3B5419D82DBA007CFF81 /* HentaiFilterView.m */; };
 		9F9C3B5819D82DBA007CFF81 /* HentaiSearchFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C3B5619D82DBA007CFF81 /* HentaiSearchFilter.m */; };
 /* End PBXBuildFile section */
@@ -91,6 +97,14 @@
 		0118081219B6F06200FE0DA1 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		0118081319B6F06200FE0DA1 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		0118081419B6F06200FE0DA1 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
+		011AEA4F19DD28DE00A15CA5 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SliderViewController.h; path = SliderViewController/SliderViewController.h; sourceTree = "<group>"; };
+		011AEA5019DD28DE00A15CA5 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SliderViewController.m; path = SliderViewController/SliderViewController.m; sourceTree = "<group>"; };
+		011AEA5319DD296400A15CA5 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = MenuViewController/MenuViewController.h; sourceTree = "<group>"; };
+		011AEA5419DD296400A15CA5 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = MenuViewController/MenuViewController.m; sourceTree = "<group>"; };
+		011AEA5519DD296400A15CA5 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuViewController.xib; path = MenuViewController/MenuViewController.xib; sourceTree = "<group>"; };
+		011AEA5919DD31B300A15CA5 /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
+		011AEA5B19DD32DB00A15CA5 /* MenuDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuDefaultCell.h; path = MenuViewController/MenuDefaultCell.h; sourceTree = "<group>"; };
+		011AEA5C19DD32DB00A15CA5 /* MenuDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuDefaultCell.m; path = MenuViewController/MenuDefaultCell.m; sourceTree = "<group>"; };
 		0137F40A19C1688200528359 /* HentaiDownloadCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadCenter.h; path = HentaiDownloadCenter/HentaiDownloadCenter.h; sourceTree = "<group>"; };
 		0137F40B19C1688200528359 /* HentaiDownloadCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiDownloadCenter.m; path = HentaiDownloadCenter/HentaiDownloadCenter.m; sourceTree = "<group>"; };
 		0137F40D19C1695800528359 /* HentaiDownloadBookOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadBookOperation.h; path = HentaiDownloadCenter/HentaiDownloadBookOperation.h; sourceTree = "<group>"; };
@@ -182,10 +196,12 @@
 		04376DF919B96B76001B1599 /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
 		04376DFA19B96B76001B1599 /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
 		04376DFB19B96B76001B1599 /* GalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
+		1CA620DC9C80472C91AAE912 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9F9C3B5319D82DBA007CFF81 /* HentaiFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiFilterView.h; sourceTree = "<group>"; };
 		9F9C3B5419D82DBA007CFF81 /* HentaiFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiFilterView.m; sourceTree = "<group>"; };
 		9F9C3B5519D82DBA007CFF81 /* HentaiSearchFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiSearchFilter.h; sourceTree = "<group>"; };
 		9F9C3B5619D82DBA007CFF81 /* HentaiSearchFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiSearchFilter.m; sourceTree = "<group>"; };
+		E356769FC894496F8A03AC25 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +212,7 @@
 				0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */,
 				0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */,
 				0199268919ADDB83009F814B /* Foundation.framework in Frameworks */,
+				32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +264,28 @@
 				015A5CEE19B8598C004B0063 /* HentaiPhotoCell.xib */,
 			);
 			path = PhotoViewController;
+			sourceTree = "<group>";
+		};
+		011AEA4E19DD28BA00A15CA5 /* SliderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				011AEA4F19DD28DE00A15CA5 /* SliderViewController.h */,
+				011AEA5019DD28DE00A15CA5 /* SliderViewController.m */,
+			);
+			name = SliderViewController;
+			sourceTree = "<group>";
+		};
+		011AEA5219DD294200A15CA5 /* MenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				011AEA5919DD31B300A15CA5 /* Menu.plist */,
+				011AEA5319DD296400A15CA5 /* MenuViewController.h */,
+				011AEA5419DD296400A15CA5 /* MenuViewController.m */,
+				011AEA5519DD296400A15CA5 /* MenuViewController.xib */,
+				011AEA5B19DD32DB00A15CA5 /* MenuDefaultCell.h */,
+				011AEA5C19DD32DB00A15CA5 /* MenuDefaultCell.m */,
+			);
+			name = MenuViewController;
 			sourceTree = "<group>";
 		};
 		0137F40919C1684500528359 /* HentaiDownloadCenter */ = {
@@ -353,6 +392,7 @@
 				019926AD19ADDB83009F814B /* e-HentaiTests */,
 				0199268719ADDB83009F814B /* Frameworks */,
 				0199268619ADDB83009F814B /* Products */,
+				1CA620DC9C80472C91AAE912 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -372,6 +412,7 @@
 				0199268A19ADDB83009F814B /* CoreGraphics.framework */,
 				0199268C19ADDB83009F814B /* UIKit.framework */,
 				019926A719ADDB83009F814B /* XCTest.framework */,
+				E356769FC894496F8A03AC25 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -386,6 +427,8 @@
 				0118080519B6F06200FE0DA1 /* Common */,
 				0199269719ADDB83009F814B /* AppDelegate.h */,
 				0199269819ADDB83009F814B /* AppDelegate.m */,
+				011AEA4E19DD28BA00A15CA5 /* SliderViewController */,
+				011AEA5219DD294200A15CA5 /* MenuViewController */,
 				0118080A19B6F06200FE0DA1 /* MainViewController */,
 				0118081119B6F06200FE0DA1 /* PhotoViewController */,
 				0163C7D419D8FC5600105ECF /* DownloadedViewController */,
@@ -492,9 +535,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 019926B719ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-Hentai" */;
 			buildPhases = (
+				31D7142371B842CCABA93E38 /* Check Pods Manifest.lock */,
 				0199268119ADDB83009F814B /* Sources */,
 				0199268219ADDB83009F814B /* Frameworks */,
 				0199268319ADDB83009F814B /* Resources */,
+				05038E7270B743ACB9E277E0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -564,7 +609,9 @@
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
 				0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */,
 				015A5CF019B8598C004B0063 /* HentaiPhotoCell.xib in Resources */,
+				011AEA5719DD296400A15CA5 /* MenuViewController.xib in Resources */,
 				0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */,
+				011AEA5A19DD31B300A15CA5 /* Menu.plist in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
 				0150034719B6E5E90055F47D /* SVProgressHUD.bundle in Resources */,
 				04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */,
@@ -581,6 +628,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		05038E7270B743ACB9E277E0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		31D7142371B842CCABA93E38 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0199268119ADDB83009F814B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -590,6 +670,7 @@
 				0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */,
 				040541C719B8182400139AC9 /* UIImage+WebP.m in Sources */,
 				9F9C3B5719D82DBA007CFF81 /* HentaiFilterView.m in Sources */,
+				011AEA5D19DD32DB00A15CA5 /* MenuDefaultCell.m in Sources */,
 				016BBF0D19B94E4F0015E11E /* LightWeightPlist+AccessObject.m in Sources */,
 				0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */,
 				0150034819B6E5E90055F47D /* SVProgressHUD.m in Sources */,
@@ -611,6 +692,7 @@
 				0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */,
 				040541C219B8182400139AC9 /* SDWebImageManager.m in Sources */,
 				016BBF1019B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m in Sources */,
+				011AEA5119DD28DE00A15CA5 /* SliderViewController.m in Sources */,
 				040541C019B8182400139AC9 /* SDWebImageDownloader.m in Sources */,
 				016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */,
 				016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */,
@@ -630,6 +712,7 @@
 				040541CA19B8182400139AC9 /* UIView+WebCacheOperation.m in Sources */,
 				04376DFC19B96B76001B1599 /* GalleryCell.m in Sources */,
 				016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */,
+				011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +826,7 @@
 		};
 		019926B819ADDB83009F814B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CA620DC9C80472C91AAE912 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -762,6 +846,7 @@
 		};
 		019926B919ADDB83009F814B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CA620DC9C80472C91AAE912 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
