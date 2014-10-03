@@ -29,8 +29,7 @@
     isExist = isExist | [self isDownloading:bookInfo];
     
 	if (isExist) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"不行~ O3O" message:@"你可能已經下載過或是正在下載中!" delegate:nil cancelButtonTitle:@"確定" otherButtonTitles:nil];
-		[alert show];
+        [UIAlertView hentai_alertViewWithTitle:@"不行~ O3O" message:@"你可能已經下載過或是正在下載中!" cancelButtonTitle:@"確定"];
 	}
 	else {
 		HentaiDownloadBookOperation *newOperation = [HentaiDownloadBookOperation new];

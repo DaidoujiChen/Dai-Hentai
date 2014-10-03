@@ -96,8 +96,11 @@
 }
 
 - (void)saveAction {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." delegate:self cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@"衝吧! O3O", nil];
-    [alert show];
+    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"衝吧! O3O"] onClickIndex:^(int clickIndex) {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+        [self waitingOnDownloadFinish];
+    } onCancel:^{
+    }];
 }
 
 - (void)deleteAction {
@@ -213,11 +216,14 @@
         self.hentaiIndex++;
         __weak PhotoViewController *weakSelf = self;
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf) {
+            if (status && weakSelf && [images count]) {
                 __strong PhotoViewController *strongSelf = weakSelf;
                 [strongSelf.hentaiImageURLs addObjectsFromArray:images];
                 [strongSelf preloadImages:images];
                 [strongSelf waitingOnDownloadFinish];
+            }
+            else {
+                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
             }
         }];
     }
@@ -251,15 +257,6 @@
         }
     }
     return NSNotFound;
-}
-
-#pragma mark - UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex) {
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
-        [self waitingOnDownloadFinish];
-    }
 }
 
 #pragma mark - HentaiDownloadImageOperationDelegate
@@ -313,10 +310,13 @@
         self.hentaiIndex++;
         __weak PhotoViewController *weakSelf = self;
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf) {
+            if (status && weakSelf && [images count]) {
                 __strong PhotoViewController *strongSelf = weakSelf;
                 [strongSelf.hentaiImageURLs addObjectsFromArray:images];
                 [strongSelf preloadImages:images];
+            }
+            else {
+                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
             }
         }];
     }
@@ -388,19 +388,13 @@
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
         __weak PhotoViewController *weakSelf = self;
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf) {
+            if (status && weakSelf && [images count]) {
                 __strong PhotoViewController *strongSelf = weakSelf;
                 [strongSelf.hentaiImageURLs addObjectsFromArray:images];
                 [strongSelf preloadImages:images];
             }
-            else if (!status && weakSelf) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"讀取失敗囉" message:nil delegate:nil cancelButtonTitle:@"確定" otherButtonTitles:nil];
-                [alert show];
-                [SVProgressHUD dismiss];
-            }
-            else if ([images count] == 0) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"讀取失敗囉" message:nil delegate:nil cancelButtonTitle:@"確定" otherButtonTitles:nil];
-                [alert show];
+            else {
+                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
                 [SVProgressHUD dismiss];
             }
         }];
