@@ -222,7 +222,7 @@
         }];
     }
     else {
-        FMStream *saveFolder = [FilesManager documentFolder];
+        FMStream *saveFolder = [[FilesManager documentFolder] fcd:@"Hentai"];
         [self.hentaiFilesManager moveToPath:[saveFolder.currentPath stringByAppendingPathComponent:self.hentaiKey]];
         NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
         [HentaiSaveLibraryArray addObject:saveInfo];
