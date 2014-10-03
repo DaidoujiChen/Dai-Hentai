@@ -13,9 +13,12 @@
 #define HentaiDownloadSuccessNotification @"HentaiDownloadSuccessNotification"
 #define HentaiDownloadFailNotification  @"HentaiDownloadFailNotification"
 
+typedef void (^HentaiMonitorBlock)(NSDictionary *centerDetail);
+
 @interface HentaiDownloadCenter : NSObject
 
 + (void)addBook:(NSDictionary *)bookInfo;
 + (BOOL)isDownloading:(NSDictionary *)bookInfo;
++ (void)centerMonitor:(HentaiMonitorBlock)monitor;
 
 @end

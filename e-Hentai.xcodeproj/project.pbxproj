@@ -18,7 +18,6 @@
 		011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011AEA5419DD296400A15CA5 /* MenuViewController.m */; };
 		011AEA5719DD296400A15CA5 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011AEA5519DD296400A15CA5 /* MenuViewController.xib */; };
 		011AEA5A19DD31B300A15CA5 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 011AEA5919DD31B300A15CA5 /* Menu.plist */; };
-		011AEA5D19DD32DB00A15CA5 /* MenuDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 011AEA5C19DD32DB00A15CA5 /* MenuDefaultCell.m */; };
 		0137F40C19C1688200528359 /* HentaiDownloadCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137F40B19C1688200528359 /* HentaiDownloadCenter.m */; };
 		0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137F40E19C1695800528359 /* HentaiDownloadBookOperation.m */; };
 		0150034419B6E5E90055F47D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033919B6E5E90055F47D /* TFHpple.m */; };
@@ -37,6 +36,9 @@
 		016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0819B94E4F0015E11E /* LightWeightPlist.m */; };
 		016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */; };
 		016BBF1519B953D40015E11E /* HentaiDownloadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF1419B953D40015E11E /* HentaiDownloadImageOperation.m */; };
+		0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766219E27E8D00E9005E /* DownloadManagerCell.m */; };
+		0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179766319E27E8D00E9005E /* DownloadManagerCell.xib */; };
+		0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766819E27EC100E9005E /* MenuDefaultCell.m */; };
 		0199268919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
 		0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268A19ADDB83009F814B /* CoreGraphics.framework */; };
 		0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
@@ -51,6 +53,8 @@
 		019926B419ADDB83009F814B /* e_HentaiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926B319ADDB83009F814B /* e_HentaiTests.m */; };
 		01BFAD5119DE435700A5649F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BFAD4F19DE435700A5649F /* SettingViewController.m */; };
 		01BFAD5219DE435700A5649F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BFAD5019DE435700A5649F /* SettingViewController.xib */; };
+		01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */; };
+		01CD0E2F19DE808B006155FD /* DownloadManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CD0E2D19DE808B006155FD /* DownloadManagerViewController.xib */; };
 		04376DFC19B96B76001B1599 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04376DFA19B96B76001B1599 /* GalleryCell.m */; };
 		04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04376DFB19B96B76001B1599 /* GalleryCell.xib */; };
 		32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E356769FC894496F8A03AC25 /* libPods.a */; };
@@ -87,8 +91,6 @@
 		011AEA5419DD296400A15CA5 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = MenuViewController/MenuViewController.m; sourceTree = "<group>"; };
 		011AEA5519DD296400A15CA5 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuViewController.xib; path = MenuViewController/MenuViewController.xib; sourceTree = "<group>"; };
 		011AEA5919DD31B300A15CA5 /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
-		011AEA5B19DD32DB00A15CA5 /* MenuDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuDefaultCell.h; path = MenuViewController/MenuDefaultCell.h; sourceTree = "<group>"; };
-		011AEA5C19DD32DB00A15CA5 /* MenuDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuDefaultCell.m; path = MenuViewController/MenuDefaultCell.m; sourceTree = "<group>"; };
 		0137F40A19C1688200528359 /* HentaiDownloadCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadCenter.h; path = HentaiDownloadCenter/HentaiDownloadCenter.h; sourceTree = "<group>"; };
 		0137F40B19C1688200528359 /* HentaiDownloadCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiDownloadCenter.m; path = HentaiDownloadCenter/HentaiDownloadCenter.m; sourceTree = "<group>"; };
 		0137F40D19C1695800528359 /* HentaiDownloadBookOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadBookOperation.h; path = HentaiDownloadCenter/HentaiDownloadBookOperation.h; sourceTree = "<group>"; };
@@ -124,6 +126,11 @@
 		016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightWeightPlistObjects.m; sourceTree = "<group>"; };
 		016BBF1319B953D40015E11E /* HentaiDownloadImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadImageOperation.h; path = HentaiDownloadCenter/HentaiDownloadImageOperation.h; sourceTree = "<group>"; };
 		016BBF1419B953D40015E11E /* HentaiDownloadImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiDownloadImageOperation.m; path = HentaiDownloadCenter/HentaiDownloadImageOperation.m; sourceTree = "<group>"; };
+		0179766119E27E8D00E9005E /* DownloadManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerCell.h; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.h; sourceTree = "<group>"; };
+		0179766219E27E8D00E9005E /* DownloadManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManagerCell.m; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.m; sourceTree = "<group>"; };
+		0179766319E27E8D00E9005E /* DownloadManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DownloadManagerCell.xib; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.xib; sourceTree = "<group>"; };
+		0179766719E27EC100E9005E /* MenuDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuDefaultCell.h; path = MenuViewController/MenuDefaultCell/MenuDefaultCell.h; sourceTree = "<group>"; };
+		0179766819E27EC100E9005E /* MenuDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuDefaultCell.m; path = MenuViewController/MenuDefaultCell/MenuDefaultCell.m; sourceTree = "<group>"; };
 		0199268519ADDB83009F814B /* e-Hentai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-Hentai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0199268819ADDB83009F814B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0199268A19ADDB83009F814B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -143,6 +150,9 @@
 		01BFAD4E19DE435700A5649F /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = SettingViewController/SettingViewController.h; sourceTree = "<group>"; };
 		01BFAD4F19DE435700A5649F /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = SettingViewController/SettingViewController.m; sourceTree = "<group>"; };
 		01BFAD5019DE435700A5649F /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = SettingViewController/SettingViewController.xib; sourceTree = "<group>"; };
+		01CD0E2B19DE808B006155FD /* DownloadManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerViewController.h; path = DownloadManagerViewController/DownloadManagerViewController.h; sourceTree = "<group>"; };
+		01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManagerViewController.m; path = DownloadManagerViewController/DownloadManagerViewController.m; sourceTree = "<group>"; };
+		01CD0E2D19DE808B006155FD /* DownloadManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DownloadManagerViewController.xib; path = DownloadManagerViewController/DownloadManagerViewController.xib; sourceTree = "<group>"; };
 		04376DF919B96B76001B1599 /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
 		04376DFA19B96B76001B1599 /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
 		04376DFB19B96B76001B1599 /* GalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
@@ -232,8 +242,7 @@
 				011AEA5319DD296400A15CA5 /* MenuViewController.h */,
 				011AEA5419DD296400A15CA5 /* MenuViewController.m */,
 				011AEA5519DD296400A15CA5 /* MenuViewController.xib */,
-				011AEA5B19DD32DB00A15CA5 /* MenuDefaultCell.h */,
-				011AEA5C19DD32DB00A15CA5 /* MenuDefaultCell.m */,
+				0179766619E27EB200E9005E /* MenuDefaultCell */,
 			);
 			name = MenuViewController;
 			sourceTree = "<group>";
@@ -322,6 +331,25 @@
 			path = LightWeightPlist;
 			sourceTree = "<group>";
 		};
+		0179766019E27E7B00E9005E /* DownloadManagerCell */ = {
+			isa = PBXGroup;
+			children = (
+				0179766119E27E8D00E9005E /* DownloadManagerCell.h */,
+				0179766219E27E8D00E9005E /* DownloadManagerCell.m */,
+				0179766319E27E8D00E9005E /* DownloadManagerCell.xib */,
+			);
+			name = DownloadManagerCell;
+			sourceTree = "<group>";
+		};
+		0179766619E27EB200E9005E /* MenuDefaultCell */ = {
+			isa = PBXGroup;
+			children = (
+				0179766719E27EC100E9005E /* MenuDefaultCell.h */,
+				0179766819E27EC100E9005E /* MenuDefaultCell.m */,
+			);
+			name = MenuDefaultCell;
+			sourceTree = "<group>";
+		};
 		0199267C19ADDB83009F814B = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +395,7 @@
 				011AEA4E19DD28BA00A15CA5 /* SliderViewController */,
 				011AEA5219DD294200A15CA5 /* MenuViewController */,
 				01BFAD4D19DE430A00A5649F /* SettingViewController */,
+				01CD0E2A19DE8058006155FD /* DownloadManagerViewController */,
 				0118080A19B6F06200FE0DA1 /* MainViewController */,
 				0118081119B6F06200FE0DA1 /* PhotoViewController */,
 				0163C7D419D8FC5600105ECF /* DownloadedViewController */,
@@ -413,6 +442,17 @@
 				01BFAD5019DE435700A5649F /* SettingViewController.xib */,
 			);
 			name = SettingViewController;
+			sourceTree = "<group>";
+		};
+		01CD0E2A19DE8058006155FD /* DownloadManagerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				01CD0E2B19DE808B006155FD /* DownloadManagerViewController.h */,
+				01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */,
+				01CD0E2D19DE808B006155FD /* DownloadManagerViewController.xib */,
+				0179766019E27E7B00E9005E /* DownloadManagerCell */,
+			);
+			name = DownloadManagerViewController;
 			sourceTree = "<group>";
 		};
 		04376DF819B96B76001B1599 /* GalleryCell */ = {
@@ -516,6 +556,8 @@
 			files = (
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
 				01BFAD5219DE435700A5649F /* SettingViewController.xib in Resources */,
+				0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */,
+				01CD0E2F19DE808B006155FD /* DownloadManagerViewController.xib in Resources */,
 				0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */,
 				015A5CF019B8598C004B0063 /* HentaiPhotoCell.xib in Resources */,
 				011AEA5719DD296400A15CA5 /* MenuViewController.xib in Resources */,
@@ -577,7 +619,6 @@
 				0107D9AA19DBF656006C5673 /* UIAlertView+Hentai.m in Sources */,
 				0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */,
 				9F9C3B5719D82DBA007CFF81 /* HentaiFilterView.m in Sources */,
-				011AEA5D19DD32DB00A15CA5 /* MenuDefaultCell.m in Sources */,
 				016BBF0D19B94E4F0015E11E /* LightWeightPlist+AccessObject.m in Sources */,
 				0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */,
 				016BBF0C19B94E4F0015E11E /* FMStream.m in Sources */,
@@ -586,6 +627,7 @@
 				016BBF0F19B94E4F0015E11E /* LightWeightPlist+HandleCache.m in Sources */,
 				0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */,
 				016BBF1519B953D40015E11E /* HentaiDownloadImageOperation.m in Sources */,
+				01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */,
 				0150034419B6E5E90055F47D /* TFHpple.m in Sources */,
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
 				01BFAD5119DE435700A5649F /* SettingViewController.m in Sources */,
@@ -600,10 +642,12 @@
 				0163C7D719D8FD5300105ECF /* DownloadedViewController.m in Sources */,
 				016BBF0E19B94E4F0015E11E /* LightWeightPlist+FilePath.m in Sources */,
 				0137F40C19C1688200528359 /* HentaiDownloadCenter.m in Sources */,
+				0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */,
 				016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */,
 				0199269519ADDB83009F814B /* main.m in Sources */,
 				04376DFC19B96B76001B1599 /* GalleryCell.m in Sources */,
 				016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */,
+				0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */,
 				011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

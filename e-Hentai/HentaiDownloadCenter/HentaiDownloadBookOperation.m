@@ -26,133 +26,164 @@
 
 @implementation HentaiDownloadBookOperation
 
+@dynamic totalCount, recvCount;
+@dynamic hentaiKey;
+
+#pragma mark - dynamic
+
+- (NSString *)hentaiKey {
+    NSArray *splitStrings = [self.bookInfo[@"url"] componentsSeparatedByString:@"/"];
+    NSUInteger splitCount = [splitStrings count];
+    NSString *checkHentaiKey = [NSString stringWithFormat:@"%@-%@-%@", splitStrings[splitCount - 3], splitStrings[splitCount - 2], self.bookInfo[@"title"]];
+    return [checkHentaiKey stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
+}
+
+- (NSInteger)totalCount {
+    return [self.maxHentaiCount integerValue];
+}
+
+- (NSInteger)recvCount {
+    return [self.hentaiResults count];
+}
+
+#pragma mark - life cycle
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        //kvo status
+        [self addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    }
+    return self;
+}
+
+#pragma mark - kvo
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    [self.delegate hentaiDownloadBookOperationChange:change operation:self];
+}
+
 #pragma mark - Methods to Override
 
 - (BOOL)isConcurrent {
-	return YES;
+    return YES;
 }
 
 - (void)start {
-	if ([self isCancelled]) {
-		[self hentaiFinish];
-		return;
-	}
+    if ([self isCancelled]) {
+        [self hentaiFinish];
+        return;
+    }
     
-	[self hentaiStart];
-	self.hentaiIndex = -1;
-	self.hentaiImageURLs = [NSMutableArray array];
-	self.retryMap = [NSMutableDictionary dictionary];
-	self.failCount = 0;
-	self.hentaiResults = [NSMutableDictionary dictionary];
-	self.hentaiQueue = [NSOperationQueue new];
-	[self.hentaiQueue setMaxConcurrentOperationCount:2];
-	self.maxHentaiCount = self.bookInfo[@"filecount"];
+    [self hentaiStart];
+    self.hentaiIndex = -1;
+    self.hentaiImageURLs = [NSMutableArray array];
+    self.retryMap = [NSMutableDictionary dictionary];
+    self.failCount = 0;
+    self.hentaiResults = [NSMutableDictionary dictionary];
+    self.hentaiQueue = [NSOperationQueue new];
+    [self.hentaiQueue setMaxConcurrentOperationCount:2];
+    self.maxHentaiCount = self.bookInfo[@"filecount"];
     
-	dispatch_async(dispatch_get_main_queue(), ^{
-	    [self checkEndOfFile];
-	});
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self checkEndOfFile];
+    });
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
-	return YES;
-}
-
-#pragma mark - getter
-
-@dynamic hentaiKey;
-
-- (NSString *)hentaiKey {
-	NSArray *splitStrings = [self.bookInfo[@"url"] componentsSeparatedByString:@"/"];
-	NSUInteger splitCount = [splitStrings count];
-    NSString *checkHentaiKey = [NSString stringWithFormat:@"%@-%@-%@", splitStrings[splitCount - 3], splitStrings[splitCount - 2], self.bookInfo[@"title"]];
-	return [checkHentaiKey stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
+    return YES;
 }
 
 #pragma mark - HentaiDownloadImageOperationDelegate
 
 - (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess {
-	if (isSuccess) {
-		self.hentaiResults[[urlString lastPathComponent]] = @(height);
-	}
-	else {
-		NSNumber *retryCount = self.retryMap[urlString];
-		if (retryCount) {
-			retryCount = @([retryCount integerValue] + 1);
-		}
-		else {
-			retryCount = @(1);
-		}
-		self.retryMap[urlString] = retryCount;
+    if (isSuccess) {
+        self.hentaiResults[[urlString lastPathComponent]] = @(height);
+    }
+    else {
+        NSNumber *retryCount = self.retryMap[urlString];
+        if (retryCount) {
+            retryCount = @([retryCount integerValue] + 1);
+        }
+        else {
+            retryCount = @(1);
+        }
+        self.retryMap[urlString] = retryCount;
         
-		if ([retryCount integerValue] <= 3) {
+        if ([retryCount integerValue] <= 3) {
             [self createNewOperation:urlString];
-		}
-		else {
-			self.failCount++;
-			self.maxHentaiCount = [NSString stringWithFormat:@"%d", [self.maxHentaiCount integerValue] - 1];
-			[self.hentaiImageURLs removeObject:urlString];
-		}
-	}
+            return;
+        }
+        else {
+            self.failCount++;
+            self.maxHentaiCount = [NSString stringWithFormat:@"%d", [self.maxHentaiCount integerValue] - 1];
+            [self.hentaiImageURLs removeObject:urlString];
+        }
+    }
+    self.status = HentaiDownloadBookOperationStatusDownloading;
 }
 
 #pragma mark - operation status
 
 - (void)hentaiStart {
-	self.isFinished = NO;
-	self.isExecuting = YES;
+    self.isFinished = NO;
+    self.isExecuting = YES;
+    self.status = HentaiDownloadBookOperationStatusDownloading;
 }
 
 - (void)hentaiFinish {
-	[self.hentaiQueue cancelAllOperations];
-	self.isFinished = YES;
-	self.isExecuting = NO;
+    [self.hentaiQueue cancelAllOperations];
+    self.isFinished = YES;
+    self.isExecuting = NO;
+    self.status = HentaiDownloadBookOperationStatusFinished;
+    [self removeObserver:self forKeyPath:@"status"];
 }
 
 #pragma mark - download methods
 
 //將要下載的圖片加到 queue 裡面
 - (void)preloadImages:(NSArray *)images {
-	for (NSString *eachImageString in images) {
+    for (NSString *eachImageString in images) {
         [self createNewOperation:eachImageString];
-	}
+    }
 }
 
 //等待圖片下載完成
 - (void)waitingOnDownloadFinish {
-	__weak HentaiDownloadBookOperation *weakSelf = self;
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-	    [weakSelf.hentaiQueue waitUntilAllOperationsAreFinished];
-	    if (weakSelf && ![self isCancelled]) {
-	        __strong HentaiDownloadBookOperation *strongSelf = weakSelf;
-	        dispatch_async(dispatch_get_main_queue(), ^{
-	            [strongSelf checkEndOfFile];
-			});
-		}
-	    else {
-	        [self hentaiFinish];
-		}
-	});
+    __weak HentaiDownloadBookOperation *weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [weakSelf.hentaiQueue waitUntilAllOperationsAreFinished];
+        if (weakSelf && ![self isCancelled]) {
+            __strong HentaiDownloadBookOperation *strongSelf = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf checkEndOfFile];
+            });
+        }
+        else {
+            [self hentaiFinish];
+        }
+    });
 }
 
 //檢查是不是還有圖片需要下載
 - (void)checkEndOfFile {
-	if ([self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
-		self.hentaiIndex++;
-		__weak HentaiDownloadBookOperation *weakSelf = self;
-		[HentaiParser requestImagesAtURL:self.bookInfo[@"url"] atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-		    if (status && weakSelf && ![self isCancelled]) {
-		        __strong HentaiDownloadBookOperation *strongSelf = weakSelf;
-		        [strongSelf.hentaiImageURLs addObjectsFromArray:images];
-		        [strongSelf preloadImages:images];
-		        [strongSelf waitingOnDownloadFinish];
-			}
-		    else {
-		        [self hentaiFinish];
-			}
-		}];
-	}
-	else {
-		if (![self isCancelled]) {
+    if ([self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
+        self.hentaiIndex++;
+        __weak HentaiDownloadBookOperation *weakSelf = self;
+        [HentaiParser requestImagesAtURL:self.bookInfo[@"url"] atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
+            if (status && weakSelf && ![self isCancelled]) {
+                __strong HentaiDownloadBookOperation *strongSelf = weakSelf;
+                [strongSelf.hentaiImageURLs addObjectsFromArray:images];
+                [strongSelf preloadImages:images];
+                [strongSelf waitingOnDownloadFinish];
+            }
+            else {
+                [self hentaiFinish];
+            }
+        }];
+    }
+    else {
+        if (![self isCancelled]) {
             NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.bookInfo };
             [HentaiSaveLibraryArray addObject:saveInfo];
             
@@ -162,11 +193,11 @@
             LWPForceWrite();
             [[NSNotificationCenter defaultCenter] postNotificationName:HentaiDownloadSuccessNotification object:self.bookInfo[@"title"]];
             [self hentaiFinish];
-		}
-		else {
-			[self hentaiFinish];
-		}
-	}
+        }
+        else {
+            [self hentaiFinish];
+        }
+    }
 }
 
 #pragma mark - private
