@@ -18,6 +18,7 @@
 
 - (IBAction)eraseAction:(id)sender {
     [[FilesManager cacheFolder] rd:@"Hentai"];
+    [HentaiCacheLibraryDictionary removeAllObjects];
     [self cacheFolderSize];
 }
 
