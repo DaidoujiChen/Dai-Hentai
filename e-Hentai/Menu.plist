@@ -16,6 +16,12 @@
 	</dict>
 	<dict>
 		<key>displayName</key>
+		<string>下載管理員</string>
+		<key>controller</key>
+		<string>DownloadManagerViewController</string>
+	</dict>
+	<dict>
+		<key>displayName</key>
 		<string>設定</string>
 		<key>controller</key>
 		<string>SettingViewController</string>

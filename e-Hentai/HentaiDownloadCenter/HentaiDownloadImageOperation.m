@@ -37,7 +37,7 @@
 	if (!imageHeight) {
 		NSURL *url = [NSURL URLWithString:self.downloadURLString];
         
-		NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0f] delegate:self startImmediately:NO];
+		NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15.0f] delegate:self startImmediately:NO];
 		[conn scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 		[conn start];
 	}

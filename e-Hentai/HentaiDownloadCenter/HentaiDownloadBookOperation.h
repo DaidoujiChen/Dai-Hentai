@@ -10,8 +10,27 @@
 
 #import "HentaiDownloadImageOperation.h"
 
+typedef enum {
+    HentaiDownloadBookOperationStatusWaiting,
+    HentaiDownloadBookOperationStatusDownloading,
+    HentaiDownloadBookOperationStatusFinished
+} HentaiDownloadBookOperationStatus;
+
+@protocol HentaiDownloadBookOperationDelegate;
+
 @interface HentaiDownloadBookOperation : NSOperation <HentaiDownloadImageOperationDelegate>
 
+@property (nonatomic, weak) id <HentaiDownloadBookOperationDelegate> delegate;
 @property (nonatomic, strong) NSDictionary *bookInfo;
+@property (nonatomic, assign) HentaiDownloadBookOperationStatus status;
+@property (nonatomic, readonly) NSInteger recvCount;
+@property (nonatomic, readonly) NSInteger totalCount;
+
+@end
+
+@protocol HentaiDownloadBookOperationDelegate <NSObject>
+
+@required
+- (void)hentaiDownloadBookOperationChange:(NSDictionary *)change operation:(HentaiDownloadBookOperation *)operation;
 
 @end
