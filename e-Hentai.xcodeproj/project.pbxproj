@@ -51,6 +51,7 @@
 		019926B419ADDB83009F814B /* e_HentaiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926B319ADDB83009F814B /* e_HentaiTests.m */; };
 		01BFAD5119DE435700A5649F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BFAD4F19DE435700A5649F /* SettingViewController.m */; };
 		01BFAD5219DE435700A5649F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BFAD5019DE435700A5649F /* SettingViewController.xib */; };
+		01FB6FD419E23FB4006CBEF2 /* NSString+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */; };
 		04376DFC19B96B76001B1599 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04376DFA19B96B76001B1599 /* GalleryCell.m */; };
 		04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04376DFB19B96B76001B1599 /* GalleryCell.xib */; };
 		32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E356769FC894496F8A03AC25 /* libPods.a */; };
@@ -143,6 +144,8 @@
 		01BFAD4E19DE435700A5649F /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = SettingViewController/SettingViewController.h; sourceTree = "<group>"; };
 		01BFAD4F19DE435700A5649F /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = SettingViewController/SettingViewController.m; sourceTree = "<group>"; };
 		01BFAD5019DE435700A5649F /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = SettingViewController/SettingViewController.xib; sourceTree = "<group>"; };
+		01FB6FD219E23FB4006CBEF2 /* NSString+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hentai.h"; sourceTree = "<group>"; };
+		01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hentai.m"; sourceTree = "<group>"; };
 		04376DF919B96B76001B1599 /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
 		04376DFA19B96B76001B1599 /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
 		04376DFB19B96B76001B1599 /* GalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */,
 				0107D9A819DBF656006C5673 /* UIAlertView+Hentai.h */,
 				0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */,
+				01FB6FD219E23FB4006CBEF2 /* NSString+Hentai.h */,
+				01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -582,6 +587,7 @@
 				0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */,
 				016BBF0C19B94E4F0015E11E /* FMStream.m in Sources */,
 				0150034619B6E5E90055F47D /* XPathQuery.m in Sources */,
+				01FB6FD419E23FB4006CBEF2 /* NSString+Hentai.m in Sources */,
 				9F9C3B5819D82DBA007CFF81 /* HentaiSearchFilter.m in Sources */,
 				016BBF0F19B94E4F0015E11E /* LightWeightPlist+HandleCache.m in Sources */,
 				0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */,

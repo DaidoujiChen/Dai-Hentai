@@ -21,7 +21,7 @@
 @property (nonatomic, assign) NSUInteger failCount;
 
 //已經下載好的漫畫結果
-//結構 key 是檔案名稱 (url 網址的 lastPathComponent) NSString
+//結構 key 是檔案名稱 (url 網址的 lastTwoPathComponent) NSString
 //value 是該檔案的高度 NSNumber
 @property (nonatomic, strong) NSMutableDictionary *hentaiResults;
 
@@ -168,7 +168,7 @@
     NSInteger returnIndex = -1;
     for (NSInteger i = self.realDisplayCount; i < [self.hentaiImageURLs count]; i++) {
         NSString *eachImageString = self.hentaiImageURLs[i];
-        if (self.hentaiResults[[eachImageString lastPathComponent]]) {
+        if (self.hentaiResults[[eachImageString lastTwoPathComponent]]) {
             returnIndex = i;
         }
         else {
@@ -263,7 +263,7 @@
 
 - (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess {
     if (isSuccess) {
-        self.hentaiResults[[urlString lastPathComponent]] = @(height);
+        self.hentaiResults[[urlString lastTwoPathComponent]] = @(height);
         NSInteger availableCount = [self availableCount];
         if (availableCount > self.realDisplayCount) {
             if (availableCount >= 1 && !self.isRemovedHUD) {
@@ -324,13 +324,13 @@
     static NSString *cellIdentifier = @"HentaiPhotoCell";
     HentaiPhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
-    if (self.hentaiResults[[eachImageString lastPathComponent]]) {
+    if (self.hentaiResults[[eachImageString lastTwoPathComponent]]) {
         NSIndexPath *copyIndexPath = [indexPath copy];
         __weak PhotoViewController *weakSelf = self;
         
         //讀取不卡線程
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            UIImage *image = [UIImage imageWithData:[weakSelf.hentaiFilesManager read:[eachImageString lastPathComponent]]];
+            UIImage *image = [UIImage imageWithData:[weakSelf.hentaiFilesManager read:[eachImageString lastTwoPathComponent]]];
             
             if ([[tableView indexPathForCell:cell] compare:copyIndexPath] == NSOrderedSame && weakSelf) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -349,14 +349,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
-    if (self.hentaiResults[[eachImageString lastPathComponent]]) {
+    if (self.hentaiResults[[eachImageString lastTwoPathComponent]]) {
         //如果畫面是直向的時候, 長度要重新算
         if (self.interfaceOrientation == UIDeviceOrientationPortrait) {
-            CGSize newSize = [self imagePortraitHeight:CGSizeMake([UIScreen mainScreen].bounds.size.height, [self.hentaiResults[[eachImageString lastPathComponent]] floatValue])];
+            CGSize newSize = [self imagePortraitHeight:CGSizeMake([UIScreen mainScreen].bounds.size.height, [self.hentaiResults[[eachImageString lastTwoPathComponent]] floatValue])];
             return newSize.height;
         }
         else {
-            return [self.hentaiResults[[eachImageString lastPathComponent]] floatValue];
+            return [self.hentaiResults[[eachImageString lastTwoPathComponent]] floatValue];
         }
     }
     else {

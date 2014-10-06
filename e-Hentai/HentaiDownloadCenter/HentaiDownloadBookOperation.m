@@ -72,7 +72,7 @@
 
 - (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess {
 	if (isSuccess) {
-		self.hentaiResults[[urlString lastPathComponent]] = @(height);
+		self.hentaiResults[[urlString lastTwoPathComponent]] = @(height);
 	}
 	else {
 		NSNumber *retryCount = self.retryMap[urlString];

@@ -21,6 +21,7 @@
     #import "LightWeightPlist.h"
     #import "HentaiDownloadCenter.h"
     #import "UIAlertView+Hentai.h"
+    #import "NSString+Hentai.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>

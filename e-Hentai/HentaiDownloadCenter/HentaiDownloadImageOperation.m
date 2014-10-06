@@ -31,7 +31,7 @@
 	}
     
 	[self hentaiStart];
-	NSNumber *imageHeight = HentaiCacheLibraryDictionary[self.hentaiKey][[self.downloadURLString lastPathComponent]];
+	NSNumber *imageHeight = HentaiCacheLibraryDictionary[self.hentaiKey][[self.downloadURLString lastTwoPathComponent]];
     
 	//從 imageHeight 的有無可以判斷這個檔案是否已經有了
 	if (!imageHeight) {
@@ -79,10 +79,10 @@
 		    UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:self.recvData]];
             
 		    if (self.isCacheOperation) {
-		        [[[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
+		        [[[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastTwoPathComponent]];
 			}
 		    else {
-		        [[[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastPathComponent]];
+		        [[[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastTwoPathComponent]];
 			}
             
 		    //讓檔案轉存這件事情不擋線程
