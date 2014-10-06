@@ -21,7 +21,7 @@ typedef enum {
 @interface HentaiDownloadBookOperation : NSOperation <HentaiDownloadImageOperationDelegate>
 
 @property (nonatomic, weak) id <HentaiDownloadBookOperationDelegate> delegate;
-@property (nonatomic, strong) NSDictionary *bookInfo;
+@property (nonatomic, strong) NSDictionary *hentaiInfo;
 @property (nonatomic, assign) HentaiDownloadBookOperationStatus status;
 @property (nonatomic, readonly) NSInteger recvCount;
 @property (nonatomic, readonly) NSInteger totalCount;

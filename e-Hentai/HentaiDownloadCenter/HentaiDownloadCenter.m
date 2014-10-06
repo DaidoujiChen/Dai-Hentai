@@ -26,11 +26,11 @@
         for (HentaiDownloadBookOperation *eachOperation in operations) {
             switch (eachOperation.status) {
                 case HentaiDownloadBookOperationStatusWaiting:
-                    [waitingItems addObject:@{ @"hentaiInfo":eachOperation.bookInfo }];
+                    [waitingItems addObject:@{ @"hentaiInfo":eachOperation.hentaiInfo }];
                     break;
                     
                 case HentaiDownloadBookOperationStatusDownloading:
-                    [downloadingItems addObject:@{ @"hentaiInfo":eachOperation.bookInfo, @"recvCount":@(eachOperation.recvCount), @"totalCount":@(eachOperation.totalCount) }];
+                    [downloadingItems addObject:@{ @"hentaiInfo":eachOperation.hentaiInfo, @"recvCount":@(eachOperation.recvCount), @"totalCount":@(eachOperation.totalCount) }];
                     break;
                     
                 default:
@@ -43,19 +43,19 @@
 
 #pragma mark - class method
 
-+ (void)addBook:(NSDictionary *)bookInfo {
++ (void)addBook:(NSDictionary *)hentaiInfo {
     BOOL isExist = NO;
     
     //如果下載過的話不給下
     for (NSDictionary *eachInfo in HentaiSaveLibraryArray) {
-        if ([eachInfo[@"url"] isEqualToString:bookInfo[@"url"]]) {
+        if ([eachInfo[@"url"] isEqualToString:hentaiInfo[@"url"]]) {
             isExist = YES;
             break;
         }
     }
     
     //如果在 queue 裡面也不給下
-    isExist = isExist | [self isDownloading:bookInfo];
+    isExist = isExist | [self isDownloading:hentaiInfo];
     
     if (isExist) {
         [UIAlertView hentai_alertViewWithTitle:@"不行~ O3O" message:@"你可能已經下載過或是正在下載中!" cancelButtonTitle:@"確定"];
@@ -63,17 +63,28 @@
     else {
         HentaiDownloadBookOperation *newOperation = [HentaiDownloadBookOperation new];
         newOperation.delegate = (id <HentaiDownloadBookOperationDelegate> )self;
-        newOperation.bookInfo = bookInfo;
+        newOperation.hentaiInfo = hentaiInfo;
         newOperation.status = HentaiDownloadBookOperationStatusWaiting;
         [[self allBooksOperationQueue] addOperation:newOperation];
     }
 }
 
-+ (BOOL)isDownloading:(NSDictionary *)bookInfo {
++ (BOOL)isDownloading:(NSDictionary *)hentaiInfo {
     BOOL isExist = NO;
     
     for (HentaiDownloadBookOperation *eachOperation in[[self allBooksOperationQueue] operations]) {
-        if ([eachOperation.bookInfo[@"url"] isEqualToString:bookInfo[@"url"]]) {
+        if ([eachOperation.hentaiInfo[@"url"] isEqualToString:hentaiInfo[@"url"]]) {
+            isExist = YES;
+            break;
+        }
+    }
+    return isExist;
+}
+
++ (BOOL)isActiveFolder:(NSString *)folder {
+    BOOL isExist = NO;
+    for (HentaiDownloadBookOperation *eachOperation in[[self allBooksOperationQueue] operations]) {
+        if ([folder isEqualToString:[eachOperation.hentaiInfo hentaiKey]]) {
             isExist = YES;
             break;
         }

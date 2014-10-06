@@ -16,10 +16,38 @@
 
 #pragma mark - ibaction
 
-- (IBAction)eraseAction:(id)sender {
+- (IBAction)cleanCacheAction:(id)sender {
     [[FilesManager cacheFolder] rd:@"Hentai"];
     [HentaiCacheLibraryDictionary removeAllObjects];
     [self cacheFolderSize];
+}
+
+- (IBAction)cleanDocumentAction:(id)sender {
+    NSArray *folders = [[[FilesManager documentFolder] fcd:@"Hentai"] listFolders];
+    
+    //檢查每一個資料夾名稱是否存在於已下載列表, 或是 download queue 裡面
+    for (NSString *eachFolderName in folders) {
+        BOOL isExist = NO;
+        
+        //檢查有沒有在列表內
+        for (NSDictionary *eachSaveHentaiInfo in HentaiSaveLibraryArray) {
+            if ([eachFolderName isEqualToString:[eachSaveHentaiInfo[@"hentaiInfo"] hentaiKey]]) {
+                isExist = YES;
+                break;
+            }
+        }
+        
+        //檢查有沒有在下載列表內
+        if (!isExist) {
+            isExist |= [HentaiDownloadCenter isActiveFolder:eachFolderName];
+        }
+        
+        //如果都沒有的話就要殺掉他
+        if (!isExist) {
+            [[[FilesManager documentFolder] fcd:@"Hentai"] rd:eachFolderName];
+        }
+    }
+    [self documentFolderSize];
 }
 
 #pragma mark - private
@@ -32,7 +60,7 @@
         NSDictionary *attributes = [fileManager attributesOfItemAtPath:[[[FilesManager cacheFolder] fcd:@"Hentai"] currentPath] error:NULL];
         uint64_t totalSize = [attributes fileSize];
         
-        for (NSString *fileName in [fileManager enumeratorAtPath:[[[FilesManager cacheFolder] fcd:@"Hentai"] currentPath]]) {
+        for (NSString *fileName in[fileManager enumeratorAtPath:[[[FilesManager cacheFolder] fcd:@"Hentai"] currentPath]]) {
             attributes = [fileManager attributesOfItemAtPath:[[[[FilesManager cacheFolder] fcd:@"Hentai"] currentPath] stringByAppendingPathComponent:fileName] error:NULL];
             totalSize += [attributes fileSize];
             
@@ -57,7 +85,7 @@
         NSDictionary *attributes = [fileManager attributesOfItemAtPath:[[[FilesManager documentFolder] fcd:@"Hentai"] currentPath] error:NULL];
         uint64_t totalSize = [attributes fileSize];
         
-        for (NSString *fileName in [fileManager enumeratorAtPath:[[[FilesManager documentFolder] fcd:@"Hentai"] currentPath]]) {
+        for (NSString *fileName in[fileManager enumeratorAtPath:[[[FilesManager documentFolder] fcd:@"Hentai"] currentPath]]) {
             attributes = [fileManager attributesOfItemAtPath:[[[[FilesManager documentFolder] fcd:@"Hentai"] currentPath] stringByAppendingPathComponent:fileName] error:NULL];
             totalSize += [attributes fileSize];
             

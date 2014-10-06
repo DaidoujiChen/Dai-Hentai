@@ -63,10 +63,7 @@
 @dynamic hentaiKey;
 
 - (NSString *)hentaiKey {
-    NSArray *splitStrings = [self.hentaiURLString componentsSeparatedByString:@"/"];
-    NSUInteger splitCount = [splitStrings count];
-    NSString *checkHentaiKey = [NSString stringWithFormat:@"%@-%@-%@", splitStrings[splitCount - 3], splitStrings[splitCount - 2], self.hentaiInfo[@"title"]];
-    return [checkHentaiKey stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
+    return [self.hentaiInfo hentaiKey];
 }
 
 #pragma mark - ibaction
@@ -96,10 +93,10 @@
 }
 
 - (void)saveAction {
-    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"衝吧! O3O"] onClickIndex:^(int clickIndex) {
+    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"衝吧! O3O"] onClickIndex: ^(int clickIndex) {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
         [self waitingOnDownloadFinish];
-    } onCancel:^{
+    } onCancel: ^{
     }];
 }
 

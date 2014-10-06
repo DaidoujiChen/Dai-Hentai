@@ -51,11 +51,12 @@
 		019926AA19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
 		019926B219ADDB83009F814B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019926B019ADDB83009F814B /* InfoPlist.strings */; };
 		019926B419ADDB83009F814B /* e_HentaiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926B319ADDB83009F814B /* e_HentaiTests.m */; };
+		01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */; };
 		01BFAD5119DE435700A5649F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BFAD4F19DE435700A5649F /* SettingViewController.m */; };
 		01BFAD5219DE435700A5649F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BFAD5019DE435700A5649F /* SettingViewController.xib */; };
-		01FB6FD419E23FB4006CBEF2 /* NSString+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */; };
 		01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */; };
 		01CD0E2F19DE808B006155FD /* DownloadManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CD0E2D19DE808B006155FD /* DownloadManagerViewController.xib */; };
+		01FB6FD419E23FB4006CBEF2 /* NSString+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */; };
 		04376DFC19B96B76001B1599 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04376DFA19B96B76001B1599 /* GalleryCell.m */; };
 		04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04376DFB19B96B76001B1599 /* GalleryCell.xib */; };
 		32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E356769FC894496F8A03AC25 /* libPods.a */; };
@@ -148,14 +149,16 @@
 		019926AF19ADDB83009F814B /* e-HentaiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "e-HentaiTests-Info.plist"; sourceTree = "<group>"; };
 		019926B119ADDB83009F814B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		019926B319ADDB83009F814B /* e_HentaiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = e_HentaiTests.m; sourceTree = "<group>"; };
+		01A166EA19E28D5E00203360 /* NSDictionary+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Hentai.h"; sourceTree = "<group>"; };
+		01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Hentai.m"; sourceTree = "<group>"; };
 		01BFAD4E19DE435700A5649F /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = SettingViewController/SettingViewController.h; sourceTree = "<group>"; };
 		01BFAD4F19DE435700A5649F /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = SettingViewController/SettingViewController.m; sourceTree = "<group>"; };
 		01BFAD5019DE435700A5649F /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = SettingViewController/SettingViewController.xib; sourceTree = "<group>"; };
-		01FB6FD219E23FB4006CBEF2 /* NSString+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hentai.h"; sourceTree = "<group>"; };
-		01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hentai.m"; sourceTree = "<group>"; };
 		01CD0E2B19DE808B006155FD /* DownloadManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerViewController.h; path = DownloadManagerViewController/DownloadManagerViewController.h; sourceTree = "<group>"; };
 		01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManagerViewController.m; path = DownloadManagerViewController/DownloadManagerViewController.m; sourceTree = "<group>"; };
 		01CD0E2D19DE808B006155FD /* DownloadManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DownloadManagerViewController.xib; path = DownloadManagerViewController/DownloadManagerViewController.xib; sourceTree = "<group>"; };
+		01FB6FD219E23FB4006CBEF2 /* NSString+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hentai.h"; sourceTree = "<group>"; };
+		01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hentai.m"; sourceTree = "<group>"; };
 		04376DF919B96B76001B1599 /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
 		04376DFA19B96B76001B1599 /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
 		04376DFB19B96B76001B1599 /* GalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */,
 				01FB6FD219E23FB4006CBEF2 /* NSString+Hentai.h */,
 				01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */,
+				01A166EA19E28D5E00203360 /* NSDictionary+Hentai.h */,
+				01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 				0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */,
 				0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */,
 				016BBF1019B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m in Sources */,
+				01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */,
 				011AEA5119DD28DE00A15CA5 /* SliderViewController.m in Sources */,
 				016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */,
 				016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */,

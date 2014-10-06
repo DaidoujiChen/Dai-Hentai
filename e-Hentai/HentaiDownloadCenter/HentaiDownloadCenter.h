@@ -17,8 +17,10 @@ typedef void (^HentaiMonitorBlock)(NSDictionary *centerDetail);
 
 @interface HentaiDownloadCenter : NSObject
 
-+ (void)addBook:(NSDictionary *)bookInfo;
-+ (BOOL)isDownloading:(NSDictionary *)bookInfo;
++ (void)addBook:(NSDictionary *)hentaiInfo;
++ (BOOL)isDownloading:(NSDictionary *)hentaiInfo;
++ (BOOL)isActiveFolder:(NSString *)folder;
+
 + (void)centerMonitor:(HentaiMonitorBlock)monitor;
 
 @end
