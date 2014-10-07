@@ -37,6 +37,7 @@
 
 @property (nonatomic, strong) NSString *hentaiURLString;
 @property (nonatomic, strong) NSString *maxHentaiCount;
+@property (nonatomic, strong) NSIndexPath *sharedIndexPath;
 
 - (void)backAction;
 - (void)saveAction;
@@ -56,7 +57,6 @@
 @end
 
 @implementation PhotoViewController
-
 
 #pragma mark - getter
 
@@ -256,6 +256,38 @@
     return NSNotFound;
 }
 
+#pragma mark - share methods
+
+//分享到 g+
+- (void)shareToGPlus {
+    id <GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
+    [shareBuilder setPrefillText:[self sharedMessage]];
+    NSString *sharedImageName = self.hentaiImageURLs[self.sharedIndexPath.row];
+    [shareBuilder attachImage:[UIImage imageWithData:[self.hentaiFilesManager read:[sharedImageName hentai_lastTwoPathComponent]]]];
+    [shareBuilder open];
+}
+
+//預設的文字內容
+- (NSString *)sharedMessage {
+    NSMutableString *sharedMessage = [NSMutableString string];
+    [sharedMessage appendFormat:@"作品名稱 : %@\n", self.hentaiInfo[@"title"]];
+    [sharedMessage appendFormat:@"作品連結 : %@\n\n\n\n\n", self.hentaiInfo[@"url"]];
+    [sharedMessage appendString:@"send from my hentai app"];
+    return sharedMessage;
+}
+
+#pragma mark - HentaiPhotoCellDelegate
+
+- (void)needToShareAtIndexPath:(NSIndexPath *)indexPath {
+    self.sharedIndexPath = indexPath;
+    if ([[GPPSignIn sharedInstance] authentication]) {
+        [self shareToGPlus];
+    }
+    else {
+        [UIAlertView hentai_alertViewWithTitle:@"G+尚未聯結" message:@"請到設定頁面做聯結先喔!" cancelButtonTitle:@"好~ O3O"];
+    }
+}
+
 #pragma mark - HentaiDownloadImageOperationDelegate
 
 - (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess {
@@ -320,6 +352,7 @@
     
     static NSString *cellIdentifier = @"HentaiPhotoCell";
     HentaiPhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
     NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
     if (self.hentaiResults[[eachImageString hentai_lastTwoPathComponent]]) {
         NSIndexPath *copyIndexPath = [indexPath copy];

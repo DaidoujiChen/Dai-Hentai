@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0107D9AA19DBF656006C5673 /* UIAlertView+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */; };
+		010E3ADF19E3B93800B866FB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */; };
+		010E3AE119E3B94700B866FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3AE019E3B94700B866FB /* SystemConfiguration.framework */; };
+		010E3AE319E3B95200B866FB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3AE219E3B95200B866FB /* CoreText.framework */; };
 		0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080719B6F06200FE0DA1 /* FakeViewController.m */; };
 		0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */; };
 		0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080F19B6F06200FE0DA1 /* MainViewController.m */; };
@@ -23,8 +26,6 @@
 		0150034419B6E5E90055F47D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033919B6E5E90055F47D /* TFHpple.m */; };
 		0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033B19B6E5E90055F47D /* TFHppleElement.m */; };
 		0150034619B6E5E90055F47D /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033D19B6E5E90055F47D /* XPathQuery.m */; };
-		015A5CEF19B8598C004B0063 /* HentaiPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A5CED19B8598C004B0063 /* HentaiPhotoCell.m */; };
-		015A5CF019B8598C004B0063 /* HentaiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015A5CEE19B8598C004B0063 /* HentaiPhotoCell.xib */; };
 		0163C7D719D8FD5300105ECF /* DownloadedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0163C7D619D8FD5300105ECF /* DownloadedViewController.m */; };
 		016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 016A359E19B6FB8A00E3371A /* HentaiParser.m */; };
 		016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBEFB19B94E4F0015E11E /* FilesManager.m */; };
@@ -36,6 +37,15 @@
 		016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0819B94E4F0015E11E /* LightWeightPlist.m */; };
 		016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */; };
 		016BBF1519B953D40015E11E /* HentaiDownloadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF1419B953D40015E11E /* HentaiDownloadImageOperation.m */; };
+		016DAD9819E392F900E528BE /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9519E392F900E528BE /* GoogleOpenSource.framework */; };
+		016DAD9919E392F900E528BE /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 016DAD9619E392F900E528BE /* GooglePlus.bundle */; };
+		016DAD9A19E392F900E528BE /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9719E392F900E528BE /* GooglePlus.framework */; };
+		016DAD9C19E393B900E528BE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9B19E393B900E528BE /* AddressBook.framework */; };
+		016DAD9E19E393C300E528BE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9D19E393C300E528BE /* MediaPlayer.framework */; };
+		016DADA019E393D600E528BE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9F19E393D600E528BE /* AssetsLibrary.framework */; };
+		016DADA219E393DF00E528BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA119E393DF00E528BE /* CoreLocation.framework */; };
+		016DADA419E393EB00E528BE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA319E393EB00E528BE /* CoreMotion.framework */; };
+		016DADA619E3940C00E528BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA519E3940C00E528BE /* Security.framework */; };
 		0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766219E27E8D00E9005E /* DownloadManagerCell.m */; };
 		0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179766319E27E8D00E9005E /* DownloadManagerCell.xib */; };
 		0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766819E27EC100E9005E /* MenuDefaultCell.m */; };
@@ -52,6 +62,9 @@
 		019926B219ADDB83009F814B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019926B019ADDB83009F814B /* InfoPlist.strings */; };
 		019926B419ADDB83009F814B /* e_HentaiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926B319ADDB83009F814B /* e_HentaiTests.m */; };
 		01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */; };
+		01BBD5FC19E3D2F2003538CF /* UITableViewCell+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BBD5FB19E3D2F2003538CF /* UITableViewCell+Hentai.m */; };
+		01BBD60119E3D428003538CF /* HentaiPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */; };
+		01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */; };
 		01BFAD5119DE435700A5649F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BFAD4F19DE435700A5649F /* SettingViewController.m */; };
 		01BFAD5219DE435700A5649F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BFAD5019DE435700A5649F /* SettingViewController.xib */; };
 		01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */; };
@@ -77,6 +90,9 @@
 /* Begin PBXFileReference section */
 		0107D9A819DBF656006C5673 /* UIAlertView+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Hentai.h"; sourceTree = "<group>"; };
 		0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Hentai.m"; sourceTree = "<group>"; };
+		010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		010E3AE019E3B94700B866FB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		010E3AE219E3B95200B866FB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		0118080619B6F06200FE0DA1 /* FakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeViewController.h; sourceTree = "<group>"; };
 		0118080719B6F06200FE0DA1 /* FakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeViewController.m; sourceTree = "<group>"; };
 		0118080819B6F06200FE0DA1 /* HentaiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiNavigationController.h; sourceTree = "<group>"; };
@@ -103,9 +119,6 @@
 		0150033B19B6E5E90055F47D /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
 		0150033C19B6E5E90055F47D /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		0150033D19B6E5E90055F47D /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
-		015A5CEC19B8598C004B0063 /* HentaiPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiPhotoCell.h; sourceTree = "<group>"; };
-		015A5CED19B8598C004B0063 /* HentaiPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiPhotoCell.m; sourceTree = "<group>"; };
-		015A5CEE19B8598C004B0063 /* HentaiPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HentaiPhotoCell.xib; sourceTree = "<group>"; };
 		0163C7D519D8FD5300105ECF /* DownloadedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadedViewController.h; path = DownloadedViewController/DownloadedViewController.h; sourceTree = "<group>"; };
 		0163C7D619D8FD5300105ECF /* DownloadedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadedViewController.m; path = DownloadedViewController/DownloadedViewController.m; sourceTree = "<group>"; };
 		016A359D19B6FB8A00E3371A /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
@@ -128,6 +141,15 @@
 		016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightWeightPlistObjects.m; sourceTree = "<group>"; };
 		016BBF1319B953D40015E11E /* HentaiDownloadImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadImageOperation.h; path = HentaiDownloadCenter/HentaiDownloadImageOperation.h; sourceTree = "<group>"; };
 		016BBF1419B953D40015E11E /* HentaiDownloadImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiDownloadImageOperation.m; path = HentaiDownloadCenter/HentaiDownloadImageOperation.m; sourceTree = "<group>"; };
+		016DAD9519E392F900E528BE /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
+		016DAD9619E392F900E528BE /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
+		016DAD9719E392F900E528BE /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
+		016DAD9B19E393B900E528BE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		016DAD9D19E393C300E528BE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		016DAD9F19E393D600E528BE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		016DADA119E393DF00E528BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		016DADA319E393EB00E528BE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		016DADA519E3940C00E528BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0179766119E27E8D00E9005E /* DownloadManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerCell.h; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.h; sourceTree = "<group>"; };
 		0179766219E27E8D00E9005E /* DownloadManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManagerCell.m; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.m; sourceTree = "<group>"; };
 		0179766319E27E8D00E9005E /* DownloadManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DownloadManagerCell.xib; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.xib; sourceTree = "<group>"; };
@@ -151,6 +173,11 @@
 		019926B319ADDB83009F814B /* e_HentaiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = e_HentaiTests.m; sourceTree = "<group>"; };
 		01A166EA19E28D5E00203360 /* NSDictionary+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Hentai.h"; sourceTree = "<group>"; };
 		01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Hentai.m"; sourceTree = "<group>"; };
+		01BBD5FA19E3D2F2003538CF /* UITableViewCell+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Hentai.h"; sourceTree = "<group>"; };
+		01BBD5FB19E3D2F2003538CF /* UITableViewCell+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Hentai.m"; sourceTree = "<group>"; };
+		01BBD5FE19E3D428003538CF /* HentaiPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiPhotoCell.h; path = HentaiPhotoCell/HentaiPhotoCell.h; sourceTree = "<group>"; };
+		01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiPhotoCell.m; path = HentaiPhotoCell/HentaiPhotoCell.m; sourceTree = "<group>"; };
+		01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HentaiPhotoCell.xib; path = HentaiPhotoCell/HentaiPhotoCell.xib; sourceTree = "<group>"; };
 		01BFAD4E19DE435700A5649F /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = SettingViewController/SettingViewController.h; sourceTree = "<group>"; };
 		01BFAD4F19DE435700A5649F /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = SettingViewController/SettingViewController.m; sourceTree = "<group>"; };
 		01BFAD5019DE435700A5649F /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = SettingViewController/SettingViewController.xib; sourceTree = "<group>"; };
@@ -175,7 +202,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016DAD9A19E392F900E528BE /* GooglePlus.framework in Frameworks */,
+				016DAD9819E392F900E528BE /* GoogleOpenSource.framework in Frameworks */,
 				0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */,
+				010E3AE319E3B95200B866FB /* CoreText.framework in Frameworks */,
+				010E3AE119E3B94700B866FB /* SystemConfiguration.framework in Frameworks */,
+				010E3ADF19E3B93800B866FB /* MobileCoreServices.framework in Frameworks */,
+				016DADA619E3940C00E528BE /* Security.framework in Frameworks */,
+				016DADA419E393EB00E528BE /* CoreMotion.framework in Frameworks */,
+				016DADA219E393DF00E528BE /* CoreLocation.framework in Frameworks */,
+				016DADA019E393D600E528BE /* AssetsLibrary.framework in Frameworks */,
+				016DAD9E19E393C300E528BE /* MediaPlayer.framework in Frameworks */,
+				016DAD9C19E393B900E528BE /* AddressBook.framework in Frameworks */,
 				0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */,
 				0199268919ADDB83009F814B /* Foundation.framework in Frameworks */,
 				32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */,
@@ -208,6 +246,8 @@
 				01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */,
 				01A166EA19E28D5E00203360 /* NSDictionary+Hentai.h */,
 				01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */,
+				01BBD5FA19E3D2F2003538CF /* UITableViewCell+Hentai.h */,
+				01BBD5FB19E3D2F2003538CF /* UITableViewCell+Hentai.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -229,9 +269,7 @@
 				0118081219B6F06200FE0DA1 /* PhotoViewController.h */,
 				0118081319B6F06200FE0DA1 /* PhotoViewController.m */,
 				0118081419B6F06200FE0DA1 /* PhotoViewController.xib */,
-				015A5CEC19B8598C004B0063 /* HentaiPhotoCell.h */,
-				015A5CED19B8598C004B0063 /* HentaiPhotoCell.m */,
-				015A5CEE19B8598C004B0063 /* HentaiPhotoCell.xib */,
+				01BBD5FD19E3D415003538CF /* HentaiPhotoCell */,
 			);
 			path = PhotoViewController;
 			sourceTree = "<group>";
@@ -282,6 +320,7 @@
 		0150033619B6E5E90055F47D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				016DAD9419E392F900E528BE /* GooglePlus */,
 				016BBEF919B94E4F0015E11E /* FilesManager */,
 				016BBEFE19B94E4F0015E11E /* LightWeightPlist */,
 				0150033719B6E5E90055F47D /* Hpple */,
@@ -341,6 +380,16 @@
 			path = LightWeightPlist;
 			sourceTree = "<group>";
 		};
+		016DAD9419E392F900E528BE /* GooglePlus */ = {
+			isa = PBXGroup;
+			children = (
+				016DAD9519E392F900E528BE /* GoogleOpenSource.framework */,
+				016DAD9619E392F900E528BE /* GooglePlus.bundle */,
+				016DAD9719E392F900E528BE /* GooglePlus.framework */,
+			);
+			path = GooglePlus;
+			sourceTree = "<group>";
+		};
 		0179766019E27E7B00E9005E /* DownloadManagerCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +432,15 @@
 		0199268719ADDB83009F814B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				010E3AE219E3B95200B866FB /* CoreText.framework */,
+				010E3AE019E3B94700B866FB /* SystemConfiguration.framework */,
+				010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */,
+				016DADA519E3940C00E528BE /* Security.framework */,
+				016DADA319E393EB00E528BE /* CoreMotion.framework */,
+				016DADA119E393DF00E528BE /* CoreLocation.framework */,
+				016DAD9F19E393D600E528BE /* AssetsLibrary.framework */,
+				016DAD9D19E393C300E528BE /* MediaPlayer.framework */,
+				016DAD9B19E393B900E528BE /* AddressBook.framework */,
 				0199268819ADDB83009F814B /* Foundation.framework */,
 				0199268A19ADDB83009F814B /* CoreGraphics.framework */,
 				0199268C19ADDB83009F814B /* UIKit.framework */,
@@ -442,6 +500,16 @@
 				019926B019ADDB83009F814B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01BBD5FD19E3D415003538CF /* HentaiPhotoCell */ = {
+			isa = PBXGroup;
+			children = (
+				01BBD5FE19E3D428003538CF /* HentaiPhotoCell.h */,
+				01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */,
+				01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */,
+			);
+			name = HentaiPhotoCell;
 			sourceTree = "<group>";
 		};
 		01BFAD4D19DE430A00A5649F /* SettingViewController */ = {
@@ -535,6 +603,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = ChilunChen;
 				TargetAttributes = {
+					0199268419ADDB83009F814B = {
+						DevelopmentTeam = Y6TM8J7448;
+					};
 					019926A519ADDB83009F814B = {
 						TestTargetID = 0199268419ADDB83009F814B;
 					};
@@ -569,12 +640,13 @@
 				0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */,
 				01CD0E2F19DE808B006155FD /* DownloadManagerViewController.xib in Resources */,
 				0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */,
-				015A5CF019B8598C004B0063 /* HentaiPhotoCell.xib in Resources */,
 				011AEA5719DD296400A15CA5 /* MenuViewController.xib in Resources */,
 				0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */,
 				011AEA5A19DD31B300A15CA5 /* Menu.plist in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
+				016DAD9919E392F900E528BE /* GooglePlus.bundle in Resources */,
 				04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */,
+				01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,17 +710,18 @@
 				016BBF0F19B94E4F0015E11E /* LightWeightPlist+HandleCache.m in Sources */,
 				0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */,
 				016BBF1519B953D40015E11E /* HentaiDownloadImageOperation.m in Sources */,
+				01BBD5FC19E3D2F2003538CF /* UITableViewCell+Hentai.m in Sources */,
 				01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */,
 				0150034419B6E5E90055F47D /* TFHpple.m in Sources */,
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
 				01BFAD5119DE435700A5649F /* SettingViewController.m in Sources */,
-				015A5CEF19B8598C004B0063 /* HentaiPhotoCell.m in Sources */,
 				0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */,
 				0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */,
 				0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */,
 				016BBF1019B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m in Sources */,
 				01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */,
 				011AEA5119DD28DE00A15CA5 /* SliderViewController.m in Sources */,
+				01BBD60119E3D428003538CF /* HentaiPhotoCell.m in Sources */,
 				016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */,
 				016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */,
 				0163C7D719D8FD5300105ECF /* DownloadedViewController.m in Sources */,
@@ -778,6 +851,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/e-Hentai/ThirdParty/GooglePlus",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "e-Hentai/e-Hentai-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -792,6 +871,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "e-Hentai";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -802,6 +882,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/e-Hentai/ThirdParty/GooglePlus",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "e-Hentai/e-Hentai-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -816,6 +902,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "e-Hentai";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

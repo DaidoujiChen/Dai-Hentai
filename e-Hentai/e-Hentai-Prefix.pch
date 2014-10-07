@@ -23,6 +23,7 @@
     #import "UIAlertView+Hentai.h"
     #import "NSString+Hentai.h"
     #import "NSDictionary+Hentai.h"
+    #import "UITableViewCell+Hentai.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>
@@ -32,5 +33,10 @@
     //LightWeightPlist
     #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")
     #define HentaiSaveLibraryArray LWPArray(@"HentaiSaveLibrary")
+
+    //google plus
+    static NSString * const kClientId = @"577014773497-5que5pf6avfoqa96vd396v9kqtamjqq2.apps.googleusercontent.com";
+    #import <GooglePlus/GooglePlus.h>
+    #import <GoogleOpenSource/GoogleOpenSource.h>
 
 #endif

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GooglePlus/GooglePlus.h>
 
 #import "HentaiNavigationController.h"
 #import "SliderViewController.h"

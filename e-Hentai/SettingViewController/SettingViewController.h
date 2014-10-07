@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingViewController : UIViewController
+@interface SettingViewController : UIViewController <GPPSignInDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *gPlusConnectLabel;
+@property (weak, nonatomic) IBOutlet GPPSignInButton *gPlusSignInButton;
 @property (weak, nonatomic) IBOutlet UILabel *cacheSizeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *downloadedSizeLabel;
 
