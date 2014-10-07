@@ -19,7 +19,7 @@
 //幫助頁面跳到看漫畫頁面
 - (void)needToPushViewController:(UIViewController *)controller {
 	HentaiNavigationController *hentaiNavigation = (HentaiNavigationController *)self.navigationController;
-	hentaiNavigation.autorotate = YES;
+	hentaiNavigation.autoRotate = YES;
 	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
 	[hentaiNavigation pushViewController:controller animated:YES];
 }

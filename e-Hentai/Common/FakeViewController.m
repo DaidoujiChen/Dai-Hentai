@@ -14,11 +14,10 @@
 
 @implementation FakeViewController
 
-- (void)onPresentCompletion
-{
-	[self dismissViewControllerAnimated:NO completion: ^{
-	    self.BackBlock();
-	}];
+- (void)onPresentCompletion {
+    [self dismissViewControllerAnimated:NO completion: ^{
+        self.BackBlock();
+    }];
 }
 
 @end

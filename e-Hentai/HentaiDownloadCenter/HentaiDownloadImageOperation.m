@@ -31,7 +31,7 @@
 	}
     
 	[self hentaiStart];
-	NSNumber *imageHeight = HentaiCacheLibraryDictionary[self.hentaiKey][[self.downloadURLString lastTwoPathComponent]];
+	NSNumber *imageHeight = HentaiCacheLibraryDictionary[self.hentaiKey][[self.downloadURLString hentai_lastTwoPathComponent]];
     
 	//從 imageHeight 的有無可以判斷這個檔案是否已經有了
 	if (!imageHeight) {
@@ -57,7 +57,6 @@
 
 #pragma mark - NSURLConnectionDelegate
 
-
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	self.recvData = [NSMutableData data];
 }
@@ -79,10 +78,10 @@
 		    UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:self.recvData]];
             
 		    if (self.isCacheOperation) {
-		        [[[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastTwoPathComponent]];
+		        [[[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString hentai_lastTwoPathComponent]];
 			}
 		    else {
-		        [[[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString lastTwoPathComponent]];
+		        [[[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString hentai_lastTwoPathComponent]];
 			}
             
 		    //讓檔案轉存這件事情不擋線程
@@ -105,7 +104,7 @@
 	connection = nil;
 }
 
-#pragma mark - private
+#pragma mark - operation status
 
 - (void)hentaiStart {
 	self.isFinished = NO;
@@ -116,6 +115,8 @@
 	self.isFinished = YES;
 	self.isExecuting = NO;
 }
+
+#pragma mark - resize method
 
 //計算符合螢幕 size 的新大小
 - (CGSize)calendarNewSize:(UIImage *)image {

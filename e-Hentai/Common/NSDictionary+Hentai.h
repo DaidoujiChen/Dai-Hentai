@@ -10,6 +10,7 @@
 
 @interface NSDictionary (Hentai)
 
-- (NSString *)hentaiKey;
+//將 hentaiInfo 轉化為一個固定的 key 值
+- (NSString *)hentai_hentaiKey;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation NSDictionary (Hentai)
 
-- (NSString *)hentaiKey {
+- (NSString *)hentai_hentaiKey {
     NSArray *splitStrings = [self[@"url"] componentsSeparatedByString:@"/"];
     NSUInteger splitCount = [splitStrings count];
     NSString *checkHentaiKey = [NSString stringWithFormat:@"%@-%@-%@", splitStrings[splitCount - 3], splitStrings[splitCount - 2], self[@"title"]];

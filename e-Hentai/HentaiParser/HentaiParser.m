@@ -13,7 +13,7 @@
 #define baseListURL @"http://g.e-hentai.org/?page=%d"
 #define hentaiAPIURL @"http://g.e-hentai.org/api.php"
 
-@implementation NSMutableArray (HENTAI)
+@implementation NSMutableArray (Hentai)
 
 + (NSMutableArray *)hentai_preAllocWithCapacity:(NSUInteger)capacity {
 	NSMutableArray *returnArray = [NSMutableArray array];
@@ -27,7 +27,6 @@
 
 
 @implementation HentaiParser
-
 
 #pragma mark - class method
 
@@ -164,6 +163,7 @@
 
 #pragma mark - private
 
+//原網站的時間是 1970, 這邊把他轉為一個人類看得懂的時間格式
 + (NSString *)dateStringFrom1970:(NSTimeInterval)date1970 {
 	static NSDateFormatter *dateFormatter = nil;
 	static dispatch_once_t onceToken;
@@ -176,6 +176,7 @@
 	return [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:date1970]];
 }
 
+//這段是使用 e hentai 原本提供的 api 做列表 request 時使用
 + (void)requestGDataAPIWithURLStrings:(NSArray *)urlStringArray completion:(void (^)(HentaiParserStatus status, NSArray *gMetaData))completion {
 	//http://g.e-hentai.org/g/618395/0439fa3666/
 	//                          -3        -2       -1
@@ -205,6 +206,7 @@
 	}];
 }
 
+//製造一個 json post 的 request
 + (NSMutableURLRequest *)makeJsonPostRequest:(NSDictionary *)jsonDictionary {
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:NSJSONWritingPrettyPrinted error:nil];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[hentaiAPIURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
@@ -216,6 +218,7 @@
 	return request;
 }
 
+//取得單一圖片的聯結
 + (void)requestCurrentImage:(NSURL *)url atIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSString *imageString, NSUInteger index))completion {
 	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[self hentaiOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
@@ -231,6 +234,8 @@
 		}
 	}];
 }
+
+#pragma mark - runtime objects
 
 + (NSOperationQueue *)hentaiOperationQueue {
 	if (!objc_getAssociatedObject(self, _cmd)) {

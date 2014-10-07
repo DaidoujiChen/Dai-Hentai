@@ -17,7 +17,7 @@ typedef void (^HentaiCancelBlock)(void);
 + (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle;
 + (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtons onClickIndex:(HentaiClickBlock)clicked onCancel:(HentaiCancelBlock)cancelled;
 
-@property (nonatomic, copy) HentaiClickBlock hentaiClicked;
-@property (nonatomic, copy) HentaiCancelBlock hentaiCancelled;
+@property (nonatomic, copy) HentaiClickBlock hentai_clicked;
+@property (nonatomic, copy) HentaiCancelBlock hentai_cancelled;
 
 @end

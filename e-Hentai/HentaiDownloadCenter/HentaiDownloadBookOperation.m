@@ -32,7 +32,7 @@
 #pragma mark - dynamic
 
 - (NSString *)hentaiKey {
-    return [self.hentaiInfo hentaiKey];
+    return [self.hentaiInfo hentai_hentaiKey];
 }
 
 - (NSInteger)totalCount {
@@ -95,7 +95,7 @@
 
 - (void)downloadResult:(NSString *)urlString heightOfSize:(CGFloat)height isSuccess:(BOOL)isSuccess {
     if (isSuccess) {
-        self.hentaiResults[[urlString lastTwoPathComponent]] = @(height);
+        self.hentaiResults[[urlString hentai_lastTwoPathComponent]] = @(height);
     }
     else {
         NSNumber *retryCount = self.retryMap[urlString];
@@ -199,6 +199,7 @@
 
 #pragma mark - private
 
+//建立一個新的 operation
 - (void)createNewOperation:(NSString *)urlString {
     HentaiDownloadImageOperation *newOperation = [HentaiDownloadImageOperation new];
     newOperation.downloadURLString = urlString;

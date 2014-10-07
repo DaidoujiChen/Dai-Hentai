@@ -10,7 +10,7 @@
 
 @implementation NSString (Hentai)
 
-- (NSString *)lastTwoPathComponent {
+- (NSString *)hentai_lastTwoPathComponent {
     NSArray *splitArray = [self componentsSeparatedByString:@"/"];
     NSInteger lastPathIndex = [splitArray count] - 1;
     return [NSString stringWithFormat:@"%@-%@", splitArray[lastPathIndex - 1], splitArray[lastPathIndex]];

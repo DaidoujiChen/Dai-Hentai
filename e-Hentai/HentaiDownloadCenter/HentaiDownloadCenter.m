@@ -84,7 +84,7 @@
 + (BOOL)isActiveFolder:(NSString *)folder {
     BOOL isExist = NO;
     for (HentaiDownloadBookOperation *eachOperation in[[self allBooksOperationQueue] operations]) {
-        if ([folder isEqualToString:[eachOperation.hentaiInfo hentaiKey]]) {
+        if ([folder isEqualToString:[eachOperation.hentaiInfo hentai_hentaiKey]]) {
             isExist = YES;
             break;
         }
@@ -99,7 +99,7 @@
     [self hentaiDownloadBookOperationChange:nil operation:nil];
 }
 
-#pragma mark - private
+#pragma mark - runtime objects
 
 + (NSOperationQueue *)allBooksOperationQueue {
     static dispatch_once_t onceToken;

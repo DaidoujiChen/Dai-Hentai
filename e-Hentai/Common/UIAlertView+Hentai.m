@@ -12,23 +12,23 @@
 
 @implementation UIAlertView (Hentai)
 
-@dynamic hentaiClicked, hentaiCancelled;
+@dynamic hentai_clicked, hentai_cancelled;
 
 #pragma mark - dynamic
 
-- (void)setHentaiClicked:(HentaiClickBlock)clicked {
-	objc_setAssociatedObject(self, @selector(hentaiClicked), clicked, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setHentai_clicked:(HentaiClickBlock)clicked {
+	objc_setAssociatedObject(self, @selector(hentai_clicked), clicked, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (HentaiClickBlock)hentaiClicked {
+- (HentaiClickBlock)hentai_clicked {
 	return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setHentaiCancelled:(HentaiCancelBlock)cancelled {
-	objc_setAssociatedObject(self, @selector(hentaiCancelled), cancelled, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setHentai_cancelled:(HentaiCancelBlock)cancelled {
+	objc_setAssociatedObject(self, @selector(hentai_cancelled), cancelled, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (HentaiCancelBlock)hentaiCancelled {
+- (HentaiCancelBlock)hentai_cancelled {
 	return objc_getAssociatedObject(self, _cmd);
 }
 
@@ -46,8 +46,8 @@
 
 + (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtons onClickIndex:(HentaiClickBlock)clicked onCancel:(HentaiCancelBlock)cancelled {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:[self class] cancelButtonTitle:cancelButtonTitle otherButtonTitles:nil];
-	alert.hentaiClicked = clicked;
-	alert.hentaiCancelled = cancelled;
+	alert.hentai_clicked = clicked;
+	alert.hentai_cancelled = cancelled;
     
 	for (NSString *buttonTitle in otherButtons) {
 		[alert addButtonWithTitle:buttonTitle];
@@ -60,13 +60,13 @@
 
 + (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == alertView.cancelButtonIndex) {
-		if (alertView.hentaiCancelled) {
-			alertView.hentaiCancelled();
+		if (alertView.hentai_cancelled) {
+			alertView.hentai_cancelled();
 		}
 	}
 	else {
-		if (alertView.hentaiClicked) {
-			alertView.hentaiClicked(buttonIndex - 1);
+		if (alertView.hentai_clicked) {
+			alertView.hentai_clicked(buttonIndex - 1);
 		}
 	}
 }

@@ -14,11 +14,10 @@
 
 @implementation HentaiNavigationController
 
-
 #pragma mark - Configuring the View Rotation Settings
 
 - (BOOL)shouldAutorotate {
-	return self.autorotate;
+	return self.autoRotate;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

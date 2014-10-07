@@ -10,6 +10,7 @@
 
 @interface NSString (Hentai)
 
-- (NSString *)lastTwoPathComponent;
+//原先是取 lastPathComponent, 但是有些漫畫的檔案名稱會重複, 因此把倒數第二個 path 也列入編名
+- (NSString *)hentai_lastTwoPathComponent;
 
 @end

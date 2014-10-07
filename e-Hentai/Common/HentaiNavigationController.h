@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+//使用這個 navigation controller 來決定畫面是否可以轉向
 @interface HentaiNavigationController : UINavigationController
 
-@property (nonatomic, assign) BOOL autorotate;
+@property (nonatomic, assign) BOOL autoRotate;
 @property (nonatomic, assign) UIInterfaceOrientationMask hentaiMask;
 
 @end
