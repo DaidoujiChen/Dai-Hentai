@@ -49,15 +49,13 @@
     self = [super init];
     if (self) {
         //kvo status
-        [self addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+        @weakify(self);
+        [RACObserve(self, status) subscribeNext:^(NSNumber *status) {
+            @strongify(self);
+            [self.delegate hentaiDownloadBookOperationChange:self];
+        }];
     }
     return self;
-}
-
-#pragma mark - kvo
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    [self.delegate hentaiDownloadBookOperationChange:change operation:self];
 }
 
 #pragma mark - Methods to Override
@@ -133,7 +131,6 @@
     self.isFinished = YES;
     self.isExecuting = NO;
     self.status = HentaiDownloadBookOperationStatusFinished;
-    [self removeObserver:self forKeyPath:@"status"];
 }
 
 #pragma mark - download methods
@@ -147,13 +144,13 @@
 
 //等待圖片下載完成
 - (void)waitingOnDownloadFinish {
-    __weak HentaiDownloadBookOperation *weakSelf = self;
+    @weakify(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [weakSelf.hentaiQueue waitUntilAllOperationsAreFinished];
-        if (weakSelf && ![self isCancelled]) {
-            __strong HentaiDownloadBookOperation *strongSelf = weakSelf;
+        @strongify(self);
+        [self.hentaiQueue waitUntilAllOperationsAreFinished];
+        if (![self isCancelled]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf checkEndOfFile];
+                [self checkEndOfFile];
             });
         }
         else {
@@ -166,13 +163,13 @@
 - (void)checkEndOfFile {
     if ([self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
         self.hentaiIndex++;
-        __weak HentaiDownloadBookOperation *weakSelf = self;
+        @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiInfo[@"url"] atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf && ![self isCancelled]) {
-                __strong HentaiDownloadBookOperation *strongSelf = weakSelf;
-                [strongSelf.hentaiImageURLs addObjectsFromArray:images];
-                [strongSelf preloadImages:images];
-                [strongSelf waitingOnDownloadFinish];
+            @strongify(self);
+            if (self && status && ![self isCancelled]) {
+                [self.hentaiImageURLs addObjectsFromArray:images];
+                [self preloadImages:images];
+                [self waitingOnDownloadFinish];
             }
             else {
                 [self hentaiFinish];

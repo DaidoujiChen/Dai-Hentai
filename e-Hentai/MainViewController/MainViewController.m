@@ -49,14 +49,15 @@
 	if (indexPath.row >= [self.listArray count] - 15 && [self.listArray count] == (self.listIndex + 1) * 25) {
 		self.listIndex++;
         
-		__weak MainViewController *weakSelf = self;
+        @weakify(self);
 		[self loadList: ^(BOOL successed, NSArray *listArray) {
+            @strongify(self);
 		    if (successed) {
-		        [weakSelf.listArray addObjectsFromArray:listArray];
-		        [weakSelf.listCollectionView reloadData];
+		        [self.listArray addObjectsFromArray:listArray];
+		        [self.listCollectionView reloadData];
 			}
 		    else {
-		        weakSelf.listIndex--;
+		        self.listIndex--;
 			}
 		}];
 	}
@@ -86,8 +87,9 @@
 		[self.delegate needToPushViewController:photoViewController];
 	}
 	else {
-		__weak MainViewController *weakSelf = self;
+        @weakify(self);
 		[UIAlertView hentai_alertViewWithTitle:hentaiInfo[@"category"] message:[self alertMessage:hentaiInfo] cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex: ^(int clickIndex) {
+            @strongify(self);
 		    if (clickIndex) {
 		        if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
 		            [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
@@ -95,7 +97,7 @@
 		        else {
 		            PhotoViewController *photoViewController = [PhotoViewController new];
 		            photoViewController.hentaiInfo = hentaiInfo;
-		            [weakSelf.delegate needToPushViewController:photoViewController];
+		            [self.delegate needToPushViewController:photoViewController];
 				}
 			}
 		    else {
@@ -156,14 +158,15 @@
 	[[SDImageCache sharedImageCache] clearDisk];
 	self.listIndex = 0;
     
-	__weak MainViewController *weakSelf = self;
+    @weakify(self);
 	[self loadList: ^(BOOL successed, NSArray *listArray) {
+        @strongify(self);
 	    if (successed) {
-	        [weakSelf.listArray removeAllObjects];
-	        [weakSelf.listArray addObjectsFromArray:listArray];
-	        [weakSelf.listCollectionView reloadData];
-	        [weakSelf.listCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-	        [weakSelf.refreshControl endRefreshing];
+	        [self.listArray removeAllObjects];
+	        [self.listArray addObjectsFromArray:listArray];
+	        [self.listCollectionView reloadData];
+	        [self.listCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+	        [self.refreshControl endRefreshing];
 		}
 	    else {
 	        [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
@@ -178,9 +181,8 @@
 
 //把 request 的判斷都放到這個 method 裡面來
 - (void)loadList:(void (^)(BOOL successed, NSArray *listArray))completion {
-	__weak MainViewController *weakSelf = self;
 	[HentaiParser requestListAtFilterUrl:self.filterString completion: ^(HentaiParserStatus status, NSArray *listArray) {
-	    if (status && weakSelf && [listArray count]) {
+	    if (status && [listArray count]) {
 	        completion(YES, listArray);
 		}
 	    else {
@@ -228,26 +230,31 @@
 	[self.refreshControl addTarget:self action:@selector(reloadDatas) forControlEvents:UIControlEventValueChanged];
 }
 
-#pragma mark - recv notification
-
-- (void)hentaiDownloadSuccess:(NSNotification *)notification {
-	[UIAlertView hentai_alertViewWithTitle:@"下載完成!" message:notification.object cancelButtonTitle:@"好~ O3O"];
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification {
-	NSDictionary *userInfo = [notification userInfo];
-	CGRect keyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-	CGFloat deltaHeight = CGRectGetMinY(keyboardFrame) - statusBarWithNavigationHeight;
-	HentaiFilterView *filterView = [self filterViewInSearchBar:self.searchBar];
+- (void)setupRecvNotifications {
     
-	//當變異值的值不為 0, 以及跟目前 filterView height 不同時需要改變
-	if (deltaHeight != filterView.frame.size.height && deltaHeight != 0) {
-		[self.searchBar resignFirstResponder];
-		CGRect filterFrame = filterView.frame;
-		filterFrame.size.height += deltaHeight;
-		filterView.frame = filterFrame;
-		[self.searchBar becomeFirstResponder];
-	}
+    //接 HentaiDownloadSuccessNotification
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:HentaiDownloadSuccessNotification object:nil] subscribeNext:^(NSNotification *notification) {
+        [UIAlertView hentai_alertViewWithTitle:@"下載完成!" message:notification.object cancelButtonTitle:@"好~ O3O"];
+    }];
+    
+    //接 UIKeyboardWillShowNotification
+    @weakify(self);
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(NSNotification *notification) {
+        @strongify(self);
+        NSDictionary *userInfo = [notification userInfo];
+        CGRect keyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat deltaHeight = CGRectGetMinY(keyboardFrame) - statusBarWithNavigationHeight;
+        HentaiFilterView *filterView = [self filterViewInSearchBar:self.searchBar];
+        
+        //當變異值的值不為 0, 以及跟目前 filterView height 不同時需要改變
+        if (deltaHeight != filterView.frame.size.height && deltaHeight != 0) {
+            [self.searchBar resignFirstResponder];
+            CGRect filterFrame = filterView.frame;
+            filterFrame.size.height += deltaHeight;
+            filterView.frame = filterFrame;
+            [self.searchBar becomeFirstResponder];
+        }
+    }];
 }
 
 #pragma mark - life cycle
@@ -257,29 +264,19 @@
 	[self setupInitValues];
 	[self setupItemsOnNavigation];
 	[self setupListCollectionViewBehavior];
+    [self setupRecvNotifications];
     
-	__weak MainViewController *weakSelf = self;
+    @weakify(self);
 	[self loadList: ^(BOOL successed, NSArray *listArray) {
+        @strongify(self);
 	    if (successed) {
-	        [weakSelf.listArray addObjectsFromArray:listArray];
-	        [weakSelf.listCollectionView reloadData];
+	        [self.listArray addObjectsFromArray:listArray];
+	        [self.listCollectionView reloadData];
 		}
 	    else {
 	        [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
 		}
 	}];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hentaiDownloadSuccess:) name:HentaiDownloadSuccessNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:HentaiDownloadSuccessNotification object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 @end

@@ -1,5 +1,5 @@
 #include "Pods-SDWebImage.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/SDWebImage" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/SDWebImage" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/ViewDeck"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/SDWebImage" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/ReactiveCocoa" "${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa" "${PODS_ROOT}/Headers/SDWebImage" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/ViewDeck"
 OTHER_LDFLAGS = -ObjC ${PODS_SDWEBIMAGE_OTHER_LDFLAGS}
 PODS_ROOT = ${SRCROOT}

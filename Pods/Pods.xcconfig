@@ -1,5 +1,5 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/SDWebImage" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/ViewDeck"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/SDWebImage" -isystem "${PODS_ROOT}/Headers/SVProgressHUD" -isystem "${PODS_ROOT}/Headers/ViewDeck"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/ReactiveCocoa" "${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa" "${PODS_ROOT}/Headers/SDWebImage" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/ViewDeck"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/ReactiveCocoa" -isystem "${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa" -isystem "${PODS_ROOT}/Headers/SDWebImage" -isystem "${PODS_ROOT}/Headers/SVProgressHUD" -isystem "${PODS_ROOT}/Headers/ViewDeck"
 OTHER_LDFLAGS = -ObjC -framework ImageIO -framework QuartzCore
 PODS_ROOT = ${SRCROOT}/Pods

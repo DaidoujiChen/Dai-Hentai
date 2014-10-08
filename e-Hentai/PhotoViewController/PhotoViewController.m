@@ -195,15 +195,13 @@
 
 //等待圖片下載完成
 - (void)waitingOnDownloadFinish {
-    __weak PhotoViewController *weakSelf = self;
+    @weakify(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [weakSelf.hentaiQueue waitUntilAllOperationsAreFinished];
-        if (weakSelf) {
-            __strong PhotoViewController *strongSelf = weakSelf;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf checkEndOfFile];
-            });
-        }
+        @strongify(self);
+        [self.hentaiQueue waitUntilAllOperationsAreFinished];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self checkEndOfFile];
+        });
     });
 }
 
@@ -211,13 +209,13 @@
 - (void)checkEndOfFile {
     if ([self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
         self.hentaiIndex++;
-        __weak PhotoViewController *weakSelf = self;
+        @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf && [images count]) {
-                __strong PhotoViewController *strongSelf = weakSelf;
-                [strongSelf.hentaiImageURLs addObjectsFromArray:images];
-                [strongSelf preloadImages:images];
-                [strongSelf waitingOnDownloadFinish];
+            @strongify(self);
+            if (status && [images count]) {
+                [self.hentaiImageURLs addObjectsFromArray:images];
+                [self preloadImages:images];
+                [self waitingOnDownloadFinish];
             }
             else {
                 [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
@@ -337,12 +335,12 @@
     //無限滾
     if (indexPath.row >= [self.hentaiImageURLs count] - 20 && ([self.hentaiImageURLs count] + self.failCount) == (self.hentaiIndex + 1) * 40 && [self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
         self.hentaiIndex++;
-        __weak PhotoViewController *weakSelf = self;
+        @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf && [images count]) {
-                __strong PhotoViewController *strongSelf = weakSelf;
-                [strongSelf.hentaiImageURLs addObjectsFromArray:images];
-                [strongSelf preloadImages:images];
+            @strongify(self);
+            if (status && [images count]) {
+                [self.hentaiImageURLs addObjectsFromArray:images];
+                [self preloadImages:images];
             }
             else {
                 [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
@@ -356,13 +354,14 @@
     NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
     if (self.hentaiResults[[eachImageString hentai_lastTwoPathComponent]]) {
         NSIndexPath *copyIndexPath = [indexPath copy];
-        __weak PhotoViewController *weakSelf = self;
         
         //讀取不卡線程
+        @weakify(self);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            UIImage *image = [UIImage imageWithData:[weakSelf.hentaiFilesManager read:[eachImageString hentai_lastTwoPathComponent]]];
+            @strongify(self);
+            UIImage *image = [UIImage imageWithData:[self.hentaiFilesManager read:[eachImageString hentai_lastTwoPathComponent]]];
             
-            if ([[tableView indexPathForCell:cell] compare:copyIndexPath] == NSOrderedSame && weakSelf) {
+            if ([[tableView indexPathForCell:cell] compare:copyIndexPath] == NSOrderedSame) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     cell.hentaiImageView.image = image;
                 });
@@ -416,12 +415,12 @@
     else {
         self.hentaiFilesManager = [[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
-        __weak PhotoViewController *weakSelf = self;
+        @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf && [images count]) {
-                __strong PhotoViewController *strongSelf = weakSelf;
-                [strongSelf.hentaiImageURLs addObjectsFromArray:images];
-                [strongSelf preloadImages:images];
+            @strongify(self);
+            if (status && [images count]) {
+                [self.hentaiImageURLs addObjectsFromArray:images];
+                [self preloadImages:images];
             }
             else {
                 [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
