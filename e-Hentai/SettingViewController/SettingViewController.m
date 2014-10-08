@@ -31,7 +31,7 @@
         
         //檢查有沒有在列表內
         for (NSDictionary *eachSaveHentaiInfo in HentaiSaveLibraryArray) {
-            if ([eachFolderName isEqualToString:[eachSaveHentaiInfo[@"hentaiInfo"] hentaiKey]]) {
+            if ([eachFolderName isEqualToString:[eachSaveHentaiInfo[@"hentaiInfo"] hentai_hentaiKey]]) {
                 isExist = YES;
                 break;
             }
