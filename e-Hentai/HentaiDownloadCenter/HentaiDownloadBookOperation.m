@@ -168,13 +168,14 @@
         self.hentaiIndex++;
         __weak HentaiDownloadBookOperation *weakSelf = self;
         [HentaiParser requestImagesAtURL:self.hentaiInfo[@"url"] atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            if (status && weakSelf && ![self isCancelled]) {
+            if (status && weakSelf && ![self isCancelled] && [images count]) {
                 __strong HentaiDownloadBookOperation *strongSelf = weakSelf;
                 [strongSelf.hentaiImageURLs addObjectsFromArray:images];
                 [strongSelf preloadImages:images];
                 [strongSelf waitingOnDownloadFinish];
             }
             else {
+                [UIAlertView hentai_alertViewWithTitle:weakSelf.hentaiInfo[@"title"] message:@"被移除囉~所以無法下載~" cancelButtonTitle:@"好~ O3O"];
                 [self hentaiFinish];
             }
         }];
