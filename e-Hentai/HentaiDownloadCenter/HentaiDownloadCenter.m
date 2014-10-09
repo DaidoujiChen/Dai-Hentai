@@ -10,35 +10,20 @@
 
 #import <objc/runtime.h>
 
+#define waitingQueue [self waitingAddressQueue]
+#define downloadingQueue [self downloadingAddressQueue]
+
 @implementation HentaiDownloadCenter
 
 #pragma mark - HentaiDownloadBookOperationDelegate
 
 //用來回報 download center 的狀態
-+ (void)hentaiDownloadBookOperationChange:(NSDictionary *)change operation:(HentaiDownloadBookOperation *)operation {
-    HentaiMonitorBlock monitor = [self monitor];
-    if (monitor) {
-        //這樣寫很智障, 但是寫起來比較快, 而且違背 delegate 這樣寫的本意, 想到好方法的時候會來優化
-        NSMutableArray *waitingItems = [NSMutableArray array];
-        NSMutableArray *downloadingItems = [NSMutableArray array];
-        NSArray *operations = [[self allBooksOperationQueue] operations];
-        
-        for (HentaiDownloadBookOperation *eachOperation in operations) {
-            switch (eachOperation.status) {
-                case HentaiDownloadBookOperationStatusWaiting:
-                    [waitingItems addObject:@{ @"hentaiInfo":eachOperation.hentaiInfo }];
-                    break;
-                    
-                case HentaiDownloadBookOperationStatusDownloading:
-                    [downloadingItems addObject:@{ @"hentaiInfo":eachOperation.hentaiInfo, @"recvCount":@(eachOperation.recvCount), @"totalCount":@(eachOperation.totalCount) }];
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
-        monitor(@{ @"waitingItems":waitingItems, @"downloadingItems":downloadingItems });
-    }
++ (void)hentaiDownloadBookOperationChange:(HentaiDownloadBookOperation *)operation {
+    //center 本身需要掌握目前 operations 的活動, 因此這個部分不管 block 在不在都要做
+    [self operationActivity:operation];
+    
+    //然後刷新 monitor
+    [self refreshMonitor];
 }
 
 #pragma mark - class method
@@ -95,8 +80,100 @@
 + (void)centerMonitor:(HentaiMonitorBlock)monitor {
     [self setMonitor:monitor];
     
-    //直接先刷新一次
-    [self hentaiDownloadBookOperationChange:nil operation:nil];
+    //先刷一次才知道目前的狀態
+    [self refreshMonitor];
+}
+
+#pragma mark - private
+
+//從 memory address access 該物件
++ (instancetype)objectAtMemoryAddressString:(NSString *)addressString {
+    unsigned address = UINT_MAX;
+    [[NSScanner scannerWithString:addressString] scanHexInt:&address];
+    if (address == UINT_MAX) {
+        return nil;
+    }
+    void *asRawPointer = (void *)(intptr_t)address;
+    id value = (__bridge id)asRawPointer;
+    return value;
+}
+
+//刷新給監控方看的資料內容
++ (void)refreshMonitor {
+    HentaiMonitorBlock monitor = [self monitor];
+    if (monitor) {
+        NSMutableArray *waitingItems = [NSMutableArray array];
+        NSMutableArray *downloadingItems = [NSMutableArray array];
+        
+        for (NSString *eachWaitingString in waitingQueue) {
+            HentaiDownloadBookOperation *bookOperation = [self objectAtMemoryAddressString:eachWaitingString];
+            [waitingItems addObject:@{ @"hentaiInfo":bookOperation.hentaiInfo }];
+        }
+        
+        for (NSString *eachDownloadingString in downloadingQueue) {
+            HentaiDownloadBookOperation *bookOperation = [self objectAtMemoryAddressString:eachDownloadingString];
+            [downloadingItems addObject:@{ @"hentaiInfo":bookOperation.hentaiInfo, @"recvCount":@(bookOperation.recvCount), @"totalCount":@(bookOperation.totalCount) }];
+        }
+        monitor(@{ @"waitingItems":waitingItems, @"downloadingItems":downloadingItems });
+    }
+}
+
+//找看某個 address 是否在 queue 裡面
++ (NSInteger)findAddress:(NSString *)address inQueue:(NSMutableArray *)queue {
+    NSInteger addressAtIndex = NSNotFound;
+    for (NSString *eachDownloadingString in queue) {
+        if ([address isEqualToString:eachDownloadingString]) {
+            addressAtIndex = [queue indexOfObject:eachDownloadingString];
+            break;
+        }
+    }
+    return addressAtIndex;
+}
+
+//記錄 operation 活動狀態
++ (void)operationActivity:(HentaiDownloadBookOperation *)operation {
+    if (operation) {
+        NSString *operationAddressString = [NSString stringWithFormat:@"%p", operation];
+        
+        switch (operation.status) {
+                //會進 waiting 有兩個原因, 一是數值 init, 另一則是數值確實到 waiting 了
+            case HentaiDownloadBookOperationStatusWaiting:
+            {
+                NSInteger waitingIndex = [self findAddress:operationAddressString inQueue:waitingQueue];
+                
+                //如果找不到這個 address, 就把他存起來
+                if (waitingIndex == NSNotFound) {
+                    [waitingQueue addObject:operationAddressString];
+                }
+                break;
+            }
+                
+                //會進 downloading 有兩個原因, 一是由 waiting 轉為 downloading, 另一則是 download 中間 count 的變化
+            case HentaiDownloadBookOperationStatusDownloading:
+            {
+                NSInteger waitingIndex = [self findAddress:operationAddressString inQueue:waitingQueue];
+                
+                //如果 waiting queue 裡面有他, 把他從 waiting queue 裡面移除, 新增到 downloading queue
+                if (waitingIndex != NSNotFound) {
+                    [waitingQueue removeObjectAtIndex:waitingIndex];
+                    [downloadingQueue addObject:operationAddressString];
+                }
+                break;
+            }
+                
+                //下載完的時候就把他從 download queue 移除
+            case HentaiDownloadBookOperationStatusFinished:
+            {
+                NSInteger downloadingIndex = [self findAddress:operationAddressString inQueue:downloadingQueue];
+                
+                //如果 download queue 裡面有他, 把他移除掉
+                if (downloadingIndex != NSNotFound) {
+                    [downloadingQueue removeObjectAtIndex:downloadingIndex];
+                }
+                break;
+            }
+        }
+    }
 }
 
 #pragma mark - runtime objects
@@ -116,6 +193,22 @@
 }
 
 + (HentaiMonitorBlock)monitor {
+    return objc_getAssociatedObject(self, _cmd);
+}
+
++ (NSMutableArray *)waitingAddressQueue {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSMutableArray array], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
+}
+
++ (NSMutableArray *)downloadingAddressQueue {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSMutableArray array], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
     return objc_getAssociatedObject(self, _cmd);
 }
 

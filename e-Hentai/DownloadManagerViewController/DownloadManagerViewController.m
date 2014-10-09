@@ -76,12 +76,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    __weak DownloadManagerViewController *weakSelf = self;
+    @weakify(self);
     [HentaiDownloadCenter centerMonitor: ^(NSDictionary *centerDetail) {
-        if (weakSelf) {
-            weakSelf.centerDetail = centerDetail;
-            [weakSelf.downloadManagerTableView reloadData];
-        }
+        @strongify(self);
+        self.centerDetail = centerDetail;
+        [self.downloadManagerTableView reloadData];
     }];
 }
 

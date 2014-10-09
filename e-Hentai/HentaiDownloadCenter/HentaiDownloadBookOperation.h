@@ -31,6 +31,6 @@ typedef enum {
 @protocol HentaiDownloadBookOperationDelegate <NSObject>
 
 @required
-- (void)hentaiDownloadBookOperationChange:(NSDictionary *)change operation:(HentaiDownloadBookOperation *)operation;
+- (void)hentaiDownloadBookOperationChange:(HentaiDownloadBookOperation *)operation;
 
 @end

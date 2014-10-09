@@ -29,6 +29,8 @@
     #import <ViewDeck/IIViewDeckController.h>
     #import <SDWebImage/UIImageView+WebCache.h>
     #import <SVProgressHUD/SVProgressHUD.h>
+    #import <ReactiveCocoa/ReactiveCocoa.h>
+    #import <ReactiveCocoa/RACEXTScope.h>
 
     //LightWeightPlist
     #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")
