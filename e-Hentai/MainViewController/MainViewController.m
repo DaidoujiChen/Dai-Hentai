@@ -233,12 +233,15 @@
 - (void)setupRecvNotifications {
     
     //接 HentaiDownloadSuccessNotification
+    @weakify(self);
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:HentaiDownloadSuccessNotification object:nil] subscribeNext:^(NSNotification *notification) {
-        [UIAlertView hentai_alertViewWithTitle:@"下載完成!" message:notification.object cancelButtonTitle:@"好~ O3O"];
+        @strongify(self);
+        if (self) {
+            [UIAlertView hentai_alertViewWithTitle:@"下載完成!" message:notification.object cancelButtonTitle:@"好~ O3O"];
+        }
     }];
     
     //接 UIKeyboardWillShowNotification
-    @weakify(self);
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(NSNotification *notification) {
         @strongify(self);
         NSDictionary *userInfo = [notification userInfo];
