@@ -69,7 +69,10 @@
 + (BOOL)isActiveFolder:(NSString *)folder {
     BOOL isExist = NO;
     for (HentaiDownloadBookOperation *eachOperation in[[self allBooksOperationQueue] operations]) {
-        if ([folder isEqualToString:[eachOperation.hentaiInfo hentai_hentaiKey]]) {
+        NSString *hentaiKey = [eachOperation.hentaiInfo hentai_hentaiKey];
+
+        //有時候不一定會完全 equal, 所以用 range 來做
+        if ([hentaiKey rangeOfString:folder].location != NSNotFound) {
             isExist = YES;
             break;
         }
