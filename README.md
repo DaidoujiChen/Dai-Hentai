@@ -1,7 +1,10 @@
 Dai-Hentai
 ======
+預覽圖大約 12mb, 請等一下下
 
-![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E5%B7%A5%E4%BA%8B%E4%B8%AD.jpeg)
+![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/iOS+Simulator+Screen+Shot+2014.10.17+%E4%B8%8B%E5%8D%885.05.32.png)
+![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/iOS+Simulator+Screen+Shot+2014.10.17+%E4%B8%8B%E5%8D%885.05.43.png)
+![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/iOS+Simulator+Screen+Shot+2014.10.17+%E4%B8%8B%E5%8D%885.05.49.png)
 
 [OptimusKe](https://github.com/OptimusKe)
 
@@ -19,7 +22,10 @@ daidoujichen@gmail.com
 
 當然, 撇開內容的部分不談, 程式碼的部分歡迎精進以及指點.
 
-目前專案的狀態我覺得還需要一些時間來測試相關的問題, 因此先擺上工事中的圖片, 未來會再將其換上別的圖片.
+浦公英安裝
+======
+[Dai-Hentai](http://www.pgyer.com/DaiHentai)
+我自己有測試過安裝 ok(ios 7.0.6, iphone5), 需要把時間暫時調到 2014-9-20 之前, 不過因為該網站打包的原因, 沒有辦法使用分享的功能.
 
 支援
 ======
