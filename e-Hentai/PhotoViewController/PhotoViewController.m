@@ -38,6 +38,7 @@
 @property (nonatomic, strong) NSString *hentaiURLString;
 @property (nonatomic, strong) NSString *maxHentaiCount;
 @property (nonatomic, strong) NSIndexPath *sharedIndexPath;
+@property (nonatomic, strong) NSLock *shareLock;
 
 - (void)backAction;
 - (void)saveAction;
@@ -153,6 +154,7 @@
     self.failCount = 0;
     self.isRemovedHUD = NO;
     self.realDisplayCount = 0;
+    self.shareLock = [NSLock new];
 }
 
 #pragma mark - components
@@ -286,12 +288,21 @@
 #pragma mark - HentaiPhotoCellDelegate
 
 - (void)needToShareAtIndexPath:(NSIndexPath *)indexPath {
-    self.sharedIndexPath = indexPath;
-    if ([[GPPSignIn sharedInstance] authentication]) {
-        [self shareToGPlus];
-    }
-    else {
-        [UIAlertView hentai_alertViewWithTitle:@"G+尚未聯結" message:@"請到設定頁面做聯結先喔!" cancelButtonTitle:@"好~ O3O"];
+    
+    //防止 alert 多次跳出
+    if ([self.shareLock tryLock]) {
+        self.sharedIndexPath = indexPath;
+        if ([[GPPSignIn sharedInstance] authentication]) {
+            [self shareToGPlus];
+            [self.shareLock unlock];
+        }
+        else {
+            @weakify(self);
+            [UIAlertView hentai_alertViewWithTitle:@"G+尚未聯結" message:@"請到設定頁面做聯結先喔!" cancelButtonTitle:@"好~ O3O" otherButtonTitles:nil onClickIndex:nil onCancel:^{
+                @strongify(self);
+                [self.shareLock unlock];
+            }];
+        }
     }
 }
 
