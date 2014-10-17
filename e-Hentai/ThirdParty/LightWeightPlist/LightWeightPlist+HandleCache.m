@@ -19,7 +19,8 @@
 
 #pragma mark - NSCacheDelegate
 
-+ (void)cache:(NSCache *)cache willEvictObject:(id)obj {
++ (void)cache:(NSCache *)cache willEvictObject:(id)obj
+{
     if ([lwpPointerMapping objectForKey:[self objectAddressString:obj]]) {
         id associatedObject = objc_getAssociatedObject(self, lwpBridge(obj));
         NSString *filename = [lwpPointerMapping objectForKey:[self objectAddressString:obj]];

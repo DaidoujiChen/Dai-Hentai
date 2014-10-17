@@ -102,7 +102,10 @@
 
 - (void)deleteAction {
     [[FilesManager documentFolder] rd:self.hentaiKey];
-    [HentaiSaveLibraryArray removeObjectAtIndex:self.downloadKey];
+    LWPSafe(
+            [HentaiSaveLibraryArray removeObjectAtIndex:self.downloadKey];
+            LWPForceWrite();
+    )
     [self backAction];
 }
 
@@ -137,7 +140,10 @@
         }
         else {
             self.hentaiResults = [NSMutableDictionary dictionary];
-            [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
+            LWPSafe(
+                    [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
+                    LWPForceWrite();
+            )
         }
     }
     else {
@@ -226,7 +232,10 @@
         FMStream *saveFolder = [[FilesManager documentFolder] fcd:@"Hentai"];
         [self.hentaiFilesManager moveToPath:[saveFolder.currentPath stringByAppendingPathComponent:self.hentaiKey]];
         NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
-        [HentaiSaveLibraryArray addObject:saveInfo];
+        LWPSafe(
+                [HentaiSaveLibraryArray addObject:saveInfo];
+                LWPForceWrite();
+        )
         self.downloadKey = [HentaiSaveLibraryArray indexOfObject:saveInfo];
         [self setupForAlreadyDownloadKey:self.downloadKey];
         [SVProgressHUD dismiss];
@@ -439,13 +448,16 @@
     
     //結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
     [self.hentaiQueue cancelAllOperations];
-    if (self.downloadKey != NSNotFound) {
-        [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
-    }
-    else {
-        HentaiCacheLibraryDictionary[self.hentaiKey] = self.hentaiResults;
-    }
-    LWPForceWrite();
+    
+    LWPSafe(
+            if (self.downloadKey != NSNotFound) {
+                [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
+            }
+            else {
+                HentaiCacheLibraryDictionary[self.hentaiKey] = self.hentaiResults;
+            }
+            LWPForceWrite();
+    )
 }
 
 @end

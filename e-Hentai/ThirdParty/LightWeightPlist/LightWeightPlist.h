@@ -11,9 +11,14 @@
 #define LWPArray(fmt) [LightWeightPlist lwpArray:fmt]
 #define LWPArrayR(fmt) [LightWeightPlist lwpArrayFromResource:fmt]
 #define LWPDictionary(fmt) [LightWeightPlist lwpDictionary:fmt]
-#define LWPDictionaryR(fmt) [LightWeightPlist lwpArrayFromResource:fmt]
+#define LWPDictionaryR(fmt) [LightWeightPlist lwpDictionaryFromResource:fmt]
 #define LWPDelete(fmt) [LightWeightPlist lwpDelete:fmt]
 #define LWPForceWrite() [LightWeightPlist lwpForceWrite]
+
+#define LWPSafe(fmt)                            \
+@synchronized([LightWeightPlist class]) {       \
+    fmt;                                        \
+}
 
 @interface LightWeightPlist : NSObject
 

@@ -180,12 +180,14 @@
     else {
         if (![self isCancelled]) {
             NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
-            [HentaiSaveLibraryArray addObject:saveInfo];
             
             //如果 cache 有暫存就殺光光
             [[[FilesManager cacheFolder] fcd:@"Hentai"] rd:self.hentaiKey];
-            [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
-            LWPForceWrite();
+            LWPSafe(
+                    [HentaiSaveLibraryArray addObject:saveInfo];
+                    [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
+                    LWPForceWrite();
+            )
             [[NSNotificationCenter defaultCenter] postNotificationName:HentaiDownloadSuccessNotification object:self.hentaiInfo[@"title"]];
             [self hentaiFinish];
         }
