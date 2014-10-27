@@ -91,9 +91,9 @@
 
 //從 memory address access 該物件
 + (instancetype)objectAtMemoryAddressString:(NSString *)addressString {
-    unsigned address = UINT_MAX;
-    [[NSScanner scannerWithString:addressString] scanHexInt:&address];
-    if (address == UINT_MAX) {
+    unsigned long long address = NSNotFound;
+    [[NSScanner scannerWithString:addressString] scanHexLongLong:&address];
+    if (address == NSNotFound) {
         return nil;
     }
     void *asRawPointer = (void *)(intptr_t)address;
