@@ -1,0 +1,76 @@
+/* 
+  SupportKitLocalizable.strings
+  SupportKit
+
+  Created by Jean-Philippe Joyal on 2014-10-20.
+  Copyright (c) 2014 Radialpoint. All rights reserved.
+*/
+
+/* Search bar placeholder */
+"Search %@ Help" = "Search %@ Help";
+
+/* Nav bar left button */
+"Close" = "Close";
+
+/* Nav bar right button */
+"Cancel" = "Cancel";
+
+/* Messages button and Conversation title */
+"Messages" = "Messages";
+
+/* Conversation header. Uses CFBundleDisplayName */
+"This is the start of your conversation with the %@ team. We'll stay in touch to help you get the most out of your app.\nFeel free to leave us a message about anything that’s on your mind. We’ll get back to your questions, suggestions or anything else as soon as we can." = "This is the start of your conversation with the %@ team. We'll stay in touch to help you get the most out of your app.\nFeel free to leave us a message about anything that’s on your mind. We’ll get back to your questions, suggestions or anything else as soon as we can.";
+
+/* Error message shown in conversation view */
+"No Internet connection" = "No Internet connection";
+
+/* Error message shown in conversation view */
+"Could not connect to server" = "Could not connect to server";
+
+/* Local notification text. Uses CFBundleDisplayName */
+"Having trouble with %@? Reach out and we'll help." = "Having trouble with %@? Reach out and we'll help.";
+
+/* Recommendation title */
+"Recommended For You" = "Recommended For You";
+
+/* Error displayed in the search result table view */
+"Cannot return search results" = "Cannot return search results";
+
+/* Error displayed in the search result table view */
+"No results found." = "No results found.";
+
+/* Fallback used by the in app notification when no message author name is found */
+"%@ Team" = "%@ Team";
+
+/* Button label for the no network message in web view */
+"Reload" = "Reload";
+
+/* No network message in web view */
+"Cannot open the page because your device is not connected to the Internet." = "Cannot open the page because your device is not connected to the Internet.";
+
+/* Two fingers gesture hint title */
+"Quick Tip" = "Quick Tip";
+
+/* Two fingers gesture hint instructions */
+"Swipe down with two fingers to get help from anywhere. Try it above." = "Swipe down with two fingers to get help from anywhere. Try it above.";
+
+/* Two fingers gesture hint skip button */
+"Skip" = "Skip";
+
+/* webview didFailLoadWithError Alert view title */
+"Error" = "Error";
+
+/* webview didFailLoadWithError Alert view button */
+"Okay" = "Okay";
+
+/* Conversation send button */
+"Send" = "Send";
+
+/* Conversation text input place holder */
+"Type a message..." = "Type a message...";
+
+/* Conversation nav bar left button */
+"Done" = "Done";
+
+/* Failure text for chat messages that fail to upload */
+"Message not delivered. Tap to retry." = "Message not delivered. Tap to retry.";

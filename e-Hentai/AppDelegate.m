@@ -8,16 +8,25 @@
 
 #import "AppDelegate.h"
 
+#import "AppDelegate+SupportKit.h"
+
 @implementation AppDelegate
 
+#pragma mark - app life cycle
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-	HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:[SliderViewController new]];
-	hentaiNavigation.autoRotate = NO;
-	hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
-	self.window.rootViewController = hentaiNavigation;
-	[self.window makeKeyAndVisible];
-	return YES;
+    
+    //supportkit
+    [self setupSupportKit];
+    
+    //display
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:[SliderViewController new]];
+    hentaiNavigation.autoRotate = NO;
+    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
+    self.window.rootViewController = hentaiNavigation;
+    [self.window makeKeyAndVisible];
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

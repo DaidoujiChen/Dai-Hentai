@@ -29,18 +29,17 @@
 //切換 controller
 - (void)needToChangeViewController:(NSString *)className {
     
-    //擋住還沒有做好的設定頁而已
-    if ([className length] == 0) {
-        [UIAlertView hentai_alertViewWithTitle:@"設定頁還沒有做好" message:nil cancelButtonTitle:@"好"];
-        return;
+    if (className) {
+        id newViewController = [NSClassFromString(className) new];
+        if ([newViewController respondsToSelector:@selector(setDelegate:)]) {
+            [newViewController performSelector:@selector(setDelegate:) withObject:self];
+        }
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newViewController];
+        self.centerController = navigationController;
     }
-    
-    id newViewController = [NSClassFromString(className) new];
-    if ([newViewController respondsToSelector:@selector(setDelegate:)]) {
-        [newViewController performSelector:@selector(setDelegate:) withObject:self];
+    else {
+        [SupportKit show];
     }
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newViewController];
-	self.centerController = navigationController;
     [self closeLeftView];
 }
 

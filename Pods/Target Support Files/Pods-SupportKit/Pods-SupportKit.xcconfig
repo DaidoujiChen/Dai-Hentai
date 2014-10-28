@@ -1,0 +1,2 @@
+PODS_SUPPORTKIT_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/SupportKit" "$(PODS_ROOT)/SupportKit"
+PODS_SUPPORTKIT_OTHER_LDFLAGS = -l"xml2" -framework "CoreGraphics" -framework "CoreTelephony" -framework "CoreText" -framework "Foundation" -framework "OpenGLES" -framework "QuartzCore" -framework "SupportKit" -framework "SystemConfiguration" -framework "UIKit"

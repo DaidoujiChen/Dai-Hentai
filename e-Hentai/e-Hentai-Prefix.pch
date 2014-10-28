@@ -41,4 +41,7 @@
     #import <GooglePlus/GooglePlus.h>
     #import <GoogleOpenSource/GoogleOpenSource.h>
 
+    //support kit
+    #import <SupportKit/SupportKit.h>
+
 #endif

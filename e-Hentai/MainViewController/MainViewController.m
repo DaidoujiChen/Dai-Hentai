@@ -236,7 +236,7 @@
     @weakify(self);
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:HentaiDownloadSuccessNotification object:nil] subscribeNext:^(NSNotification *notification) {
         @strongify(self);
-        if (self) {
+        if (self && [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil) {
             [UIAlertView hentai_alertViewWithTitle:@"下載完成!" message:notification.object cancelButtonTitle:@"好~ O3O"];
         }
     }];
@@ -244,18 +244,20 @@
     //接 UIKeyboardWillShowNotification
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(NSNotification *notification) {
         @strongify(self);
-        NSDictionary *userInfo = [notification userInfo];
-        CGRect keyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        CGFloat deltaHeight = CGRectGetMinY(keyboardFrame) - statusBarWithNavigationHeight;
-        HentaiFilterView *filterView = [self filterViewInSearchBar:self.searchBar];
-        
-        //當變異值的值不為 0, 以及跟目前 filterView height 不同時需要改變
-        if (deltaHeight != filterView.frame.size.height && deltaHeight != 0) {
-            [self.searchBar resignFirstResponder];
-            CGRect filterFrame = filterView.frame;
-            filterFrame.size.height += deltaHeight;
-            filterView.frame = filterFrame;
-            [self.searchBar becomeFirstResponder];
+        if (self && [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil) {
+            NSDictionary *userInfo = [notification userInfo];
+            CGRect keyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+            CGFloat deltaHeight = CGRectGetMinY(keyboardFrame) - statusBarWithNavigationHeight;
+            HentaiFilterView *filterView = [self filterViewInSearchBar:self.searchBar];
+            
+            //當變異值的值不為 0, 以及跟目前 filterView height 不同時需要改變
+            if (deltaHeight != filterView.frame.size.height && deltaHeight != 0) {
+                [self.searchBar resignFirstResponder];
+                CGRect filterFrame = filterView.frame;
+                filterFrame.size.height += deltaHeight;
+                filterView.frame = filterFrame;
+                [self.searchBar becomeFirstResponder];
+            }
         }
     }];
 }

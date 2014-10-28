@@ -22,6 +22,10 @@
 	</dict>
 	<dict>
 		<key>displayName</key>
+		<string>問題回報</string>
+	</dict>
+	<dict>
+		<key>displayName</key>
 		<string>設定</string>
 		<key>controller</key>
 		<string>SettingViewController</string>

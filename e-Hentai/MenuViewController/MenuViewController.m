@@ -8,9 +8,13 @@
 
 #import "MenuViewController.h"
 
+#import "AppDelegate+SupportKit.h"
+
 #define dataSource LWPArrayR(@"Menu")
 
 @interface MenuViewController ()
+
+@property (nonatomic, strong) NSNumber *unreadCount;
 
 @end
 
@@ -25,7 +29,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuDefaultCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = dataSource[indexPath.row][@"displayName"];
+    if (dataSource[indexPath.row][@"controller"]) {
+        cell.textLabel.text = dataSource[indexPath.row][@"displayName"];
+    }
+    else {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", dataSource[indexPath.row][@"displayName"], self.unreadCount ? :@"讀取中"];
+    }
     return cell;
 }
 
@@ -38,8 +47,16 @@
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+    [super viewDidLoad];
     [self.menuTableView registerClass:[MenuDefaultCell class] forCellReuseIdentifier:@"MenuDefaultCell"];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    @weakify(self);
+    appDelegate.monitor = ^(NSNumber *unreadCount) {
+        @strongify(self);
+        self.unreadCount = unreadCount;
+        [self.menuTableView reloadData];
+    };
 }
 
 @end

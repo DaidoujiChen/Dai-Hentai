@@ -9,19 +9,22 @@ PODS:
   - SDWebImage (3.7.1):
     - SDWebImage/Core
   - SDWebImage/Core (3.7.1)
+  - SupportKit (2.4.0)
   - SVProgressHUD (1.0)
   - ViewDeck (2.3.1)
 
 DEPENDENCIES:
   - ReactiveCocoa (~> 2.3.1)
   - SDWebImage (~> 3.6)
+  - SupportKit (~> 2.4.0)
   - SVProgressHUD (~> 1.0)
   - ViewDeck (~> 2.3.1)
 
 SPEC CHECKSUMS:
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SupportKit: 03ee8dec9c5464c98c38e13a66af4af4b35a2551
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
   ViewDeck: 654a493fc83928892ce483dea08a5302180aafce
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4
