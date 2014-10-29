@@ -35,6 +35,8 @@
     //LightWeightPlist
     #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")
     #define HentaiSaveLibraryArray LWPArray(@"HentaiSaveLibrary")
+    #define HentaiPrefer LWPDictionary(@"HentaiPrefer")
+    #define HentaiFilters LWPArrayR(@"HentaiFilters")
 
     //google plus
     static NSString * const kClientId = @"577014773497-5que5pf6avfoqa96vd396v9kqtamjqq2.apps.googleusercontent.com";
