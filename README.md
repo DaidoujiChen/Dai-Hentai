@@ -1,10 +1,8 @@
 Dai-Hentai
 ======
-預覽圖大約 12mb, 請等一下下
+預覽圖大約 5mb, 請等一下下
 
-![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/iOS+Simulator+Screen+Shot+2014.10.17+%E4%B8%8B%E5%8D%885.05.32.png)
-![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/iOS+Simulator+Screen+Shot+2014.10.17+%E4%B8%8B%E5%8D%885.05.43.png)
-![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/iOS+Simulator+Screen+Shot+2014.10.17+%E4%B8%8B%E5%8D%885.05.49.png)
+![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/Dai-Hentai.gif)
 
 [OptimusKe](https://github.com/OptimusKe)
 
