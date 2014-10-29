@@ -55,3 +55,6 @@ daidoujichen@gmail.com
 
 - FilesManager
   - 在這個專案測試用的工具, 主要用來幫忙管理磁碟存取的動作.
+
+- SupportKit
+  - app 內回報系統.
