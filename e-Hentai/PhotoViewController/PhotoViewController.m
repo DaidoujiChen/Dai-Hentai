@@ -235,7 +235,7 @@
         [self.hentaiFilesManager moveToPath:[saveFolder.currentPath stringByAppendingPathComponent:self.hentaiKey]];
         NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
         LWPSafe(
-                [HentaiSaveLibraryArray addObject:saveInfo];
+                [HentaiSaveLibraryArray insertObject:saveInfo atIndex:0];
                 LWPForceWrite();
         )
         self.downloadKey = [HentaiSaveLibraryArray indexOfObject:saveInfo];
