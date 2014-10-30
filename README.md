@@ -56,3 +56,6 @@ daidoujichen@gmail.com
 
 - SupportKit
   - app 內回報系統.
+
+- Chameleon
+  - 提供一些不同於系統色的一些額外色調.
