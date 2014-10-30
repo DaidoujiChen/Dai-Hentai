@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ColorThemeViewController.h"
 #import "MenuDefaultCell.h"
 
 @protocol MenuViewControllerDelegate;
 
-@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MenuViewController : ColorThemeViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) id <MenuViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;

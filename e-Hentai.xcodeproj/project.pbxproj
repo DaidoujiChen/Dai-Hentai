@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0103B8BF1A01E6FC00CF314F /* ColorThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103B8BE1A01E6FC00CF314F /* ColorThemeViewController.m */; };
 		0107D9AA19DBF656006C5673 /* UIAlertView+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */; };
 		010E3ADF19E3B93800B866FB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */; };
 		010E3AE119E3B94700B866FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3AE019E3B94700B866FB /* SystemConfiguration.framework */; };
@@ -92,6 +93,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0103B8BD1A01E6FC00CF314F /* ColorThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorThemeViewController.h; sourceTree = "<group>"; };
+		0103B8BE1A01E6FC00CF314F /* ColorThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorThemeViewController.m; sourceTree = "<group>"; };
 		0107D9A819DBF656006C5673 /* UIAlertView+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Hentai.h"; sourceTree = "<group>"; };
 		0107D9A919DBF656006C5673 /* UIAlertView+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Hentai.m"; sourceTree = "<group>"; };
 		010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -259,6 +262,8 @@
 				01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */,
 				01BBD5FA19E3D2F2003538CF /* UITableViewCell+Hentai.h */,
 				01BBD5FB19E3D2F2003538CF /* UITableViewCell+Hentai.m */,
+				0103B8BD1A01E6FC00CF314F /* ColorThemeViewController.h */,
+				0103B8BE1A01E6FC00CF314F /* ColorThemeViewController.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -727,6 +732,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0103B8BF1A01E6FC00CF314F /* ColorThemeViewController.m in Sources */,
 				0107D9AA19DBF656006C5673 /* UIAlertView+Hentai.m in Sources */,
 				0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */,
 				016BBF0D19B94E4F0015E11E /* LightWeightPlist+AccessObject.m in Sources */,

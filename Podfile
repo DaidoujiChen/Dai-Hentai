@@ -7,4 +7,4 @@ pod 'SVProgressHUD', '~> 1.0'
 pod 'SDWebImage', '~> 3.6'
 pod 'ReactiveCocoa', '~> 2.3.1'
 pod 'SupportKit', '~> 2.4.0'
-
+pod 'ChameleonFramework', '~> 1.1.1'

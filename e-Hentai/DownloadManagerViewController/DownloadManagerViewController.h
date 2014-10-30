@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ColorThemeViewController.h"
 #import "DownloadManagerCell.h"
 
-@interface DownloadManagerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DownloadManagerViewController : ColorThemeViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *downloadManagerTableView;
 

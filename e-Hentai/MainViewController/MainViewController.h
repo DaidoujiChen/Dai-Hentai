@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ColorThemeViewController.h"
 #import "HentaiParser.h"
 #import "GalleryCell.h"
 #import "HentaiNavigationController.h"
@@ -17,7 +18,7 @@
 
 @protocol MainViewControllerDelegate;
 
-@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, SearchFilterViewControllerDelegate>
+@interface MainViewController : ColorThemeViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, SearchFilterViewControllerDelegate>
 
 @property (nonatomic, weak) id <MainViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;

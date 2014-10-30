@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingViewController : UIViewController <GPPSignInDelegate>
+#import "ColorThemeViewController.h"
+
+@interface SettingViewController : ColorThemeViewController <GPPSignInDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *gPlusConnectLabel;
 @property (weak, nonatomic) IBOutlet GPPSignInButton *gPlusSignInButton;

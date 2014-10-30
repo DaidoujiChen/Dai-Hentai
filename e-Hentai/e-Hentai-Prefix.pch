@@ -31,6 +31,8 @@
     #import <SVProgressHUD/SVProgressHUD.h>
     #import <ReactiveCocoa/ReactiveCocoa.h>
     #import <ReactiveCocoa/RACEXTScope.h>
+    #import <ChameleonFramework/Chameleon.h>
+    #import <SupportKit/SupportKit.h>
 
     //LightWeightPlist
     #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")
@@ -42,8 +44,5 @@
     static NSString * const kClientId = @"577014773497-5que5pf6avfoqa96vd396v9kqtamjqq2.apps.googleusercontent.com";
     #import <GooglePlus/GooglePlus.h>
     #import <GoogleOpenSource/GoogleOpenSource.h>
-
-    //support kit
-    #import <SupportKit/SupportKit.h>
 
 #endif
