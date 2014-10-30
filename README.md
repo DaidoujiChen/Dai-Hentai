@@ -59,3 +59,6 @@ daidoujichen@gmail.com
 
 - Chameleon
   - 提供一些不同於系統色的一些額外色調.
+
+- Icons8 App
+  - 可以免費取得一些 icon 的小工具.
