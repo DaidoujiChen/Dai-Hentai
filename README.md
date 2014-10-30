@@ -2,7 +2,7 @@ Dai-Hentai
 ======
 預覽圖大約 5mb, 請等一下下
 
-![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/Dai-Hentai.gif)
+![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/Dai-Hentai_20141030.gif)
 
 [OptimusKe](https://github.com/OptimusKe)
 
