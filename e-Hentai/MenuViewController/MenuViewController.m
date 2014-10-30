@@ -29,12 +29,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuDefaultCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.imageView.image = [UIImage imageNamed:dataSource[indexPath.row][@"image"]];
+    
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    UIColor *textColor = [UIColor flatForestGreenColorDark];
+    NSDictionary *attributes = @{ NSForegroundColorAttributeName : textColor, NSFontAttributeName : font, NSTextEffectAttributeName : NSTextEffectLetterpressStyle };
+    NSString *text;
     if (dataSource[indexPath.row][@"controller"]) {
-        cell.textLabel.text = dataSource[indexPath.row][@"displayName"];
+        text = dataSource[indexPath.row][@"displayName"];
     }
     else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", dataSource[indexPath.row][@"displayName"], self.unreadCount ? :@"讀取中"];
+        text = [NSString stringWithFormat:@"%@ (%@)", dataSource[indexPath.row][@"displayName"], self.unreadCount ? :@"讀取中"];
     }
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:text attributes:attributes];
+    cell.textLabel.attributedText = attributedString;
     return cell;
 }
 

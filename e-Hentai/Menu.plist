@@ -5,28 +5,38 @@
 	<dict>
 		<key>displayName</key>
 		<string>主頁</string>
+		<key>image</key>
+		<string>exterior</string>
 		<key>controller</key>
 		<string>MainViewController</string>
 	</dict>
 	<dict>
 		<key>displayName</key>
 		<string>已下載</string>
+		<key>image</key>
+		<string>dropbox_copyrighted</string>
 		<key>controller</key>
 		<string>DownloadedViewController</string>
 	</dict>
 	<dict>
 		<key>displayName</key>
 		<string>下載管理員</string>
+		<key>image</key>
+		<string>delivery</string>
 		<key>controller</key>
 		<string>DownloadManagerViewController</string>
 	</dict>
 	<dict>
 		<key>displayName</key>
 		<string>問題回報</string>
+		<key>image</key>
+		<string>phone2</string>
 	</dict>
 	<dict>
 		<key>displayName</key>
 		<string>設定</string>
+		<key>image</key>
+		<string>settings</string>
 		<key>controller</key>
 		<string>SettingViewController</string>
 	</dict>

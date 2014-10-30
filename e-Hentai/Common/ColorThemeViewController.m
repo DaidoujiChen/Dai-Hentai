@@ -21,4 +21,16 @@
     self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.bounds andColors:@[colorFriends[0], colorFriends[4]]];
 }
 
+//本來 settitle 是設定 navigation title 上面的字, 這邊把他轉換成用漂亮的字體秀
+- (void)setTitle:(NSString *)title {
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    UIColor *textColor = [UIColor flatBlackColor];
+    NSDictionary *attributes = @{ NSForegroundColorAttributeName : textColor, NSFontAttributeName : font, NSTextEffectAttributeName : NSTextEffectLetterpressStyle };
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:title attributes:attributes];
+    UILabel *titleLabel = [UILabel new];
+    titleLabel.attributedText = attributedString;
+    [titleLabel sizeToFit];
+    self.navigationItem.titleView = titleLabel;
+}
+
 @end

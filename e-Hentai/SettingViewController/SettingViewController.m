@@ -136,6 +136,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"設定";
     [self cacheFolderSize];
     [self documentFolderSize];
     

@@ -56,6 +56,16 @@
 		017AE5C31A00D24600317939 /* SearchFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017AE5C11A00D24600317939 /* SearchFilterViewController.xib */; };
 		017AE5C51A00D26A00317939 /* HentaiFilters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 017AE5C41A00D26A00317939 /* HentaiFilters.plist */; };
 		017AE5C71A00D7DD00317939 /* HentaiPrefer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 017AE5C61A00D7DD00317939 /* HentaiPrefer.plist */; };
+		0180D9161A0210FB002554FC /* exterior@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D9151A0210FB002554FC /* exterior@2x.png */; };
+		0180D91C1A021282002554FC /* exterior@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D91A1A021282002554FC /* exterior@3x.png */; };
+		0180D91F1A0212C8002554FC /* dropbox_copyrighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D91D1A0212C8002554FC /* dropbox_copyrighted@2x.png */; };
+		0180D9201A0212C8002554FC /* dropbox_copyrighted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D91E1A0212C8002554FC /* dropbox_copyrighted@3x.png */; };
+		0180D9271A02139F002554FC /* phone2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D9251A02139F002554FC /* phone2@2x.png */; };
+		0180D9281A02139F002554FC /* phone2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D9261A02139F002554FC /* phone2@3x.png */; };
+		0180D92B1A02140E002554FC /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D9291A02140E002554FC /* settings@2x.png */; };
+		0180D92C1A02140E002554FC /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92A1A02140E002554FC /* settings@3x.png */; };
+		0180D92F1A0214AD002554FC /* delivery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92D1A0214AD002554FC /* delivery@2x.png */; };
+		0180D9301A0214AD002554FC /* delivery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92E1A0214AD002554FC /* delivery@3x.png */; };
 		0199268919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
 		0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268A19ADDB83009F814B /* CoreGraphics.framework */; };
 		0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
@@ -172,6 +182,16 @@
 		017AE5C11A00D24600317939 /* SearchFilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchFilterViewController.xib; path = SearchFilterViewController/SearchFilterViewController.xib; sourceTree = "<group>"; };
 		017AE5C41A00D26A00317939 /* HentaiFilters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = HentaiFilters.plist; path = SearchFilterViewController/HentaiFilters.plist; sourceTree = "<group>"; };
 		017AE5C61A00D7DD00317939 /* HentaiPrefer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = HentaiPrefer.plist; path = SearchFilterViewController/HentaiPrefer.plist; sourceTree = "<group>"; };
+		0180D9151A0210FB002554FC /* exterior@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exterior@2x.png"; sourceTree = "<group>"; };
+		0180D91A1A021282002554FC /* exterior@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exterior@3x.png"; sourceTree = "<group>"; };
+		0180D91D1A0212C8002554FC /* dropbox_copyrighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropbox_copyrighted@2x.png"; sourceTree = "<group>"; };
+		0180D91E1A0212C8002554FC /* dropbox_copyrighted@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropbox_copyrighted@3x.png"; sourceTree = "<group>"; };
+		0180D9251A02139F002554FC /* phone2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone2@2x.png"; sourceTree = "<group>"; };
+		0180D9261A02139F002554FC /* phone2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone2@3x.png"; sourceTree = "<group>"; };
+		0180D9291A02140E002554FC /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		0180D92A1A02140E002554FC /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		0180D92D1A0214AD002554FC /* delivery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delivery@2x.png"; sourceTree = "<group>"; };
+		0180D92E1A0214AD002554FC /* delivery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delivery@3x.png"; sourceTree = "<group>"; };
 		0199268519ADDB83009F814B /* e-Hentai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-Hentai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0199268819ADDB83009F814B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0199268A19ADDB83009F814B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -438,6 +458,31 @@
 			name = SearchFilterViewController;
 			sourceTree = "<group>";
 		};
+		0180D9131A0210A8002554FC /* images */ = {
+			isa = PBXGroup;
+			children = (
+				0180D9141A0210A8002554FC /* MenuViewController */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		0180D9141A0210A8002554FC /* MenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0180D92D1A0214AD002554FC /* delivery@2x.png */,
+				0180D92E1A0214AD002554FC /* delivery@3x.png */,
+				0180D9291A02140E002554FC /* settings@2x.png */,
+				0180D92A1A02140E002554FC /* settings@3x.png */,
+				0180D9251A02139F002554FC /* phone2@2x.png */,
+				0180D9261A02139F002554FC /* phone2@3x.png */,
+				0180D91D1A0212C8002554FC /* dropbox_copyrighted@2x.png */,
+				0180D91E1A0212C8002554FC /* dropbox_copyrighted@3x.png */,
+				0180D9151A0210FB002554FC /* exterior@2x.png */,
+				0180D91A1A021282002554FC /* exterior@3x.png */,
+			);
+			path = MenuViewController;
+			sourceTree = "<group>";
+		};
 		0199267C19ADDB83009F814B = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +551,7 @@
 		0199268F19ADDB83009F814B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0180D9131A0210A8002554FC /* images */,
 				015B89E619FF9B2500CFA9DE /* SupportKitLocalizable.strings */,
 				0199269019ADDB83009F814B /* e-Hentai-Info.plist */,
 				0199269119ADDB83009F814B /* InfoPlist.strings */,
@@ -666,21 +712,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				017AE5C31A00D24600317939 /* SearchFilterViewController.xib in Resources */,
+				0180D91C1A021282002554FC /* exterior@3x.png in Resources */,
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
 				01BFAD5219DE435700A5649F /* SettingViewController.xib in Resources */,
 				0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */,
 				01CD0E2F19DE808B006155FD /* DownloadManagerViewController.xib in Resources */,
 				017AE5C71A00D7DD00317939 /* HentaiPrefer.plist in Resources */,
 				0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */,
+				0180D91F1A0212C8002554FC /* dropbox_copyrighted@2x.png in Resources */,
 				017AE5C51A00D26A00317939 /* HentaiFilters.plist in Resources */,
+				0180D9271A02139F002554FC /* phone2@2x.png in Resources */,
 				011AEA5719DD296400A15CA5 /* MenuViewController.xib in Resources */,
 				0118081C19B6F06200FE0DA1 /* PhotoViewController.xib in Resources */,
 				011AEA5A19DD31B300A15CA5 /* Menu.plist in Resources */,
+				0180D9161A0210FB002554FC /* exterior@2x.png in Resources */,
+				0180D92F1A0214AD002554FC /* delivery@2x.png in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
+				0180D9201A0212C8002554FC /* dropbox_copyrighted@3x.png in Resources */,
 				016DAD9919E392F900E528BE /* GooglePlus.bundle in Resources */,
+				0180D9301A0214AD002554FC /* delivery@3x.png in Resources */,
+				0180D92B1A02140E002554FC /* settings@2x.png in Resources */,
 				04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */,
 				01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */,
 				015B89E819FF9B2500CFA9DE /* SupportKitLocalizable.strings in Resources */,
+				0180D92C1A02140E002554FC /* settings@3x.png in Resources */,
+				0180D9281A02139F002554FC /* phone2@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
