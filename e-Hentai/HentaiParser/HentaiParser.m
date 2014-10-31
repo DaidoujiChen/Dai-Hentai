@@ -84,7 +84,7 @@
 + (void)requestImagesAtURL:(NSString *)urlString atIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSArray *images))completion {
 	//網址的範例
 	//http://g.e-hentai.org/g/735601/35fe0802c8/?p=2
-	NSString *newURLString = [NSString stringWithFormat:@"%@?p=%d", urlString, index];
+	NSString *newURLString = [NSString stringWithFormat:@"%@?p=%lud", urlString, index];
 	NSURL *newURL = [NSURL URLWithString:newURLString];
 	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:newURL] queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {

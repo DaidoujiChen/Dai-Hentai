@@ -113,7 +113,7 @@
     }
     else {
         @weakify(self);
-        [UIAlertView hentai_alertViewWithTitle:hentaiInfo[@"category"] message:[self alertMessage:hentaiInfo] cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex: ^(int clickIndex) {
+        [UIAlertView hentai_alertViewWithTitle:hentaiInfo[@"category"] message:[self alertMessage:hentaiInfo] cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex: ^(NSInteger clickIndex) {
             @strongify(self);
             if (clickIndex) {
                 if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^HentaiClickBlock)(int clickIndex);
+typedef void (^HentaiClickBlock)(NSInteger clickIndex);
 typedef void (^HentaiCancelBlock)(void);
 
 @interface UIAlertView (Hentai) <UIAlertViewDelegate>

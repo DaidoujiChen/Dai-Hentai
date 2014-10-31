@@ -94,7 +94,7 @@
 }
 
 - (void)saveAction {
-    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"衝吧! O3O"] onClickIndex: ^(int clickIndex) {
+    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"衝吧! O3O"] onClickIndex: ^(NSInteger clickIndex) {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
         [self waitingOnDownloadFinish];
     } onCancel: ^{
@@ -336,7 +336,7 @@
         }
         else {
             self.failCount++;
-            self.maxHentaiCount = [NSString stringWithFormat:@"%d", [self.maxHentaiCount integerValue] - 1];
+            self.maxHentaiCount = [NSString stringWithFormat:@"%ld", [self.maxHentaiCount integerValue] - 1];
             [self.hentaiImageURLs removeObject:urlString];
         }
     }
@@ -350,7 +350,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 當前頁數 / ( 可到頁數 / 已下載頁數 / 總共頁數 )
-    self.title = [NSString stringWithFormat:@"%d/(%d/%d/%@)", indexPath.row + 1, self.realDisplayCount, [self.hentaiResults count], self.maxHentaiCount];
+    self.title = [NSString stringWithFormat:@"%ld/(%ld/%ld/%@)", indexPath.row + 1, self.realDisplayCount, [self.hentaiResults count], self.maxHentaiCount];
     
     //無限滾
     if (indexPath.row >= [self.hentaiImageURLs count] - 20 && ([self.hentaiImageURLs count] + self.failCount) == (self.hentaiIndex + 1) * 40 && [self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
