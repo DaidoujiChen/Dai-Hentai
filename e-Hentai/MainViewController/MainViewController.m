@@ -73,8 +73,12 @@
         [self loadList: ^(BOOL successed, NSArray *listArray) {
             @strongify(self);
             if (successed) {
-                [self.listArray addObjectsFromArray:listArray];
-                [self.listCollectionView reloadData];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    [self.listArray addObjectsFromArray:listArray];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.listCollectionView reloadData];
+                    });
+                });
             }
             else {
                 self.listIndex--;
@@ -84,7 +88,7 @@
     }
     GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
     NSURL *imageURL = [NSURL URLWithString:self.listArray[indexPath.row][@"thumb"]];
-    [cell.cellImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageRefreshCached];
+    [cell.cellImageView sd_setImageWithURL:imageURL];
     cell.cellImageView.alpha = ([self.listArray[indexPath.row][@"rating"] floatValue] / 4.5f);
     return cell;
 }
@@ -142,11 +146,15 @@
     [self loadList: ^(BOOL successed, NSArray *listArray) {
         @strongify(self);
         if (successed) {
-            [self.listArray removeAllObjects];
-            [self.listArray addObjectsFromArray:listArray];
-            [self.listCollectionView reloadData];
-            [self.listCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-            [self.refreshControl endRefreshing];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                [self.listArray removeAllObjects];
+                [self.listArray addObjectsFromArray:listArray];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.listCollectionView reloadData];
+                    [self.listCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+                    [self.refreshControl endRefreshing];
+                });
+            });
         }
         else {
             [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
@@ -238,8 +246,12 @@
     [self loadList: ^(BOOL successed, NSArray *listArray) {
         @strongify(self);
         if (successed) {
-            [self.listArray addObjectsFromArray:listArray];
-            [self.listCollectionView reloadData];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                [self.listArray addObjectsFromArray:listArray];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.listCollectionView reloadData];
+                });
+            });
         }
         else {
             [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];

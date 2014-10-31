@@ -30,57 +30,13 @@
 
 #pragma mark - class method
 
-+ (void)requestListAtIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
-	NSString *urlString = [NSString stringWithFormat:baseListURL, index];
-	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-	    if (connectionError) {
-	        completion(HentaiParserStatusFail, nil);
-		}
-	    else {
-	        //這段是從 e hentai 的網頁 parse 列表
-	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
-	        NSArray *photoURL = [xpathParser searchWithXPathQuery:@"//div [@class='it5']//a"];
-            
-	        NSMutableArray *returnArray = [NSMutableArray array];
-	        NSMutableArray *urlStringArray = [NSMutableArray array];
-            
-	        for (TFHppleElement * eachTitleWithURL in photoURL) {
-	            [urlStringArray addObject:[eachTitleWithURL attributes][@"href"]];
-	            [returnArray addObject:[NSMutableDictionary dictionaryWithDictionary:@{ @"url": [eachTitleWithURL attributes][@"href"] }]];
-			}
-            
-	        //這段是從 e hentai 的 api 抓資料
-	        [self requestGDataAPIWithURLStrings:urlStringArray completion: ^(HentaiParserStatus status, NSArray *gMetaData) {
-	            if (status) {
-	                for (NSUInteger i = 0; i < [gMetaData count]; i++) {
-	                    NSMutableDictionary *eachDictionary = returnArray[i];
-	                    NSDictionary *metaData = gMetaData[i];
-	                    eachDictionary[@"thumb"] = metaData[@"thumb"];
-	                    eachDictionary[@"title"] = metaData[@"title"];
-	                    eachDictionary[@"title_jpn"] = metaData[@"title_jpn"];
-	                    eachDictionary[@"category"] = metaData[@"category"];
-	                    eachDictionary[@"uploader"] = metaData[@"uploader"];
-	                    eachDictionary[@"filecount"] = metaData[@"filecount"];
-	                    eachDictionary[@"filesize"] = [NSByteCountFormatter stringFromByteCount:[metaData[@"filesize"] floatValue] countStyle:NSByteCountFormatterCountStyleFile];
-	                    eachDictionary[@"rating"] = metaData[@"rating"];
-	                    eachDictionary[@"posted"] = [self dateStringFrom1970:[metaData[@"posted"] doubleValue]];
-					}
-	                completion(HentaiParserStatusSuccess, returnArray);
-				}
-	            else {
-	                completion(HentaiParserStatusFail, nil);
-				}
-			}];
-		}
-	}];
-}
-
 + (void)requestListAtFilterUrl:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        completion(HentaiParserStatusFail, nil);
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                completion(HentaiParserStatusFail, nil);
+            });
 		}
 	    else {
 	        //這段是從 e hentai 的網頁 parse 列表
@@ -111,10 +67,14 @@
 	                    eachDictionary[@"rating"] = metaData[@"rating"];
 	                    eachDictionary[@"posted"] = [self dateStringFrom1970:[metaData[@"posted"] doubleValue]];
 					}
-	                completion(HentaiParserStatusSuccess, returnArray);
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        completion(HentaiParserStatusSuccess, returnArray);
+                    });
 				}
 	            else {
-	                completion(HentaiParserStatusFail, nil);
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        completion(HentaiParserStatusFail, nil);
+                    });
 				}
 			}];
 		}
@@ -193,15 +153,11 @@
     
 	[NSURLConnection sendAsynchronousRequest:request queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        dispatch_sync(dispatch_get_main_queue(), ^{
-	            completion(HentaiParserStatusFail, nil);
-			});
+            completion(HentaiParserStatusFail, nil);
 		}
 	    else {
 	        NSDictionary *responseResult = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-	        dispatch_sync(dispatch_get_main_queue(), ^{
-	            completion(HentaiParserStatusSuccess, responseResult[@"gmetadata"]);
-			});
+            completion(HentaiParserStatusSuccess, responseResult[@"gmetadata"]);
 		}
 	}];
 }
