@@ -73,11 +73,6 @@
 		0199269519ADDB83009F814B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269419ADDB83009F814B /* main.m */; };
 		0199269919ADDB83009F814B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269819ADDB83009F814B /* AppDelegate.m */; };
 		019926A119ADDB83009F814B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019926A019ADDB83009F814B /* Images.xcassets */; };
-		019926A819ADDB83009F814B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019926A719ADDB83009F814B /* XCTest.framework */; };
-		019926A919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
-		019926AA19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
-		019926B219ADDB83009F814B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019926B019ADDB83009F814B /* InfoPlist.strings */; };
-		019926B419ADDB83009F814B /* e_HentaiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 019926B319ADDB83009F814B /* e_HentaiTests.m */; };
 		01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */; };
 		01BBD5FC19E3D2F2003538CF /* UITableViewCell+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BBD5FB19E3D2F2003538CF /* UITableViewCell+Hentai.m */; };
 		01BBD60119E3D428003538CF /* HentaiPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */; };
@@ -91,16 +86,6 @@
 		04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04376DFB19B96B76001B1599 /* GalleryCell.xib */; };
 		32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E356769FC894496F8A03AC25 /* libPods.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		019926AB19ADDB83009F814B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0199267D19ADDB83009F814B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0199268419ADDB83009F814B;
-			remoteInfo = "e-Hentai";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0103B8BD1A01E6FC00CF314F /* ColorThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorThemeViewController.h; sourceTree = "<group>"; };
@@ -139,7 +124,6 @@
 		0150033C19B6E5E90055F47D /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		0150033D19B6E5E90055F47D /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		015B89E419FF9AC900CFA9DE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		015B89E519FF9AC900CFA9DE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		015B89E719FF9B2500CFA9DE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SupportKitLocalizable.strings"; sourceTree = "<group>"; };
 		0163C7D519D8FD5300105ECF /* DownloadedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadedViewController.h; path = DownloadedViewController/DownloadedViewController.h; sourceTree = "<group>"; };
 		0163C7D619D8FD5300105ECF /* DownloadedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadedViewController.m; path = DownloadedViewController/DownloadedViewController.m; sourceTree = "<group>"; };
@@ -203,11 +187,7 @@
 		0199269719ADDB83009F814B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0199269819ADDB83009F814B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		019926A019ADDB83009F814B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		019926A619ADDB83009F814B /* e-HentaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "e-HentaiTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		019926A719ADDB83009F814B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		019926AF19ADDB83009F814B /* e-HentaiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "e-HentaiTests-Info.plist"; sourceTree = "<group>"; };
-		019926B119ADDB83009F814B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		019926B319ADDB83009F814B /* e_HentaiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = e_HentaiTests.m; sourceTree = "<group>"; };
 		01A166EA19E28D5E00203360 /* NSDictionary+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Hentai.h"; sourceTree = "<group>"; };
 		01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Hentai.m"; sourceTree = "<group>"; };
 		01BBD5FA19E3D2F2003538CF /* UITableViewCell+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Hentai.h"; sourceTree = "<group>"; };
@@ -251,16 +231,6 @@
 				0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */,
 				0199268919ADDB83009F814B /* Foundation.framework in Frameworks */,
 				32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		019926A319ADDB83009F814B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				019926A819ADDB83009F814B /* XCTest.framework in Frameworks */,
-				019926AA19ADDB83009F814B /* UIKit.framework in Frameworks */,
-				019926A919ADDB83009F814B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +457,6 @@
 			isa = PBXGroup;
 			children = (
 				0199268E19ADDB83009F814B /* e-Hentai */,
-				019926AD19ADDB83009F814B /* e-HentaiTests */,
 				0199268719ADDB83009F814B /* Frameworks */,
 				0199268619ADDB83009F814B /* Products */,
 				215E23A237E99B5BA75171C3 /* Pods */,
@@ -498,7 +467,6 @@
 			isa = PBXGroup;
 			children = (
 				0199268519ADDB83009F814B /* e-Hentai.app */,
-				019926A619ADDB83009F814B /* e-HentaiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -557,24 +525,6 @@
 				0199269119ADDB83009F814B /* InfoPlist.strings */,
 				0199269419ADDB83009F814B /* main.m */,
 				0199269619ADDB83009F814B /* e-Hentai-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		019926AD19ADDB83009F814B /* e-HentaiTests */ = {
-			isa = PBXGroup;
-			children = (
-				019926B319ADDB83009F814B /* e_HentaiTests.m */,
-				019926AE19ADDB83009F814B /* Supporting Files */,
-			);
-			path = "e-HentaiTests";
-			sourceTree = "<group>";
-		};
-		019926AE19ADDB83009F814B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				019926AF19ADDB83009F814B /* e-HentaiTests-Info.plist */,
-				019926B019ADDB83009F814B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -651,24 +601,6 @@
 			productReference = 0199268519ADDB83009F814B /* e-Hentai.app */;
 			productType = "com.apple.product-type.application";
 		};
-		019926A519ADDB83009F814B /* e-HentaiTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 019926BA19ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-HentaiTests" */;
-			buildPhases = (
-				019926A219ADDB83009F814B /* Sources */,
-				019926A319ADDB83009F814B /* Frameworks */,
-				019926A419ADDB83009F814B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				019926AC19ADDB83009F814B /* PBXTargetDependency */,
-			);
-			name = "e-HentaiTests";
-			productName = "e-HentaiTests";
-			productReference = 019926A619ADDB83009F814B /* e-HentaiTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -680,9 +612,6 @@
 				TargetAttributes = {
 					0199268419ADDB83009F814B = {
 						DevelopmentTeam = Y6TM8J7448;
-					};
-					019926A519ADDB83009F814B = {
-						TestTargetID = 0199268419ADDB83009F814B;
 					};
 				};
 			};
@@ -701,7 +630,6 @@
 			projectRoot = "";
 			targets = (
 				0199268419ADDB83009F814B /* e-Hentai */,
-				019926A519ADDB83009F814B /* e-HentaiTests */,
 			);
 		};
 /* End PBXProject section */
@@ -737,14 +665,6 @@
 				015B89E819FF9B2500CFA9DE /* SupportKitLocalizable.strings in Resources */,
 				0180D92C1A02140E002554FC /* settings@3x.png in Resources */,
 				0180D9281A02139F002554FC /* phone2@3x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		019926A419ADDB83009F814B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				019926B219ADDB83009F814B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,23 +748,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		019926A219ADDB83009F814B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				019926B419ADDB83009F814B /* e_HentaiTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		019926AC19ADDB83009F814B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0199268419ADDB83009F814B /* e-Hentai */;
-			targetProxy = 019926AB19ADDB83009F814B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		015B89E619FF9B2500CFA9DE /* SupportKitLocalizable.strings */ = {
@@ -860,15 +764,6 @@
 			children = (
 				0199269219ADDB83009F814B /* en */,
 				015B89E419FF9AC900CFA9DE /* zh-Hant */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		019926B019ADDB83009F814B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				019926B119ADDB83009F814B /* en */,
-				015B89E519FF9AC900CFA9DE /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1002,46 +897,6 @@
 			};
 			name = Release;
 		};
-		019926BB19ADDB83009F814B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/e-Hentai.app/e-Hentai";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "e-Hentai/e-Hentai-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "e-HentaiTests/e-HentaiTests-Info.plist";
-				PRODUCT_NAME = "e-HentaiTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		019926BC19ADDB83009F814B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/e-Hentai.app/e-Hentai";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "e-Hentai/e-Hentai-Prefix.pch";
-				INFOPLIST_FILE = "e-HentaiTests/e-HentaiTests-Info.plist";
-				PRODUCT_NAME = "e-HentaiTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1059,15 +914,6 @@
 			buildConfigurations = (
 				019926B819ADDB83009F814B /* Debug */,
 				019926B919ADDB83009F814B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		019926BA19ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-HentaiTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				019926BB19ADDB83009F814B /* Debug */,
-				019926BC19ADDB83009F814B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
