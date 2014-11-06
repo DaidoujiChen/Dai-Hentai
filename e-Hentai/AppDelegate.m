@@ -16,6 +16,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //設定 hud 的基本參數
+    [DaiInboxHUD setColors:@[[UIColor flatGreenColor], [UIColor flatBlackColor], [UIColor flatPinkColor], [UIColor flatOrangeColor]]];
+    [DaiInboxHUD setBackgroundColor:[UIColor whiteColor]];
+    [DaiInboxHUD setLineWidth:4.0f];
+    [DaiInboxHUD setMaskColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f]];
+    
     //supportkit
     [self setupSupportKit];
     

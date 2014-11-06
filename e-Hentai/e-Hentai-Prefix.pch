@@ -24,11 +24,11 @@
     #import "NSString+Hentai.h"
     #import "NSDictionary+Hentai.h"
     #import "UITableViewCell+Hentai.h"
+    #import "DaiInboxHUD.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>
     #import <SDWebImage/UIImageView+WebCache.h>
-    #import <SVProgressHUD/SVProgressHUD.h>
     #import <ReactiveCocoa/ReactiveCocoa.h>
     #import <ReactiveCocoa/RACEXTScope.h>
     #import <ChameleonFramework/Chameleon.h>

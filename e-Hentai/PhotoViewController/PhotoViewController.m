@@ -95,7 +95,7 @@
 
 - (void)saveAction {
     [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"衝吧! O3O"] onClickIndex: ^(NSInteger clickIndex) {
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+        [DaiInboxHUD show];
         [self waitingOnDownloadFinish];
     } onCancel: ^{
     }];
@@ -240,7 +240,7 @@
         )
         self.downloadKey = [HentaiSaveLibraryArray indexOfObject:saveInfo];
         [self setupForAlreadyDownloadKey:self.downloadKey];
-        [SVProgressHUD dismiss];
+        [DaiInboxHUD hide];
     }
 }
 
@@ -315,7 +315,7 @@
         if (availableCount > self.realDisplayCount) {
             if (availableCount >= 1 && !self.isRemovedHUD) {
                 self.isRemovedHUD = YES;
-                [SVProgressHUD dismiss];
+                [DaiInboxHUD hide];
             }
             self.realDisplayCount = availableCount;
             [self.hentaiTableView reloadData];
@@ -434,7 +434,7 @@
     //否則則從網路上取得
     else {
         self.hentaiFilesManager = [[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+        [DaiInboxHUD show];
         @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
             @strongify(self);
@@ -444,7 +444,7 @@
             }
             else {
                 [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
-                [SVProgressHUD dismiss];
+                [DaiInboxHUD hide];
             }
         }];
     }
@@ -454,7 +454,7 @@
     [super viewWillDisappear:animated];
     
     if (!self.isRemovedHUD) {
-        [SVProgressHUD dismiss];
+        [DaiInboxHUD hide];
     }
     
     //結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
