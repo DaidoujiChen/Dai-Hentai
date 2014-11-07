@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DaiInboxView : UIView
+#import "DaiInboxDisplayLink.h"
+
+@interface DaiInboxView : UIView <DaiInboxDisplayLinkDelegate>
 
 @property (nonatomic, strong) NSArray *hudColors;
 @property (nonatomic, assign) CGFloat hudLineWidth;
