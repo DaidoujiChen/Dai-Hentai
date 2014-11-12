@@ -83,11 +83,12 @@
     
     //FakeViewController 是一個硬把畫面轉直的媒介
     FakeViewController *fakeViewController = [FakeViewController new];
+    fakeViewController.view = [self.navigationController.view snapshotViewAfterScreenUpdates:NO];
     fakeViewController.BackBlock = ^() {
         [hentaiNavigation popViewControllerAnimated:YES];
     };
     [self presentViewController:fakeViewController animated:NO completion: ^{
-        dispatch_after(0, dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             [fakeViewController onPresentCompletion];
         });
     }];
