@@ -162,7 +162,7 @@
 //換算直向的高度
 - (CGSize)imagePortraitHeight:(CGSize)landscapeSize {
     CGFloat oldWidth = landscapeSize.width;
-    CGFloat scaleFactor = [UIScreen mainScreen].bounds.size.width / oldWidth;
+    CGFloat scaleFactor = realScreenWidth / oldWidth;
     CGFloat newHeight = landscapeSize.height * scaleFactor;
     CGFloat newWidth = oldWidth * scaleFactor;
     return CGSizeMake(newWidth, newHeight);
@@ -401,7 +401,7 @@
     if (self.hentaiResults[[eachImageString hentai_lastTwoPathComponent]]) {
         //如果畫面是直向的時候, 長度要重新算
         if (self.interfaceOrientation == UIDeviceOrientationPortrait) {
-            CGSize newSize = [self imagePortraitHeight:CGSizeMake([UIScreen mainScreen].bounds.size.height, [self.hentaiResults[[eachImageString hentai_lastTwoPathComponent]] floatValue])];
+            CGSize newSize = [self imagePortraitHeight:CGSizeMake(realScreenHeight, [self.hentaiResults[[eachImageString hentai_lastTwoPathComponent]] floatValue])];
             return newSize.height;
         }
         else {

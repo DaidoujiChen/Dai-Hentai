@@ -121,7 +121,7 @@
 //計算符合螢幕 size 的新大小
 - (CGSize)calendarNewSize:(UIImage *)image {
 	CGFloat oldWidth = image.size.width;
-	CGFloat scaleFactor = [UIScreen mainScreen].bounds.size.height / oldWidth;
+	CGFloat scaleFactor = realScreenHeight / oldWidth;
 	CGFloat newHeight = image.size.height * scaleFactor;
 	CGFloat newWidth = oldWidth * scaleFactor;
 	return CGSizeMake(newWidth, newHeight);
