@@ -35,7 +35,7 @@
 	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
             dispatch_sync(dispatch_get_main_queue(), ^{
-                completion(HentaiParserStatusFail, nil);
+                completion(HentaiParserStatusNetworkFail, nil);
             });
 		}
 	    else {
@@ -43,40 +43,48 @@
 	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
 	        NSArray *photoURL = [xpathParser searchWithXPathQuery:@"//div [@class='it5']//a"];
             
-	        NSMutableArray *returnArray = [NSMutableArray array];
-	        NSMutableArray *urlStringArray = [NSMutableArray array];
-            
-	        for (TFHppleElement * eachTitleWithURL in photoURL) {
-	            [urlStringArray addObject:[eachTitleWithURL attributes][@"href"]];
-	            [returnArray addObject:[NSMutableDictionary dictionaryWithDictionary:@{ @"url": [eachTitleWithURL attributes][@"href"] }]];
-			}
-            
-	        //這段是從 e hentai 的 api 抓資料
-	        [self requestGDataAPIWithURLStrings:urlStringArray completion: ^(HentaiParserStatus status, NSArray *gMetaData) {
-	            if (status) {
-	                for (NSUInteger i = 0; i < [gMetaData count]; i++) {
-	                    NSMutableDictionary *eachDictionary = returnArray[i];
-	                    NSDictionary *metaData = gMetaData[i];
-	                    eachDictionary[@"thumb"] = metaData[@"thumb"];
-	                    eachDictionary[@"title"] = metaData[@"title"];
-	                    eachDictionary[@"title_jpn"] = metaData[@"title_jpn"];
-	                    eachDictionary[@"category"] = metaData[@"category"];
-	                    eachDictionary[@"uploader"] = metaData[@"uploader"];
-	                    eachDictionary[@"filecount"] = metaData[@"filecount"];
-	                    eachDictionary[@"filesize"] = [NSByteCountFormatter stringFromByteCount:[metaData[@"filesize"] floatValue] countStyle:NSByteCountFormatterCountStyleFile];
-	                    eachDictionary[@"rating"] = metaData[@"rating"];
-	                    eachDictionary[@"posted"] = [self dateStringFrom1970:[metaData[@"posted"] doubleValue]];
-					}
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        completion(HentaiParserStatusSuccess, returnArray);
-                    });
-				}
-	            else {
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        completion(HentaiParserStatusFail, nil);
-                    });
-				}
-			}];
+            //如果 parse 有結果, 才做 request api 的動作, 反之 callback HentaiParserStatusParseFail
+            if ([photoURL count]) {
+                NSMutableArray *returnArray = [NSMutableArray array];
+                NSMutableArray *urlStringArray = [NSMutableArray array];
+                
+                for (TFHppleElement * eachTitleWithURL in photoURL) {
+                    [urlStringArray addObject:[eachTitleWithURL attributes][@"href"]];
+                    [returnArray addObject:[NSMutableDictionary dictionaryWithDictionary:@{ @"url": [eachTitleWithURL attributes][@"href"] }]];
+                }
+                
+                //這段是從 e hentai 的 api 抓資料
+                [self requestGDataAPIWithURLStrings:urlStringArray completion: ^(HentaiParserStatus status, NSArray *gMetaData) {
+                    if (status) {
+                        for (NSUInteger i = 0; i < [gMetaData count]; i++) {
+                            NSMutableDictionary *eachDictionary = returnArray[i];
+                            NSDictionary *metaData = gMetaData[i];
+                            eachDictionary[@"thumb"] = metaData[@"thumb"];
+                            eachDictionary[@"title"] = metaData[@"title"];
+                            eachDictionary[@"title_jpn"] = metaData[@"title_jpn"];
+                            eachDictionary[@"category"] = metaData[@"category"];
+                            eachDictionary[@"uploader"] = metaData[@"uploader"];
+                            eachDictionary[@"filecount"] = metaData[@"filecount"];
+                            eachDictionary[@"filesize"] = [NSByteCountFormatter stringFromByteCount:[metaData[@"filesize"] floatValue] countStyle:NSByteCountFormatterCountStyleFile];
+                            eachDictionary[@"rating"] = metaData[@"rating"];
+                            eachDictionary[@"posted"] = [self dateStringFrom1970:[metaData[@"posted"] doubleValue]];
+                        }
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            completion(HentaiParserStatusSuccess, returnArray);
+                        });
+                    }
+                    else {
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            completion(HentaiParserStatusNetworkFail, nil);
+                        });
+                    }
+                }];
+            }
+            else {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    completion(HentaiParserStatusParseFail, nil);
+                });
+            }
 		}
 	}];
 }
@@ -89,34 +97,43 @@
 	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:newURL] queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
 	        dispatch_sync(dispatch_get_main_queue(), ^{
-	            completion(HentaiParserStatusFail, nil);
+	            completion(HentaiParserStatusNetworkFail, nil);
 			});
 		}
 	    else {
 	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
 	        NSArray *pageURL  = [xpathParser searchWithXPathQuery:@"//div [@class='gdtm']//a"];
-	        NSMutableArray *returnArray = [NSMutableArray hentai_preAllocWithCapacity:[pageURL count]];
             
-	        dispatch_queue_t hentaiQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-	        dispatch_group_t hentaiGroup = dispatch_group_create();
-            
-	        for (NSUInteger i = 0; i < [pageURL count]; i++) {
-	            TFHppleElement *e = pageURL[i];
-	            dispatch_group_async(hentaiGroup, hentaiQueue, ^{
-	                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-	                [self requestCurrentImage:[NSURL URLWithString:[e attributes][@"href"]] atIndex:i completion: ^(HentaiParserStatus status, NSString *imageString, NSUInteger index) {
-	                    if (status) {
-	                        returnArray[index] = imageString;
-						}
-	                    dispatch_semaphore_signal(semaphore);
-					}];
-	                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-				});
-			}
-	        dispatch_group_wait(hentaiGroup, DISPATCH_TIME_FOREVER);
-	        dispatch_sync(dispatch_get_main_queue(), ^{
-	            completion(HentaiParserStatusSuccess, returnArray);
-			});
+            //如果 parse 有結果, 才做 request api 的動作, 反之 callback HentaiParserStatusParseFail
+            if ([pageURL count]) {
+                NSMutableArray *returnArray = [NSMutableArray hentai_preAllocWithCapacity:[pageURL count]];
+                
+                dispatch_queue_t hentaiQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+                dispatch_group_t hentaiGroup = dispatch_group_create();
+                
+                for (NSUInteger i = 0; i < [pageURL count]; i++) {
+                    TFHppleElement *e = pageURL[i];
+                    dispatch_group_async(hentaiGroup, hentaiQueue, ^{
+                        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                        [self requestCurrentImage:[NSURL URLWithString:[e attributes][@"href"]] atIndex:i completion: ^(HentaiParserStatus status, NSString *imageString, NSUInteger index) {
+                            if (status) {
+                                returnArray[index] = imageString;
+                            }
+                            dispatch_semaphore_signal(semaphore);
+                        }];
+                        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                    });
+                }
+                dispatch_group_wait(hentaiGroup, DISPATCH_TIME_FOREVER);
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    completion(HentaiParserStatusSuccess, returnArray);
+                });
+            }
+            else {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    completion(HentaiParserStatusNetworkFail, nil);
+                });
+            }
 		}
 	}];
 }
@@ -153,7 +170,7 @@
     
 	[NSURLConnection sendAsynchronousRequest:request queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-            completion(HentaiParserStatusFail, nil);
+            completion(HentaiParserStatusNetworkFail, nil);
 		}
 	    else {
 	        NSDictionary *responseResult = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -178,15 +195,22 @@
 + (void)requestCurrentImage:(NSURL *)url atIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSString *imageString, NSUInteger index))completion {
 	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[self hentaiOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        completion(HentaiParserStatusFail, nil, -1);
+	        completion(HentaiParserStatusNetworkFail, nil, -1);
 		}
 	    else {
 	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
 	        NSArray *pageURL  = [xpathParser searchWithXPathQuery:@"//div [@id='i3']//img"];
-	        for (TFHppleElement * e in pageURL) {
-	            completion(HentaiParserStatusSuccess, [e attributes][@"src"], index);
-	            break;
-			}
+            
+            //如果 parse 有結果, 才做 request api 的動作, 反之 callback HentaiParserStatusParseFail
+            if ([pageURL count]) {
+                for (TFHppleElement * e in pageURL) {
+                    completion(HentaiParserStatusSuccess, [e attributes][@"src"], index);
+                    break;
+                }
+            }
+            else {
+                completion(HentaiParserStatusParseFail, nil, -1);
+            }
 		}
 	}];
 }

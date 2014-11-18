@@ -165,11 +165,14 @@
 //把 request 的判斷都放到這個 method 裡面來
 - (void)loadList:(void (^)(BOOL successed, NSArray *listArray))completion {
     [HentaiParser requestListAtFilterUrl:self.filterString completion: ^(HentaiParserStatus status, NSArray *listArray) {
-        if (status && [listArray count]) {
-            completion(YES, listArray);
-        }
-        else {
-            completion(NO, nil);
+        switch (status) {
+            case HentaiParserStatusSuccess:
+                completion(YES, listArray);
+                break;
+            case HentaiParserStatusParseFail:
+            case HentaiParserStatusNetworkFail:
+                completion(NO, nil);
+                break;
         }
     }];
 }

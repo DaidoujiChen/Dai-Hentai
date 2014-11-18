@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-	HentaiParserStatusFail,
+	HentaiParserStatusNetworkFail = -1,
+    HentaiParserStatusParseFail,
 	HentaiParserStatusSuccess
 } HentaiParserStatus;
 

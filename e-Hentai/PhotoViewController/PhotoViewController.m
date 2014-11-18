@@ -221,13 +221,18 @@
         @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
             @strongify(self);
-            if (status && [images count]) {
-                [self.hentaiImageURLs addObjectsFromArray:images];
-                [self preloadImages:images];
-                [self waitingOnDownloadFinish];
-            }
-            else {
-                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
+            switch (status) {
+                case HentaiParserStatusSuccess:
+                    [self.hentaiImageURLs addObjectsFromArray:images];
+                    [self preloadImages:images];
+                    [self waitingOnDownloadFinish];
+                    break;
+                case HentaiParserStatusNetworkFail:
+                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"網路失敗" cancelButtonTitle:@"確定"];
+                    break;
+                case HentaiParserStatusParseFail:
+                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"解析失敗" cancelButtonTitle:@"確定"];
+                    break;
             }
         }];
     }
@@ -359,12 +364,17 @@
         @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
             @strongify(self);
-            if (status && [images count]) {
-                [self.hentaiImageURLs addObjectsFromArray:images];
-                [self preloadImages:images];
-            }
-            else {
-                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
+            switch (status) {
+                case HentaiParserStatusSuccess:
+                    [self.hentaiImageURLs addObjectsFromArray:images];
+                    [self preloadImages:images];
+                    break;
+                case HentaiParserStatusNetworkFail:
+                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"網路失敗" cancelButtonTitle:@"確定"];
+                    break;
+                case HentaiParserStatusParseFail:
+                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"解析失敗" cancelButtonTitle:@"確定"];
+                    break;
             }
         }];
     }
@@ -439,13 +449,19 @@
         @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
             @strongify(self);
-            if (status && [images count]) {
-                [self.hentaiImageURLs addObjectsFromArray:images];
-                [self preloadImages:images];
-            }
-            else {
-                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:nil cancelButtonTitle:@"確定"];
-                [DaiInboxHUD hide];
+            switch (status) {
+                case HentaiParserStatusSuccess:
+                    [self.hentaiImageURLs addObjectsFromArray:images];
+                    [self preloadImages:images];
+                    break;
+                case HentaiParserStatusNetworkFail:
+                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"網路失敗" cancelButtonTitle:@"確定"];
+                    [DaiInboxHUD hide];
+                    break;
+                case HentaiParserStatusParseFail:
+                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"解析失敗" cancelButtonTitle:@"確定"];
+                    [DaiInboxHUD hide];
+                    break;
             }
         }];
     }
