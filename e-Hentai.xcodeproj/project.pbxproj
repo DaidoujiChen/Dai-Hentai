@@ -70,6 +70,11 @@
 		0180D92C1A02140E002554FC /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92A1A02140E002554FC /* settings@3x.png */; };
 		0180D92F1A0214AD002554FC /* delivery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92D1A0214AD002554FC /* delivery@2x.png */; };
 		0180D9301A0214AD002554FC /* delivery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92E1A0214AD002554FC /* delivery@3x.png */; };
+		019290211A25D6C70094B423 /* DaiPortal.m in Sources */ = {isa = PBXBuildFile; fileRef = 019290181A25D6C70094B423 /* DaiPortal.m */; };
+		019290221A25D6C70094B423 /* DaiPortalBlockAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192901A1A25D6C70094B423 /* DaiPortalBlockAnalysis.m */; };
+		019290231A25D6C70094B423 /* DaiPortalPerformHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192901C1A25D6C70094B423 /* DaiPortalPerformHelper.m */; };
+		019290241A25D6C70094B423 /* DaiPortalWarehouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192901E1A25D6C70094B423 /* DaiPortalWarehouse.m */; };
+		019290251A25D6C70094B423 /* NSObject+DaiPortal.m in Sources */ = {isa = PBXBuildFile; fileRef = 019290201A25D6C70094B423 /* NSObject+DaiPortal.m */; };
 		0199268919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
 		0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268A19ADDB83009F814B /* CoreGraphics.framework */; };
 		0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268C19ADDB83009F814B /* UIKit.framework */; };
@@ -189,6 +194,16 @@
 		0180D92A1A02140E002554FC /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
 		0180D92D1A0214AD002554FC /* delivery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delivery@2x.png"; sourceTree = "<group>"; };
 		0180D92E1A0214AD002554FC /* delivery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delivery@3x.png"; sourceTree = "<group>"; };
+		019290171A25D6C70094B423 /* DaiPortal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortal.h; sourceTree = "<group>"; };
+		019290181A25D6C70094B423 /* DaiPortal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortal.m; sourceTree = "<group>"; };
+		019290191A25D6C70094B423 /* DaiPortalBlockAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalBlockAnalysis.h; sourceTree = "<group>"; };
+		0192901A1A25D6C70094B423 /* DaiPortalBlockAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalBlockAnalysis.m; sourceTree = "<group>"; };
+		0192901B1A25D6C70094B423 /* DaiPortalPerformHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalPerformHelper.h; sourceTree = "<group>"; };
+		0192901C1A25D6C70094B423 /* DaiPortalPerformHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalPerformHelper.m; sourceTree = "<group>"; };
+		0192901D1A25D6C70094B423 /* DaiPortalWarehouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalWarehouse.h; sourceTree = "<group>"; };
+		0192901E1A25D6C70094B423 /* DaiPortalWarehouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalWarehouse.m; sourceTree = "<group>"; };
+		0192901F1A25D6C70094B423 /* NSObject+DaiPortal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DaiPortal.h"; sourceTree = "<group>"; };
+		019290201A25D6C70094B423 /* NSObject+DaiPortal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DaiPortal.m"; sourceTree = "<group>"; };
 		0199268519ADDB83009F814B /* e-Hentai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-Hentai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0199268819ADDB83009F814B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0199268A19ADDB83009F814B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -342,6 +357,7 @@
 		0150033619B6E5E90055F47D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				019290161A25D6C70094B423 /* DaiPortal */,
 				01624CDF1A0B5A6400568EC8 /* DaiInboxHUD */,
 				016DAD9419E392F900E528BE /* GooglePlus */,
 				016BBEF919B94E4F0015E11E /* FilesManager */,
@@ -484,6 +500,23 @@
 				0180D91A1A021282002554FC /* exterior@3x.png */,
 			);
 			path = MenuViewController;
+			sourceTree = "<group>";
+		};
+		019290161A25D6C70094B423 /* DaiPortal */ = {
+			isa = PBXGroup;
+			children = (
+				019290171A25D6C70094B423 /* DaiPortal.h */,
+				019290181A25D6C70094B423 /* DaiPortal.m */,
+				019290191A25D6C70094B423 /* DaiPortalBlockAnalysis.h */,
+				0192901A1A25D6C70094B423 /* DaiPortalBlockAnalysis.m */,
+				0192901B1A25D6C70094B423 /* DaiPortalPerformHelper.h */,
+				0192901C1A25D6C70094B423 /* DaiPortalPerformHelper.m */,
+				0192901D1A25D6C70094B423 /* DaiPortalWarehouse.h */,
+				0192901E1A25D6C70094B423 /* DaiPortalWarehouse.m */,
+				0192901F1A25D6C70094B423 /* NSObject+DaiPortal.h */,
+				019290201A25D6C70094B423 /* NSObject+DaiPortal.m */,
+			);
+			path = DaiPortal;
 			sourceTree = "<group>";
 		};
 		0199267C19ADDB83009F814B = {
@@ -747,6 +780,7 @@
 				016BBF0D19B94E4F0015E11E /* LightWeightPlist+AccessObject.m in Sources */,
 				0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */,
 				016BBF0C19B94E4F0015E11E /* FMStream.m in Sources */,
+				019290221A25D6C70094B423 /* DaiPortalBlockAnalysis.m in Sources */,
 				0150034619B6E5E90055F47D /* XPathQuery.m in Sources */,
 				01624CE81A0B5A6400568EC8 /* DaiInboxHUD.m in Sources */,
 				01FB6FD419E23FB4006CBEF2 /* NSString+Hentai.m in Sources */,
@@ -760,16 +794,20 @@
 				01BFAD5119DE435700A5649F /* SettingViewController.m in Sources */,
 				0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */,
 				01624CEB1A0B5A6400568EC8 /* DaiIndoxWindow.m in Sources */,
+				019290241A25D6C70094B423 /* DaiPortalWarehouse.m in Sources */,
 				017AE5C21A00D24600317939 /* SearchFilterViewController.m in Sources */,
 				0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */,
 				0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */,
 				016BBF1019B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m in Sources */,
+				019290231A25D6C70094B423 /* DaiPortalPerformHelper.m in Sources */,
 				01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */,
 				01BC52251A0CC04B00B37891 /* DaiInboxDisplayLink.m in Sources */,
 				011AEA5119DD28DE00A15CA5 /* SliderViewController.m in Sources */,
 				01624CEA1A0B5A6400568EC8 /* DaiInboxViewController.m in Sources */,
+				019290251A25D6C70094B423 /* NSObject+DaiPortal.m in Sources */,
 				01BBD60119E3D428003538CF /* HentaiPhotoCell.m in Sources */,
 				016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */,
+				019290211A25D6C70094B423 /* DaiPortal.m in Sources */,
 				016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */,
 				0163C7D719D8FD5300105ECF /* DownloadedViewController.m in Sources */,
 				01624CE91A0B5A6400568EC8 /* DaiInboxView.m in Sources */,

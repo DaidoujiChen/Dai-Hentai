@@ -166,22 +166,14 @@
         @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiInfo[@"url"] atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
             @strongify(self);
-            if (![self isCancelled]) {
-                switch (status) {
-                    case HentaiParserStatusSuccess:
-                        [self.hentaiImageURLs addObjectsFromArray:images];
-                        [self preloadImages:images];
-                        [self waitingOnDownloadFinish];
-                        break;
-                    case HentaiParserStatusNetworkFail:
-                        [UIAlertView hentai_alertViewWithTitle:self.hentaiInfo[@"title"] message:@"網路失敗~所以無法下載~" cancelButtonTitle:@"好~ O3O"];
-                        [self hentaiFinish];
-                        break;
-                    case HentaiParserStatusParseFail:
-                        [UIAlertView hentai_alertViewWithTitle:self.hentaiInfo[@"title"] message:@"被移除囉~所以無法下載~" cancelButtonTitle:@"好~ O3O"];
-                        [self hentaiFinish];
-                        break;
-                }
+            if (status && ![self isCancelled] && [images count]) {
+                [self.hentaiImageURLs addObjectsFromArray:images];
+                [self preloadImages:images];
+                [self waitingOnDownloadFinish];
+            }
+            else {
+                [UIAlertView hentai_alertViewWithTitle:self.hentaiInfo[@"title"] message:@"被移除囉~所以無法下載~" cancelButtonTitle:@"好~ O3O"];
+                [self hentaiFinish];
             }
         }];
     }
@@ -196,7 +188,7 @@
                     [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
                     LWPForceWrite();
             )
-            [[NSNotificationCenter defaultCenter] postNotificationName:HentaiDownloadSuccessNotification object:self.hentaiInfo[@"title"]];
+            [[self portal:HentaiDownloadSuccessNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
             [self hentaiFinish];
         }
         else {

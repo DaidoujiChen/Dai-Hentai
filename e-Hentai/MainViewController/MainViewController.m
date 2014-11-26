@@ -165,14 +165,11 @@
 //把 request 的判斷都放到這個 method 裡面來
 - (void)loadList:(void (^)(BOOL successed, NSArray *listArray))completion {
     [HentaiParser requestListAtFilterUrl:self.filterString completion: ^(HentaiParserStatus status, NSArray *listArray) {
-        switch (status) {
-            case HentaiParserStatusSuccess:
-                completion(YES, listArray);
-                break;
-            case HentaiParserStatusParseFail:
-            case HentaiParserStatusNetworkFail:
-                completion(NO, nil);
-                break;
+        if (status && [listArray count]) {
+            completion(YES, listArray);
+        }
+        else {
+            completion(NO, nil);
         }
     }];
 }
@@ -228,10 +225,10 @@
     
     //接 HentaiDownloadSuccessNotification
     @weakify(self);
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:HentaiDownloadSuccessNotification object:nil] subscribeNext: ^(NSNotification *notification) {
+    [[self portal:HentaiDownloadSuccessNotification] recv: ^(NSString *alertViewMessage) {
         @strongify(self);
         if (self && [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil) {
-            [UIAlertView hentai_alertViewWithTitle:@"下載完成!" message:notification.object cancelButtonTitle:@"好~ O3O"];
+            [UIAlertView hentai_alertViewWithTitle:@"下載完成!" message:alertViewMessage cancelButtonTitle:@"好~ O3O"];
         }
     }];
 }

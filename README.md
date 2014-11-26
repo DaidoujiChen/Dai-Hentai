@@ -62,3 +62,9 @@ daidoujichen@gmail.com
 
 - Icons8 App
   - 可以免費取得一些 icon 的小工具.
+
+- DaiInboxHUD
+  - 我自己隔壁棚的工具, 是個模仿 inbox app 等待中的 hud.
+
+- DaiPortalV2
+  - 我自己隔壁棚的工具, 導進來試用看看, 一邊做調整, 目前的定位還不是太清楚, 試用中.

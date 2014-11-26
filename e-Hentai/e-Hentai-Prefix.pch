@@ -25,6 +25,7 @@
     #import "NSDictionary+Hentai.h"
     #import "UITableViewCell+Hentai.h"
     #import "DaiInboxHUD.h"
+    #import "NSObject+DaiPortal.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>
