@@ -23,7 +23,7 @@ daidoujichen@gmail.com
 浦公英安裝
 ======
 [Dai-Hentai](http://www.pgyer.com/DaiHentai)
-我自己有測試過安裝 ok(ios 7.0.6, iphone5), 需要把時間暫時調到 2014-9-20 之前, 不過因為該網站打包的原因, 沒有辦法使用分享的功能.
+我自己用 iphone5 ios8.1 以及三位朋友分別用 4s, 6p, 6p 都安裝成功, 不需調整時間, 感謝浦公英!
 
 支援
 ======
