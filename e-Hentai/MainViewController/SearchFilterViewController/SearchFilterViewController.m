@@ -124,6 +124,13 @@
 
 #pragma mark - life cycle
 
+- (id)init {
+    self = [super initWithNibName:xibName bundle:nil];
+    if (self) {
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupItemsOnNavigation];

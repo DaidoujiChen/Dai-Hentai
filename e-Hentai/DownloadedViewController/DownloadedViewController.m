@@ -47,7 +47,12 @@
 #pragma mark - life cycle
 
 - (id)init {
-    self = [super initWithNibName:@"MainViewController" bundle:nil];
+    if (isIPad) {
+        self = [super initWithNibName:@"IPadMainViewController" bundle:nil];
+    }
+    else {
+        self = [super initWithNibName:@"MainViewController" bundle:nil];
+    }
     if (self) {
     }
     return self;

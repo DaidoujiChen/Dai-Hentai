@@ -28,6 +28,11 @@
 		0150034419B6E5E90055F47D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033919B6E5E90055F47D /* TFHpple.m */; };
 		0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033B19B6E5E90055F47D /* TFHppleElement.m */; };
 		0150034619B6E5E90055F47D /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150033D19B6E5E90055F47D /* XPathQuery.m */; };
+		01519AEF1A304C820091C985 /* IPadMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01519AEE1A304C820091C985 /* IPadMainViewController.xib */; };
+		01519AF11A3051280091C985 /* IPadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01519AF01A3051280091C985 /* IPadPhotoViewController.xib */; };
+		01519AF31A3053200091C985 /* IPadDownloadManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01519AF21A3053200091C985 /* IPadDownloadManagerViewController.xib */; };
+		01519AF51A3053BA0091C985 /* IPadDownloadManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01519AF41A3053BA0091C985 /* IPadDownloadManagerCell.xib */; };
+		015755421A3055B4009083B4 /* IPadSearchFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015755411A3055B4009083B4 /* IPadSearchFilterViewController.xib */; };
 		015B89E819FF9B2500CFA9DE /* SupportKitLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 015B89E619FF9B2500CFA9DE /* SupportKitLocalizable.strings */; };
 		01624CE81A0B5A6400568EC8 /* DaiInboxHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01624CE11A0B5A6400568EC8 /* DaiInboxHUD.m */; };
 		01624CE91A0B5A6400568EC8 /* DaiInboxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01624CE31A0B5A6400568EC8 /* DaiInboxView.m */; };
@@ -133,6 +138,11 @@
 		0150033B19B6E5E90055F47D /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
 		0150033C19B6E5E90055F47D /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		0150033D19B6E5E90055F47D /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		01519AEE1A304C820091C985 /* IPadMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPadMainViewController.xib; sourceTree = "<group>"; };
+		01519AF01A3051280091C985 /* IPadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPadPhotoViewController.xib; sourceTree = "<group>"; };
+		01519AF21A3053200091C985 /* IPadDownloadManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IPadDownloadManagerViewController.xib; path = DownloadManagerViewController/IPadDownloadManagerViewController.xib; sourceTree = "<group>"; };
+		01519AF41A3053BA0091C985 /* IPadDownloadManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IPadDownloadManagerCell.xib; path = DownloadManagerViewController/DownloadManagerCell/IPadDownloadManagerCell.xib; sourceTree = "<group>"; };
+		015755411A3055B4009083B4 /* IPadSearchFilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IPadSearchFilterViewController.xib; path = SearchFilterViewController/IPadSearchFilterViewController.xib; sourceTree = "<group>"; };
 		015B89E419FF9AC900CFA9DE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		015B89E719FF9B2500CFA9DE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SupportKitLocalizable.strings"; sourceTree = "<group>"; };
 		01624CE01A0B5A6400568EC8 /* DaiInboxHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiInboxHUD.h; sourceTree = "<group>"; };
@@ -294,6 +304,7 @@
 				0118080E19B6F06200FE0DA1 /* MainViewController.h */,
 				0118080F19B6F06200FE0DA1 /* MainViewController.m */,
 				0118081019B6F06200FE0DA1 /* MainViewController.xib */,
+				01519AEE1A304C820091C985 /* IPadMainViewController.xib */,
 				04376DF819B96B76001B1599 /* GalleryCell */,
 				017AE5BE1A00D22E00317939 /* SearchFilterViewController */,
 			);
@@ -306,6 +317,7 @@
 				0118081219B6F06200FE0DA1 /* PhotoViewController.h */,
 				0118081319B6F06200FE0DA1 /* PhotoViewController.m */,
 				0118081419B6F06200FE0DA1 /* PhotoViewController.xib */,
+				01519AF01A3051280091C985 /* IPadPhotoViewController.xib */,
 				01BBD5FD19E3D415003538CF /* HentaiPhotoCell */,
 			);
 			path = PhotoViewController;
@@ -452,6 +464,7 @@
 				0179766119E27E8D00E9005E /* DownloadManagerCell.h */,
 				0179766219E27E8D00E9005E /* DownloadManagerCell.m */,
 				0179766319E27E8D00E9005E /* DownloadManagerCell.xib */,
+				01519AF41A3053BA0091C985 /* IPadDownloadManagerCell.xib */,
 			);
 			name = DownloadManagerCell;
 			sourceTree = "<group>";
@@ -473,6 +486,7 @@
 				017AE5BF1A00D24600317939 /* SearchFilterViewController.h */,
 				017AE5C01A00D24600317939 /* SearchFilterViewController.m */,
 				017AE5C11A00D24600317939 /* SearchFilterViewController.xib */,
+				015755411A3055B4009083B4 /* IPadSearchFilterViewController.xib */,
 			);
 			name = SearchFilterViewController;
 			sourceTree = "<group>";
@@ -621,6 +635,7 @@
 				01CD0E2B19DE808B006155FD /* DownloadManagerViewController.h */,
 				01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */,
 				01CD0E2D19DE808B006155FD /* DownloadManagerViewController.xib */,
+				01519AF21A3053200091C985 /* IPadDownloadManagerViewController.xib */,
 				0179766019E27E7B00E9005E /* DownloadManagerCell */,
 			);
 			name = DownloadManagerViewController;
@@ -710,9 +725,11 @@
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
 				01BFAD5219DE435700A5649F /* SettingViewController.xib in Resources */,
 				0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */,
+				01519AEF1A304C820091C985 /* IPadMainViewController.xib in Resources */,
 				01CD0E2F19DE808B006155FD /* DownloadManagerViewController.xib in Resources */,
 				017AE5C71A00D7DD00317939 /* HentaiPrefer.plist in Resources */,
 				0118081A19B6F06200FE0DA1 /* MainViewController.xib in Resources */,
+				01519AF51A3053BA0091C985 /* IPadDownloadManagerCell.xib in Resources */,
 				0180D91F1A0212C8002554FC /* dropbox_copyrighted@2x.png in Resources */,
 				017AE5C51A00D26A00317939 /* HentaiFilters.plist in Resources */,
 				0180D9271A02139F002554FC /* phone2@2x.png in Resources */,
@@ -723,13 +740,16 @@
 				0180D92F1A0214AD002554FC /* delivery@2x.png in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
 				0180D9201A0212C8002554FC /* dropbox_copyrighted@3x.png in Resources */,
+				01519AF31A3053200091C985 /* IPadDownloadManagerViewController.xib in Resources */,
 				016DAD9919E392F900E528BE /* GooglePlus.bundle in Resources */,
 				0180D9301A0214AD002554FC /* delivery@3x.png in Resources */,
 				0180D92B1A02140E002554FC /* settings@2x.png in Resources */,
 				04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */,
+				01519AF11A3051280091C985 /* IPadPhotoViewController.xib in Resources */,
 				01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */,
 				015B89E819FF9B2500CFA9DE /* SupportKitLocalizable.strings in Resources */,
 				0180D92C1A02140E002554FC /* settings@3x.png in Resources */,
+				015755421A3055B4009083B4 /* IPadSearchFilterViewController.xib in Resources */,
 				0180D9281A02139F002554FC /* phone2@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -941,6 +961,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "e-Hentai";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -969,6 +990,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "e-Hentai";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
