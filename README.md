@@ -23,12 +23,16 @@ daidoujichen@gmail.com
 浦公英安裝
 ======
 [Dai-Hentai](http://www.pgyer.com/DaiHentai)
+
 我自己用 iphone5 ios8.1 以及三位朋友分別用 4s, 6p, 6p 都安裝成功, 不需調整時間, 感謝浦公英!
+
+不知道為什麼這次要我填安裝密碼, 所以安裝密碼的設置為 `hentai`.
 
 支援
 ======
 - ios7.0 up
 - iphone 4" / 3.5"
+- ipad
 
 第三方套件
 ======
