@@ -42,12 +42,6 @@ daidoujichen@gmail.com
 
 - SDWebImage
   - 異步讀取網路圖片.
-
-- SVProgressHUD
-  - 網路讀取中使用的 HUD 效果.
-
-- GooglePlus SDK
-  - 用於分享到 google plus.
   
 - LightWeightPlist
   - 我自己隔壁棚的工具, 用來處理 plist 相關事務.
