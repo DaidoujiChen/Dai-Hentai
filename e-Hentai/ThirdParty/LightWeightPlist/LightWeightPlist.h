@@ -15,17 +15,13 @@
 #define LWPDelete(fmt) [LightWeightPlist lwpDelete:fmt]
 #define LWPForceWrite() [LightWeightPlist lwpForceWrite]
 
-#define LWPSafe(fmt)                            \
-@synchronized([LightWeightPlist class]) {       \
-    fmt;                                        \
-}
-
 @interface LightWeightPlist : NSObject
 
 #pragma mark - Common
 
 + (void)lwpDelete:(NSString *)key;
 + (void)lwpForceWrite;
++ (void)lwpSafe:(void (^)(void))safeBlock;
 
 #pragma mark - Array
 

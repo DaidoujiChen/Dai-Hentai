@@ -28,6 +28,15 @@
 	[lwpCache removeAllObjects];
 }
 
++ (void)lwpSafe:(void (^)(void))safeBlock
+{
+    if ([NSThread isMainThread]) {
+        safeBlock();
+    } else {
+        dispatch_async(dispatch_get_main_queue(), safeBlock);
+    }
+}
+
 #pragma mark - array
 
 + (NSMutableArray *)lwpArray:(NSString *)key

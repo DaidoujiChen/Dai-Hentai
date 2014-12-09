@@ -68,10 +68,10 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     if (self.delegate) {
-        LWPSafe(
-                HentaiPrefer[@"searchText"] = self.searchBar.text;
-                LWPForceWrite();
-        );
+        [LightWeightPlist lwpSafe:^{
+            HentaiPrefer[@"searchText"] = self.searchBar.text;
+            LWPForceWrite();
+        }];
         [self.delegate onSearchFilterDone];
     }
     [self dismissViewControllerAnimated:YES completion:nil];

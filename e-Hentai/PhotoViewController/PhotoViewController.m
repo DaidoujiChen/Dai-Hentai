@@ -104,10 +104,10 @@
 
 - (void)deleteAction {
     [[FilesManager documentFolder] rd:self.hentaiKey];
-    LWPSafe(
-            [HentaiSaveLibraryArray removeObjectAtIndex:self.downloadKey];
-            LWPForceWrite();
-    )
+    [LightWeightPlist lwpSafe:^{
+        [HentaiSaveLibraryArray removeObjectAtIndex:self.downloadKey];
+        LWPForceWrite();
+    }];
     [self backAction];
 }
 
@@ -142,10 +142,10 @@
         }
         else {
             self.hentaiResults = [NSMutableDictionary dictionary];
-            LWPSafe(
-                    [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
-                    LWPForceWrite();
-            )
+            [LightWeightPlist lwpSafe:^{
+                [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
+                LWPForceWrite();
+            }];
         }
     }
     else {
@@ -240,10 +240,10 @@
         FMStream *saveFolder = [[FilesManager documentFolder] fcd:@"Hentai"];
         [self.hentaiFilesManager moveToPath:[saveFolder.currentPath stringByAppendingPathComponent:self.hentaiKey]];
         NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
-        LWPSafe(
-                [HentaiSaveLibraryArray insertObject:saveInfo atIndex:0];
-                LWPForceWrite();
-        )
+        [LightWeightPlist lwpSafe:^{
+            [HentaiSaveLibraryArray insertObject:saveInfo atIndex:0];
+            LWPForceWrite();
+        }];
         self.downloadKey = [HentaiSaveLibraryArray indexOfObject:saveInfo];
         [self setupForAlreadyDownloadKey:self.downloadKey];
         [DaiInboxHUD hide];
@@ -442,15 +442,15 @@
     //結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
     [self.hentaiQueue cancelAllOperations];
     
-    LWPSafe(
-            if (self.downloadKey != NSNotFound) {
-                [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
-            }
-            else {
-                HentaiCacheLibraryDictionary[self.hentaiKey] = self.hentaiResults;
-            }
-            LWPForceWrite();
-    )
+    [LightWeightPlist lwpSafe:^{
+        if (self.downloadKey != NSNotFound) {
+            [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
+        }
+        else {
+            HentaiCacheLibraryDictionary[self.hentaiKey] = self.hentaiResults;
+        }
+        LWPForceWrite();
+    }];
 }
 
 @end

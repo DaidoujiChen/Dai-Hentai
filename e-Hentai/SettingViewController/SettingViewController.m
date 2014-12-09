@@ -18,10 +18,10 @@
 
 - (IBAction)cleanCacheAction:(id)sender {
     [[FilesManager cacheFolder] rd:@"Hentai"];
-    LWPSafe(
-            [HentaiCacheLibraryDictionary removeAllObjects];
-            LWPForceWrite();
-    )
+    [LightWeightPlist lwpSafe:^{
+        [HentaiCacheLibraryDictionary removeAllObjects];
+        LWPForceWrite();
+    }];
     [self cacheFolderSize];
 }
 
