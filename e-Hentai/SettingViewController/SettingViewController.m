@@ -55,12 +55,6 @@
     [self documentFolderSize];
 }
 
-#pragma mark - GPPSignInDelegate
-
-- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
-    [self setupGPlusStatus];
-}
-
 #pragma mark - private
 
 //code form FLEX
@@ -113,25 +107,6 @@
     });
 }
 
-- (void)gPlusSignIn {
-    self.gPlusConnectLabel.text = @"聯結 G+ 帳號 : 已聯結";
-    self.gPlusSignInButton.hidden = YES;
-}
-
-- (void)gPlusSignOut {
-    self.gPlusConnectLabel.text = @"聯結 G+ 帳號 : 未聯結";
-    self.gPlusSignInButton.hidden = NO;
-}
-
-- (void)setupGPlusStatus {
-    if ([[GPPSignIn sharedInstance] authentication]) {
-        [self gPlusSignIn];
-    }
-    else {
-        [self gPlusSignOut];
-    }
-}
-
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
@@ -139,11 +114,6 @@
     self.title = @"設定";
     [self cacheFolderSize];
     [self documentFolderSize];
-    
-    GPPSignIn *signIn = [GPPSignIn sharedInstance];
-    signIn.clientID = kClientId;
-    signIn.delegate = self;
-    [self setupGPlusStatus];
 }
 
 @end

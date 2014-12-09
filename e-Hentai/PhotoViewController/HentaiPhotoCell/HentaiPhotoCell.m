@@ -24,10 +24,4 @@
     self.hentaiImageView.frame = self.bounds;
 }
 
-#pragma mark - ibaction
-
-- (IBAction)longPressShareAction:(id)sender {
-    [self.delegate needToShareAtIndexPath:[self hentai_indexPath]];
-}
-
 @end

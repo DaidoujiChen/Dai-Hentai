@@ -8,18 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol HentaiPhotoCellDelegate;
-
 @interface HentaiPhotoCell : UITableViewCell
 
-@property (nonatomic, weak) id <HentaiPhotoCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIImageView *hentaiImageView;
-
-@end
-
-@protocol HentaiPhotoCellDelegate <NSObject>
-
-@required
-- (void)needToShareAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

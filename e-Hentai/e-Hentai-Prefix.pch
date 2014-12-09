@@ -41,11 +41,6 @@
     #define HentaiPrefer LWPDictionary(@"HentaiPrefer")
     #define HentaiFilters LWPArrayR(@"HentaiFilters")
 
-    //google plus
-    static NSString * const kClientId = @"577014773497-5que5pf6avfoqa96vd396v9kqtamjqq2.apps.googleusercontent.com";
-    #import <GooglePlus/GooglePlus.h>
-    #import <GoogleOpenSource/GoogleOpenSource.h>
-
     //因為在 ios8 下, 回的 screenSize 是不固定的, 所以用這個方法來做判斷
     #define realScreenHeight MAX([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width)
     #define realScreenWidth MIN([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width)

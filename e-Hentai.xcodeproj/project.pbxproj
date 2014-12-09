@@ -49,9 +49,6 @@
 		016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0819B94E4F0015E11E /* LightWeightPlist.m */; };
 		016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */; };
 		016BBF1519B953D40015E11E /* HentaiDownloadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBF1419B953D40015E11E /* HentaiDownloadImageOperation.m */; };
-		016DAD9819E392F900E528BE /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9519E392F900E528BE /* GoogleOpenSource.framework */; };
-		016DAD9919E392F900E528BE /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 016DAD9619E392F900E528BE /* GooglePlus.bundle */; };
-		016DAD9A19E392F900E528BE /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9719E392F900E528BE /* GooglePlus.framework */; };
 		016DAD9C19E393B900E528BE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9B19E393B900E528BE /* AddressBook.framework */; };
 		016DAD9E19E393C300E528BE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9D19E393C300E528BE /* MediaPlayer.framework */; };
 		016DADA019E393D600E528BE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DAD9F19E393D600E528BE /* AssetsLibrary.framework */; };
@@ -175,9 +172,6 @@
 		016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightWeightPlistObjects.m; sourceTree = "<group>"; };
 		016BBF1319B953D40015E11E /* HentaiDownloadImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadImageOperation.h; path = HentaiDownloadCenter/HentaiDownloadImageOperation.h; sourceTree = "<group>"; };
 		016BBF1419B953D40015E11E /* HentaiDownloadImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiDownloadImageOperation.m; path = HentaiDownloadCenter/HentaiDownloadImageOperation.m; sourceTree = "<group>"; };
-		016DAD9519E392F900E528BE /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
-		016DAD9619E392F900E528BE /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
-		016DAD9719E392F900E528BE /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
 		016DAD9B19E393B900E528BE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		016DAD9D19E393C300E528BE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		016DAD9F19E393D600E528BE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -256,8 +250,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				016DAD9A19E392F900E528BE /* GooglePlus.framework in Frameworks */,
-				016DAD9819E392F900E528BE /* GoogleOpenSource.framework in Frameworks */,
 				0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */,
 				010E3AE319E3B95200B866FB /* CoreText.framework in Frameworks */,
 				010E3AE119E3B94700B866FB /* SystemConfiguration.framework in Frameworks */,
@@ -371,7 +363,6 @@
 			children = (
 				019290161A25D6C70094B423 /* DaiPortal */,
 				01624CDF1A0B5A6400568EC8 /* DaiInboxHUD */,
-				016DAD9419E392F900E528BE /* GooglePlus */,
 				016BBEF919B94E4F0015E11E /* FilesManager */,
 				016BBEFE19B94E4F0015E11E /* LightWeightPlist */,
 				0150033719B6E5E90055F47D /* Hpple */,
@@ -446,16 +437,6 @@
 				016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */,
 			);
 			path = LightWeightPlist;
-			sourceTree = "<group>";
-		};
-		016DAD9419E392F900E528BE /* GooglePlus */ = {
-			isa = PBXGroup;
-			children = (
-				016DAD9519E392F900E528BE /* GoogleOpenSource.framework */,
-				016DAD9619E392F900E528BE /* GooglePlus.bundle */,
-				016DAD9719E392F900E528BE /* GooglePlus.framework */,
-			);
-			path = GooglePlus;
 			sourceTree = "<group>";
 		};
 		0179766019E27E7B00E9005E /* DownloadManagerCell */ = {
@@ -741,7 +722,6 @@
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
 				0180D9201A0212C8002554FC /* dropbox_copyrighted@3x.png in Resources */,
 				01519AF31A3053200091C985 /* IPadDownloadManagerViewController.xib in Resources */,
-				016DAD9919E392F900E528BE /* GooglePlus.bundle in Resources */,
 				0180D9301A0214AD002554FC /* delivery@3x.png in Resources */,
 				0180D92B1A02140E002554FC /* settings@2x.png in Resources */,
 				04376DFD19B96B76001B1599 /* GalleryCell.xib in Resources */,

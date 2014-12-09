@@ -10,10 +10,8 @@
 
 #import "ColorThemeViewController.h"
 
-@interface SettingViewController : ColorThemeViewController <GPPSignInDelegate>
+@interface SettingViewController : ColorThemeViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *gPlusConnectLabel;
-@property (weak, nonatomic) IBOutlet GPPSignInButton *gPlusSignInButton;
 @property (weak, nonatomic) IBOutlet UILabel *cacheSizeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *downloadedSizeLabel;
 
