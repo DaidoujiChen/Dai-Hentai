@@ -10,8 +10,6 @@
 
 @interface DownloadedViewController ()
 
-@property (nonatomic, strong) NSMutableArray *listArray;
-
 @end
 
 @implementation DownloadedViewController
@@ -40,8 +38,14 @@
 
 #pragma mark - recv notification
 
-- (void)hentaiDownloadSuccess:(NSNotification *)notification {
-	[self.listCollectionView reloadData];
+- (void)setupRecvNotifications {
+    
+    //接 HentaiDownloadSuccessNotification
+    @weakify(self);
+    [[self portal:HentaiDownloadSuccessNotification] recv: ^(NSString *alertViewMessage) {
+        @strongify(self);
+        [self.listCollectionView reloadData];
+    }];
 }
 
 #pragma mark - life cycle
@@ -61,6 +65,7 @@
 //這邊我故意沒有放 [super viewDidLoad], 不然會跑到很多 mainviewcontroller 的東西
 - (void)viewDidLoad {
 	self.title = @"已經下載的漫畫";
+    [self setupRecvNotifications];
 	[self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
 }
 

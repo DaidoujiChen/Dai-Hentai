@@ -37,8 +37,6 @@
 
 @property (nonatomic, strong) NSString *hentaiURLString;
 @property (nonatomic, strong) NSString *maxHentaiCount;
-@property (nonatomic, strong) NSIndexPath *sharedIndexPath;
-@property (nonatomic, strong) NSLock *shareLock;
 
 - (void)backAction;
 - (void)saveAction;
@@ -103,7 +101,7 @@
 }
 
 - (void)deleteAction {
-    [[FilesManager documentFolder] rd:self.hentaiKey];
+    [[[FilesManager documentFolder] fcd:@"hentai"] rd:self.hentaiKey];
     [LightWeightPlist lwpSafe:^{
         [HentaiSaveLibraryArray removeObjectAtIndex:self.downloadKey];
         LWPForceWrite();
@@ -155,7 +153,6 @@
     self.failCount = 0;
     self.isRemovedHUD = NO;
     self.realDisplayCount = 0;
-    self.shareLock = [NSLock new];
 }
 
 #pragma mark - components
