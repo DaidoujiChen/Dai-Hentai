@@ -40,6 +40,10 @@ app icon 與進場圖
 
 [扇扇的信箱](shanshan910402@gmail.com)
 
+特別感謝
+======
+感謝網友 [lzs](ggg19960720@gmail.com) 借我可以進入 exHentai 的帳號, 讓我可以完成這部分的功能.
+
 支援
 ======
 - ios7.0 up
