@@ -32,6 +32,14 @@
 	return objc_getAssociatedObject(self, _cmd);
 }
 
+- (void)setHentai_account:(HentaiAccountBlock)hentai_account {
+    objc_setAssociatedObject(self, @selector(hentai_account), hentai_account, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (HentaiAccountBlock)hentai_account {
+    return objc_getAssociatedObject(self, _cmd);
+}
+
 #pragma mark - instance method
 
 + (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message {

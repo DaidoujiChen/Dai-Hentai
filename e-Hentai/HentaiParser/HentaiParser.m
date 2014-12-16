@@ -10,8 +10,8 @@
 
 #import <objc/runtime.h>
 
-#define baseListURL @"http://g.e-hentai.org/?page=%d"
 #define hentaiAPIURL @"http://g.e-hentai.org/api.php"
+#define exHentaiAPIURL @"http://exhentai.org/api.php"
 
 @implementation NSMutableArray (Hentai)
 
@@ -30,7 +30,7 @@
 
 #pragma mark - class method
 
-+ (void)requestListAtFilterUrl:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
++ (void)requestListAtFilterUrl:(NSString *)urlString forExHentai:(BOOL)isForExHentai completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
@@ -54,7 +54,7 @@
                 }
                 
                 //這段是從 e hentai 的 api 抓資料
-                [self requestGDataAPIWithURLStrings:urlStringArray completion: ^(HentaiParserStatus status, NSArray *gMetaData) {
+                [self requestGDataAPIWithURLStrings:urlStringArray forExHentai:(BOOL)isForExHentai completion: ^(HentaiParserStatus status, NSArray *gMetaData) {
                     if (status) {
                         for (NSUInteger i = 0; i < [gMetaData count]; i++) {
                             NSMutableDictionary *eachDictionary = returnArray[i];
@@ -154,7 +154,7 @@
 }
 
 //這段是使用 e hentai 原本提供的 api 做列表 request 時使用
-+ (void)requestGDataAPIWithURLStrings:(NSArray *)urlStringArray completion:(void (^)(HentaiParserStatus status, NSArray *gMetaData))completion {
++ (void)requestGDataAPIWithURLStrings:(NSArray *)urlStringArray forExHentai:(BOOL)isForExHentai completion:(void (^)(HentaiParserStatus status, NSArray *gMetaData))completion {
 	//http://g.e-hentai.org/g/618395/0439fa3666/
 	//                          -3        -2       -1
 	NSMutableArray *idArray = [NSMutableArray array];
@@ -166,7 +166,7 @@
     
 	// post 給 e hentai api 的固定規則
 	NSDictionary *jsonDictionary = @{ @"method": @"gdata", @"gidlist":idArray };
-	NSMutableURLRequest *request = [self makeJsonPostRequest:jsonDictionary];
+	NSMutableURLRequest *request = [self makeJsonPostRequest:jsonDictionary forExHentai:isForExHentai];
     
 	[NSURLConnection sendAsynchronousRequest:request queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
@@ -180,9 +180,15 @@
 }
 
 //製造一個 json post 的 request
-+ (NSMutableURLRequest *)makeJsonPostRequest:(NSDictionary *)jsonDictionary {
++ (NSMutableURLRequest *)makeJsonPostRequest:(NSDictionary *)jsonDictionary forExHentai:(BOOL)isForExHentai {
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:NSJSONWritingPrettyPrinted error:nil];
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[hentaiAPIURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    NSMutableURLRequest *request;
+    if (isForExHentai) {
+        request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[exHentaiAPIURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    }
+    else {
+        request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[hentaiAPIURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    }
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

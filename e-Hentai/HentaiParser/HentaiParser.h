@@ -17,7 +17,7 @@ typedef enum {
 @interface HentaiParser : NSObject
 
 //取得 filter 過後的列表
-+ (void)requestListAtFilterUrl:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion;
++ (void)requestListAtFilterUrl:(NSString *)urlString forExHentai:(BOOL)isForExHentai completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion;
 
 //取得某一本漫畫中的圖片連結
 + (void)requestImagesAtURL:(NSString *)urlString atIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSArray *images))completion;

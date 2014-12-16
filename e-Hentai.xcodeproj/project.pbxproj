@@ -39,6 +39,7 @@
 		01624CEA1A0B5A6400568EC8 /* DaiInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01624CE51A0B5A6400568EC8 /* DaiInboxViewController.m */; };
 		01624CEB1A0B5A6400568EC8 /* DaiIndoxWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 01624CE71A0B5A6400568EC8 /* DaiIndoxWindow.m */; };
 		0163C7D719D8FD5300105ECF /* DownloadedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0163C7D619D8FD5300105ECF /* DownloadedViewController.m */; };
+		0163E4721A3FD019007C3D58 /* DiveExHentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 0163E4711A3FD019007C3D58 /* DiveExHentai.m */; };
 		016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 016A359E19B6FB8A00E3371A /* HentaiParser.m */; };
 		016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBEFB19B94E4F0015E11E /* FilesManager.m */; };
 		016BBF0C19B94E4F0015E11E /* FMStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 016BBEFD19B94E4F0015E11E /* FMStream.m */; };
@@ -55,6 +56,7 @@
 		016DADA219E393DF00E528BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA119E393DF00E528BE /* CoreLocation.framework */; };
 		016DADA419E393EB00E528BE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA319E393EB00E528BE /* CoreMotion.framework */; };
 		016DADA619E3940C00E528BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA519E3940C00E528BE /* Security.framework */; };
+		01758F741A3FE07400677BA2 /* ExMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01758F731A3FE07400677BA2 /* ExMainViewController.m */; };
 		0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766219E27E8D00E9005E /* DownloadManagerCell.m */; };
 		0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179766319E27E8D00E9005E /* DownloadManagerCell.xib */; };
 		0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766819E27EC100E9005E /* MenuDefaultCell.m */; };
@@ -152,6 +154,8 @@
 		01624CE71A0B5A6400568EC8 /* DaiIndoxWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiIndoxWindow.m; sourceTree = "<group>"; };
 		0163C7D519D8FD5300105ECF /* DownloadedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadedViewController.h; path = DownloadedViewController/DownloadedViewController.h; sourceTree = "<group>"; };
 		0163C7D619D8FD5300105ECF /* DownloadedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadedViewController.m; path = DownloadedViewController/DownloadedViewController.m; sourceTree = "<group>"; };
+		0163E4701A3FD019007C3D58 /* DiveExHentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveExHentai.h; sourceTree = "<group>"; };
+		0163E4711A3FD019007C3D58 /* DiveExHentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveExHentai.m; sourceTree = "<group>"; };
 		016A359D19B6FB8A00E3371A /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
 		016A359E19B6FB8A00E3371A /* HentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiParser.m; sourceTree = "<group>"; };
 		016BBEFA19B94E4F0015E11E /* FilesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesManager.h; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 		016DADA119E393DF00E528BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		016DADA319E393EB00E528BE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		016DADA519E3940C00E528BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		01758F721A3FE07400677BA2 /* ExMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExMainViewController.h; sourceTree = "<group>"; };
+		01758F731A3FE07400677BA2 /* ExMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExMainViewController.m; sourceTree = "<group>"; };
 		0179766119E27E8D00E9005E /* DownloadManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerCell.h; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.h; sourceTree = "<group>"; };
 		0179766219E27E8D00E9005E /* DownloadManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManagerCell.m; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.m; sourceTree = "<group>"; };
 		0179766319E27E8D00E9005E /* DownloadManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DownloadManagerCell.xib; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.xib; sourceTree = "<group>"; };
@@ -409,6 +415,15 @@
 			name = DownloadedViewController;
 			sourceTree = "<group>";
 		};
+		0163E46F1A3FD019007C3D58 /* DiveExHentai */ = {
+			isa = PBXGroup;
+			children = (
+				0163E4701A3FD019007C3D58 /* DiveExHentai.h */,
+				0163E4711A3FD019007C3D58 /* DiveExHentai.m */,
+			);
+			path = DiveExHentai;
+			sourceTree = "<group>";
+		};
 		016BBEF919B94E4F0015E11E /* FilesManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +452,15 @@
 				016BBF0A19B94E4F0015E11E /* LightWeightPlistObjects.m */,
 			);
 			path = LightWeightPlist;
+			sourceTree = "<group>";
+		};
+		01758F711A3FE05300677BA2 /* ExMainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				01758F721A3FE07400677BA2 /* ExMainViewController.h */,
+				01758F731A3FE07400677BA2 /* ExMainViewController.m */,
+			);
+			path = ExMainViewController;
 			sourceTree = "<group>";
 		};
 		0179766019E27E7B00E9005E /* DownloadManagerCell */ = {
@@ -558,6 +582,7 @@
 			children = (
 				0137F40919C1684500528359 /* HentaiDownloadCenter */,
 				0150033319B6E5E90055F47D /* HentaiParser */,
+				0163E46F1A3FD019007C3D58 /* DiveExHentai */,
 				0150033619B6E5E90055F47D /* ThirdParty */,
 				0118080519B6F06200FE0DA1 /* Common */,
 				0199269719ADDB83009F814B /* AppDelegate.h */,
@@ -569,6 +594,7 @@
 				01BFAD4D19DE430A00A5649F /* SettingViewController */,
 				01CD0E2A19DE8058006155FD /* DownloadManagerViewController */,
 				0118080A19B6F06200FE0DA1 /* MainViewController */,
+				01758F711A3FE05300677BA2 /* ExMainViewController */,
 				0118081119B6F06200FE0DA1 /* PhotoViewController */,
 				0163C7D419D8FC5600105ECF /* DownloadedViewController */,
 				019926A019ADDB83009F814B /* Images.xcassets */,
@@ -788,6 +814,7 @@
 				0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */,
 				016BBF1519B953D40015E11E /* HentaiDownloadImageOperation.m in Sources */,
 				01BBD5FC19E3D2F2003538CF /* UITableViewCell+Hentai.m in Sources */,
+				01758F741A3FE07400677BA2 /* ExMainViewController.m in Sources */,
 				01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */,
 				0150034419B6E5E90055F47D /* TFHpple.m in Sources */,
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
@@ -813,6 +840,7 @@
 				01624CE91A0B5A6400568EC8 /* DaiInboxView.m in Sources */,
 				016BBF0E19B94E4F0015E11E /* LightWeightPlist+FilePath.m in Sources */,
 				0137F40C19C1688200528359 /* HentaiDownloadCenter.m in Sources */,
+				0163E4721A3FD019007C3D58 /* DiveExHentai.m in Sources */,
 				0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */,
 				016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */,
 				0199269519ADDB83009F814B /* main.m in Sources */,

@@ -10,6 +10,7 @@
 
 typedef void (^HentaiClickBlock)(NSInteger clickIndex);
 typedef void (^HentaiCancelBlock)(void);
+typedef void (^HentaiAccountBlock)(NSString *userName, NSString *password);
 
 @interface UIAlertView (Hentai) <UIAlertViewDelegate>
 
@@ -19,5 +20,6 @@ typedef void (^HentaiCancelBlock)(void);
 
 @property (nonatomic, copy) HentaiClickBlock hentai_clicked;
 @property (nonatomic, copy) HentaiCancelBlock hentai_cancelled;
+@property (nonatomic, copy) HentaiAccountBlock hentai_account;
 
 @end

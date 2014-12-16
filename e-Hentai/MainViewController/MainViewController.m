@@ -164,7 +164,7 @@
 
 //把 request 的判斷都放到這個 method 裡面來
 - (void)loadList:(void (^)(BOOL successed, NSArray *listArray))completion {
-    [HentaiParser requestListAtFilterUrl:self.filterString completion: ^(HentaiParserStatus status, NSArray *listArray) {
+    [HentaiParser requestListAtFilterUrl:self.filterString forExHentai:NO completion: ^(HentaiParserStatus status, NSArray *listArray) {
         if (status && [listArray count]) {
             completion(YES, listArray);
         }
@@ -248,6 +248,10 @@
     [self setupItemsOnNavigation];
     [self setupListCollectionViewBehavior];
     [self setupRecvNotifications];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     @weakify(self);
     [self loadList: ^(BOOL successed, NSArray *listArray) {
