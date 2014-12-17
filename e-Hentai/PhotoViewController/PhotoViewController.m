@@ -30,7 +30,6 @@
 
 //真正可以看到哪一頁 (下載的檔案需要有連續, 數字才會增長)
 @property (nonatomic, assign) NSInteger realDisplayCount;
-@property (nonatomic, assign) NSUInteger downloadKey;
 @property (nonatomic, assign) BOOL isRemovedHUD;
 @property (nonatomic, strong) NSOperationQueue *hentaiQueue;
 @property (nonatomic, strong) FMStream *hentaiFilesManager;
@@ -103,7 +102,7 @@
 - (void)deleteAction {
     [[[FilesManager documentFolder] fcd:@"hentai"] rd:self.hentaiKey];
     [LightWeightPlist lwpSafe:^{
-        [HentaiSaveLibraryArray removeObjectAtIndex:self.downloadKey];
+        [HentaiSaveLibraryArray removeObjectAtIndex:[self foundDownloadKey]];
         LWPForceWrite();
     }];
     [self backAction];
@@ -241,8 +240,7 @@
             [HentaiSaveLibraryArray insertObject:saveInfo atIndex:0];
             LWPForceWrite();
         }];
-        self.downloadKey = [HentaiSaveLibraryArray indexOfObject:saveInfo];
-        [self setupForAlreadyDownloadKey:self.downloadKey];
+        [self setupForAlreadyDownloadKey:[self foundDownloadKey]];
         [DaiInboxHUD hide];
     }
 }
@@ -398,11 +396,11 @@
     [super viewDidLoad];
     [self setupInitValues];
     
-    self.downloadKey = [self foundDownloadKey];
+    NSUInteger downloadKey = [self foundDownloadKey];
     
     //如果本機有存檔案就用本機的
-    if (self.downloadKey != NSNotFound) {
-        [self setupForAlreadyDownloadKey:self.downloadKey];
+    if (downloadKey != NSNotFound) {
+        [self setupForAlreadyDownloadKey:downloadKey];
     }
     //否則則從網路上取得
     else {
@@ -440,7 +438,7 @@
     [self.hentaiQueue cancelAllOperations];
     
     [LightWeightPlist lwpSafe:^{
-        if (self.downloadKey != NSNotFound) {
+        if ([self foundDownloadKey] != NSNotFound) {
             [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
         }
         else {
