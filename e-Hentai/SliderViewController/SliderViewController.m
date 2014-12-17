@@ -43,7 +43,23 @@
     [self closeLeftView];
 }
 
+#pragma mark - IIViewDeckControllerDelegate
+
+- (void)viewDeckController:(IIViewDeckController*)viewDeckController didOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    UIView *maskView = [[UIView alloc] initWithFrame:self.centerController.view.bounds];
+    maskView.userInteractionEnabled = YES;
+    maskView.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recovery:)];
+    [maskView addGestureRecognizer:tapGesture];
+    [self.centerController.view addSubview:maskView];
+}
+
 #pragma mark - private
+
+- (void)recovery:(UITapGestureRecognizer *)tapGesture {
+    [self closeLeftView];
+    [tapGesture.view removeFromSuperview];
+}
 
 #pragma mark viewdidload 中的初始設定
 
@@ -69,6 +85,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.sizeMode = IIViewDeckViewSizeMode;
+    self.delegate = self;
 	self.shadowEnabled = NO;
 	[self setupLeftViewController];
 	[self setupCenterViewController];

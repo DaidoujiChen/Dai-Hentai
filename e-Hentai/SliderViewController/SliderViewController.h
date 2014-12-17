@@ -11,6 +11,6 @@
 #import "MainViewController.h"
 #import "MenuViewController.h"
 
-@interface SliderViewController : IIViewDeckController <MainViewControllerDelegate, MenuViewControllerDelegate>
+@interface SliderViewController : IIViewDeckController <MainViewControllerDelegate, MenuViewControllerDelegate, IIViewDeckControllerDelegate>
 
 @end
