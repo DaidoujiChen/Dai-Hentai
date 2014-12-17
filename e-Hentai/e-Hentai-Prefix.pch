@@ -23,7 +23,6 @@
     #import "UIAlertView+Hentai.h"
     #import "NSString+Hentai.h"
     #import "NSDictionary+Hentai.h"
-    #import "UITableViewCell+Hentai.h"
     #import "DaiInboxHUD.h"
     #import "NSObject+DaiPortal.h"
 
