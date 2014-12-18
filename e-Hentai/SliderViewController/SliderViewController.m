@@ -10,6 +10,8 @@
 
 @interface SliderViewController ()
 
+@property (nonatomic, weak) UIView *weakMaskView;
+
 @end
 
 @implementation SliderViewController
@@ -52,6 +54,13 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recovery:)];
     [maskView addGestureRecognizer:tapGesture];
     [self.centerController.view addSubview:maskView];
+    self.weakMaskView = maskView;
+}
+
+- (void)viewDeckController:(IIViewDeckController*)viewDeckController didCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    if (self.weakMaskView) {
+        [self.weakMaskView removeFromSuperview];
+    }
 }
 
 #pragma mark - private
