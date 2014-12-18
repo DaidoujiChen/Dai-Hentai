@@ -50,6 +50,9 @@
         UITextField *password = [alertView textFieldAtIndex:1];
         alertView.hentai_account(username.text, password.text);
     }
+    else {
+        alertView.hentai_account(nil, nil);
+    }
 }
 
 #pragma mark - private
@@ -105,11 +108,8 @@
                         HentaiAccount[@"Password"] = password;
                         LWPForceWrite();
                     }];
-                    [super viewWillAppear:animated];
                 }
-                else {
-                    [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
-                }
+                [super viewWillAppear:animated];
                 [DaiInboxHUD hide];
             }];
         };
