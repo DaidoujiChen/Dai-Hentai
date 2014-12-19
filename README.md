@@ -1,5 +1,6 @@
-Dai-Hentai
+![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/icon180.png)
 ======
+
 預覽圖大約 5mb, 請等一下下
 
 ![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/Dai-Hentai_20141030.gif)
