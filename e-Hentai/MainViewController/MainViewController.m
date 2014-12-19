@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSLock *rollLock;
 @property (nonatomic, readonly) NSString *filterString;
+@property (nonatomic, assign) BOOL onceFlag;
 
 @end
 
@@ -205,6 +206,8 @@
     CGRect screenSize = [UIScreen mainScreen].bounds;
     self.view.frame = screenSize;
     self.listCollectionView.frame = screenSize;
+    
+    self.onceFlag = YES;
 }
 
 - (void)setupItemsOnNavigation {
@@ -253,21 +256,24 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    @weakify(self);
-    [self loadList: ^(BOOL successed, NSArray *listArray) {
-        @strongify(self);
-        if (successed) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                [self.listArray addObjectsFromArray:listArray];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.listCollectionView reloadData];
+    if (self.onceFlag) {
+        @weakify(self);
+        [self loadList: ^(BOOL successed, NSArray *listArray) {
+            @strongify(self);
+            if (successed) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    [self.listArray addObjectsFromArray:listArray];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.listCollectionView reloadData];
+                    });
                 });
-            });
-        }
-        else {
-            [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
-        }
-    }];
+            }
+            else {
+                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
+            }
+            self.onceFlag = NO;
+        }];
+    }
 }
 
 @end
