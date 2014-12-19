@@ -87,6 +87,7 @@
 		0199269919ADDB83009F814B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269819ADDB83009F814B /* AppDelegate.m */; };
 		019926A119ADDB83009F814B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019926A019ADDB83009F814B /* Images.xcassets */; };
 		01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */; };
+		01B423211A44136400FAB920 /* Pgyer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B4231F1A44136400FAB920 /* Pgyer.a */; };
 		01BBD60119E3D428003538CF /* HentaiPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */; };
 		01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */; };
 		01BC52251A0CC04B00B37891 /* DaiInboxDisplayLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BC52241A0CC04B00B37891 /* DaiInboxDisplayLink.m */; };
@@ -227,6 +228,8 @@
 		019926A719ADDB83009F814B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01A166EA19E28D5E00203360 /* NSDictionary+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Hentai.h"; sourceTree = "<group>"; };
 		01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Hentai.m"; sourceTree = "<group>"; };
+		01B4231F1A44136400FAB920 /* Pgyer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Pgyer.a; sourceTree = "<group>"; };
+		01B423201A44136400FAB920 /* Pgyer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pgyer.h; sourceTree = "<group>"; };
 		01BBD5FE19E3D428003538CF /* HentaiPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiPhotoCell.h; path = HentaiPhotoCell/HentaiPhotoCell.h; sourceTree = "<group>"; };
 		01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiPhotoCell.m; path = HentaiPhotoCell/HentaiPhotoCell.m; sourceTree = "<group>"; };
 		01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HentaiPhotoCell.xib; path = HentaiPhotoCell/HentaiPhotoCell.xib; sourceTree = "<group>"; };
@@ -258,6 +261,7 @@
 				010E3AE119E3B94700B866FB /* SystemConfiguration.framework in Frameworks */,
 				010E3ADF19E3B93800B866FB /* MobileCoreServices.framework in Frameworks */,
 				016DADA619E3940C00E528BE /* Security.framework in Frameworks */,
+				01B423211A44136400FAB920 /* Pgyer.a in Frameworks */,
 				016DADA419E393EB00E528BE /* CoreMotion.framework in Frameworks */,
 				016DADA219E393DF00E528BE /* CoreLocation.framework in Frameworks */,
 				016DADA019E393D600E528BE /* AssetsLibrary.framework in Frameworks */,
@@ -362,6 +366,7 @@
 		0150033619B6E5E90055F47D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				01B4231E1A44136400FAB920 /* Pgyer */,
 				019290161A25D6C70094B423 /* DaiPortal */,
 				01624CDF1A0B5A6400568EC8 /* DaiInboxHUD */,
 				016BBEF919B94E4F0015E11E /* FilesManager */,
@@ -609,6 +614,15 @@
 				0199269619ADDB83009F814B /* e-Hentai-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01B4231E1A44136400FAB920 /* Pgyer */ = {
+			isa = PBXGroup;
+			children = (
+				01B4231F1A44136400FAB920 /* Pgyer.a */,
+				01B423201A44136400FAB920 /* Pgyer.h */,
+			);
+			path = Pgyer;
 			sourceTree = "<group>";
 		};
 		01BBD5FD19E3D415003538CF /* HentaiPhotoCell */ = {
@@ -957,6 +971,10 @@
 				);
 				INFOPLIST_FILE = "e-Hentai/e-Hentai-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Pgyer",
+				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "e-Hentai";
 				PROVISIONING_PROFILE = "";
@@ -983,6 +1001,10 @@
 				);
 				INFOPLIST_FILE = "e-Hentai/e-Hentai-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Pgyer",
+				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "e-Hentai";
 				PROVISIONING_PROFILE = "";
