@@ -17,13 +17,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     //設定 hud 的基本參數
-    [DaiInboxHUD setColors:@[[UIColor flatGreenColor], [UIColor flatBlackColor], [UIColor flatPinkColor], [UIColor flatOrangeColor]]];
-    [DaiInboxHUD setBackgroundColor:[UIColor whiteColor]];
-    [DaiInboxHUD setLineWidth:4.0f];
-    [DaiInboxHUD setMaskColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f]];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     
     //supportkit
     [self setupSupportKit];
+    
+    //轉移
+    [self oldDataChecking];
     
     //display
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -38,13 +38,41 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [Pgyer lastestInformationByShortcut:@"DaiHentai" completion:^(NSDictionary *information) {
         if ([information[@"appVersion"] floatValue] > [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] floatValue]) {
-            NSLog(@"獻上比較新");
             [UIAlertView hentai_alertViewWithTitle:[NSString stringWithFormat:@"新版本 v%@ 通知", information[@"appVersion"]] message:information[@"appUpdateDescription"] cancelButtonTitle:@"我不想更新~ O3O" otherButtonTitles:@[@"麻煩幫我跳轉更新頁~ O3O"] onClickIndex:^(NSInteger clickIndex) {
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.pgyer.com/DaiHentai"]];
             } onCancel:^{
             }];
         }
     }];
+}
+
+- (void)oldDataChecking {
+    if ([[FilesManager documentFolder] read:@"HentaiCacheLibrary.plist"].length || [[FilesManager documentFolder] read:@"HentaiSaveLibrary.plist"].length) {
+        @weakify(self);
+        [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"因為改變儲存方式, 現在要幫你搬資料" cancelButtonTitle:@"沒有取消~ O3<" otherButtonTitles:@[@"好~ >3O"] onClickIndex:^(NSInteger clickIndex) {
+            @strongify(self);
+            [self dataTransfer];
+        } onCancel:^{
+            @strongify(self);
+            [self dataTransfer];
+        }];
+    }
+}
+
+- (void)dataTransfer {
+    [SVProgressHUD show];
+    NSArray *saveDatas = LWPArray(@"HentaiSaveLibrary");
+    for (NSDictionary *eachData in saveDatas) {
+        [HentaiSaveLibrary addSaveInfo:eachData];
+    }
+    LWPDelete(@"HentaiSaveLibrary");
+    
+    NSDictionary *cacheDatas = LWPDictionary(@"HentaiCacheLibrary");
+    for (NSString *eachKey in [cacheDatas allKeys]) {
+        [HentaiCacheLibrary addCacheInfo:cacheDatas[eachKey] forKey:eachKey];
+    }
+    LWPDelete(@"HentaiCacheLibrary");
+    [SVProgressHUD dismiss];
 }
 
 @end

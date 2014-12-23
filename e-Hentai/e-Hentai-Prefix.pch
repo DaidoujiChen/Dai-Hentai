@@ -23,7 +23,6 @@
     #import "UIAlertView+Hentai.h"
     #import "NSString+Hentai.h"
     #import "NSDictionary+Hentai.h"
-    #import "DaiInboxHUD.h"
     #import "NSObject+DaiPortal.h"
     #import "Pgyer.h"
 
@@ -34,10 +33,14 @@
     #import <ReactiveCocoa/RACEXTScope.h>
     #import <ChameleonFramework/Chameleon.h>
     #import <SupportKit/SupportKit.h>
+    #import <Realm/Realm.h>
+    #import <SVProgressHUD/SVProgressHUD.h>
+
+    //Realm
+    #import "HentaiSaveLibrary.h"
+    #import "HentaiCacheLibrary.h"
 
     //LightWeightPlist
-    #define HentaiCacheLibraryDictionary LWPDictionary(@"HentaiCacheLibrary")
-    #define HentaiSaveLibraryArray LWPArray(@"HentaiSaveLibrary")
     #define HentaiPrefer LWPDictionary(@"HentaiPrefer")
     #define HentaiFilters LWPArrayR(@"HentaiFilters")
     #define HentaiAccount LWPDictionary(@"HentaiAccount")

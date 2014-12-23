@@ -32,7 +32,8 @@
     BOOL isExist = NO;
     
     //如果下載過的話不給下
-    for (NSDictionary *eachInfo in HentaiSaveLibraryArray) {
+    for (int i=0; i<[HentaiSaveLibrary count]; i++) {
+        NSDictionary *eachInfo = [HentaiSaveLibrary saveInfoAtIndex:i];
         if ([eachInfo[@"url"] isEqualToString:hentaiInfo[@"url"]]) {
             isExist = YES;
             break;

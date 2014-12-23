@@ -85,7 +85,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     if (HentaiAccount[@"UserName"]) {
-        [DaiInboxHUD showMessage:[[NSAttributedString alloc] initWithString:@"潛入 exHentai 中..."]];
+        [SVProgressHUD showWithStatus:@"潛入 exHentai 中..."];
         [DiveExHentai diveByUserName:HentaiAccount[@"UserName"] password:HentaiAccount[@"Password"] completion: ^(BOOL isSuccess) {
             if (isSuccess) {
                 [super viewWillAppear:animated];
@@ -93,14 +93,14 @@
             else {
                 [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
             }
-            [DaiInboxHUD hide];
+            [SVProgressHUD dismiss];
         }];
     }
     else {
         UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"登入" message:@"輸入您可進入 exhentai 的帳號" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
         loginAlert.hentai_account = ^(NSString *userName, NSString *password) {
-            [DaiInboxHUD showMessage:[[NSAttributedString alloc] initWithString:@"潛入 exHentai 中..."]];
+            [SVProgressHUD showWithStatus:@"潛入 exHentai 中..."];
             [DiveExHentai diveByUserName:userName password:password completion: ^(BOOL isSuccess) {
                 if (isSuccess) {
                     [LightWeightPlist lwpSafe:^{
@@ -110,7 +110,7 @@
                     }];
                 }
                 [super viewWillAppear:animated];
-                [DaiInboxHUD hide];
+                [SVProgressHUD dismiss];
             }];
         };
         [loginAlert addButtonWithTitle:@"Go~ O3O"];

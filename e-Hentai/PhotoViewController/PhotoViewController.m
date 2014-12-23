@@ -93,18 +93,15 @@
 
 - (void)saveAction {
     [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"衝吧! O3O"] onClickIndex: ^(NSInteger clickIndex) {
-        [DaiInboxHUD show];
+        [SVProgressHUD show];
         [self waitingOnDownloadFinish];
     } onCancel: ^{
     }];
 }
 
 - (void)deleteAction {
-    [[[FilesManager documentFolder] fcd:@"hentai"] rd:self.hentaiKey];
-    [LightWeightPlist lwpSafe:^{
-        [HentaiSaveLibraryArray removeObjectAtIndex:[self foundDownloadKey]];
-        LWPForceWrite();
-    }];
+    [[[FilesManager documentFolder] fcd:@"Hentai"] rd:self.hentaiKey];
+    [HentaiSaveLibrary removeSaveInfoAtIndex:[self foundDownloadKey]];
     [self backAction];
 }
 
@@ -132,17 +129,14 @@
     //相關參數初始化
     self.hentaiImageURLs = [NSMutableArray array];
     self.retryMap = [NSMutableDictionary dictionary];
-    if (HentaiCacheLibraryDictionary[self.hentaiKey]) {
+    if ([HentaiCacheLibrary cacheInfoForKey:self.hentaiKey]) {
         //這邊要多一個判斷, 當 cache 資料夾下如果找不到東西了, 表示圖片已經被清掉
         if ([[[FilesManager cacheFolder] fcd:@"Hentai"] cd:self.hentaiKey]) {
-            self.hentaiResults = HentaiCacheLibraryDictionary[self.hentaiKey];
+            self.hentaiResults = [NSMutableDictionary dictionaryWithDictionary:[HentaiCacheLibrary cacheInfoForKey:self.hentaiKey]];
         }
         else {
             self.hentaiResults = [NSMutableDictionary dictionary];
-            [LightWeightPlist lwpSafe:^{
-                [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
-                LWPForceWrite();
-            }];
+            [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
         }
     }
     else {
@@ -236,12 +230,9 @@
         FMStream *saveFolder = [[FilesManager documentFolder] fcd:@"Hentai"];
         [self.hentaiFilesManager moveToPath:[saveFolder.currentPath stringByAppendingPathComponent:self.hentaiKey]];
         NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
-        [LightWeightPlist lwpSafe:^{
-            [HentaiSaveLibraryArray insertObject:saveInfo atIndex:0];
-            LWPForceWrite();
-        }];
+        [HentaiSaveLibrary addSaveInfo:saveInfo];
         [self setupForAlreadyDownloadKey:[self foundDownloadKey]];
-        [DaiInboxHUD hide];
+        [SVProgressHUD dismiss];
     }
 }
 
@@ -249,8 +240,9 @@
 - (void)setupForAlreadyDownloadKey:(NSUInteger)downloadKey {
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction)];
     self.navigationItem.rightBarButtonItem = deleteButton;
-    [self.hentaiImageURLs setArray:HentaiSaveLibraryArray[downloadKey][@"images"]];
-    [self.hentaiResults setDictionary:HentaiSaveLibraryArray[downloadKey][@"hentaiResult"]];
+    NSDictionary *saveInfo = [HentaiSaveLibrary saveInfoAtIndex:downloadKey];
+    [self.hentaiImageURLs setArray:saveInfo[@"images"]];
+    [self.hentaiResults setDictionary:saveInfo[@"hentaiResult"]];
     self.realDisplayCount = [self.hentaiImageURLs count];
     self.hentaiFilesManager = [[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
     [self.hentaiTableView reloadData];
@@ -258,12 +250,7 @@
 
 //找尋是不是有下載過
 - (NSUInteger)foundDownloadKey {
-    for (NSDictionary *eachInfo in HentaiSaveLibraryArray) {
-        if ([eachInfo[@"hentaiKey"] isEqualToString:self.hentaiKey]) {
-            return [HentaiSaveLibraryArray indexOfObject:eachInfo];
-        }
-    }
-    return NSNotFound;
+    return [HentaiSaveLibrary foundDownloadKey:self.hentaiKey];
 }
 
 #pragma mark - HentaiDownloadImageOperationDelegate
@@ -275,7 +262,7 @@
         if (availableCount > self.realDisplayCount) {
             if (availableCount >= 1 && !self.isRemovedHUD) {
                 self.isRemovedHUD = YES;
-                [DaiInboxHUD hide];
+                [SVProgressHUD dismiss];
             }
             self.realDisplayCount = availableCount;
             [self.hentaiTableView reloadData];
@@ -405,7 +392,7 @@
     //否則則從網路上取得
     else {
         self.hentaiFilesManager = [[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
-        [DaiInboxHUD show];
+        [SVProgressHUD show];
         @weakify(self);
         [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
             @strongify(self);
@@ -416,11 +403,11 @@
                     break;
                 case HentaiParserStatusNetworkFail:
                     [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"網路失敗" cancelButtonTitle:@"確定"];
-                    [DaiInboxHUD hide];
+                    [SVProgressHUD dismiss];
                     break;
                 case HentaiParserStatusParseFail:
                     [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"解析失敗" cancelButtonTitle:@"確定"];
-                    [DaiInboxHUD hide];
+                    [SVProgressHUD dismiss];
                     break;
             }
         }];
@@ -431,21 +418,18 @@
     [super viewWillDisappear:animated];
     
     if (!self.isRemovedHUD) {
-        [DaiInboxHUD hide];
+        [SVProgressHUD dismiss];
     }
     
     //結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
     [self.hentaiQueue cancelAllOperations];
     
-    [LightWeightPlist lwpSafe:^{
-        if ([self foundDownloadKey] != NSNotFound) {
-            [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
-        }
-        else {
-            HentaiCacheLibraryDictionary[self.hentaiKey] = self.hentaiResults;
-        }
-        LWPForceWrite();
-    }];
+    if ([self foundDownloadKey] != NSNotFound) {
+        [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
+    }
+    else {
+        [HentaiCacheLibrary addCacheInfo:self.hentaiResults forKey:self.hentaiKey];
+    }
 }
 
 @end

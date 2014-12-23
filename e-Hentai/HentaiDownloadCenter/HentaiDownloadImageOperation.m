@@ -31,7 +31,8 @@
 	}
     
 	[self hentaiStart];
-	NSNumber *imageHeight = HentaiCacheLibraryDictionary[self.hentaiKey][[self.downloadURLString hentai_lastTwoPathComponent]];
+    
+	NSNumber *imageHeight = [HentaiCacheLibrary cacheInfoForKey:self.hentaiKey][[self.downloadURLString hentai_lastTwoPathComponent]];
     
 	//從 imageHeight 的有無可以判斷這個檔案是否已經有了
 	if (!imageHeight) {

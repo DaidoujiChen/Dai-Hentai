@@ -100,7 +100,8 @@
     NSDictionary *hentaiInfo = self.listArray[indexPath.row];
     BOOL isExist = NO;
     
-    for (NSDictionary *eachSavedInfo in HentaiSaveLibraryArray) {
+    for (int i=0; i<[HentaiSaveLibrary count]; i++) {
+        NSDictionary *eachSavedInfo = [HentaiSaveLibrary saveInfoAtIndex:i];
         if ([eachSavedInfo[@"hentaiInfo"][@"url"] isEqualToString:hentaiInfo[@"url"]]) {
             isExist = YES;
             break;

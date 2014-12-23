@@ -183,11 +183,8 @@
             
             //如果 cache 有暫存就殺光光
             [[[FilesManager cacheFolder] fcd:@"Hentai"] rd:self.hentaiKey];
-            [LightWeightPlist lwpSafe:^{
-                [HentaiSaveLibraryArray insertObject:saveInfo atIndex:0];
-                [HentaiCacheLibraryDictionary removeObjectForKey:self.hentaiKey];
-                LWPForceWrite();
-            }];
+            [HentaiSaveLibrary addSaveInfo:saveInfo];
+            [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
             [[self portal:HentaiDownloadSuccessNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
             [self hentaiFinish];
         }

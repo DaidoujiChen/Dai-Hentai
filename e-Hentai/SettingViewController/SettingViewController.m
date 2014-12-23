@@ -18,10 +18,7 @@
 
 - (IBAction)cleanCacheAction:(id)sender {
     [[FilesManager cacheFolder] rd:@"Hentai"];
-    [LightWeightPlist lwpSafe:^{
-        [HentaiCacheLibraryDictionary removeAllObjects];
-        LWPForceWrite();
-    }];
+    [HentaiCacheLibrary eraseCacheInfo];
     [self cacheFolderSize];
 }
 
@@ -33,7 +30,8 @@
         BOOL isExist = NO;
         
         //檢查有沒有在列表內
-        for (NSDictionary *eachSaveHentaiInfo in HentaiSaveLibraryArray) {
+        for (int i=0; i<[HentaiSaveLibrary count]; i++) {
+            NSDictionary *eachSaveHentaiInfo = [HentaiSaveLibrary saveInfoAtIndex:i];
             NSString *hentaiKey = [eachSaveHentaiInfo[@"hentaiInfo"] hentai_hentaiKey];
             
             if ([hentaiKey rangeOfString:eachFolderName].location != NSNotFound) {

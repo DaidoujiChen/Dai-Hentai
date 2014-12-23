@@ -98,7 +98,7 @@ typedef enum {
                     [cookieStorage deleteCookie:each];
                 }
                 
-                for (NSHTTPCookie *eachCookies in[self cookies]) {
+                for (NSHTTPCookie *eachCookies in [self cookies]) {
                     [cookieStorage setCookie:eachCookies];
                 }
                 

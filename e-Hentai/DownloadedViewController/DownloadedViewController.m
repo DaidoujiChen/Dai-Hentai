@@ -17,12 +17,13 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return [HentaiSaveLibraryArray count];
+	return [HentaiSaveLibrary count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.row;
 	GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
-	NSURL *imageURL = [NSURL URLWithString:HentaiSaveLibraryArray[indexPath.row][@"hentaiInfo"][@"thumb"]];
+	NSURL *imageURL = [NSURL URLWithString:[HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"thumb"]];
 	[cell.cellImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageRefreshCached];
 	return cell;
 }
@@ -30,7 +31,8 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *hentaiInfo = HentaiSaveLibraryArray[indexPath.row][@"hentaiInfo"];
+    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.row;
+	NSDictionary *hentaiInfo = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"];
 	PhotoViewController *photoViewController = [PhotoViewController new];
 	photoViewController.hentaiInfo = hentaiInfo;
     [self.delegate needToPushViewController:photoViewController];

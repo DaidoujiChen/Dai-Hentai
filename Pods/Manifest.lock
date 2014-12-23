@@ -1,30 +1,38 @@
 PODS:
   - ChameleonFramework (1.1.1)
   - ReactiveCocoa (2.3.1):
-    - ReactiveCocoa/UI
+    - ReactiveCocoa/UI (= 2.3.1)
   - ReactiveCocoa/Core (2.3.1):
     - ReactiveCocoa/no-arc
   - ReactiveCocoa/no-arc (2.3.1)
   - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
+  - Realm (0.89.1):
+    - Realm/Headers (= 0.89.1)
+  - Realm/Headers (0.89.1)
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
   - SupportKit (2.4.0)
+  - SVProgressHUD (1.1.2)
   - ViewDeck (2.3.1)
 
 DEPENDENCIES:
   - ChameleonFramework (~> 1.1.1)
   - ReactiveCocoa (~> 2.3.1)
+  - Realm (~> 0.89.0)
   - SDWebImage (~> 3.6)
   - SupportKit (~> 2.4.0)
+  - SVProgressHUD (~> 1.1.2)
   - ViewDeck (~> 2.3.1)
 
 SPEC CHECKSUMS:
   ChameleonFramework: c60096686e3771f5d78f26cfbfd08955a8a88cbd
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
+  Realm: 20b0bd13983d64fd22afeb47489729fd71b6b5c6
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SupportKit: 03ee8dec9c5464c98c38e13a66af4af4b35a2551
+  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
   ViewDeck: 654a493fc83928892ce483dea08a5302180aafce
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0
