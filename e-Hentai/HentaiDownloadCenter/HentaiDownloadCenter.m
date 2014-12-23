@@ -29,16 +29,9 @@
 #pragma mark - class method
 
 + (void)addBook:(NSDictionary *)hentaiInfo {
-    BOOL isExist = NO;
     
-    //如果下載過的話不給下
-    for (int i=0; i<[HentaiSaveLibrary count]; i++) {
-        NSDictionary *eachInfo = [HentaiSaveLibrary saveInfoAtIndex:i];
-        if ([eachInfo[@"url"] isEqualToString:hentaiInfo[@"url"]]) {
-            isExist = YES;
-            break;
-        }
-    }
+    //下載過的話不給下
+    BOOL isExist = ([HentaiSaveLibrary indexOfURL:hentaiInfo[@"url"]] == NSNotFound)?NO:YES;
     
     //如果在 queue 裡面也不給下
     isExist = isExist | [self isDownloading:hentaiInfo];

@@ -18,7 +18,7 @@
 + (void)addCacheInfo:(NSDictionary *)cacheInfo forKey:(NSString *)key;
 + (NSDictionary *)cacheInfoForKey:(NSString *)key;
 + (void)removeCacheInfoForKey:(NSString *)key;
-+ (void)eraseCacheInfo;
++ (void)removeAllCacheInfo;
 
 @end
 

@@ -18,7 +18,7 @@
 
 - (IBAction)cleanCacheAction:(id)sender {
     [[FilesManager cacheFolder] rd:@"Hentai"];
-    [HentaiCacheLibrary eraseCacheInfo];
+    [HentaiCacheLibrary removeAllCacheInfo];
     [self cacheFolderSize];
 }
 

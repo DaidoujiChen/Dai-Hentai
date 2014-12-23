@@ -10,6 +10,9 @@
 
 @implementation HentaiCacheLibrary
 
+#pragma mark - class method
+
+//增加一筆新的 cache 資料
 + (void)addCacheInfo:(NSDictionary *)cacheInfo forKey:(NSString *)key {
     [self removeCacheInfoForKey:key];
     
@@ -29,6 +32,7 @@
     [[self hentaiCacheLibraryRealm] commitWriteTransaction];
 }
 
+//用 key 值取得一筆 cache 資料
 + (NSDictionary *)cacheInfoForKey:(NSString *)key {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"key contains[c] %@", key];
     RLMResults *oldObjects = [HentaiCacheLibrary objectsInRealm:[self hentaiCacheLibraryRealm] withPredicate:predicate];
@@ -43,6 +47,7 @@
     return nil;
 }
 
+//根據 key 值移除 cache 資料
 + (void)removeCacheInfoForKey:(NSString *)key {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"key contains[c] %@", key];
     RLMResults *oldObjects = [HentaiCacheLibrary objectsInRealm:[self hentaiCacheLibraryRealm] withPredicate:predicate];
@@ -55,12 +60,16 @@
     }
 }
 
-+ (void)eraseCacheInfo {
+//清除所有 cache 資料
++ (void)removeAllCacheInfo {
     [[self hentaiCacheLibraryRealm] beginWriteTransaction];
     [[self hentaiCacheLibraryRealm] deleteAllObjects];
     [[self hentaiCacheLibraryRealm] commitWriteTransaction];
 }
 
+#pragma mark - private
+
+//存在特定檔案
 + (RLMRealm *)hentaiCacheLibraryRealm {
     NSString *realmPath = [[FilesManager documentFolder] currentPath];
     return [RLMRealm realmWithPath:[realmPath stringByAppendingPathComponent:@"HentaiCacheLibrary.realm"]];

@@ -10,6 +10,9 @@
 
 @implementation HentaiSaveLibrary
 
+#pragma mark - class method
+
+//儲存整本作品的資訊
 + (void)addSaveInfo:(NSDictionary *)saveInfo {
     HentaiSaveLibrary *newLibrary = [HentaiSaveLibrary new];
     newLibrary.hentaiKey = saveInfo[@"hentaiKey"];
@@ -48,11 +51,13 @@
     [[self hentaiSaveLibraryRealm] commitWriteTransaction];
 }
 
+//已下載數量
 + (NSUInteger)count {
     return [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] count];
 }
 
-+ (NSUInteger)foundDownloadKey:(NSString *)hentaiKey {
+//用 hentaiKey 查詢所在 index
++ (NSUInteger)indexOfHentaiKey:(NSString *)hentaiKey {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hentaiKey contains[c] %@", hentaiKey];
     RLMResults *resultObjects = [HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate];
     if (resultObjects.count) {
@@ -61,6 +66,17 @@
     return NSNotFound;
 }
 
+//用 url 查詢所在 index
++ (NSUInteger)indexOfURL:(NSString *)url {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hentaiInfo.url contains[c] %@", url];
+    RLMResults *resultObjects = [HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate];
+    if (resultObjects.count) {
+        return [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] indexOfObject:[resultObjects firstObject]];
+    }
+    return NSNotFound;
+}
+
+//指定 index 返回內容
 + (NSDictionary *)saveInfoAtIndex:(NSUInteger)index {
     NSMutableDictionary *returnInfo = [NSMutableDictionary dictionary];
     HentaiSaveLibrary *infoObject = [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] objectAtIndex:index];
@@ -96,6 +112,7 @@
     return returnInfo;
 }
 
+//移除某一個 index 內容
 + (void)removeSaveInfoAtIndex:(NSUInteger)index {
     HentaiSaveLibrary *removeObject = [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] objectAtIndex:index];
     
@@ -107,6 +124,9 @@
     [[self hentaiSaveLibraryRealm] commitWriteTransaction];
 }
 
+#pragma mark - private
+
+//存在特定檔案
 + (RLMRealm *)hentaiSaveLibraryRealm {
     NSString *realmPath = [[FilesManager documentFolder] currentPath];
     return [RLMRealm realmWithPath:[realmPath stringByAppendingPathComponent:@"HentaiSaveLibrary.realm"]];

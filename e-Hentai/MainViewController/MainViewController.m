@@ -98,15 +98,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *hentaiInfo = self.listArray[indexPath.row];
-    BOOL isExist = NO;
-    
-    for (int i=0; i<[HentaiSaveLibrary count]; i++) {
-        NSDictionary *eachSavedInfo = [HentaiSaveLibrary saveInfoAtIndex:i];
-        if ([eachSavedInfo[@"hentaiInfo"][@"url"] isEqualToString:hentaiInfo[@"url"]]) {
-            isExist = YES;
-            break;
-        }
-    }
+    BOOL isExist = ([HentaiSaveLibrary indexOfURL:hentaiInfo[@"url"]] == NSNotFound)?NO:YES;
     
     if (isExist) {
         PhotoViewController *photoViewController = [PhotoViewController new];

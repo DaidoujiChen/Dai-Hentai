@@ -49,8 +49,8 @@
 
 - (void)waitingOnDownloadFinish;
 - (void)checkEndOfFile;
-- (void)setupForAlreadyDownloadKey:(NSUInteger)downloadKey;
-- (NSUInteger)foundDownloadKey;
+- (void)setupForDownloadedIndex:(NSUInteger)index;
+- (NSUInteger)indexOfHentaiKey;
 
 @end
 
@@ -101,7 +101,7 @@
 
 - (void)deleteAction {
     [[[FilesManager documentFolder] fcd:@"Hentai"] rd:self.hentaiKey];
-    [HentaiSaveLibrary removeSaveInfoAtIndex:[self foundDownloadKey]];
+    [HentaiSaveLibrary removeSaveInfoAtIndex:[self indexOfHentaiKey]];
     [self backAction];
 }
 
@@ -231,16 +231,16 @@
         [self.hentaiFilesManager moveToPath:[saveFolder.currentPath stringByAppendingPathComponent:self.hentaiKey]];
         NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
         [HentaiSaveLibrary addSaveInfo:saveInfo];
-        [self setupForAlreadyDownloadKey:[self foundDownloadKey]];
+        [self setupForDownloadedIndex:[self indexOfHentaiKey]];
         [SVProgressHUD dismiss];
     }
 }
 
 //設定下載好的相關資料
-- (void)setupForAlreadyDownloadKey:(NSUInteger)downloadKey {
+- (void)setupForDownloadedIndex:(NSUInteger)index {
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction)];
     self.navigationItem.rightBarButtonItem = deleteButton;
-    NSDictionary *saveInfo = [HentaiSaveLibrary saveInfoAtIndex:downloadKey];
+    NSDictionary *saveInfo = [HentaiSaveLibrary saveInfoAtIndex:index];
     [self.hentaiImageURLs setArray:saveInfo[@"images"]];
     [self.hentaiResults setDictionary:saveInfo[@"hentaiResult"]];
     self.realDisplayCount = [self.hentaiImageURLs count];
@@ -249,8 +249,8 @@
 }
 
 //找尋是不是有下載過
-- (NSUInteger)foundDownloadKey {
-    return [HentaiSaveLibrary foundDownloadKey:self.hentaiKey];
+- (NSUInteger)indexOfHentaiKey {
+    return [HentaiSaveLibrary indexOfHentaiKey:self.hentaiKey];
 }
 
 #pragma mark - HentaiDownloadImageOperationDelegate
@@ -383,11 +383,11 @@
     [super viewDidLoad];
     [self setupInitValues];
     
-    NSUInteger downloadKey = [self foundDownloadKey];
+    NSUInteger indexOfHentaiKey = [self indexOfHentaiKey];
     
     //如果本機有存檔案就用本機的
-    if (downloadKey != NSNotFound) {
-        [self setupForAlreadyDownloadKey:downloadKey];
+    if (indexOfHentaiKey != NSNotFound) {
+        [self setupForDownloadedIndex:indexOfHentaiKey];
     }
     //否則則從網路上取得
     else {
@@ -424,7 +424,7 @@
     //結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
     [self.hentaiQueue cancelAllOperations];
     
-    if ([self foundDownloadKey] != NSNotFound) {
+    if ([self indexOfHentaiKey] != NSNotFound) {
         [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
     }
     else {
