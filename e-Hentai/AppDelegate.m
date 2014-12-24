@@ -22,6 +22,9 @@
     //supportkit
     [self setupSupportKit];
     
+    //Flurry
+    [Flurry startSession:@"BY5JD5CPV7N4C3R2CP2J"];
+    
     //轉移
     [self oldDataChecking];
     

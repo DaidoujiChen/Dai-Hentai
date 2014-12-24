@@ -25,6 +25,7 @@
     #import "NSDictionary+Hentai.h"
     #import "NSObject+DaiPortal.h"
     #import "Pgyer.h"
+    #import "Flurry.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>

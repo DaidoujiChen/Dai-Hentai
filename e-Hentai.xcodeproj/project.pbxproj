@@ -23,6 +23,7 @@
 		011AEA5719DD296400A15CA5 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011AEA5519DD296400A15CA5 /* MenuViewController.xib */; };
 		011AEA5A19DD31B300A15CA5 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 011AEA5919DD31B300A15CA5 /* Menu.plist */; };
 		01310BD51A00ABBC00C78DFE /* AppDelegate+SupportKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 01310BD41A00ABBC00C78DFE /* AppDelegate+SupportKit.m */; };
+		0131908E1A4A5C6B0056F2E6 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0131908D1A4A5C6B0056F2E6 /* libFlurry_6.0.0.a */; };
 		0137F40C19C1688200528359 /* HentaiDownloadCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137F40B19C1688200528359 /* HentaiDownloadCenter.m */; };
 		0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137F40E19C1695800528359 /* HentaiDownloadBookOperation.m */; };
 		013F8F0E1A490BB1002B8C47 /* HentaiSaveLibrary_HentaiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 013F8F0D1A490BB1002B8C47 /* HentaiSaveLibrary_HentaiInfo.m */; };
@@ -127,6 +128,8 @@
 		011AEA5919DD31B300A15CA5 /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
 		01310BD31A00ABBC00C78DFE /* AppDelegate+SupportKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+SupportKit.h"; sourceTree = "<group>"; };
 		01310BD41A00ABBC00C78DFE /* AppDelegate+SupportKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+SupportKit.m"; sourceTree = "<group>"; };
+		0131908C1A4A5C6B0056F2E6 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		0131908D1A4A5C6B0056F2E6 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		0137F40A19C1688200528359 /* HentaiDownloadCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadCenter.h; path = HentaiDownloadCenter/HentaiDownloadCenter.h; sourceTree = "<group>"; };
 		0137F40B19C1688200528359 /* HentaiDownloadCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiDownloadCenter.m; path = HentaiDownloadCenter/HentaiDownloadCenter.m; sourceTree = "<group>"; };
 		0137F40D19C1695800528359 /* HentaiDownloadBookOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiDownloadBookOperation.h; path = HentaiDownloadCenter/HentaiDownloadBookOperation.h; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 				016DADA619E3940C00E528BE /* Security.framework in Frameworks */,
 				01B423211A44136400FAB920 /* Pgyer.a in Frameworks */,
 				016DADA419E393EB00E528BE /* CoreMotion.framework in Frameworks */,
+				0131908E1A4A5C6B0056F2E6 /* libFlurry_6.0.0.a in Frameworks */,
 				016DADA219E393DF00E528BE /* CoreLocation.framework in Frameworks */,
 				016DADA019E393D600E528BE /* AssetsLibrary.framework in Frameworks */,
 				016DAD9E19E393C300E528BE /* MediaPlayer.framework in Frameworks */,
@@ -341,6 +345,15 @@
 			name = MenuViewController;
 			sourceTree = "<group>";
 		};
+		0131908B1A4A5C6B0056F2E6 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				0131908C1A4A5C6B0056F2E6 /* Flurry.h */,
+				0131908D1A4A5C6B0056F2E6 /* libFlurry_6.0.0.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
 		0137F40919C1684500528359 /* HentaiDownloadCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +412,7 @@
 		0150033619B6E5E90055F47D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				0131908B1A4A5C6B0056F2E6 /* Flurry */,
 				01B4231E1A44136400FAB920 /* Pgyer */,
 				019290161A25D6C70094B423 /* DaiPortal */,
 				016BBEF919B94E4F0015E11E /* FilesManager */,
@@ -990,6 +1004,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Pgyer",
+					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Flurry",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "e-Hentai";
@@ -1020,6 +1035,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Pgyer",
+					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Flurry",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "e-Hentai";
