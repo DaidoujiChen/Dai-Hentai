@@ -15,6 +15,7 @@
 @interface HentaiSaveLibrary : RLMObject
 
 @property NSString *hentaiKey;
+@property NSString *group;
 @property HentaiSaveLibrary_HentaiInfo *hentaiInfo;
 @property RLMArray <HentaiSaveLibrary_HentaiResult> *hentaiResult;
 @property RLMArray <HentaiSaveLibrary_Images> *images;

@@ -16,6 +16,7 @@
 + (void)addSaveInfo:(NSDictionary *)saveInfo {
     HentaiSaveLibrary *newLibrary = [HentaiSaveLibrary new];
     newLibrary.hentaiKey = saveInfo[@"hentaiKey"];
+    newLibrary.group = @"";
     
     HentaiSaveLibrary_HentaiInfo *newInfo = [HentaiSaveLibrary_HentaiInfo new];
     newInfo.category = saveInfo[@"hentaiInfo"][@"category"];
