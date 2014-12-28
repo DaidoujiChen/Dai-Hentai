@@ -85,7 +85,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     if (HentaiAccount[@"UserName"]) {
-        [SVProgressHUD showWithStatus:@"潛入 exHentai 中..."];
+        [SVProgressHUD show];
         [DiveExHentai diveByUserName:HentaiAccount[@"UserName"] password:HentaiAccount[@"Password"] completion: ^(BOOL isSuccess) {
             if (isSuccess) {
                 [super viewWillAppear:animated];
@@ -100,7 +100,7 @@
         UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"登入" message:@"輸入您可進入 exhentai 的帳號" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
         loginAlert.hentai_account = ^(NSString *userName, NSString *password) {
-            [SVProgressHUD showWithStatus:@"潛入 exHentai 中..."];
+            [SVProgressHUD show];
             [DiveExHentai diveByUserName:userName password:password completion: ^(BOOL isSuccess) {
                 if (isSuccess) {
                     [LightWeightPlist lwpSafe:^{
