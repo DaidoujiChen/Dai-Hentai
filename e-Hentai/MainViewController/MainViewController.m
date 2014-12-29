@@ -194,12 +194,6 @@
     self.listIndex = 0;
     self.listArray = [NSMutableArray array];
     self.rollLock = [NSLock new];
-    
-    //調整畫面的大小
-    CGRect screenSize = [UIScreen mainScreen].bounds;
-    self.view.frame = screenSize;
-    self.listCollectionView.frame = screenSize;
-    
     self.onceFlag = YES;
 }
 

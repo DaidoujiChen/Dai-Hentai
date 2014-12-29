@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController">
@@ -16,9 +16,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vgz-Ct-9fH">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vgz-Ct-9fH">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="ie5-Q5-MpV"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="xMn-Pw-QXk"/>
+                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Cyw-mT-34d"/>
                         <outlet property="delegate" destination="-1" id="dSU-Qa-tMm"/>
@@ -26,6 +30,12 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vgz-Ct-9fH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BEd-Rr-OIK"/>
+                <constraint firstAttribute="bottom" secondItem="vgz-Ct-9fH" secondAttribute="bottom" id="H4q-qb-eYl"/>
+                <constraint firstItem="vgz-Ct-9fH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZAB-TV-bN8"/>
+                <constraint firstAttribute="trailing" secondItem="vgz-Ct-9fH" secondAttribute="trailing" id="z0f-6M-v7M"/>
+            </constraints>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
