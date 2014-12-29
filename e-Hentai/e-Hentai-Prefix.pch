@@ -36,6 +36,7 @@
     #import <SupportKit/SupportKit.h>
     #import <Realm/Realm.h>
     #import <SVProgressHUD/SVProgressHUD.h>
+    #import <MWPhotoBrowser/MWPhotoBrowser.h>
 
     //Realm
     #import "HentaiSaveLibrary.h"

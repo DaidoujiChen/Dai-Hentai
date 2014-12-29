@@ -8,6 +8,6 @@
 
 #import "MainViewController.h"
 
-@interface DownloadedViewController : MainViewController
+@interface DownloadedViewController : MainViewController <MWPhotoBrowserDelegate>
 
 @end

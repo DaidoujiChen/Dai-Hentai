@@ -27,6 +27,17 @@
     }];
 }
 
+- (IBAction)browserChange:(id)sender {
+    UISwitch *browserSwitch = (UISwitch *)sender;
+    if (browserSwitch.on) {
+        [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"目前這個功能僅在已下載功能中可使用~ O3O" cancelButtonTitle:@"好~ O3O"];
+    }
+    [LightWeightPlist lwpSafe:^{
+        HentaiSettings[@"useNewBroswer"] = @(browserSwitch.on);
+        LWPForceWrite();
+    }];
+}
+
 - (IBAction)cleanCacheAction:(id)sender {
     [[FilesManager cacheFolder] rd:@"Hentai"];
     [HentaiCacheLibrary removeAllCacheInfo];
@@ -118,6 +129,7 @@
 
 - (void)setupInitValues {
     self.highResolutionSwitch.on = [HentaiSettings[@"highResolution"] boolValue];
+    self.browserSwitch.on = [HentaiSettings[@"useNewBroswer"] boolValue];
 }
 
 #pragma mark - life cycle

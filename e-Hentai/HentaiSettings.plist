@@ -4,5 +4,7 @@
 <dict>
 	<key>highResolution</key>
 	<false/>
+	<key>useNewBroswer</key>
+	<false/>
 </dict>
 </plist>
