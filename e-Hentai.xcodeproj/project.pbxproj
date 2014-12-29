@@ -89,6 +89,7 @@
 		019926A119ADDB83009F814B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019926A019ADDB83009F814B /* Images.xcassets */; };
 		01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */; };
 		01A907F01A493A96006F4179 /* HentaiCacheLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A907EF1A493A96006F4179 /* HentaiCacheLibrary.m */; };
+		01B26E6F1A5135C60052D2BA /* HentaiSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01B26E6E1A5135C60052D2BA /* HentaiSettings.plist */; };
 		01B423211A44136400FAB920 /* Pgyer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B4231F1A44136400FAB920 /* Pgyer.a */; };
 		01BBD60119E3D428003538CF /* HentaiPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */; };
 		01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */; };
@@ -233,6 +234,7 @@
 		01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Hentai.m"; sourceTree = "<group>"; };
 		01A907EE1A493A96006F4179 /* HentaiCacheLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiCacheLibrary.h; sourceTree = "<group>"; };
 		01A907EF1A493A96006F4179 /* HentaiCacheLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiCacheLibrary.m; sourceTree = "<group>"; };
+		01B26E6E1A5135C60052D2BA /* HentaiSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HentaiSettings.plist; sourceTree = "<group>"; };
 		01B4231F1A44136400FAB920 /* Pgyer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = Pgyer.a; sourceTree = "<group>"; };
 		01B423201A44136400FAB920 /* Pgyer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pgyer.h; sourceTree = "<group>"; };
 		01BBD5FE19E3D428003538CF /* HentaiPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiPhotoCell.h; path = HentaiPhotoCell/HentaiPhotoCell.h; sourceTree = "<group>"; };
@@ -668,6 +670,7 @@
 		01BFAD4D19DE430A00A5649F /* SettingViewController */ = {
 			isa = PBXGroup;
 			children = (
+				01B26E6E1A5135C60052D2BA /* HentaiSettings.plist */,
 				01BFAD4E19DE435700A5649F /* SettingViewController.h */,
 				01BFAD4F19DE435700A5649F /* SettingViewController.m */,
 				01BFAD5019DE435700A5649F /* SettingViewController.xib */,
@@ -786,6 +789,7 @@
 				0180D92F1A0214AD002554FC /* delivery@2x.png in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
 				0180D9201A0212C8002554FC /* dropbox_copyrighted@3x.png in Resources */,
+				01B26E6F1A5135C60052D2BA /* HentaiSettings.plist in Resources */,
 				01519AF31A3053200091C985 /* IPadDownloadManagerViewController.xib in Resources */,
 				0180D9301A0214AD002554FC /* delivery@3x.png in Resources */,
 				0180D92B1A02140E002554FC /* settings@2x.png in Resources */,

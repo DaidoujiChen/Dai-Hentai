@@ -14,5 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *cacheSizeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *downloadedSizeLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *highResolutionSwitch;
 
 @end

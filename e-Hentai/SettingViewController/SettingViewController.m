@@ -16,6 +16,17 @@
 
 #pragma mark - ibaction
 
+- (IBAction)highResolutionChange:(id)sender {
+    UISwitch *highResolutionSwitch = (UISwitch *)sender;
+    if (highResolutionSwitch.on) {
+        [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"開啟高清開關後, 儲存的圖片將明顯變大!\n效果會在下一次下載, 觀看時生效!" cancelButtonTitle:@"好~ O3O"];
+    }
+    [LightWeightPlist lwpSafe:^{
+        HentaiSettings[@"highResolution"] = @(highResolutionSwitch.on);
+        LWPForceWrite();
+    }];
+}
+
 - (IBAction)cleanCacheAction:(id)sender {
     [[FilesManager cacheFolder] rd:@"Hentai"];
     [HentaiCacheLibrary removeAllCacheInfo];
@@ -105,11 +116,16 @@
     });
 }
 
+- (void)setupInitValues {
+    self.highResolutionSwitch.on = [HentaiSettings[@"highResolution"] boolValue];
+}
+
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"設定";
+    [self setupInitValues];
     [self cacheFolderSize];
     [self documentFolderSize];
 }

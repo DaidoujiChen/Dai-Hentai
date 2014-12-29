@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *downloadURLString;
 @property (nonatomic, strong) NSString *hentaiKey;
 @property (nonatomic, assign) BOOL isCacheOperation;
+@property (nonatomic, assign) BOOL isHighResolution;
 
 @end
 

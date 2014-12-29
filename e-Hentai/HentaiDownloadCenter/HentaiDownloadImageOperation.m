@@ -79,10 +79,10 @@
 		    UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:self.recvData]];
             
 		    if (self.isCacheOperation) {
-		        [[[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString hentai_lastTwoPathComponent]];
+		        [[[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.8f) filename:[self.downloadURLString hentai_lastTwoPathComponent]];
 			}
 		    else {
-		        [[[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.6f) filename:[self.downloadURLString hentai_lastTwoPathComponent]];
+		        [[[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey] write:UIImageJPEGRepresentation(image, 0.8f) filename:[self.downloadURLString hentai_lastTwoPathComponent]];
 			}
             
 		    //讓檔案轉存這件事情不擋線程
@@ -131,9 +131,12 @@
 //根據新的大小把圖片縮小, 原網站上面的圖片都過大
 - (UIImage *)resizeImageWithImage:(UIImage *)image {
 	CGSize newSize = [self calendarNewSize:image];
-	UIGraphicsBeginImageContext(newSize);
-	//retina 的圖片實在太大, 吃不消 所以先不 retina 試試
-	//UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    if (self.isHighResolution) {
+        UIGraphicsBeginImageContextWithOptions(newSize, NO, [UIApplication sharedApplication].keyWindow.screen.scale);
+    }
+    else {
+        UIGraphicsBeginImageContext(newSize);
+    }
 	[image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
 	UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();

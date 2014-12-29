@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="cacheSizeLabel" destination="fG0-fi-r2V" id="4ug-Wk-b7z"/>
                 <outlet property="downloadedSizeLabel" destination="TcK-Dr-RHl" id="jyM-kP-p4F"/>
+                <outlet property="highResolutionSwitch" destination="6ce-DT-MZp" id="Wcn-b2-1NS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -47,11 +48,23 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="高清開關" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHp-sU-bzl">
+                    <rect key="frame" x="8" y="328" width="152" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6ce-DT-MZp">
+                    <rect key="frame" x="168" y="323" width="51" height="31"/>
+                    <connections>
+                        <action selector="highResolutionChange:" destination="-1" eventType="valueChanged" id="u3H-U1-bVg"/>
+                    </connections>
+                </switch>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-671" y="47"/>
+            <point key="canvasLocation" x="-301" y="58"/>
         </view>
     </objects>
 </document>

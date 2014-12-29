@@ -203,6 +203,7 @@
     newOperation.isCacheOperation = NO;
     newOperation.hentaiKey = self.hentaiKey;
     newOperation.delegate = self;
+    newOperation.isHighResolution = [HentaiSettings[@"highResolution"] boolValue];
     [self.hentaiQueue addOperation:newOperation];
 }
 

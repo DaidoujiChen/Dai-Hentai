@@ -37,6 +37,8 @@
 @property (nonatomic, strong) NSString *hentaiURLString;
 @property (nonatomic, strong) NSString *maxHentaiCount;
 
+@property (nonatomic, assign) BOOL isHighResolution;
+
 - (void)backAction;
 - (void)saveAction;
 - (void)deleteAction;
@@ -146,6 +148,7 @@
     self.failCount = 0;
     self.isRemovedHUD = NO;
     self.realDisplayCount = 0;
+    self.isHighResolution = [HentaiSettings[@"highResolution"] boolValue];
 }
 
 #pragma mark - components
@@ -180,6 +183,7 @@
     newOperation.isCacheOperation = YES;
     newOperation.hentaiKey = self.hentaiKey;
     newOperation.delegate = self;
+    newOperation.isHighResolution = self.isHighResolution;
     [self.hentaiQueue addOperation:newOperation];
 }
 
