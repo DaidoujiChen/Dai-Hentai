@@ -102,9 +102,12 @@
 }
 
 - (void)deleteAction {
-    [[[FilesManager documentFolder] fcd:@"Hentai"] rd:self.hentaiKey];
-    [HentaiSaveLibrary removeSaveInfoAtIndex:[self indexOfHentaiKey]];
-    [self backAction];
+    [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex:^(NSInteger clickIndex) {
+        [[[FilesManager documentFolder] fcd:@"Hentai"] rd:self.hentaiKey];
+        [HentaiSaveLibrary removeSaveInfoAtIndex:[self indexOfHentaiKey]];
+        [self backAction];
+    } onCancel:^{
+    }];
 }
 
 #pragma mark - setup inits
