@@ -48,13 +48,15 @@
 #pragma mark - IIViewDeckControllerDelegate
 
 - (void)viewDeckController:(IIViewDeckController*)viewDeckController didOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
-    UIView *maskView = [[UIView alloc] initWithFrame:self.centerController.view.bounds];
-    maskView.userInteractionEnabled = YES;
-    maskView.backgroundColor = [UIColor clearColor];
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recovery:)];
-    [maskView addGestureRecognizer:tapGesture];
-    [self.centerController.view addSubview:maskView];
-    self.weakMaskView = maskView;
+    if (!self.weakMaskView) {
+        UIView *maskView = [[UIView alloc] initWithFrame:self.centerController.view.bounds];
+        maskView.userInteractionEnabled = YES;
+        maskView.backgroundColor = [UIColor clearColor];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recovery:)];
+        [maskView addGestureRecognizer:tapGesture];
+        [self.centerController.view addSubview:maskView];
+        self.weakMaskView = maskView;
+    }
 }
 
 - (void)viewDeckController:(IIViewDeckController*)viewDeckController didCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
