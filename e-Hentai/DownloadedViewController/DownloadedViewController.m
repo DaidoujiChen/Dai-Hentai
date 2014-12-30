@@ -73,7 +73,7 @@
 
 - (id <MWPhoto> )photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     if (index < self.photos.count) {
-        return [self.photos objectAtIndex:index];
+        return self.photos[index];
     }
     return nil;
 }
