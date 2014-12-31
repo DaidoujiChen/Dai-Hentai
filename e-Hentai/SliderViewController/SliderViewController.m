@@ -26,6 +26,16 @@
 	[hentaiNavigation pushViewController:controller animated:YES];
 }
 
+#pragma mark - VideoViewControllerDelegate
+
+- (void)needToPresentMovieViewController:(MPMoviePlayerViewController *)controller {
+    UIWindow *newWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIViewController *rootViewController = [UIViewController new];
+    newWindow.rootViewController = rootViewController;
+    [newWindow makeKeyAndVisible];
+    [rootViewController presentMoviePlayerViewControllerAnimated:controller];
+}
+
 #pragma mark - MenuViewControllerDelegate
 
 //切換 controller

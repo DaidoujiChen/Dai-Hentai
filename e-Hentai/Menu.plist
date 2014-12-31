@@ -20,6 +20,14 @@
 	</dict>
 	<dict>
 		<key>displayName</key>
+		<string>MeetAV(試閱)</string>
+		<key>image</key>
+		<string>exterior</string>
+		<key>controller</key>
+		<string>VideoViewController</string>
+	</dict>
+	<dict>
+		<key>displayName</key>
 		<string>已下載</string>
 		<key>image</key>
 		<string>dropbox_copyrighted</string>

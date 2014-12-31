@@ -10,7 +10,8 @@
 
 #import "MainViewController.h"
 #import "MenuViewController.h"
+#import "VideoViewController.h"
 
-@interface SliderViewController : IIViewDeckController <MainViewControllerDelegate, MenuViewControllerDelegate, IIViewDeckControllerDelegate>
+@interface SliderViewController : IIViewDeckController <MainViewControllerDelegate, VideoViewControllerDelegate, MenuViewControllerDelegate, IIViewDeckControllerDelegate>
 
 @end

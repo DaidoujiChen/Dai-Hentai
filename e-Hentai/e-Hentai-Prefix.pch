@@ -26,6 +26,7 @@
     #import "NSObject+DaiPortal.h"
     #import "Pgyer.h"
     #import "Flurry.h"
+    #import "MeetAVParser.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>
