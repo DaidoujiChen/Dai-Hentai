@@ -212,7 +212,7 @@
 		}
 	    else {
 	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
-            NSArray *pageURL = [xpathParser searchWithXPathQuery:@"//img [@id='img']"];
+            NSArray *pageURL = [xpathParser searchWithXPathQuery:@"//img"];
             
             //如果 parse 有結果, 才做 request api 的動作, 反之 callback HentaiParserStatusParseFail
             if ([pageURL count]) {
