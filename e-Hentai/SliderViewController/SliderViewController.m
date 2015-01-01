@@ -28,6 +28,8 @@
 
 #pragma mark - VideoViewControllerDelegate
 
+//幫助秀電影畫面, 這邊有驗證過, 雖然產生了一個新的 window, 但是他會隨著電影畫面被 dismiss 時消失,
+//不會有累積越來越多的情形, 這樣做的理由是說, 用另外一個 window 來放電影, 他的橫向直向皆不影響原來的任何功能
 - (void)needToPresentMovieViewController:(MPMoviePlayerViewController *)controller {
     UIWindow *newWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     UIViewController *rootViewController = [UIViewController new];
@@ -57,6 +59,8 @@
 
 #pragma mark - IIViewDeckControllerDelegate
 
+//當 slider 被打開時, 需要幫右邊的畫面上一層膜, 這層膜的用意在於當點擊到他的時候, 他會幫你把畫面縮回去,
+//已經有膜的話則不重複加
 - (void)viewDeckController:(IIViewDeckController*)viewDeckController didOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
     if (!self.weakMaskView) {
         UIView *maskView = [[UIView alloc] initWithFrame:self.centerController.view.bounds];
@@ -69,6 +73,7 @@
     }
 }
 
+//當 slider 被關閉時, 如果膜還在則把他拿掉
 - (void)viewDeckController:(IIViewDeckController*)viewDeckController didCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
     if (self.weakMaskView) {
         [self.weakMaskView removeFromSuperview];
@@ -77,6 +82,7 @@
 
 #pragma mark - private
 
+//點到膜的行為, 把 slider 關起來, 然後把膜移除
 - (void)recovery:(UITapGestureRecognizer *)tapGesture {
     [self closeLeftView];
     [tapGesture.view removeFromSuperview];

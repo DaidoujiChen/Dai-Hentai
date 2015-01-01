@@ -29,10 +29,10 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <size key="customSize" width="120" height="160"/>
             <connections>
-                <outlet property="cellImageView" destination="iiA-6t-ikB" id="WVv-ax-OGc"/>
-                <outlet property="cellLabel" destination="edM-G2-zOr" id="CBz-sE-FyD"/>
+                <outlet property="thumbImageView" destination="iiA-6t-ikB" id="37x-WC-aSv"/>
+                <outlet property="titleLabel" destination="edM-G2-zOr" id="OJP-Qw-PPx"/>
             </connections>
-            <point key="canvasLocation" x="401" y="300"/>
+            <point key="canvasLocation" x="312" y="273"/>
         </collectionViewCell>
     </objects>
 </document>

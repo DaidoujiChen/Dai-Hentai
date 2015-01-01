@@ -13,7 +13,6 @@
 @interface ExMainViewController ()
 
 @property (nonatomic, assign) NSUInteger listIndex;
-@property (nonatomic, readonly) NSString *exFilterString;
 
 @end
 
@@ -21,25 +20,12 @@
 
 #pragma mark - dynamic
 
-- (NSString *)exFilterString {
-    NSMutableString *filterURLString = [NSMutableString stringWithFormat:@"http://exhentai.org//?page=%lu", (unsigned long)self.listIndex];
-    NSArray *filters = HentaiPrefer[@"filtersFlag"];
-    
-    //建立過濾 url
-    for (NSInteger i = 0; i < [HentaiFilters count]; i++) {
-        NSNumber *eachFlag = filters[i];
-        if ([eachFlag boolValue]) {
-            [filterURLString appendFormat:@"&%@", HentaiFilters[i][@"url"]];
-        }
-    }
-    
-    //去除掉空白換行字符後, 如果長度不為 0, 則表示有字
-    NSCharacterSet *emptyCharacter = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    if ([[HentaiPrefer[@"searchText"] componentsSeparatedByCharactersInSet:emptyCharacter] componentsJoinedByString:@""].length) {
-        [filterURLString appendFormat:@"&f_search=%@", HentaiPrefer[@"searchText"]];
-    }
-    [filterURLString appendString:@"&f_apply=Apply+Filter"];
-    return [filterURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+- (NSString *)filterString {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    NSString *filterString = [self performSelector:@selector(filterDependOnURL:) withObject:@"http://exhentai.org//?page=%lu"];
+#pragma clang diagnostic pop
+    return filterString;
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -53,20 +39,6 @@
     else {
         alertView.hentai_account(nil, nil);
     }
-}
-
-#pragma mark - private
-
-//把 request 的判斷都放到這個 method 裡面來
-- (void)loadList:(void (^)(BOOL successed, NSArray *listArray))completion {
-    [HentaiParser requestListAtFilterUrl:self.exFilterString forExHentai:YES completion: ^(HentaiParserStatus status, NSArray *listArray) {
-        if (status && [listArray count]) {
-            completion(YES, listArray);
-        }
-        else {
-            completion(NO, nil);
-        }
-    }];
 }
 
 #pragma mark - life cycle

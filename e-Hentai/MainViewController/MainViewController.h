@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ColorThemeViewController.h"
-#import "HentaiParser.h"
-#import "GalleryCell.h"
+#import "MainCollectionViewCell.h"
 #import "HentaiNavigationController.h"
 #import "PhotoViewController.h"
 #import "FakeViewController.h"

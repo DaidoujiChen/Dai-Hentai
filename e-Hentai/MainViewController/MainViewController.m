@@ -31,24 +31,7 @@
 #pragma mark - dynamic
 
 - (NSString *)filterString {
-    NSMutableString *filterURLString = [NSMutableString stringWithFormat:@"http://g.e-hentai.org/?page=%lu", (unsigned long)self.listIndex];
-    NSArray *filters = HentaiPrefer[@"filtersFlag"];
-    
-    //建立過濾 url
-    for (NSInteger i = 0; i < [HentaiFilters count]; i++) {
-        NSNumber *eachFlag = filters[i];
-        if ([eachFlag boolValue]) {
-            [filterURLString appendFormat:@"&%@", HentaiFilters[i][@"url"]];
-        }
-    }
-    
-    //去除掉空白換行字符後, 如果長度不為 0, 則表示有字
-    NSCharacterSet *emptyCharacter = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    if ([[HentaiPrefer[@"searchText"] componentsSeparatedByCharactersInSet:emptyCharacter] componentsJoinedByString:@""].length) {
-        [filterURLString appendFormat:@"&f_search=%@", HentaiPrefer[@"searchText"]];
-    }
-    [filterURLString appendString:@"&f_apply=Apply+Filter"];
-    return [filterURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [self filterDependOnURL:@"http://g.e-hentai.org/?page=%lu"];
 }
 
 #pragma mark - SearchFilterViewControllerDelegate
@@ -87,10 +70,11 @@
             [self.rollLock unlock];
         }];
     }
-    GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
+    static NSString *identifier = @"MainCollectionViewCell";
+    MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     NSURL *imageURL = [NSURL URLWithString:self.listArray[indexPath.row][@"thumb"]];
-    [cell.cellImageView sd_setImageWithURL:imageURL];
-    cell.cellImageView.alpha = ([self.listArray[indexPath.row][@"rating"] floatValue] / 4.5f);
+    [cell.thumbImageView sd_setImageWithURL:imageURL];
+    cell.thumbImageView.alpha = ([self.listArray[indexPath.row][@"rating"] floatValue] / 4.5f);
     return cell;
 }
 
@@ -128,10 +112,32 @@
 
 #pragma mark - private
 
+//製作 filter string
+- (NSString *)filterDependOnURL:(NSString *)urlString {
+    NSMutableString *filterURLString = [NSMutableString stringWithFormat:urlString, (unsigned long)self.listIndex];
+    NSArray *filters = HentaiPrefer[@"filtersFlag"];
+    
+    //建立過濾 url
+    for (NSInteger i = 0; i < [HentaiFilters count]; i++) {
+        NSNumber *eachFlag = filters[i];
+        if ([eachFlag boolValue]) {
+            [filterURLString appendFormat:@"&%@", HentaiFilters[i][@"url"]];
+        }
+    }
+    
+    //去除掉空白換行字符後, 如果長度不為 0, 則表示有字
+    NSCharacterSet *emptyCharacter = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    if ([[HentaiPrefer[@"searchText"] componentsSeparatedByCharactersInSet:emptyCharacter] componentsJoinedByString:@""].length) {
+        [filterURLString appendFormat:@"&f_search=%@", HentaiPrefer[@"searchText"]];
+    }
+    [filterURLString appendString:@"&f_apply=Apply+Filter"];
+    return [filterURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
 //重新讀取資料
 - (void)reloadDatas {
     
-    //清除GalleryCell的圖片暫存
+    //清除 sdwebimage 的圖片暫存
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDImageCache sharedImageCache] clearDisk];
     self.listIndex = 0;
@@ -203,7 +209,7 @@
 }
 
 - (void)setupListCollectionViewBehavior {
-    [self.listCollectionView registerClass:[GalleryCell class] forCellWithReuseIdentifier:@"GalleryCell"];
+    [self.listCollectionView registerClass:[MainCollectionViewCell class] forCellWithReuseIdentifier:@"MainCollectionViewCell"];
     
     //下拉更新
     self.refreshControl = [UIRefreshControl new];

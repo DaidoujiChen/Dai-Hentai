@@ -25,9 +25,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.row;
-    GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
+    
+    static NSString *identifier = @"MainCollectionViewCell";
+    MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     NSURL *imageURL = [NSURL URLWithString:[HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"thumb"]];
-    [cell.cellImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageRefreshCached];
+    [cell.thumbImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageRefreshCached];
     return cell;
 }
 
@@ -35,6 +37,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.row;
+    
     self.currentInfo = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex];
     NSDictionary *hentaiInfo = self.currentInfo[@"hentaiInfo"];
     
@@ -119,7 +122,7 @@
 - (void)viewDidLoad {
     self.title = @"已經下載的漫畫";
     [self setupRecvNotifications];
-    [self.listCollectionView registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
+    [self.listCollectionView registerClass:[MainCollectionViewCell class] forCellWithReuseIdentifier:@"MainCollectionViewCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

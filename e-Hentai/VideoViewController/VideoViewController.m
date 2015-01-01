@@ -27,8 +27,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     VideoCollectionViewCell *cell = (VideoCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"VideoCollectionViewCell" forIndexPath:indexPath];
     NSURL *imageURL = [NSURL URLWithString:self.listArray[indexPath.row][@"thumb"]];
-    [cell.cellImageView sd_setImageWithURL:imageURL];
-    cell.cellLabel.text = self.listArray[indexPath.row][@"title"];
+    [cell.thumbImageView sd_setImageWithURL:imageURL];
+    cell.titleLabel.text = self.listArray[indexPath.row][@"title"];
     return cell;
 }
 
