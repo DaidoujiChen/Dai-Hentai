@@ -116,7 +116,7 @@
                     dispatch_group_async(hentaiGroup, hentaiQueue, ^{
                         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
                         [self requestCurrentImage:[NSURL URLWithString:[e attributes][@"href"]] atIndex:i completion: ^(HentaiParserStatus status, NSString *imageString, NSUInteger index) {
-                            if (status) {
+                            if (status == HentaiParserStatusSuccess) {
                                 returnArray[index] = imageString;
                             }
                             dispatch_semaphore_signal(semaphore);
@@ -126,6 +126,13 @@
                 }
                 dispatch_group_wait(hentaiGroup, DISPATCH_TIME_FOREVER);
                 dispatch_sync(dispatch_get_main_queue(), ^{
+                    NSMutableArray *removeObjects = [NSMutableArray array];
+                    for (id eachObj in returnArray) {
+                        if ([eachObj isKindOfClass:[NSNull class]]) {
+                            [removeObjects addObject:eachObj];
+                        }
+                    }
+                    [returnArray removeObjectsInArray:removeObjects];
                     completion(HentaiParserStatusSuccess, returnArray);
                 });
             }

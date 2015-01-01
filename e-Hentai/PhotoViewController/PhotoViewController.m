@@ -194,8 +194,14 @@
 
 //將要下載的圖片加到 queue 裡面
 - (void)preloadImages:(NSArray *)images {
-    for (NSString *eachImageString in images) {
-        [self createNewOperation:eachImageString];
+    if ([images count]) {
+        for (NSString *eachImageString in images) {
+            [self createNewOperation:eachImageString];
+        }
+    }
+    else {
+        [UIAlertView hentai_alertViewWithTitle:@"抓圖的過程中出問題囉~ >x<" message:@"請見諒~ >x<" cancelButtonTitle:@"好吧~ >x<"];
+        [SVProgressHUD dismiss];
     }
 }
 
