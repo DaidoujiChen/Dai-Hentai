@@ -212,18 +212,18 @@
 		}
 	    else {
 	        TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
-	        NSArray *pageURL  = [xpathParser searchWithXPathQuery:@"//div [@id='i3']//img"];
+            NSArray *pageURL = [xpathParser searchWithXPathQuery:@"//img [@id='img']"];
             
             //如果 parse 有結果, 才做 request api 的動作, 反之 callback HentaiParserStatusParseFail
             if ([pageURL count]) {
                 for (TFHppleElement * e in pageURL) {
-                    completion(HentaiParserStatusSuccess, [e attributes][@"src"], index);
-                    break;
+                    if ([e attributes][@"src"] && [e attributes][@"style"]) {
+                        completion(HentaiParserStatusSuccess, [e attributes][@"src"], index);
+                        return;
+                    }
                 }
             }
-            else {
-                completion(HentaiParserStatusParseFail, nil, -1);
-            }
+            completion(HentaiParserStatusParseFail, nil, -1);
 		}
 	}];
 }
