@@ -90,3 +90,5 @@ app icon 與進場圖
 - MWPhotoBrowser
   - 看圖片用套件, 本來還是想用 EGO, 不過實在太舊了, 後來找到這個比較新的.
 
+- QuickDialog
+  - 用來方便的管理 tableview 形成的設定頁面.
