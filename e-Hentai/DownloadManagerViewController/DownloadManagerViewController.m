@@ -28,7 +28,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DownloadManagerCell *cell = (DownloadManagerCell *)[tableView dequeueReusableCellWithIdentifier:@"DownloadManagerCell"];
+    static NSString *identifier = @"DownloadManagerCell";
+    DownloadManagerCell *cell = (DownloadManagerCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *currentArray;
     if (indexPath.section) {
