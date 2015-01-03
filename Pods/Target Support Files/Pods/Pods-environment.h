@@ -36,6 +36,18 @@
 #define COCOAPODS_VERSION_MINOR_PSTCollectionView 2
 #define COCOAPODS_VERSION_PATCH_PSTCollectionView 3
 
+// QuickDialog
+#define COCOAPODS_POD_AVAILABLE_QuickDialog
+#define COCOAPODS_VERSION_MAJOR_QuickDialog 1
+#define COCOAPODS_VERSION_MINOR_QuickDialog 0
+#define COCOAPODS_VERSION_PATCH_QuickDialog 0
+
+// QuickDialog/Core
+#define COCOAPODS_POD_AVAILABLE_QuickDialog_Core
+#define COCOAPODS_VERSION_MAJOR_QuickDialog_Core 1
+#define COCOAPODS_VERSION_MINOR_QuickDialog_Core 0
+#define COCOAPODS_VERSION_PATCH_QuickDialog_Core 0
+
 // ReactiveCocoa
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa 2

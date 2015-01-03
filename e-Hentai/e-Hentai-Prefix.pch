@@ -38,6 +38,7 @@
     #import <Realm/Realm.h>
     #import <SVProgressHUD/SVProgressHUD.h>
     #import <MWPhotoBrowser/MWPhotoBrowser.h>
+    #import <QuickDialog/QuickDialog.h>
 
     //Realm
     #import "HentaiSaveLibrary.h"

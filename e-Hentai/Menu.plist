@@ -54,7 +54,7 @@
 		<key>image</key>
 		<string>settings</string>
 		<key>controller</key>
-		<string>SettingViewController</string>
+		<string>SettingV2ViewController</string>
 	</dict>
 </array>
 </plist>
