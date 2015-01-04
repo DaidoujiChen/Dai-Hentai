@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -38,15 +38,7 @@
                 <constraint firstAttribute="trailing" secondItem="1HA-Qo-Eha" secondAttribute="trailing" id="knZ-aj-vjl"/>
             </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="iDk-Y8-eaM" appends="YES" id="au3-23-ZBe"/>
-            </connections>
         </view>
-        <tapGestureRecognizer id="iDk-Y8-eaM">
-            <connections>
-                <action selector="singleTapScreenAction:" destination="-1" id="uCW-YP-XM2"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

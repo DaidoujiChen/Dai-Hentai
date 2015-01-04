@@ -25,7 +25,7 @@
 
 #define TIGHTDB_VER_MAJOR 0
 #define TIGHTDB_VER_MINOR 87
-#define TIGHTDB_VER_PATCH 3
+#define TIGHTDB_VER_PATCH 4
 
 namespace tightdb {
 

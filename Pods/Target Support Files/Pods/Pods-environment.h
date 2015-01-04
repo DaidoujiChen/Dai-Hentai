@@ -76,13 +76,13 @@
 #define COCOAPODS_POD_AVAILABLE_Realm
 #define COCOAPODS_VERSION_MAJOR_Realm 0
 #define COCOAPODS_VERSION_MINOR_Realm 89
-#define COCOAPODS_VERSION_PATCH_Realm 1
+#define COCOAPODS_VERSION_PATCH_Realm 2
 
 // Realm/Headers
 #define COCOAPODS_POD_AVAILABLE_Realm_Headers
 #define COCOAPODS_VERSION_MAJOR_Realm_Headers 0
 #define COCOAPODS_VERSION_MINOR_Realm_Headers 89
-#define COCOAPODS_VERSION_PATCH_Realm_Headers 1
+#define COCOAPODS_VERSION_PATCH_Realm_Headers 2
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
@@ -106,7 +106,13 @@
 #define COCOAPODS_POD_AVAILABLE_SupportKit
 #define COCOAPODS_VERSION_MAJOR_SupportKit 2
 #define COCOAPODS_VERSION_MINOR_SupportKit 4
-#define COCOAPODS_VERSION_PATCH_SupportKit 0
+#define COCOAPODS_VERSION_PATCH_SupportKit 2
+
+// Vertigo
+#define COCOAPODS_POD_AVAILABLE_Vertigo
+#define COCOAPODS_VERSION_MAJOR_Vertigo 0
+#define COCOAPODS_VERSION_MINOR_Vertigo 1
+#define COCOAPODS_VERSION_PATCH_Vertigo 0
 
 // ViewDeck
 #define COCOAPODS_POD_AVAILABLE_ViewDeck
