@@ -35,7 +35,8 @@
 	NSNumber *imageHeight = [HentaiCacheLibrary cacheInfoForKey:self.hentaiKey][[self.downloadURLString hentai_lastTwoPathComponent]];
     
 	//從 imageHeight 的有無可以判斷這個檔案是否已經有了
-	if (!imageHeight) {
+    //另外, 如果是要下載的項目, 則無視 cache 已經下載過, 也要重新下載一次
+	if (!imageHeight || !self.isCacheOperation) {
 		NSURL *url = [NSURL URLWithString:self.downloadURLString];
         
 		NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15.0f] delegate:self startImmediately:NO];
