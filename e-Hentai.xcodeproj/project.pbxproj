@@ -132,6 +132,7 @@
 		011AEA5419DD296400A15CA5 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = MenuViewController/MenuViewController.m; sourceTree = "<group>"; };
 		011AEA5519DD296400A15CA5 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuViewController.xib; path = MenuViewController/MenuViewController.xib; sourceTree = "<group>"; };
 		011AEA5919DD31B300A15CA5 /* Menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
+		01234D481A5A72B8003ADD31 /* OpenMenuProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenMenuProtocol.h; sourceTree = "<group>"; };
 		01310BD31A00ABBC00C78DFE /* AppDelegate+SupportKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+SupportKit.h"; sourceTree = "<group>"; };
 		01310BD41A00ABBC00C78DFE /* AppDelegate+SupportKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+SupportKit.m"; sourceTree = "<group>"; };
 		0131908C1A4A5C6B0056F2E6 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
@@ -310,6 +311,7 @@
 				01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */,
 				0103B8BD1A01E6FC00CF314F /* ColorThemeViewController.h */,
 				0103B8BE1A01E6FC00CF314F /* ColorThemeViewController.m */,
+				01234D481A5A72B8003ADD31 /* OpenMenuProtocol.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";

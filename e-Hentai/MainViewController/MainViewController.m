@@ -206,6 +206,9 @@
 - (void)setupItemsOnNavigation {
     UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(presentSearchFilter)];
     self.navigationItem.rightBarButtonItem = filterButton;
+    
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(openSlider)];
+    self.navigationItem.leftBarButtonItem = menuButton;
 }
 
 - (void)setupListCollectionViewBehavior {

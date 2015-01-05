@@ -26,6 +26,12 @@
 	[hentaiNavigation pushViewController:controller animated:YES];
 }
 
+#pragma mark - OpenMenuProtocol
+
+- (void)openSlider {
+    [self openLeftView];
+}
+
 #pragma mark - VideoViewControllerDelegate
 
 //幫助秀電影畫面, 這邊有驗證過, 雖然產生了一個新的 window, 但是他會隨著電影畫面被 dismiss 時消失,

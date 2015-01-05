@@ -16,7 +16,7 @@
 
 @interface VideoViewController : ColorThemeViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (nonatomic, weak) id <VideoViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <VideoViewControllerDelegate, OpenMenuProtocol> delegate;
 @property (weak, nonatomic) IBOutlet UICollectionView *meetAVCollectionView;
 
 @end

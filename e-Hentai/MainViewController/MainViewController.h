@@ -19,7 +19,7 @@
 
 @interface MainViewController : ColorThemeViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, SearchFilterViewControllerDelegate>
 
-@property (nonatomic, weak) id <MainViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <MainViewControllerDelegate, OpenMenuProtocol> delegate;
 @property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
 
 @end

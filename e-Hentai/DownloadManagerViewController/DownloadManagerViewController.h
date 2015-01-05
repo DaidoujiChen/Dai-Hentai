@@ -13,6 +13,7 @@
 
 @interface DownloadManagerViewController : ColorThemeViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, weak) id <OpenMenuProtocol> delegate;
 @property (weak, nonatomic) IBOutlet UITableView *downloadManagerTableView;
 
 @end

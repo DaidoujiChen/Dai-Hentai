@@ -104,6 +104,13 @@
     }];
 }
 
+#pragma mark - private
+
+- (void)setupItemsOnNavigation {
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(openSlider)];
+    self.navigationItem.leftBarButtonItem = menuButton;
+}
+
 #pragma mark - life cycle
 
 - (id)init {
@@ -121,6 +128,7 @@
 //這邊我故意沒有放 [super viewDidLoad], 不然會跑到很多 mainviewcontroller 的東西
 - (void)viewDidLoad {
     self.title = @"已經下載的漫畫";
+    [self setupItemsOnNavigation];
     [self setupRecvNotifications];
     [self.listCollectionView registerClass:[MainCollectionViewCell class] forCellWithReuseIdentifier:@"MainCollectionViewCell"];
 }

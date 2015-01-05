@@ -27,6 +27,7 @@
     #import "Pgyer.h"
     #import "Flurry.h"
     #import "MeetAVParser.h"
+    #import "OpenMenuProtocol.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>

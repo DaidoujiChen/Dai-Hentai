@@ -12,6 +12,6 @@
 #import "MenuViewController.h"
 #import "VideoViewController.h"
 
-@interface SliderViewController : IIViewDeckController <MainViewControllerDelegate, VideoViewControllerDelegate, MenuViewControllerDelegate, IIViewDeckControllerDelegate>
+@interface SliderViewController : IIViewDeckController <MainViewControllerDelegate, VideoViewControllerDelegate, MenuViewControllerDelegate, IIViewDeckControllerDelegate, OpenMenuProtocol>
 
 @end

@@ -10,4 +10,6 @@
 
 @interface SettingV2ViewController : QuickDialogController
 
+@property (nonatomic, weak) id <OpenMenuProtocol> delegate;
+
 @end

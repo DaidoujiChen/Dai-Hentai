@@ -50,6 +50,13 @@
     }];
 }
 
+#pragma mark - private
+
+- (void)setupItemsOnNavigation {
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(openSlider)];
+    self.navigationItem.leftBarButtonItem = menuButton;
+}
+
 #pragma mark - life cycle
 
 - (id)init {
@@ -61,6 +68,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupItemsOnNavigation];
     self.title = @"MeetAV";
     [self.meetAVCollectionView registerClass:[VideoCollectionViewCell class] forCellWithReuseIdentifier:@"VideoCollectionViewCell"];
     
