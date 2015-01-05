@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
-                <outlet property="listCollectionView" destination="SeG-z0-wWz" id="Fu9-M7-qNL"/>
+                <outlet property="listTableView" destination="jAO-ua-Pk8" id="RH3-Mh-bkw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,32 +16,25 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="SeG-z0-wWz">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="jAO-ua-Pk8">
+                    <rect key="frame" x="10" y="0.0" width="300" height="568"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="Ho9-K1-hVJ"/>
-                        <constraint firstAttribute="width" constant="320" id="pk5-Pl-1dM"/>
+                        <constraint firstAttribute="width" constant="300" id="W9r-u4-oN5"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="b0N-eo-Sdo"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zgR-Fn-tLD">
-                        <size key="itemSize" width="145" height="200"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
-                    </collectionViewFlowLayout>
-                    <cells/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="z9K-vm-qi2"/>
-                        <outlet property="delegate" destination="-1" id="LHL-G4-jlr"/>
+                        <outlet property="dataSource" destination="-1" id="FPc-Fy-DSg"/>
+                        <outlet property="delegate" destination="-1" id="e6l-Y2-wW4"/>
                     </connections>
-                </collectionView>
+                </tableView>
             </subviews>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="SeG-z0-wWz" secondAttribute="bottom" id="8r1-n8-FPT"/>
-                <constraint firstItem="SeG-z0-wWz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FvF-KI-esf"/>
-                <constraint firstAttribute="trailing" secondItem="SeG-z0-wWz" secondAttribute="trailing" id="Gjk-rg-LaD"/>
-                <constraint firstItem="SeG-z0-wWz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="haA-YJ-nOy"/>
+                <constraint firstItem="jAO-ua-Pk8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="909-0P-RBv"/>
+                <constraint firstAttribute="trailing" secondItem="jAO-ua-Pk8" secondAttribute="trailing" constant="10" id="Cu5-nR-cuq"/>
+                <constraint firstAttribute="bottom" secondItem="jAO-ua-Pk8" secondAttribute="bottom" id="Ghd-Wb-5HU"/>
+                <constraint firstItem="jAO-ua-Pk8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hCU-aJ-4xc"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

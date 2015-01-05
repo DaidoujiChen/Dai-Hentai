@@ -28,6 +28,8 @@
     #import "Flurry.h"
     #import "MeetAVParser.h"
     #import "OpenMenuProtocol.h"
+    #import "UIView+Hentai.h"
+    #import "UIImageView+Hentai.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>
@@ -40,6 +42,7 @@
     #import <SVProgressHUD/SVProgressHUD.h>
     #import <MWPhotoBrowser/MWPhotoBrowser.h>
     #import <QuickDialog/QuickDialog.h>
+    #import <FXBlurView.h>
 
     //Realm
     #import "HentaiSaveLibrary.h"

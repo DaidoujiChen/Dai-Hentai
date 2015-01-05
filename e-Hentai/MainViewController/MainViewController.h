@@ -14,13 +14,14 @@
 #import "PhotoViewController.h"
 #import "FakeViewController.h"
 #import "SearchFilterViewController.h"
+#import "MainTableViewCell.h"
 
 @protocol MainViewControllerDelegate;
 
-@interface MainViewController : ColorThemeViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, SearchFilterViewControllerDelegate>
+@interface MainViewController : ColorThemeViewController <UISearchBarDelegate, SearchFilterViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) id <MainViewControllerDelegate, OpenMenuProtocol> delegate;
-@property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
+@property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
 @end
 

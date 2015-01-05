@@ -17,7 +17,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSArray *colorFriends = [NSArray arrayOfColorsWithColorScheme:ColorSchemeAnalogous for:[UIColor flatGreenColor] flatScheme:YES];
+    NSArray *colorFriends = [NSArray arrayOfColorsWithColorScheme:ColorSchemeAnalogous for:[UIColor flatPinkColor] flatScheme:YES];
     self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.bounds andColors:@[colorFriends[0], colorFriends[4]]];
 }
 

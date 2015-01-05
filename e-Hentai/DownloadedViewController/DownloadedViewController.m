@@ -17,26 +17,68 @@
 
 @implementation DownloadedViewController
 
-#pragma mark - UICollectionViewDataSource
+#pragma mark - UITableViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [HentaiSaveLibrary count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.row;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.section;
     
-    static NSString *identifier = @"MainCollectionViewCell";
-    MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    NSURL *imageURL = [NSURL URLWithString:[HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"thumb"]];
-    [cell.thumbImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageRefreshCached];
+    static NSString *identifier = @"MainTableViewCell";
+    MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSDictionary *hentaiInfo = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"];
+    
+    //設定 ipad / iphone 共通資訊
+    NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
+    [cell.thumbImageView sd_setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!error) {
+            [cell.backgroundImageView hentai_blurWithImage:image];
+        }
+    }];
+    
+    //設定 ipad 獨有需要的資訊
+    if (isIPad) {
+        cell.categoryLabel.text = [NSString stringWithFormat:@"分類 : %@", hentaiInfo[@"category"]];
+        cell.ratingLabel.text = [NSString stringWithFormat:@"評價 : %@", hentaiInfo[@"rating"]];
+        cell.fileCountLabel.text = [NSString stringWithFormat:@"檔案數量 : %@", hentaiInfo[@"filecount"]];
+        cell.fileSizeLabel.text = [NSString stringWithFormat:@"檔案線上容量 : %@", hentaiInfo[@"filesize"]];
+        cell.postedLabel.text = [NSString stringWithFormat:@"上傳時間 : %@", hentaiInfo[@"posted"]];
+        cell.uploaderLabel.text = [NSString stringWithFormat:@"上傳者 : %@", hentaiInfo[@"uploader"]];
+    }
     return cell;
 }
 
-#pragma mark - UICollectionViewDelegate
+#pragma mark - UITableViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.row;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - section;
+    
+    UITextView *titleTextView = [UITextView new];
+    titleTextView.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0f];
+    titleTextView.text = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"title"];
+    CGSize textViewSize =  [titleTextView sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.bounds), MAXFLOAT)];
+    return textViewSize.height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - section;
+    
+    UITextView *titleTextView = [UITextView new];
+    titleTextView.clipsToBounds = NO;
+    titleTextView.userInteractionEnabled = NO;
+    titleTextView.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0f];
+    titleTextView.textColor = [UIColor blackColor];
+    titleTextView.text = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"title"];
+    [titleTextView sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.bounds), MAXFLOAT)];
+    [titleTextView hentai_defaultShadow];
+    return titleTextView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.section;
     
     self.currentInfo = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex];
     NSDictionary *hentaiInfo = self.currentInfo[@"hentaiInfo"];
@@ -100,7 +142,7 @@
     @weakify(self);
     [[self portal:HentaiDownloadSuccessNotification] recv: ^(NSString *alertViewMessage) {
         @strongify(self);
-        [self.listCollectionView reloadData];
+        [self.listTableView reloadData];
     }];
 }
 
@@ -130,12 +172,12 @@
     self.title = @"已經下載的漫畫";
     [self setupItemsOnNavigation];
     [self setupRecvNotifications];
-    [self.listCollectionView registerClass:[MainCollectionViewCell class] forCellWithReuseIdentifier:@"MainCollectionViewCell"];
+    [self.listTableView registerClass:[MainTableViewCell class] forCellReuseIdentifier:@"MainTableViewCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.listCollectionView reloadData];
+    [self.listTableView reloadData];
 }
 
 @end

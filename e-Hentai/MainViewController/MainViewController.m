@@ -11,8 +11,6 @@
 //avoid import cycle
 #import "DownloadedViewController.h"
 
-#define statusBarWithNavigationHeight 64.0f
-
 @interface MainViewController ()
 
 @property (nonatomic, assign) NSUInteger listIndex;
@@ -41,16 +39,19 @@
     [self reloadDatas];
 }
 
-#pragma mark - UICollectionViewDataSource
+#pragma mark - UITableViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.listArray count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //無限滾
-    if (indexPath.row >= [self.listArray count] - 15 && [self.rollLock tryLock]) {
+    if (indexPath.section >= [self.listArray count] - 15 && [self.rollLock tryLock]) {
         self.listIndex++;
         
         @weakify(self);
@@ -60,7 +61,7 @@
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     [self.listArray addObjectsFromArray:listArray];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.listCollectionView reloadData];
+                        [self.listTableView reloadData];
                     });
                 });
             }
@@ -70,18 +71,63 @@
             [self.rollLock unlock];
         }];
     }
-    static NSString *identifier = @"MainCollectionViewCell";
-    MainCollectionViewCell *cell = (MainCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    NSURL *imageURL = [NSURL URLWithString:self.listArray[indexPath.row][@"thumb"]];
-    [cell.thumbImageView sd_setImageWithURL:imageURL];
-    cell.thumbImageView.alpha = ([self.listArray[indexPath.row][@"rating"] floatValue] / 4.5f);
+    static NSString *identifier = @"MainTableViewCell";
+    MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSDictionary *hentaiInfo = self.listArray[indexPath.section];
+    
+    //設定 ipad / iphone 共通資訊
+    NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
+    [cell.thumbImageView sd_setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!error) {
+            [cell.backgroundImageView hentai_blurWithImage:image];
+        }
+    }];
+    
+    //設定 ipad 獨有需要的資訊
+    if (isIPad) {
+        cell.categoryLabel.text = [NSString stringWithFormat:@"分類 : %@", hentaiInfo[@"category"]];
+        cell.ratingLabel.text = [NSString stringWithFormat:@"評價 : %@", hentaiInfo[@"rating"]];
+        cell.fileCountLabel.text = [NSString stringWithFormat:@"檔案數量 : %@", hentaiInfo[@"filecount"]];
+        cell.fileSizeLabel.text = [NSString stringWithFormat:@"檔案線上容量 : %@", hentaiInfo[@"filesize"]];
+        cell.postedLabel.text = [NSString stringWithFormat:@"上傳時間 : %@", hentaiInfo[@"posted"]];
+        cell.uploaderLabel.text = [NSString stringWithFormat:@"上傳者 : %@", hentaiInfo[@"uploader"]];
+    }
     return cell;
 }
 
-#pragma mark - UICollectionViewDelegate
+#pragma mark - UITableViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *hentaiInfo = self.listArray[indexPath.row];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 250.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    UITextView *titleTextView = [UITextView new];
+    titleTextView.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0f];
+    titleTextView.text = self.listArray[section][@"title"];
+    CGSize textViewSize =  [titleTextView sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.bounds), MAXFLOAT)];
+    return textViewSize.height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UITextView *titleTextView = [UITextView new];
+    titleTextView.clipsToBounds = NO;
+    titleTextView.userInteractionEnabled = NO;
+    titleTextView.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0f];
+    titleTextView.textColor = [UIColor blackColor];
+    titleTextView.text = self.listArray[section][@"title"];
+    [titleTextView sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.bounds), MAXFLOAT)];
+    [titleTextView hentai_defaultShadow];
+    return titleTextView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 20.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *hentaiInfo = self.listArray[indexPath.section];
     BOOL isExist = ([HentaiSaveLibrary indexOfURL:hentaiInfo[@"url"]] == NSNotFound)?NO:YES;
     
     if (isExist) {
@@ -91,22 +137,42 @@
     }
     else {
         @weakify(self);
-        [UIAlertView hentai_alertViewWithTitle:hentaiInfo[@"category"] message:[self alertMessage:hentaiInfo] cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex: ^(NSInteger clickIndex) {
-            @strongify(self);
-            if (clickIndex) {
-                if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
-                    [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
+        if (isIPad) {
+            [UIAlertView hentai_alertViewWithTitle:@"選擇要做的事情~ O3O" message:nil cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex:^(NSInteger clickIndex) {
+                @strongify(self);
+                if (clickIndex) {
+                    if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
+                        [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
+                    }
+                    else {
+                        PhotoViewController *photoViewController = [PhotoViewController new];
+                        photoViewController.hentaiInfo = hentaiInfo;
+                        [self.delegate needToPushViewController:photoViewController];
+                    }
                 }
                 else {
-                    PhotoViewController *photoViewController = [PhotoViewController new];
-                    photoViewController.hentaiInfo = hentaiInfo;
-                    [self.delegate needToPushViewController:photoViewController];
+                    [HentaiDownloadCenter addBook:hentaiInfo];
                 }
-            }
-            else {
-                [HentaiDownloadCenter addBook:hentaiInfo];
-            }
-        } onCancel:nil];
+            } onCancel:nil];
+        }
+        else {
+            [UIAlertView hentai_alertViewWithTitle:hentaiInfo[@"category"] message:[self alertMessage:hentaiInfo] cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex: ^(NSInteger clickIndex) {
+                @strongify(self);
+                if (clickIndex) {
+                    if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
+                        [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
+                    }
+                    else {
+                        PhotoViewController *photoViewController = [PhotoViewController new];
+                        photoViewController.hentaiInfo = hentaiInfo;
+                        [self.delegate needToPushViewController:photoViewController];
+                    }
+                }
+                else {
+                    [HentaiDownloadCenter addBook:hentaiInfo];
+                }
+            } onCancel:nil];
+        }
     }
 }
 
@@ -150,8 +216,8 @@
                 [self.listArray removeAllObjects];
                 [self.listArray addObjectsFromArray:listArray];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.listCollectionView reloadData];
-                    [self.listCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+                    [self.listTableView reloadData];
+                    [self.listTableView scrollRectToVisible:CGRectZero animated:YES];
                     [self.refreshControl endRefreshing];
                 });
             });
@@ -212,11 +278,11 @@
 }
 
 - (void)setupListCollectionViewBehavior {
-    [self.listCollectionView registerClass:[MainCollectionViewCell class] forCellWithReuseIdentifier:@"MainCollectionViewCell"];
+    [self.listTableView registerClass:[MainTableViewCell class] forCellReuseIdentifier:@"MainTableViewCell"];
     
     //下拉更新
     self.refreshControl = [UIRefreshControl new];
-    [self.listCollectionView addSubview:self.refreshControl];
+    [self.listTableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self action:@selector(reloadDatas) forControlEvents:UIControlEventValueChanged];
 }
 
@@ -260,7 +326,7 @@
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     [self.listArray addObjectsFromArray:listArray];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.listCollectionView reloadData];
+                        [self.listTableView reloadData];
                     });
                 });
             }

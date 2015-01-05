@@ -32,7 +32,7 @@
     cell.imageView.image = [UIImage imageNamed:dataSource[indexPath.row][@"image"]];
     
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    UIColor *textColor = [UIColor flatForestGreenColorDark];
+    UIColor *textColor = [UIColor flatWhiteColor];
     NSDictionary *attributes = @{ NSForegroundColorAttributeName : textColor, NSFontAttributeName : font, NSTextEffectAttributeName : NSTextEffectLetterpressStyle };
     NSString *text;
     if (dataSource[indexPath.row][@"controller"]) {

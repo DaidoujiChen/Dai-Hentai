@@ -1,6 +1,7 @@
 PODS:
   - ChameleonFramework (1.1.1)
   - DACircularProgress (2.2.0)
+  - FXBlurView (1.6.3)
   - MBProgressHUD (0.9)
   - MWPhotoBrowser (1.4.1):
     - DACircularProgress
@@ -30,6 +31,7 @@ PODS:
 
 DEPENDENCIES:
   - ChameleonFramework (~> 1.1.1)
+  - FXBlurView (~> 1.6.3)
   - MWPhotoBrowser (~> 1.4.1)
   - QuickDialog (~> 1.0)
   - ReactiveCocoa (~> 2.3.1)
@@ -42,6 +44,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ChameleonFramework: c60096686e3771f5d78f26cfbfd08955a8a88cbd
   DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
+  FXBlurView: abe1046285813c4f6e9008abbc324fc5ab32af90
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MWPhotoBrowser: be05b3b7521e961382a4ba5579685bf5a00b93d8
   PSTCollectionView: d9f466e4554cc83260ca9bde7beb27f308e8fd76
