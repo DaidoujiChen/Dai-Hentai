@@ -120,6 +120,14 @@
     self.searchBar.placeholder = @"可以不填直接搜尋";
     self.searchBar.delegate = self;
     self.navigationItem.titleView = self.searchBar;
+    
+    //多一個 back 的按鈕
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(cancelSearch)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+}
+
+- (void)cancelSearch {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - life cycle
