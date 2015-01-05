@@ -50,6 +50,7 @@ install_resource()
           install_resource "MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle"
                     install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
                     install_resource "SupportKit/SupportKit.bundle"
+                    install_resource "Vertigo/Vertigo/TGRImageViewController.xib"
           
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

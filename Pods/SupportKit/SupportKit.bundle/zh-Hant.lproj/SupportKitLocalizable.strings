@@ -1,0 +1,75 @@
+/* 
+  SupportKitLocalizable.strings
+  SupportKit
+
+  Copyright (c) 2014 Radialpoint. All rights reserved.
+*/
+
+/* Search bar placeholder */
+"Search %@ Help" = "搜尋 %@ 常見問題";
+
+/* Nav bar left button */
+"Close" = "關閉";
+
+/* Nav bar right button */
+"Cancel" = "取消";
+
+/* Messages button and Conversation title */
+"Messages" = "訊息";
+
+/* Conversation header. Uses CFBundleDisplayName */
+"This is the start of your conversation with the %@ team. We'll stay in touch to help you get the most out of your app.\nFeel free to leave us a message about anything that’s on your mind. We’ll get back to your questions, suggestions or anything else as soon as we can." = "您可以在這裡與 %@ 製作團隊直接溝通。我們將會協助您充份利用這支App。您也可以留下任何問題或是您的寶貴意見，我們將會盡快回覆您。";
+
+/* Error message shown in conversation view */
+"No Internet connection" = "沒有網路服務";
+
+/* Error message shown in conversation view */
+"Could not connect to server" = "無法連接至伺服器";
+
+/* Local notification text. Uses CFBundleDisplayName */
+"Having trouble with %@? Reach out and we'll help." = "關於 %@ 有任何問題或建議嗎? 請與我們聯絡.";
+
+/* Recommendation title */
+"Recommended For You" = "建議您";
+
+/* Error displayed in the search result table view */
+"Cannot return search results" = "搜尋失敗";
+
+/* Error displayed in the search result table view */
+"No results found." = "找不到相關的結果.";
+
+/* Fallback used by the in app notification when no message author name is found */
+"%@ Team" = "%@ 團隊";
+
+/* Button label for the no network message in web view */
+"Reload" = "重新讀取";
+
+/* No network message in web view */
+"Cannot open the page because your device is not connected to the Internet." = "無法讀取網頁，請檢查您的網路連線.";
+
+/* Two fingers gesture hint title */
+"Quick Tip" = "小提醒";
+
+/* Two fingers gesture hint instructions */
+"Swipe down with two fingers to get help from anywhere. Try it above." = "試試看，您可以在任何時候使用兩指下滑取得協助.";
+
+/* Two fingers gesture hint skip button */
+"Skip" = "略過";
+
+/* webview didFailLoadWithError Alert view title */
+"Error" = "錯誤";
+
+/* webview didFailLoadWithError Alert view button */
+"Okay" = "確定";
+
+/* Conversation send button */
+"Send" = "送出";
+
+/* Conversation text input place holder */
+"Type a message..." = "請輸入文字...";
+
+/* Conversation nav bar left button */
+"Done" = "完成";
+
+/* Failure text for chat messages that fail to upload */
+"Message not delivered. Tap to retry." = "訊息未成功送出，請點撃重送.";

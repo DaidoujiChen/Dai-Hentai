@@ -7,6 +7,8 @@
 //
 
 #import "PhotoViewController.h"
+#import "TGRImageViewController.h"
+#import "TGRImageZoomAnimationController.h"
 
 @interface PhotoViewController ()
 
@@ -377,6 +379,16 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HentaiPhotoCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIImage *img =  cell.hentaiImageView.image;
+    TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:img];
+    [self presentViewController:viewController animated:YES completion:nil];
+    
+}
+
+
 #pragma mark - Configuring the View’s Layout Behavior
 
 - (BOOL)prefersStatusBarHidden {
@@ -444,5 +456,6 @@
         [HentaiCacheLibrary addCacheInfo:self.hentaiResults forKey:self.hentaiKey];
     }
 }
+
 
 @end
