@@ -80,6 +80,16 @@
     }
 }
 
+#pragma mark - Configuring the View Rotation Settings
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - private
 
 //點到膜的行為, 把 slider 關起來, 然後把膜移除
