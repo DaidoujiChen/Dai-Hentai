@@ -144,7 +144,10 @@
     if (self.controllerAction!=NULL){
         SEL selector = NSSelectorFromString(self.controllerAction);
         if ([_controller respondsToSelector:selector]) {
-            objc_msgSend(_controller,selector, self);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+            [_controller performSelector:selector withObject:self];
+#pragma clang diagnostic pop
         }  else {
             NSLog(@"No method '%@' was found on controller %@", self.controllerAction, [_controller class]);
         }
