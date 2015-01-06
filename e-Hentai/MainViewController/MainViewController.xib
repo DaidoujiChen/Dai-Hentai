@@ -20,7 +20,7 @@
                     <rect key="frame" x="10" y="0.0" width="300" height="568"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="W9r-u4-oN5"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="W9r-u4-oN5"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="b0N-eo-Sdo"/>
                     </constraints>
                     <connections>

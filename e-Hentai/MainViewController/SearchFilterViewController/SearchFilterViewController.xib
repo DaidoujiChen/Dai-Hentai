@@ -21,7 +21,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="goP-Dv-AC4"/>
-                        <constraint firstAttribute="width" constant="320" id="rol-UB-TLb"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="rol-UB-TLb"/>
                     </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="I5b-3L-cTM"/>

@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="320" id="dr2-7E-ETz"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="dr2-7E-ETz"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="qdc-gk-dw4"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="5LZ-2f-lPW">
