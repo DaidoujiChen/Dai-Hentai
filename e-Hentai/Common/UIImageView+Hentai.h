@@ -11,5 +11,6 @@
 @interface UIImageView (Hentai)
 
 - (void)hentai_blurWithImage:(UIImage *)image;
+- (void)hentai_pathShadow;
 
 @end

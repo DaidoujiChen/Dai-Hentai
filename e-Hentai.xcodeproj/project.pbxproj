@@ -108,8 +108,6 @@
 		01CD0E2F19DE808B006155FD /* DownloadManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CD0E2D19DE808B006155FD /* DownloadManagerViewController.xib */; };
 		01D068E31A5AACF40062971E /* UIView+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D068E21A5AACF40062971E /* UIView+Hentai.m */; };
 		01FB6FD419E23FB4006CBEF2 /* NSString+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */; };
-		04376DFC19B96B76001B1599 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04376DFA19B96B76001B1599 /* MainCollectionViewCell.m */; };
-		04376DFD19B96B76001B1599 /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04376DFB19B96B76001B1599 /* MainCollectionViewCell.xib */; };
 		32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E356769FC894496F8A03AC25 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -275,9 +273,6 @@
 		01D068E21A5AACF40062971E /* UIView+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hentai.m"; sourceTree = "<group>"; };
 		01FB6FD219E23FB4006CBEF2 /* NSString+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hentai.h"; sourceTree = "<group>"; };
 		01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hentai.m"; sourceTree = "<group>"; };
-		04376DF919B96B76001B1599 /* MainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCollectionViewCell.h; sourceTree = "<group>"; };
-		04376DFA19B96B76001B1599 /* MainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCollectionViewCell.m; sourceTree = "<group>"; };
-		04376DFB19B96B76001B1599 /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 		261F8AFB3698803CDFFF992B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A3229B245A679B69931BB8A7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E356769FC894496F8A03AC25 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -340,7 +335,6 @@
 				0118080F19B6F06200FE0DA1 /* MainViewController.m */,
 				0118081019B6F06200FE0DA1 /* MainViewController.xib */,
 				01519AEE1A304C820091C985 /* IPadMainViewController.xib */,
-				04376DF819B96B76001B1599 /* MainCollectionViewCell */,
 				017AE5BE1A00D22E00317939 /* SearchFilterViewController */,
 				01821A171A5A76DA007E5A76 /* MainTableViewCell */,
 			);
@@ -766,16 +760,6 @@
 			name = DownloadManagerViewController;
 			sourceTree = "<group>";
 		};
-		04376DF819B96B76001B1599 /* MainCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				04376DF919B96B76001B1599 /* MainCollectionViewCell.h */,
-				04376DFA19B96B76001B1599 /* MainCollectionViewCell.m */,
-				04376DFB19B96B76001B1599 /* MainCollectionViewCell.xib */,
-			);
-			path = MainCollectionViewCell;
-			sourceTree = "<group>";
-		};
 		215E23A237E99B5BA75171C3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -871,7 +855,6 @@
 				01519AF31A3053200091C985 /* IPadDownloadManagerViewController.xib in Resources */,
 				0180D9301A0214AD002554FC /* delivery@3x.png in Resources */,
 				0180D92B1A02140E002554FC /* settings@2x.png in Resources */,
-				04376DFD19B96B76001B1599 /* MainCollectionViewCell.xib in Resources */,
 				01519AF11A3051280091C985 /* IPadPhotoViewController.xib in Resources */,
 				01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */,
 				015B89E819FF9B2500CFA9DE /* SupportKitLocalizable.strings in Resources */,
@@ -973,7 +956,6 @@
 				0199269519ADDB83009F814B /* main.m in Sources */,
 				01A907F01A493A96006F4179 /* HentaiCacheLibrary.m in Sources */,
 				01310BD51A00ABBC00C78DFE /* AppDelegate+SupportKit.m in Sources */,
-				04376DFC19B96B76001B1599 /* MainCollectionViewCell.m in Sources */,
 				016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */,
 				0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */,
 				011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */,

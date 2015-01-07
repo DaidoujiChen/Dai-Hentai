@@ -10,14 +10,6 @@
 
 @implementation UIView (Hentai)
 
-//有東西才有影子
-- (void)hentai_defaultShadow {
-    self.layer.shadowRadius = 5.0f;
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOpacity = 0.5f;
-    self.layer.shadowOffset = CGSizeZero;
-}
-
 //用 UIBezierPath 的 shadow, 比較快
 - (void)hentai_pathShadow {
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.bounds];

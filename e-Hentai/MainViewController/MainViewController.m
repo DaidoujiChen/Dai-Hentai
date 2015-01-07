@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSLock *rollLock;
 @property (nonatomic, readonly) NSString *filterString;
 @property (nonatomic, assign) BOOL onceFlag;
+@property (nonatomic, strong) NSMutableDictionary *textViewCacheMapping;
 
 @end
 
@@ -80,6 +81,7 @@
     NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
     [cell.thumbImageView sd_setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error) {
+            [cell.thumbImageView hentai_pathShadow];
             [cell.backgroundImageView hentai_blurWithImage:image];
         }
     }];
@@ -103,23 +105,25 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    UITextView *titleTextView = [UITextView new];
-    titleTextView.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0f];
-    titleTextView.text = self.listArray[section][@"title"];
+    NSString *sectinoText = self.listArray[section][@"title"];
+    UITextView *titleTextView = self.textViewCacheMapping[sectinoText];
+    if (!titleTextView) {
+        titleTextView = [UITextView new];
+        titleTextView.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0f];
+        titleTextView.text = sectinoText;
+        titleTextView.clipsToBounds = NO;
+        titleTextView.userInteractionEnabled = NO;
+        titleTextView.textColor = [UIColor blackColor];
+        [titleTextView hentai_pathShadow];
+        self.textViewCacheMapping[sectinoText] = titleTextView;
+    }
     CGSize textViewSize =  [titleTextView sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.bounds), MAXFLOAT)];
     return textViewSize.height;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UITextView *titleTextView = [UITextView new];
-    titleTextView.clipsToBounds = NO;
-    titleTextView.userInteractionEnabled = NO;
-    titleTextView.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0f];
-    titleTextView.textColor = [UIColor blackColor];
-    titleTextView.text = self.listArray[section][@"title"];
-    [titleTextView sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.bounds), MAXFLOAT)];
-    [titleTextView hentai_defaultShadow];
-    return titleTextView;
+    NSString *sectinoText = self.listArray[section][@"title"];
+    return self.textViewCacheMapping[sectinoText];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -267,6 +271,7 @@
     self.listArray = [NSMutableArray array];
     self.rollLock = [NSLock new];
     self.onceFlag = YES;
+    self.textViewCacheMapping = [NSMutableDictionary dictionary];
 }
 
 - (void)setupItemsOnNavigation {

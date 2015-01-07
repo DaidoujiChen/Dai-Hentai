@@ -16,18 +16,17 @@
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:xibName owner:self options:nil];
         self = arrayOfViews[0];
         
-        [self.contentView hentai_defaultShadow];
-        
+        [self.contentView hentai_pathShadow];
         self.thumbImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [self.thumbImageView hentai_defaultShadow];
-        
         self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.backgroundImageView.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
 
 - (void)prepareForReuse {
     self.thumbImageView.image = nil;
+    [self.thumbImageView hentai_pathShadow];
     self.backgroundImageView.image = nil;
     [self.backgroundImageView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }

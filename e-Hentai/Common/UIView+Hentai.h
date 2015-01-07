@@ -11,6 +11,5 @@
 @interface UIView (Hentai)
 
 - (void)hentai_pathShadow;
-- (void)hentai_defaultShadow;
 
 @end

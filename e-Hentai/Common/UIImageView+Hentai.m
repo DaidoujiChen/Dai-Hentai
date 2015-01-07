@@ -19,4 +19,21 @@
     [self addSubview:blurView];
 }
 
+- (void)hentai_pathShadow {
+    float widthRatio = self.bounds.size.width / self.image.size.width;
+    float heightRatio = self.bounds.size.height / self.image.size.height;
+    float scale = MIN(widthRatio, heightRatio);
+    float imageWidth = scale * self.image.size.width;
+    float imageHeight = scale * self.image.size.height;
+    
+    CGRect centerFrame = CGRectMake(self.bounds.size.width / 2 - imageWidth / 2, self.bounds.size.height / 2 - imageHeight / 2, imageWidth, imageHeight);
+    
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:centerFrame];
+    self.layer.masksToBounds = NO;
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOffset = CGSizeZero;
+    self.layer.shadowOpacity = 0.5f;
+    self.layer.shadowPath = shadowPath.CGPath;
+}
+
 @end
