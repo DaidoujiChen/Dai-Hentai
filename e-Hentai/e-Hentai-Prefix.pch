@@ -30,6 +30,7 @@
     #import "OpenMenuProtocol.h"
     #import "UIView+Hentai.h"
     #import "UIImageView+Hentai.h"
+    #import "HentaiSettingManager.h"
 
     //from pod
     #import <ViewDeck/IIViewDeckController.h>
@@ -52,7 +53,6 @@
     #define HentaiPrefer LWPDictionary(@"HentaiPrefer")
     #define HentaiFilters LWPArrayR(@"HentaiFilters")
     #define HentaiAccount LWPDictionary(@"HentaiAccount")
-    #define HentaiSettings LWPDictionary(@"HentaiSettings")
 
     //因為在 ios8 下, 回的 screenSize 是不固定的, 所以用這個方法來做判斷
     #define realScreenHeight MAX([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width)

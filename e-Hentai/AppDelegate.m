@@ -50,6 +50,8 @@
 }
 
 - (void)oldDataChecking {
+    
+    //舊的儲存方式搬移
     if ([[FilesManager documentFolder] read:@"HentaiCacheLibrary.plist"].length || [[FilesManager documentFolder] read:@"HentaiSaveLibrary.plist"].length) {
         @weakify(self);
         [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"因為改變儲存方式, 現在要幫你搬資料" cancelButtonTitle:@"沒有取消~ O3<" otherButtonTitles:@[@"好~ >3O"] onClickIndex:^(NSInteger clickIndex) {
@@ -60,6 +62,9 @@
             [self dataTransfer];
         }];
     }
+    
+    //舊的設定值搬移
+    [HentaiSettingManager settingTransfer];
 }
 
 - (void)dataTransfer {

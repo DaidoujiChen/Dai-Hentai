@@ -151,7 +151,7 @@
     self.failCount = 0;
     self.isRemovedHUD = NO;
     self.realDisplayCount = 0;
-    self.isHighResolution = [HentaiSettings[@"highResolution"] boolValue];
+    self.isHighResolution = [HentaiSettingManager isHighResolution];
 }
 
 #pragma mark - components

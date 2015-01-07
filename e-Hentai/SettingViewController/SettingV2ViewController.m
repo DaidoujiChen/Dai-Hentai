@@ -30,12 +30,12 @@
     QSection *switchs = [[QSection alloc] initWithTitle:@"開開關關"];
     
     //高清開關
-    QBooleanElement *highResolutionElement = [[QBooleanElement alloc] initWithTitle:@"高清" BoolValue:[HentaiSettings[@"highResolution"] boolValue]];
+    QBooleanElement *highResolutionElement = [[QBooleanElement alloc] initWithTitle:@"高清" BoolValue:[HentaiSettingManager isHighResolution]];
     highResolutionElement.controllerAction = @"highResolutionChange:";
     [switchs addElement:highResolutionElement];
     
     //顯示方式開關
-    QBooleanElement *browserElement = [[QBooleanElement alloc] initWithTitle:@"橫向瀏覽" BoolValue:[HentaiSettings[@"useNewBroswer"] boolValue]];
+    QBooleanElement *browserElement = [[QBooleanElement alloc] initWithTitle:@"橫向瀏覽" BoolValue:[HentaiSettingManager isUseNewBrowser]];
     browserElement.controllerAction = @"browserChange:";
     [switchs addElement:browserElement];
     
@@ -105,20 +105,14 @@
     if (highResolutionElement.boolValue) {
         [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"開啟高清開關後, 儲存的圖片將明顯變大!\n效果會在下一次下載, 觀看時生效!" cancelButtonTitle:@"好~ O3O"];
     }
-    [LightWeightPlist lwpSafe:^{
-        HentaiSettings[@"highResolution"] = @(highResolutionElement.boolValue);
-        LWPForceWrite();
-    }];
+    [HentaiSettingManager setIsHighResolution:highResolutionElement.boolValue];
 }
 
 - (void)browserChange:(QBooleanElement *)browserElement {
     if (browserElement.boolValue) {
         [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"目前這個功能僅在已下載功能中可使用~ O3O" cancelButtonTitle:@"好~ O3O"];
     }
-    [LightWeightPlist lwpSafe:^{
-        HentaiSettings[@"useNewBroswer"] = @(browserElement.boolValue);
-        LWPForceWrite();
-    }];
+    [HentaiSettingManager setIsUseNewBrowser:browserElement.boolValue];
 }
 
 #pragma mark * size calculate
