@@ -16,7 +16,6 @@
 @interface SearchFilterViewController : ColorThemeViewController <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, weak) id <SearchFilterViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UITableView *filterTableView;
 
 @end
 

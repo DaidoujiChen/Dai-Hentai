@@ -43,18 +43,6 @@
 
 #pragma mark - life cycle
 
-- (id)init {
-    if (isIPad) {
-        self = [super initWithNibName:@"IPadMainViewController" bundle:nil];
-    }
-    else {
-        self = [super initWithNibName:@"MainViewController" bundle:nil];
-    }
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     if (HentaiAccount[@"UserName"]) {
         [SVProgressHUD show];

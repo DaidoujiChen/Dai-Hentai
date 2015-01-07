@@ -10,11 +10,12 @@
 
 #import "AppDelegate+SupportKit.h"
 
-#define dataSource LWPArrayR(@"Menu")
+#define menuDataSource LWPArrayR(@"Menu")
 
 @interface MenuViewController ()
 
 @property (nonatomic, strong) NSNumber *unreadCount;
+@property (nonatomic, strong) UITableView *menuTableView;
 
 @end
 
@@ -23,23 +24,23 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [dataSource count];
+    return [menuDataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuDefaultCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.imageView.image = [UIImage imageNamed:dataSource[indexPath.row][@"image"]];
+    cell.imageView.image = [UIImage imageNamed:menuDataSource[indexPath.row][@"image"]];
     
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     UIColor *textColor = [UIColor flatWhiteColor];
     NSDictionary *attributes = @{ NSForegroundColorAttributeName : textColor, NSFontAttributeName : font, NSTextEffectAttributeName : NSTextEffectLetterpressStyle };
     NSString *text;
-    if (dataSource[indexPath.row][@"controller"]) {
-        text = dataSource[indexPath.row][@"displayName"];
+    if (menuDataSource[indexPath.row][@"controller"]) {
+        text = menuDataSource[indexPath.row][@"displayName"];
     }
     else {
-        text = [NSString stringWithFormat:@"%@ (%@)", dataSource[indexPath.row][@"displayName"], self.unreadCount ? :@"讀取中"];
+        text = [NSString stringWithFormat:@"%@ (%@)", menuDataSource[indexPath.row][@"displayName"], self.unreadCount ? :@"讀取中"];
     }
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:text attributes:attributes];
     cell.textLabel.attributedText = attributedString;
@@ -49,14 +50,26 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate needToChangeViewController:dataSource[indexPath.row][@"controller"]];
+    [self.delegate needToChangeViewController:menuDataSource[indexPath.row][@"controller"]];
+}
+
+#pragma mark - private
+
+- (void)setupMenuTableView {
+    self.menuTableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    self.menuTableView.delegate = self;
+    self.menuTableView.dataSource = self;
+    self.menuTableView.backgroundColor = [UIColor clearColor];
+    self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.menuTableView registerClass:[MenuDefaultCell class] forCellReuseIdentifier:@"MenuDefaultCell"];
+    [self.view addSubview:self.menuTableView];
 }
 
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.menuTableView registerClass:[MenuDefaultCell class] forCellReuseIdentifier:@"MenuDefaultCell"];
+    [self setupMenuTableView];
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     @weakify(self);

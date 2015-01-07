@@ -11,6 +11,7 @@
 @interface DownloadManagerViewController ()
 
 @property (nonatomic, strong) NSDictionary *centerDetail;
+@property (nonatomic, strong) UITableView *downloadManagerTableView;
 
 @end
 
@@ -74,20 +75,22 @@
     self.navigationItem.leftBarButtonItem = menuButton;
 }
 
-#pragma mark - life cycle
-
-- (id)init {
-    self = [super initWithNibName:xibName bundle:nil];
-    if (self) {
-    }
-    return self;
+- (void)setupDownloadManagerTableView {
+    self.downloadManagerTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.downloadManagerTableView.delegate = self;
+    self.downloadManagerTableView.dataSource = self;
+    self.downloadManagerTableView.backgroundColor = [UIColor clearColor];
+    [self.downloadManagerTableView registerClass:[DownloadManagerCell class] forCellReuseIdentifier:@"DownloadManagerCell"];
+    [self.view addSubview:self.downloadManagerTableView];
 }
+
+#pragma mark - life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupItemsOnNavigation];
     self.title = @"下載管理員";
-    [self.downloadManagerTableView registerClass:[DownloadManagerCell class] forCellReuseIdentifier:@"DownloadManagerCell"];
+    [self setupItemsOnNavigation];
+    [self setupDownloadManagerTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

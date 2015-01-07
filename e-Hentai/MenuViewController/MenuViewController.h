@@ -16,7 +16,6 @@
 @interface MenuViewController : ColorThemeViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) id <MenuViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 
 @end
 

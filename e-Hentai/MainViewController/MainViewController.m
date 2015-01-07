@@ -15,6 +15,7 @@
 
 @property (nonatomic, assign) NSUInteger listIndex;
 @property (nonatomic, strong) NSMutableArray *listArray;
+@property (nonatomic, strong) UITableView *listTableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSLock *rollLock;
 @property (nonatomic, readonly) NSString *filterString;
@@ -282,9 +283,23 @@
     self.navigationItem.leftBarButtonItem = menuButton;
 }
 
-- (void)setupListCollectionViewBehavior {
-    [self.listTableView registerClass:[MainTableViewCell class] forCellReuseIdentifier:@"MainTableViewCell"];
+- (void)setupListTableView {
     
+    //讓左右兩邊有 10 的 gap
+    CGRect listTableViewRect = self.view.bounds;
+    listTableViewRect.size.width -= 20;
+    listTableViewRect.origin.x += 10;
+    
+    self.listTableView = [[UITableView alloc] initWithFrame:listTableViewRect style:UITableViewStyleGrouped];
+    self.listTableView.delegate = self;
+    self.listTableView.dataSource = self;
+    self.listTableView.backgroundColor = [UIColor clearColor];
+    self.listTableView.showsVerticalScrollIndicator = NO;
+    [self.listTableView registerClass:[MainTableViewCell class] forCellReuseIdentifier:@"MainTableViewCell"];
+    [self.view addSubview:self.listTableView];
+}
+
+- (void)setupRefreshControlOnTableView {
     //下拉更新
     self.refreshControl = [UIRefreshControl new];
     [self.listTableView addSubview:self.refreshControl];
@@ -305,18 +320,12 @@
 
 #pragma mark - life cycle
 
-- (id)init {
-    self = [super initWithNibName:xibName bundle:nil];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupInitValues];
     [self setupItemsOnNavigation];
-    [self setupListCollectionViewBehavior];
+    [self setupListTableView];
+    [self setupRefreshControlOnTableView];
     [self setupRecvNotifications];
 }
 

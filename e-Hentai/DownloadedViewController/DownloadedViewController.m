@@ -10,8 +10,10 @@
 
 @interface DownloadedViewController ()
 
+@property (nonatomic, strong) UITableView *listTableView;
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) NSDictionary *currentInfo;
+@property (nonatomic, assign) BOOL onceFlag;
 @property (nonatomic, strong) NSMutableDictionary *textViewCacheMapping;
 
 @end
@@ -139,7 +141,23 @@
     }];
 }
 
-#pragma mark - recv notification
+#pragma mark - private
+
+#pragma mark * override methods from MainViewController
+
+- (void)setupInitValues {
+    self.title = @"已經下載的漫畫";
+    self.onceFlag = NO;
+    self.textViewCacheMapping = [NSMutableDictionary dictionary];
+}
+
+- (void)setupItemsOnNavigation {
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(openSlider)];
+    self.navigationItem.leftBarButtonItem = menuButton;
+}
+
+- (void)setupRefreshControlOnTableView {
+}
 
 - (void)setupRecvNotifications {
     //接 HentaiDownloadSuccessNotification
@@ -148,41 +166,6 @@
         @strongify(self);
         [self.listTableView reloadData];
     }];
-}
-
-#pragma mark - private
-
-- (void)setupItemsOnNavigation {
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(openSlider)];
-    self.navigationItem.leftBarButtonItem = menuButton;
-}
-
-#pragma mark - life cycle
-
-- (id)init {
-    if (isIPad) {
-        self = [super initWithNibName:@"IPadMainViewController" bundle:nil];
-    }
-    else {
-        self = [super initWithNibName:@"MainViewController" bundle:nil];
-    }
-    if (self) {
-    }
-    return self;
-}
-
-//這邊我故意沒有放 [super viewDidLoad], 不然會跑到很多 mainviewcontroller 的東西
-- (void)viewDidLoad {
-    self.title = @"已經下載的漫畫";
-    [self setupItemsOnNavigation];
-    [self setupRecvNotifications];
-    [self.listTableView registerClass:[MainTableViewCell class] forCellReuseIdentifier:@"MainTableViewCell"];
-    self.textViewCacheMapping = [NSMutableDictionary dictionary];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.listTableView reloadData];
 }
 
 @end

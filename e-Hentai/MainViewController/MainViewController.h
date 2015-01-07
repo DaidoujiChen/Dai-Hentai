@@ -20,7 +20,6 @@
 @interface MainViewController : ColorThemeViewController <UISearchBarDelegate, SearchFilterViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) id <MainViewControllerDelegate, OpenMenuProtocol> delegate;
-@property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
 @end
 

@@ -126,23 +126,26 @@
     self.navigationItem.leftBarButtonItem = cancelButton;
 }
 
+//設定 filter table
+- (void)setupFilterTableView {
+    UITableView *filterTableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    filterTableView.delegate = self;
+    filterTableView.dataSource = self;
+    filterTableView.backgroundColor = [UIColor clearColor];
+    [filterTableView registerClass:[MenuDefaultCell class] forCellReuseIdentifier:@"FilterCell"];
+    [self.view addSubview:filterTableView];
+}
+
 - (void)cancelSearch {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - life cycle
 
-- (id)init {
-    self = [super initWithNibName:xibName bundle:nil];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupItemsOnNavigation];
-    [self.filterTableView registerClass:[MenuDefaultCell class] forCellReuseIdentifier:@"FilterCell"];
+    [self setupFilterTableView];
 }
 
 @end
