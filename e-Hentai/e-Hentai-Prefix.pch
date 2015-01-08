@@ -14,6 +14,19 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
+    //from pod
+    #import <ViewDeck/IIViewDeckController.h>
+    #import <SDWebImage/UIImageView+WebCache.h>
+    #import <ReactiveCocoa/ReactiveCocoa.h>
+    #import <ReactiveCocoa/RACEXTScope.h>
+    #import <ChameleonFramework/Chameleon.h>
+    #import <SupportKit/SupportKit.h>
+    #import <Realm/Realm.h>
+    #import <SVProgressHUD/SVProgressHUD.h>
+    #import <MWPhotoBrowser/MWPhotoBrowser.h>
+    #import <QuickDialog/QuickDialog.h>
+    #import <FXBlurView.h>
+
     //from project
     #import "TFHpple.h"
     #import "HentaiParser.h"
@@ -31,19 +44,6 @@
     #import "UIView+Hentai.h"
     #import "UIImageView+Hentai.h"
     #import "HentaiSettingManager.h"
-
-    //from pod
-    #import <ViewDeck/IIViewDeckController.h>
-    #import <SDWebImage/UIImageView+WebCache.h>
-    #import <ReactiveCocoa/ReactiveCocoa.h>
-    #import <ReactiveCocoa/RACEXTScope.h>
-    #import <ChameleonFramework/Chameleon.h>
-    #import <SupportKit/SupportKit.h>
-    #import <Realm/Realm.h>
-    #import <SVProgressHUD/SVProgressHUD.h>
-    #import <MWPhotoBrowser/MWPhotoBrowser.h>
-    #import <QuickDialog/QuickDialog.h>
-    #import <FXBlurView.h>
 
     //Realm
     #import "HentaiSaveLibrary.h"
