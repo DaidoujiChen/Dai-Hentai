@@ -8,7 +8,9 @@
 
 #import "QuickDialogController.h"
 
-@interface SettingV2ViewController : QuickDialogController
+#import "ThemeColorChangeViewController.h"
+
+@interface SettingV2ViewController : QuickDialogController <ThemeColorChangeViewControllerDelegate>
 
 @property (nonatomic, weak) id <OpenMenuProtocol> delegate;
 

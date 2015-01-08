@@ -14,12 +14,28 @@
 
 @implementation ColorThemeViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+#pragma mark - instance method
+
+- (void)changeToColor:(NSString *)colorString {
     
-    NSArray *colorFriends = [NSArray arrayOfColorsWithColorScheme:ColorSchemeAnalogous for:[UIColor flatPinkColor] flatScheme:YES];
-    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.bounds andColors:@[colorFriends[0], colorFriends[4]]];
+    //把字串轉顏色
+    SEL selector = NSSelectorFromString(colorString);
+    NSMethodSignature *signature = [UIColor methodSignatureForSelector:selector];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setTarget:[UIColor class]];
+    [invocation setSelector:selector];
+    [invocation invoke];
+    __unsafe_unretained UIColor *returnColor;
+    [invocation getReturnValue:&returnColor];
+    
+    //換顏色
+    NSArray *colorFriends = [NSArray arrayOfColorsWithColorScheme:ColorSchemeAnalogous for:returnColor flatScheme:YES];
+    NSUInteger firstColorIndex = [colorFriends indexOfObject:[colorFriends firstObject]];
+    NSUInteger lastColorIndex = [colorFriends indexOfObject:[colorFriends lastObject]];
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.bounds andColors:@[colorFriends[firstColorIndex], colorFriends[lastColorIndex]]];
 }
+
+#pragma mark - private
 
 //本來 settitle 是設定 navigation title 上面的字, 這邊把他轉換成用漂亮的字體秀
 - (void)setTitle:(NSString *)title {
@@ -31,6 +47,13 @@
     titleLabel.attributedText = attributedString;
     [titleLabel sizeToFit];
     self.navigationItem.titleView = titleLabel;
+}
+
+#pragma mark - life cycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self changeToColor:[HentaiSettingManager themeColorString]];
 }
 
 @end

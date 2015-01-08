@@ -14,6 +14,15 @@
 
 @implementation SettingV2ViewController
 
+#pragma mark - ThemeColorChangeViewControllerDelegate
+
+- (void)themeColorDidChange {
+    QSection *changeColorSection = [self.root sectionWithKey:@"cacheSizeSection"];
+    QLabelElement *sizeElement = changeColorSection.elements[0];
+    sizeElement.value = [HentaiSettingManager themeColorString];
+    [self.quickDialogTableView reloadData];
+}
+
 #pragma mark - private
 
 #pragma mark * init
@@ -41,13 +50,28 @@
     
     [root addSection:switchs];
     
+    //選顏色
+    QSection *changeColorSection = [[QSection alloc] initWithTitle:@"主題色彩"];
+    changeColorSection.key = @"changeColorSection";
+    QLabelElement *changeColorElement = [[QLabelElement alloc] initWithTitle:@"目前色彩" Value:[HentaiSettingManager themeColorString]];
+    [changeColorSection addElement:changeColorElement];
+    QButtonElement *changeColorButton = [[QButtonElement alloc] initWithTitle:@"點我更換顏色"];
+    @weakify(self);
+    changeColorButton.onSelected = ^{
+        @strongify(self);
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[ThemeColorChangeViewController new]] animated:YES completion:^{
+        }];
+    };
+    [changeColorSection addElement:changeColorButton];
+    
+    [root addSection:changeColorSection];
+    
     //暫存
     QSection *cacheSizeSection = [[QSection alloc] initWithTitle:@"暫存"];
     cacheSizeSection.key = @"cacheSizeSection";
     QLabelElement *cacheSizeElement = [[QLabelElement alloc] initWithTitle:@"占用容量" Value:@""];
     [cacheSizeSection addElement:cacheSizeElement];
     QButtonElement *earseCacheButton = [[QButtonElement alloc] initWithTitle:@"點我清空暫存"];
-    @weakify(self);
     earseCacheButton.onSelected = ^{
         @strongify(self);
         [[FilesManager cacheFolder] rd:@"Hentai"];

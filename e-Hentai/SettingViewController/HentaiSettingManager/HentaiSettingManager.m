@@ -51,4 +51,18 @@
     }];
 }
 
++ (NSString *)themeColorString {
+    if (!HentaiSettingsV2[@"themeColor"]) {
+        [self setThemeColorString:@"flatPinkColor"];
+    }
+    return HentaiSettingsV2[@"themeColor"];
+}
+
++ (void)setThemeColorString:(NSString *)themeColorString {
+    [LightWeightPlist lwpSafe:^{
+        HentaiSettingsV2[@"themeColor"] = themeColorString;
+        LWPForceWrite();
+    }];
+}
+
 @end
