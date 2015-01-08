@@ -168,4 +168,11 @@
     }];
 }
 
+#pragma mark - life cycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.listTableView reloadData];
+}
+
 @end
