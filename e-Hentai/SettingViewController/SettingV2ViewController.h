@@ -8,6 +8,7 @@
 
 #import "QuickDialogController.h"
 
+#import "HentaiNavigationController.h"
 #import "ThemeColorChangeViewController.h"
 
 @interface SettingV2ViewController : QuickDialogController <ThemeColorChangeViewControllerDelegate>

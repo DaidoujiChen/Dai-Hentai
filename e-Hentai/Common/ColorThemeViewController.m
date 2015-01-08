@@ -35,6 +35,16 @@
     self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.bounds andColors:@[colorFriends[firstColorIndex], colorFriends[lastColorIndex]]];
 }
 
+#pragma mark - Configuring the View Rotation Settings
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - private
 
 //本來 settitle 是設定 navigation title 上面的字, 這邊把他轉換成用漂亮的字體秀

@@ -29,6 +29,7 @@
     [self oldDataChecking];
     
     //display
+    application.statusBarOrientation = UIDeviceOrientationPortrait;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:[SliderViewController new]];
     hentaiNavigation.autoRotate = NO;

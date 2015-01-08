@@ -61,7 +61,10 @@
         @strongify(self);
         ThemeColorChangeViewController *themeColorChangeViewController = [ThemeColorChangeViewController new];
         themeColorChangeViewController.delegate = self;
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:themeColorChangeViewController] animated:YES completion:^{
+        HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:themeColorChangeViewController];
+        hentaiNavigation.autoRotate = NO;
+        hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
+        [self presentViewController:hentaiNavigation animated:YES completion:^{
         }];
     };
     [changeColorSection addElement:changeColorButton];

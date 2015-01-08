@@ -259,7 +259,10 @@
 - (void)presentSearchFilter {
     SearchFilterViewController *searchFilter = [SearchFilterViewController new];
     searchFilter.delegate = self;
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:searchFilter] animated:YES completion:nil];
+    HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:searchFilter];
+    hentaiNavigation.autoRotate = NO;
+    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
+    [self presentViewController:hentaiNavigation animated:YES completion:nil];
 }
 
 #pragma mark viewdidload 中用到的初始方法
