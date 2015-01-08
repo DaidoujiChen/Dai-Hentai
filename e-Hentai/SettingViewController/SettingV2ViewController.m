@@ -17,7 +17,7 @@
 #pragma mark - ThemeColorChangeViewControllerDelegate
 
 - (void)themeColorDidChange {
-    QSection *changeColorSection = [self.root sectionWithKey:@"cacheSizeSection"];
+    QSection *changeColorSection = [self.root sectionWithKey:@"changeColorSection"];
     QLabelElement *sizeElement = changeColorSection.elements[0];
     sizeElement.value = [HentaiSettingManager themeColorString];
     [self.quickDialogTableView reloadData];
@@ -59,7 +59,9 @@
     @weakify(self);
     changeColorButton.onSelected = ^{
         @strongify(self);
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[ThemeColorChangeViewController new]] animated:YES completion:^{
+        ThemeColorChangeViewController *themeColorChangeViewController = [ThemeColorChangeViewController new];
+        themeColorChangeViewController.delegate = self;
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:themeColorChangeViewController] animated:YES completion:^{
         }];
     };
     [changeColorSection addElement:changeColorButton];
