@@ -20,4 +20,7 @@
 + (BOOL)isUseNewBrowser;
 + (void)setIsUseNewBrowser:(BOOL)isUseNewBrowser;
 
++ (NSString *)themeColorString;
++ (void)setThemeColorString:(NSString *)themeColorString;
+
 @end

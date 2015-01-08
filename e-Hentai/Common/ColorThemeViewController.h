@@ -10,4 +10,6 @@
 
 @interface ColorThemeViewController : UIViewController
 
+- (void)changeToColor:(NSString *)colorString;
+
 @end

@@ -12,6 +12,7 @@
 		010E3ADF19E3B93800B866FB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */; };
 		010E3AE119E3B94700B866FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3AE019E3B94700B866FB /* SystemConfiguration.framework */; };
 		010E3AE319E3B95200B866FB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3AE219E3B95200B866FB /* CoreText.framework */; };
+		0113EF411A5E23D000E02E33 /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0113EF401A5E23D000E02E33 /* FLEXHeapEnumerator.m */; };
 		0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080719B6F06200FE0DA1 /* FakeViewController.m */; };
 		0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */; };
 		0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080F19B6F06200FE0DA1 /* MainViewController.m */; };
@@ -21,6 +22,7 @@
 		011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011AEA5419DD296400A15CA5 /* MenuViewController.m */; };
 		011AEA5A19DD31B300A15CA5 /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 011AEA5919DD31B300A15CA5 /* Menu.plist */; };
 		0125A3661A5AD2EB00C52987 /* UIImageView+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 0125A3651A5AD2EB00C52987 /* UIImageView+Hentai.m */; };
+		012BE8471A5D33B700F599B8 /* ThemeColorChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 012BE8461A5D33B700F599B8 /* ThemeColorChangeViewController.m */; };
 		01310BD51A00ABBC00C78DFE /* AppDelegate+SupportKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 01310BD41A00ABBC00C78DFE /* AppDelegate+SupportKit.m */; };
 		0131908E1A4A5C6B0056F2E6 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0131908D1A4A5C6B0056F2E6 /* libFlurry_6.0.0.a */; };
 		0137F40C19C1688200528359 /* HentaiDownloadCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0137F40B19C1688200528359 /* HentaiDownloadCenter.m */; };
@@ -112,6 +114,8 @@
 		010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		010E3AE019E3B94700B866FB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		010E3AE219E3B95200B866FB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		0113EF3F1A5E23D000E02E33 /* FLEXHeapEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXHeapEnumerator.h; sourceTree = "<group>"; };
+		0113EF401A5E23D000E02E33 /* FLEXHeapEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXHeapEnumerator.m; sourceTree = "<group>"; };
 		0118080619B6F06200FE0DA1 /* FakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeViewController.h; sourceTree = "<group>"; };
 		0118080719B6F06200FE0DA1 /* FakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeViewController.m; sourceTree = "<group>"; };
 		0118080819B6F06200FE0DA1 /* HentaiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiNavigationController.h; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 		01234D481A5A72B8003ADD31 /* OpenMenuProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenMenuProtocol.h; sourceTree = "<group>"; };
 		0125A3641A5AD2EB00C52987 /* UIImageView+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Hentai.h"; sourceTree = "<group>"; };
 		0125A3651A5AD2EB00C52987 /* UIImageView+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Hentai.m"; sourceTree = "<group>"; };
+		012BE8451A5D33B700F599B8 /* ThemeColorChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeColorChangeViewController.h; path = "e-Hentai/SettingViewController/ThemeColorChangeViewController/ThemeColorChangeViewController.h"; sourceTree = SOURCE_ROOT; };
+		012BE8461A5D33B700F599B8 /* ThemeColorChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeColorChangeViewController.m; path = "e-Hentai/SettingViewController/ThemeColorChangeViewController/ThemeColorChangeViewController.m"; sourceTree = SOURCE_ROOT; };
 		01310BD31A00ABBC00C78DFE /* AppDelegate+SupportKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+SupportKit.h"; sourceTree = "<group>"; };
 		01310BD41A00ABBC00C78DFE /* AppDelegate+SupportKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+SupportKit.m"; sourceTree = "<group>"; };
 		0131908C1A4A5C6B0056F2E6 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
@@ -291,6 +297,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0113EF3E1A5E23D000E02E33 /* FLEXHeapEnumerator */ = {
+			isa = PBXGroup;
+			children = (
+				0113EF3F1A5E23D000E02E33 /* FLEXHeapEnumerator.h */,
+				0113EF401A5E23D000E02E33 /* FLEXHeapEnumerator.m */,
+			);
+			path = FLEXHeapEnumerator;
+			sourceTree = "<group>";
+		};
 		0118080519B6F06200FE0DA1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +371,16 @@
 				0179766619E27EB200E9005E /* MenuDefaultCell */,
 			);
 			name = MenuViewController;
+			sourceTree = "<group>";
+		};
+		012BE8441A5D335F00F599B8 /* ThemeColorChangeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				012BE8451A5D33B700F599B8 /* ThemeColorChangeViewController.h */,
+				012BE8461A5D33B700F599B8 /* ThemeColorChangeViewController.m */,
+			);
+			name = ThemeColorChangeViewController;
+			path = SettingViewController/ThemeColorChangeController;
 			sourceTree = "<group>";
 		};
 		0131908B1A4A5C6B0056F2E6 /* Flurry */ = {
@@ -425,6 +450,7 @@
 		0150033619B6E5E90055F47D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				0113EF3E1A5E23D000E02E33 /* FLEXHeapEnumerator */,
 				0131908B1A4A5C6B0056F2E6 /* Flurry */,
 				01B4231E1A44136400FAB920 /* Pgyer */,
 				019290161A25D6C70094B423 /* DaiPortal */,
@@ -735,6 +761,7 @@
 			children = (
 				01AD623C1A5797D500962CBD /* SettingV2ViewController.h */,
 				01AD623D1A5797D500962CBD /* SettingV2ViewController.m */,
+				012BE8441A5D335F00F599B8 /* ThemeColorChangeViewController */,
 				019E11811A5D19510053581F /* HentaiSettingManager */,
 			);
 			name = SettingViewController;
@@ -938,9 +965,11 @@
 				016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */,
 				0199269519ADDB83009F814B /* main.m in Sources */,
 				01A907F01A493A96006F4179 /* HentaiCacheLibrary.m in Sources */,
+				012BE8471A5D33B700F599B8 /* ThemeColorChangeViewController.m in Sources */,
 				01310BD51A00ABBC00C78DFE /* AppDelegate+SupportKit.m in Sources */,
 				016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */,
 				0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */,
+				0113EF411A5E23D000E02E33 /* FLEXHeapEnumerator.m in Sources */,
 				011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
