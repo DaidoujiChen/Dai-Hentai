@@ -31,7 +31,7 @@
 + (void)addBook:(NSDictionary *)hentaiInfo {
     
     //下載過的話不給下
-    BOOL isExist = ([HentaiSaveLibrary indexOfURL:hentaiInfo[@"url"]] == NSNotFound)?NO:YES;
+    BOOL isExist = ([HentaiSaveLibrary indexOfHentaiKey:[hentaiInfo hentai_hentaiKey]] == NSNotFound)?NO:YES;
     
     //如果在 queue 裡面也不給下
     isExist = isExist | [self isDownloading:hentaiInfo];
@@ -52,7 +52,7 @@
     BOOL isExist = NO;
     
     for (HentaiDownloadBookOperation *eachOperation in[[self allBooksOperationQueue] operations]) {
-        if ([eachOperation.hentaiInfo[@"url"] isEqualToString:hentaiInfo[@"url"]]) {
+        if ([[eachOperation.hentaiInfo hentai_hentaiKey] isEqualToString:[hentaiInfo hentai_hentaiKey]]) {
             isExist = YES;
             break;
         }

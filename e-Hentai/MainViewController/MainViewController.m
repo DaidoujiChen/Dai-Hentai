@@ -133,51 +133,42 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *hentaiInfo = self.listArray[indexPath.section];
-    BOOL isExist = ([HentaiSaveLibrary indexOfURL:hentaiInfo[@"url"]] == NSNotFound)?NO:YES;
+    NSUInteger indexInHentaiSaveLibrary = [HentaiSaveLibrary indexOfHentaiKey:[hentaiInfo hentai_hentaiKey]];
+    BOOL isExist = (indexInHentaiSaveLibrary == NSNotFound)?NO:YES;
     
     if (isExist) {
         PhotoViewController *photoViewController = [PhotoViewController new];
-        photoViewController.hentaiInfo = hentaiInfo;
+        photoViewController.hentaiInfo = [HentaiSaveLibrary saveInfoAtIndex:indexInHentaiSaveLibrary][@"hentaiInfo"];
         [self.delegate needToPushViewController:photoViewController];
     }
     else {
         @weakify(self);
+        NSString *alertTitle;
+        NSString *alertMessage;
         if (isIPad) {
-            [UIAlertView hentai_alertViewWithTitle:@"選擇要做的事情~ O3O" message:nil cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex:^(NSInteger clickIndex) {
-                @strongify(self);
-                if (clickIndex) {
-                    if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
-                        [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
-                    }
-                    else {
-                        PhotoViewController *photoViewController = [PhotoViewController new];
-                        photoViewController.hentaiInfo = hentaiInfo;
-                        [self.delegate needToPushViewController:photoViewController];
-                    }
-                }
-                else {
-                    [HentaiDownloadCenter addBook:hentaiInfo];
-                }
-            } onCancel:nil];
+            alertTitle = @"選擇要做的事情~ O3O";
+            alertMessage = nil;
         }
         else {
-            [UIAlertView hentai_alertViewWithTitle:hentaiInfo[@"category"] message:[self alertMessage:hentaiInfo] cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex: ^(NSInteger clickIndex) {
-                @strongify(self);
-                if (clickIndex) {
-                    if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
-                        [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
-                    }
-                    else {
-                        PhotoViewController *photoViewController = [PhotoViewController new];
-                        photoViewController.hentaiInfo = hentaiInfo;
-                        [self.delegate needToPushViewController:photoViewController];
-                    }
+            alertTitle = hentaiInfo[@"category"];
+            alertMessage = [self alertMessage:hentaiInfo];
+        }
+        [UIAlertView hentai_alertViewWithTitle:alertTitle message:alertMessage cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex:^(NSInteger clickIndex) {
+            @strongify(self);
+            if (clickIndex) {
+                if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
+                    [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
                 }
                 else {
-                    [HentaiDownloadCenter addBook:hentaiInfo];
+                    PhotoViewController *photoViewController = [PhotoViewController new];
+                    photoViewController.hentaiInfo = hentaiInfo;
+                    [self.delegate needToPushViewController:photoViewController];
                 }
-            } onCancel:nil];
-        }
+            }
+            else {
+                [HentaiDownloadCenter addBook:hentaiInfo];
+            }
+        } onCancel:nil];
     }
 }
 

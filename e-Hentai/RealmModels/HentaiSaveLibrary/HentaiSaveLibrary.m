@@ -67,16 +67,6 @@
     return NSNotFound;
 }
 
-//用 url 查詢所在 index
-+ (NSUInteger)indexOfURL:(NSString *)url {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hentaiInfo.url contains[c] %@", url];
-    RLMResults *resultObjects = [HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate];
-    if (resultObjects.count) {
-        return [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] indexOfObject:[resultObjects firstObject]];
-    }
-    return NSNotFound;
-}
-
 //指定 index 返回內容
 + (NSDictionary *)saveInfoAtIndex:(NSUInteger)index {
     NSMutableDictionary *returnInfo = [NSMutableDictionary dictionary];

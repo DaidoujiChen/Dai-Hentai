@@ -23,7 +23,6 @@
 + (void)addSaveInfo:(NSDictionary *)saveInfo;
 + (NSUInteger)count;
 + (NSUInteger)indexOfHentaiKey:(NSString *)hentaiKey;
-+ (NSUInteger)indexOfURL:(NSString *)url;
 + (NSDictionary *)saveInfoAtIndex:(NSUInteger)index;
 + (void)removeSaveInfoAtIndex:(NSUInteger)index;
 
