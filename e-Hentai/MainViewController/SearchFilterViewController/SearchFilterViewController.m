@@ -19,14 +19,14 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [HentaiFilters count];
+    return [[HentaiSettingManager staticFilters] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //取得一些要秀的資訊
-    NSDictionary *filterInfo = HentaiFilters[indexPath.row];
-    NSNumber *flag = HentaiPrefer[@"filtersFlag"][indexPath.row];
+    NSDictionary *filterInfo = [HentaiSettingManager staticFilters][indexPath.row];
+    NSNumber *flag = [HentaiSettingManager temporaryHentaiPrefer][@"filtersFlag"][indexPath.row];
     
     //建立 cell
     MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FilterCell" forIndexPath:indexPath];
@@ -45,7 +45,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //取得資訊
-    NSNumber *flag = HentaiPrefer[@"filtersFlag"][indexPath.row];
+    NSNumber *flag = [HentaiSettingManager temporaryHentaiPrefer][@"filtersFlag"][indexPath.row];
     
     //將 cell 的顯示狀態改變
     MenuDefaultCell *cell = (MenuDefaultCell *)[tableView cellForRowAtIndexPath:indexPath];
@@ -55,7 +55,7 @@
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    HentaiPrefer[@"filtersFlag"][indexPath.row] = @(![flag boolValue]);
+    [HentaiSettingManager temporaryHentaiPrefer][@"filtersFlag"][indexPath.row] = @(![flag boolValue]);
 }
 
 #pragma mark -  UISearchBarDelegate
@@ -68,10 +68,8 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     if (self.delegate) {
-        [LightWeightPlist lwpSafe:^{
-            HentaiPrefer[@"searchText"] = self.searchBar.text;
-            LWPForceWrite();
-        }];
+        [HentaiSettingManager temporaryHentaiPrefer][@"searchText"] = self.searchBar.text;
+        [HentaiSettingManager storeHentaiPrefer];
         [self.delegate onSearchFilterDone];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -116,7 +114,7 @@
 - (void)setupItemsOnNavigation {
     //搜尋列
     self.searchBar = [UISearchBar new];
-    self.searchBar.text = HentaiPrefer[@"searchText"];
+    self.searchBar.text = [HentaiSettingManager temporaryHentaiPrefer][@"searchText"];
     self.searchBar.placeholder = @"可以不填直接搜尋";
     self.searchBar.delegate = self;
     self.navigationItem.titleView = self.searchBar;

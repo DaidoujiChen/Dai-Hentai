@@ -13,5 +13,6 @@
 + (BOOL)setObjectToCache:(id)object withKey:(NSString *)key;
 + (id)objectFromCache:(NSString *)key;
 + (void)removeObjectFromCache:(NSString *)key;
++ (void)writeObjectFromCache:(NSString *)key;
 
 @end

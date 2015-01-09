@@ -54,7 +54,7 @@
 #pragma mark * init
 
 - (void)setupInitValues {
-    self.currentColorString = [HentaiSettingManager themeColorString];
+    self.currentColorString = [HentaiSettingManager temporarySettings][@"themeColor"];
     [self foundFlatColors];
 }
 
@@ -99,7 +99,7 @@
 }
 
 - (void)submitChange {
-    [HentaiSettingManager setThemeColorString:self.currentColorString];
+    [HentaiSettingManager temporarySettings][@"themeColor"] = self.currentColorString;
     @weakify(self);
     [FLEXHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
         @strongify(self);

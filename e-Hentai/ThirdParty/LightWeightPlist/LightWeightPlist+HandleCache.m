@@ -58,6 +58,19 @@
 	}
 }
 
++ (void)writeObjectFromCache:(NSString *)key
+{
+    id obj = [lwpCache objectForKey:key];
+    if (obj) {
+        id associatedObject = objc_getAssociatedObject(self, lwpBridge(obj));
+        NSString *filename = [lwpPointerMapping objectForKey:[self objectAddressString:obj]];
+        NSString *path = lwpDocumentFile(filename);
+        [associatedObject performSelector:@selector(writeToFile:atomically:) withObject:path withObject:@YES];
+        [lwpPointerMapping removeObjectForKey:[self objectAddressString:[lwpCache objectForKey:key]]];
+        [lwpCache removeObjectForKey:key];
+    }
+}
+
 #pragma mark - private
 
 + (NSString *)objectAddressString:(NSObject *)object

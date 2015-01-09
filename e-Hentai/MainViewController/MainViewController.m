@@ -37,7 +37,7 @@
 #pragma mark - SearchFilterViewControllerDelegate
 
 - (void)onSearchFilterDone {
-    self.title = HentaiPrefer[@"searchText"];
+    self.title = [HentaiSettingManager temporaryHentaiPrefer][@"searchText"];
     [self reloadDatas];
 }
 
@@ -177,20 +177,20 @@
 //製作 filter string
 - (NSString *)filterDependOnURL:(NSString *)urlString {
     NSMutableString *filterURLString = [NSMutableString stringWithFormat:urlString, (unsigned long)self.listIndex];
-    NSArray *filters = HentaiPrefer[@"filtersFlag"];
+    NSArray *filters = [HentaiSettingManager temporaryHentaiPrefer][@"filtersFlag"];
     
     //建立過濾 url
-    for (NSInteger i = 0; i < [HentaiFilters count]; i++) {
+    for (NSInteger i = 0; i < [[HentaiSettingManager staticFilters] count]; i++) {
         NSNumber *eachFlag = filters[i];
         if ([eachFlag boolValue]) {
-            [filterURLString appendFormat:@"&%@", HentaiFilters[i][@"url"]];
+            [filterURLString appendFormat:@"&%@", [HentaiSettingManager staticFilters][i][@"url"]];
         }
     }
     
     //去除掉空白換行字符後, 如果長度不為 0, 則表示有字
     NSCharacterSet *emptyCharacter = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    if ([[HentaiPrefer[@"searchText"] componentsSeparatedByCharactersInSet:emptyCharacter] componentsJoinedByString:@""].length) {
-        [filterURLString appendFormat:@"&f_search=%@", HentaiPrefer[@"searchText"]];
+    if ([[[HentaiSettingManager temporaryHentaiPrefer][@"searchText"] componentsSeparatedByCharactersInSet:emptyCharacter] componentsJoinedByString:@""].length) {
+        [filterURLString appendFormat:@"&f_search=%@", [HentaiSettingManager temporaryHentaiPrefer][@"searchText"]];
     }
     [filterURLString appendString:@"&f_apply=Apply+Filter"];
     return [filterURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -261,7 +261,7 @@
 - (void)setupInitValues {
     
     //相關變數
-    self.title = HentaiPrefer[@"searchText"];
+    self.title = [HentaiSettingManager temporaryHentaiPrefer][@"searchText"];
     self.listIndex = 0;
     self.listArray = [NSMutableArray array];
     self.rollLock = [NSLock new];

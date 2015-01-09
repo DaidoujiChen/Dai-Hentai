@@ -19,7 +19,7 @@
 - (void)themeColorDidChange {
     QSection *changeColorSection = [self.root sectionWithKey:@"changeColorSection"];
     QLabelElement *sizeElement = changeColorSection.elements[0];
-    sizeElement.value = [HentaiSettingManager themeColorString];
+    sizeElement.value = [HentaiSettingManager temporarySettings][@"themeColor"];
     [self.quickDialogTableView reloadData];
 }
 
@@ -39,12 +39,12 @@
     QSection *switchs = [[QSection alloc] initWithTitle:@"開開關關"];
     
     //高清開關
-    QBooleanElement *highResolutionElement = [[QBooleanElement alloc] initWithTitle:@"高清" BoolValue:[HentaiSettingManager isHighResolution]];
+    QBooleanElement *highResolutionElement = [[QBooleanElement alloc] initWithTitle:@"高清" BoolValue:[[HentaiSettingManager temporarySettings][@"highResolution"] boolValue]];
     highResolutionElement.controllerAction = @"highResolutionChange:";
     [switchs addElement:highResolutionElement];
     
     //顯示方式開關
-    QBooleanElement *browserElement = [[QBooleanElement alloc] initWithTitle:@"橫向瀏覽" BoolValue:[HentaiSettingManager isUseNewBrowser]];
+    QBooleanElement *browserElement = [[QBooleanElement alloc] initWithTitle:@"橫向瀏覽" BoolValue:[[HentaiSettingManager temporarySettings][@"useNewBrowser"] boolValue]];
     browserElement.controllerAction = @"browserChange:";
     [switchs addElement:browserElement];
     
@@ -53,7 +53,7 @@
     //選顏色
     QSection *changeColorSection = [[QSection alloc] initWithTitle:@"主題色彩"];
     changeColorSection.key = @"changeColorSection";
-    QLabelElement *changeColorElement = [[QLabelElement alloc] initWithTitle:@"目前色彩" Value:[HentaiSettingManager themeColorString]];
+    QLabelElement *changeColorElement = [[QLabelElement alloc] initWithTitle:@"目前色彩" Value:[HentaiSettingManager temporarySettings][@"themeColor"]];
     [changeColorSection addElement:changeColorElement];
     QButtonElement *changeColorButton = [[QButtonElement alloc] initWithTitle:@"點我更換顏色"];
     @weakify(self);
@@ -134,14 +134,14 @@
     if (highResolutionElement.boolValue) {
         [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"開啟高清開關後, 儲存的圖片將明顯變大!\n效果會在下一次下載, 觀看時生效!" cancelButtonTitle:@"好~ O3O"];
     }
-    [HentaiSettingManager setIsHighResolution:highResolutionElement.boolValue];
+    [HentaiSettingManager temporarySettings][@"highResolution"] = @(highResolutionElement.boolValue);
 }
 
 - (void)browserChange:(QBooleanElement *)browserElement {
     if (browserElement.boolValue) {
         [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"目前這個功能僅在已下載功能中可使用~ O3O" cancelButtonTitle:@"好~ O3O"];
     }
-    [HentaiSettingManager setIsUseNewBrowser:browserElement.boolValue];
+    [HentaiSettingManager temporarySettings][@"useNewBrowser"] = @(browserElement.boolValue);
 }
 
 #pragma mark * size calculate
@@ -225,6 +225,11 @@
     [self setupItemsOnNavigation];
     [self cacheFolderSize];
     [self documentFolderSize];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [HentaiSettingManager storeSettings];
 }
 
 @end

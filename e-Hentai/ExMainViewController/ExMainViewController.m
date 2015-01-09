@@ -44,9 +44,9 @@
 #pragma mark - life cycle
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (HentaiAccount[@"UserName"]) {
+    if ([HentaiSettingManager temporaryHentaiAccount][@"UserName"]) {
         [SVProgressHUD show];
-        [DiveExHentai diveByUserName:HentaiAccount[@"UserName"] password:HentaiAccount[@"Password"] completion: ^(BOOL isSuccess) {
+        [DiveExHentai diveByUserName:[HentaiSettingManager temporaryHentaiAccount][@"UserName"] password:[HentaiSettingManager temporaryHentaiAccount][@"Password"] completion: ^(BOOL isSuccess) {
             if (isSuccess) {
                 [super viewWillAppear:animated];
             }
@@ -63,11 +63,9 @@
             [SVProgressHUD show];
             [DiveExHentai diveByUserName:userName password:password completion: ^(BOOL isSuccess) {
                 if (isSuccess) {
-                    [LightWeightPlist lwpSafe:^{
-                        HentaiAccount[@"UserName"] = userName;
-                        HentaiAccount[@"Password"] = password;
-                        LWPForceWrite();
-                    }];
+                    [HentaiSettingManager temporaryHentaiAccount][@"UserName"] = userName;
+                    [HentaiSettingManager temporaryHentaiAccount][@"Password"] = password;
+                    [HentaiSettingManager storeHentaiAccount];
                 }
                 [super viewWillAppear:animated];
                 [SVProgressHUD dismiss];

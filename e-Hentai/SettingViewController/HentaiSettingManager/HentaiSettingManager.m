@@ -8,61 +8,81 @@
 
 #import "HentaiSettingManager.h"
 
+#import <objc/runtime.h>
+
 @implementation HentaiSettingManager
 
 + (void)settingTransfer {
     if ([[FilesManager documentFolder] read:@"HentaiSettings.plist"].length) {
         [LightWeightPlist lwpSafe:^{
             NSDictionary *oldSettings = LWPDictionary(@"HentaiSettings");
-            [self setIsHighResolution:[oldSettings[@"highResolution"] boolValue]];
-            [self setIsUseNewBrowser:[oldSettings[@"useNewBroswer"] boolValue]];
+            [self temporarySettings][@"highResolution"] = oldSettings[@"highResolution"];
+            [self temporarySettings][@"useNewBrowser"] = oldSettings[@"useNewBroswer"];
+            [LWPDictionary(@"HentaiSettingsV2") setDictionary:[self temporarySettings]];
+            LWPForceWriteSpecific(@"HentaiSettingsV2");
             LWPDelete(@"HentaiSettings");
         }];
     }
 }
 
-+ (BOOL)isHighResolution {
-    if (!HentaiSettingsV2[@"highResolution"]) {
-        [self setIsHighResolution:NO];
-    }
-    NSNumber *isHighResolution = HentaiSettingsV2[@"highResolution"];
-    return [isHighResolution boolValue];
++ (NSArray *)staticMenuItems {
+    static NSArray *staticMenuItems;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        staticMenuItems = [[NSArray alloc] initWithArray:LWPArrayR(@"Menu")];
+    });
+    return staticMenuItems;
 }
 
-+ (void)setIsHighResolution:(BOOL)isHighResolution {
++ (NSArray *)staticFilters {
+    static NSArray *staticFilters;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        staticFilters = [[NSArray alloc] initWithArray:LWPArrayR(@"HentaiFilters")];
+    });
+    return staticFilters;
+}
+
++ (void)storeHentaiPrefer {
     [LightWeightPlist lwpSafe:^{
-        HentaiSettingsV2[@"highResolution"] = @(isHighResolution);
-        LWPForceWrite();
+        [LWPDictionary(@"HentaiPrefer") setDictionary:[self temporaryHentaiPrefer]];
+        LWPForceWriteSpecific(@"HentaiPrefer");
     }];
 }
 
-+ (BOOL)isUseNewBrowser {
-    if (!HentaiSettingsV2[@"useNewBrowser"]) {
-        [self setIsHighResolution:NO];
++ (NSMutableDictionary *)temporaryHentaiPrefer {
+    if (!objc_getAssociatedObject(self, _cmd)) {
+        objc_setAssociatedObject(self, _cmd, LWPDictionary(@"HentaiPrefer"), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    NSNumber *isUseNewBrowser = HentaiSettingsV2[@"useNewBrowser"];
-    return [isUseNewBrowser boolValue];
+    return objc_getAssociatedObject(self, _cmd);
 }
 
-+ (void)setIsUseNewBrowser:(BOOL)isUseNewBrowser {
++ (void)storeHentaiAccount {
     [LightWeightPlist lwpSafe:^{
-        HentaiSettingsV2[@"useNewBrowser"] = @(isUseNewBrowser);
-        LWPForceWrite();
+        [LWPDictionary(@"HentaiAccount") setDictionary:[self temporaryHentaiAccount]];
+        LWPForceWriteSpecific(@"HentaiAccount");
     }];
 }
 
-+ (NSString *)themeColorString {
-    if (!HentaiSettingsV2[@"themeColor"]) {
-        [self setThemeColorString:@"flatPinkColor"];
++ (NSMutableDictionary *)temporaryHentaiAccount {
+    if (!objc_getAssociatedObject(self, _cmd)) {
+        objc_setAssociatedObject(self, _cmd, LWPDictionary(@"HentaiAccount"), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    return HentaiSettingsV2[@"themeColor"];
+    return objc_getAssociatedObject(self, _cmd);
 }
 
-+ (void)setThemeColorString:(NSString *)themeColorString {
++ (void)storeSettings {
     [LightWeightPlist lwpSafe:^{
-        HentaiSettingsV2[@"themeColor"] = themeColorString;
-        LWPForceWrite();
+        [LWPDictionary(@"HentaiSettingsV2") setDictionary:[self temporarySettings]];
+        LWPForceWriteSpecific(@"HentaiSettingsV2");
     }];
+}
+
++ (NSMutableDictionary *)temporarySettings {
+    if (!objc_getAssociatedObject(self, _cmd)) {
+        objc_setAssociatedObject(self, _cmd, LWPDictionary(@"HentaiSettingsV2"), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 @end

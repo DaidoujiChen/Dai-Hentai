@@ -79,6 +79,7 @@
 		0180D9301A0214AD002554FC /* delivery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92E1A0214AD002554FC /* delivery@3x.png */; };
 		01821A1B1A5A76FA007E5A76 /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01821A191A5A76FA007E5A76 /* MainTableViewCell.m */; };
 		01821A1C1A5A76FA007E5A76 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01821A1A1A5A76FA007E5A76 /* MainTableViewCell.xib */; };
+		018258421A5FC39800FA4678 /* HentaiSettingsV2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018258411A5FC39800FA4678 /* HentaiSettingsV2.plist */; };
 		019290211A25D6C70094B423 /* DaiPortal.m in Sources */ = {isa = PBXBuildFile; fileRef = 019290181A25D6C70094B423 /* DaiPortal.m */; };
 		019290221A25D6C70094B423 /* DaiPortalBlockAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192901A1A25D6C70094B423 /* DaiPortalBlockAnalysis.m */; };
 		019290231A25D6C70094B423 /* DaiPortalPerformHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192901C1A25D6C70094B423 /* DaiPortalPerformHelper.m */; };
@@ -222,6 +223,7 @@
 		01821A181A5A76FA007E5A76 /* MainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
 		01821A191A5A76FA007E5A76 /* MainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
 		01821A1A1A5A76FA007E5A76 /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		018258411A5FC39800FA4678 /* HentaiSettingsV2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = HentaiSettingsV2.plist; path = SettingViewController/HentaiSettingsV2.plist; sourceTree = "<group>"; };
 		019290171A25D6C70094B423 /* DaiPortal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortal.h; sourceTree = "<group>"; };
 		019290181A25D6C70094B423 /* DaiPortal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortal.m; sourceTree = "<group>"; };
 		019290191A25D6C70094B423 /* DaiPortalBlockAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalBlockAnalysis.h; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 		01BFAD4D19DE430A00A5649F /* SettingViewController */ = {
 			isa = PBXGroup;
 			children = (
+				018258411A5FC39800FA4678 /* HentaiSettingsV2.plist */,
 				01AD623C1A5797D500962CBD /* SettingV2ViewController.h */,
 				01AD623D1A5797D500962CBD /* SettingV2ViewController.m */,
 				012BE8441A5D335F00F599B8 /* ThemeColorChangeViewController */,
@@ -848,6 +851,7 @@
 			files = (
 				016271401A53E097005DCD29 /* IPadVideoViewController.xib in Resources */,
 				0180D91C1A021282002554FC /* exterior@3x.png in Resources */,
+				018258421A5FC39800FA4678 /* HentaiSettingsV2.plist in Resources */,
 				019926A119ADDB83009F814B /* Images.xcassets in Resources */,
 				0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */,
 				017AE5C71A00D7DD00317939 /* HentaiPrefer.plist in Resources */,

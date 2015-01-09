@@ -8,19 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-#define HentaiSettingsV2 LWPDictionary(@"HentaiSettingsV2")
-
 @interface HentaiSettingManager : NSObject
 
 + (void)settingTransfer;
 
-+ (BOOL)isHighResolution;
-+ (void)setIsHighResolution:(BOOL)isHighResolution;
++ (NSArray *)staticMenuItems;
++ (NSArray *)staticFilters;
 
-+ (BOOL)isUseNewBrowser;
-+ (void)setIsUseNewBrowser:(BOOL)isUseNewBrowser;
++ (void)storeHentaiPrefer;
++ (NSMutableDictionary *)temporaryHentaiPrefer;
 
-+ (NSString *)themeColorString;
-+ (void)setThemeColorString:(NSString *)themeColorString;
++ (void)storeHentaiAccount;
++ (NSMutableDictionary *)temporaryHentaiAccount;
+
++ (void)storeSettings;
++ (NSMutableDictionary *)temporarySettings;
 
 @end

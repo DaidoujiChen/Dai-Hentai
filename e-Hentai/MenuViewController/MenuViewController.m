@@ -10,8 +10,6 @@
 
 #import "AppDelegate+SupportKit.h"
 
-#define menuDataSource LWPArrayR(@"Menu")
-
 @interface MenuViewController ()
 
 @property (nonatomic, strong) NSNumber *unreadCount;
@@ -24,23 +22,23 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [menuDataSource count];
+    return [[HentaiSettingManager staticMenuItems] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuDefaultCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.imageView.image = [UIImage imageNamed:menuDataSource[indexPath.row][@"image"]];
+    cell.imageView.image = [UIImage imageNamed:[HentaiSettingManager staticMenuItems][indexPath.row][@"image"]];
     
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     UIColor *textColor = [UIColor flatWhiteColor];
     NSDictionary *attributes = @{ NSForegroundColorAttributeName : textColor, NSFontAttributeName : font, NSTextEffectAttributeName : NSTextEffectLetterpressStyle };
     NSString *text;
-    if (menuDataSource[indexPath.row][@"controller"]) {
-        text = menuDataSource[indexPath.row][@"displayName"];
+    if ([HentaiSettingManager staticMenuItems][indexPath.row][@"controller"]) {
+        text = [HentaiSettingManager staticMenuItems][indexPath.row][@"displayName"];
     }
     else {
-        text = [NSString stringWithFormat:@"%@ (%@)", menuDataSource[indexPath.row][@"displayName"], self.unreadCount ? :@"讀取中"];
+        text = [NSString stringWithFormat:@"%@ (%@)", [HentaiSettingManager staticMenuItems][indexPath.row][@"displayName"], self.unreadCount ? :@"讀取中"];
     }
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:text attributes:attributes];
     cell.textLabel.attributedText = attributedString;
@@ -50,7 +48,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate needToChangeViewController:menuDataSource[indexPath.row][@"controller"]];
+    [self.delegate needToChangeViewController:[HentaiSettingManager staticMenuItems][indexPath.row][@"controller"]];
 }
 
 #pragma mark - private

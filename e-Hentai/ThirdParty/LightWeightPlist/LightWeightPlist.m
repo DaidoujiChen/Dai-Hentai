@@ -28,6 +28,11 @@
 	[lwpCache removeAllObjects];
 }
 
++ (void)lwpForceWriteSpecific:(NSString *)key
+{
+    [self writeObjectFromCache:key];
+}
+
 + (void)lwpSafe:(void (^)(void))safeBlock
 {
     if ([NSThread isMainThread]) {

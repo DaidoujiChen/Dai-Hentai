@@ -89,7 +89,7 @@
     self.currentInfo = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex];
     NSDictionary *hentaiInfo = self.currentInfo[@"hentaiInfo"];
     
-    if ([HentaiSettingManager isUseNewBrowser]) {
+    if ([[HentaiSettingManager temporarySettings][@"useNewBrowser"] boolValue]) {
         NSArray *hentaiImages = self.currentInfo[@"images"];
         
         self.photos = [NSMutableArray array];

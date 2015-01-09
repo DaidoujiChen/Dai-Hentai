@@ -63,7 +63,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self changeToColor:[HentaiSettingManager themeColorString]];
+    [self changeToColor:[HentaiSettingManager temporarySettings][@"themeColor"]];
 }
 
 @end
