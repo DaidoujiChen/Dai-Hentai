@@ -92,3 +92,6 @@ app icon 與進場圖
 
 - QuickDialog
   - 用來方便的管理 tableview 形成的設定頁面.
+
+- FXBlurView
+  - 模糊效果, 方便好用.
