@@ -14,18 +14,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dG3-gU-GPc">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dG3-gU-GPc">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="249"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="249" id="eAe-n1-KvI"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ej8-Vq-FPl"/>
+                        </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LVi-Ih-zkV">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LVi-Ih-zkV">
                         <rect key="frame" x="50" y="25" width="200" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="4mW-nC-bQN"/>
+                            <constraint firstAttribute="width" constant="200" id="R33-6w-pPe"/>
+                        </constraints>
                     </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="dG3-gU-GPc" secondAttribute="trailing" id="6yA-Io-oFV"/>
+                    <constraint firstAttribute="centerX" secondItem="LVi-Ih-zkV" secondAttribute="centerX" id="Z4P-1C-dhh"/>
+                    <constraint firstAttribute="bottom" secondItem="dG3-gU-GPc" secondAttribute="bottom" id="bmQ-bt-Rad"/>
+                    <constraint firstAttribute="centerY" secondItem="LVi-Ih-zkV" secondAttribute="centerY" id="iLO-TF-vAn"/>
+                    <constraint firstItem="dG3-gU-GPc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="u0d-ht-0Lq"/>
+                    <constraint firstItem="dG3-gU-GPc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zZN-HM-9R7"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="backgroundImageView" destination="dG3-gU-GPc" id="xM6-hG-zSd"/>
                 <outlet property="thumbImageView" destination="LVi-Ih-zkV" id="Ekg-6D-1Bv"/>
             </connections>
+            <point key="canvasLocation" x="-317" y="103"/>
         </tableViewCell>
     </objects>
 </document>
