@@ -36,14 +36,6 @@
 	</dict>
 	<dict>
 		<key>displayName</key>
-		<string>下載管理員</string>
-		<key>image</key>
-		<string>delivery</string>
-		<key>controller</key>
-		<string>DownloadManagerViewController</string>
-	</dict>
-	<dict>
-		<key>displayName</key>
 		<string>問題回報</string>
 		<key>image</key>
 		<string>phone2</string>

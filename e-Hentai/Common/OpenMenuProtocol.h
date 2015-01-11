@@ -11,6 +11,6 @@
 @protocol OpenMenuProtocol <NSObject>
 
 @required
-- (void)openSlider;
+- (void)sliderControl;
 
 @end

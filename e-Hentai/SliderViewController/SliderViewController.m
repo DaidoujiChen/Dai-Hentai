@@ -28,8 +28,15 @@
 
 #pragma mark - OpenMenuProtocol
 
-- (void)openSlider {
-    [self openLeftView];
+//如果右邊的畫面是開著的, 就把他關起來
+//反之則開啟左邊分頁
+- (void)sliderControl {
+    if ([self isSideOpen:IIViewDeckRightSide]) {
+        [self closeRightView];
+    }
+    else {
+        [self openLeftView];
+    }
 }
 
 #pragma mark - VideoViewControllerDelegate
@@ -100,7 +107,12 @@
 
 //點到膜的行為, 把 slider 關起來, 然後把膜移除
 - (void)recovery:(UITapGestureRecognizer *)tapGesture {
-    [self closeLeftView];
+    if ([self isSideOpen:IIViewDeckLeftSide]) {
+        [self closeLeftView];
+    }
+    else {
+        [self closeRightView];
+    }
     [tapGesture.view removeFromSuperview];
 }
 
@@ -113,6 +125,15 @@
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:menuViewController];
 	self.leftController = navigationController;
 	self.leftSize = 150.0f;
+}
+
+//設定右邊的 viewcontroller
+- (void)setupRightViewController {
+    DownloadManagerViewController *downloadManagerViewController = [DownloadManagerViewController new];
+    downloadManagerViewController.delegate = self;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:downloadManagerViewController];
+    self.rightController = navigationController;
+    self.rightSize = realScreenWidth;
 }
 
 //設定中間的 viewcontroller
@@ -128,9 +149,11 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.sizeMode = IIViewDeckViewSizeMode;
+    self.panningMode = IIViewDeckAllViewsPanning;
     self.delegate = self;
 	self.shadowEnabled = NO;
 	[self setupLeftViewController];
+    [self setupRightViewController];
 	[self setupCenterViewController];
 }
 

@@ -207,7 +207,7 @@
 #pragma mark * init
 
 - (void)setupItemsOnNavigation {
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(openSlider)];
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(sliderControl)];
     self.navigationItem.leftBarButtonItem = menuButton;
 }
 
