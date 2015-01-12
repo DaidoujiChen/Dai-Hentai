@@ -23,6 +23,7 @@
     [self setupSupportKit];
     
     //Flurry
+    [Flurry setCrashReportingEnabled:YES];
     [Flurry startSession:@"BY5JD5CPV7N4C3R2CP2J"];
     
     //轉移
