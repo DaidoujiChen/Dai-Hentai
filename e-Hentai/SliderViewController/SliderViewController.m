@@ -39,18 +39,6 @@
     }
 }
 
-#pragma mark - VideoViewControllerDelegate
-
-//幫助秀電影畫面, 這邊有驗證過, 雖然產生了一個新的 window, 但是他會隨著電影畫面被 dismiss 時消失,
-//不會有累積越來越多的情形, 這樣做的理由是說, 用另外一個 window 來放電影, 他的橫向直向皆不影響原來的任何功能
-- (void)needToPresentMovieViewController:(MPMoviePlayerViewController *)controller {
-    UIWindow *newWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    UIViewController *rootViewController = [UIViewController new];
-    newWindow.rootViewController = rootViewController;
-    [newWindow makeKeyAndVisible];
-    [rootViewController presentMoviePlayerViewControllerAnimated:controller];
-}
-
 #pragma mark - MenuViewControllerDelegate
 
 //切換 controller
