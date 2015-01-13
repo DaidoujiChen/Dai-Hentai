@@ -12,7 +12,7 @@
 
 @interface ExMainViewController ()
 
-@property (nonatomic, assign) NSUInteger listIndex;
+@property (nonatomic, assign) BOOL onceFlag;
 
 @end
 
@@ -44,11 +44,17 @@
 #pragma mark - life cycle
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.onceFlag = NO;
+    [super viewWillAppear:animated];
+    
     if ([HentaiSettingManager temporaryHentaiAccount][@"UserName"]) {
         [SVProgressHUD show];
         [DiveExHentai diveByUserName:[HentaiSettingManager temporaryHentaiAccount][@"UserName"] password:[HentaiSettingManager temporaryHentaiAccount][@"Password"] completion: ^(BOOL isSuccess) {
             if (isSuccess) {
-                [super viewWillAppear:animated];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+                [self performSelector:@selector(reloadDatas)];
+#pragma clang diagnostic pop
             }
             else {
                 [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
@@ -66,8 +72,14 @@
                     [HentaiSettingManager temporaryHentaiAccount][@"UserName"] = userName;
                     [HentaiSettingManager temporaryHentaiAccount][@"Password"] = password;
                     [HentaiSettingManager storeHentaiAccount];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+                    [self performSelector:@selector(reloadDatas)];
+#pragma clang diagnostic pop
                 }
-                [super viewWillAppear:animated];
+                else {
+                    [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
+                }
                 [SVProgressHUD dismiss];
             }];
         };

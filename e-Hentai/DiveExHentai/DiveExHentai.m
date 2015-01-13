@@ -66,6 +66,10 @@ typedef enum {
                     [webView reload];
                 }
             }
+            else {
+                [self completion](NO);
+                objc_removeAssociatedObjects(self);
+            }
             break;
         }
         
@@ -84,6 +88,10 @@ typedef enum {
                 NSLog(@"got cookies and redirect to exhentai.org...");
                 [self setStatus:DiveExHentaiStatusMeetPanda];
                 [[self hentaiWebView] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://exhentai.org/"]]];
+            }
+            else if ([htmlTitle isEqualToString:@"Log In"]) {
+                [self completion](NO);
+                objc_removeAssociatedObjects(self);
             }
             break;
         }
@@ -105,6 +113,10 @@ typedef enum {
                 NSLog(@"meet panda and replace cookies...");
                 [self setStatus:DiveExHentaiStatusFinish];
                 [[self hentaiWebView] reload];
+            }
+            else {
+                [self completion](NO);
+                objc_removeAssociatedObjects(self);
             }
             break;
         }
