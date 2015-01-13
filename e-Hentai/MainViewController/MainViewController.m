@@ -209,17 +209,18 @@
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDImageCache sharedImageCache] clearDisk];
     self.listIndex = 0;
+    [self.textViewCacheMapping removeAllObjects];
+    [self.listArray removeAllObjects];
+    [self.listTableView reloadData];
     
     @weakify(self);
     [self loadList: ^(BOOL successed, NSArray *listArray) {
         @strongify(self);
         if (successed) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                [self.listArray removeAllObjects];
                 [self.listArray addObjectsFromArray:listArray];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.listTableView reloadData];
-                    [self.listTableView scrollRectToVisible:CGRectZero animated:YES];
                     [self.refreshControl endRefreshing];
                 });
             });
