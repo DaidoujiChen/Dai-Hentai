@@ -12,6 +12,7 @@
 
 @interface ExMainViewController ()
 
+@property (nonatomic, assign) NSUInteger listIndex;
 @property (nonatomic, assign) BOOL onceFlag;
 
 @end
@@ -31,13 +32,32 @@
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex) {
-        UITextField *username = [alertView textFieldAtIndex:0];
-        UITextField *password = [alertView textFieldAtIndex:1];
-        alertView.hentai_account(username.text, password.text);
+    if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
+        if (buttonIndex) {
+            UITextField *indexTextField = [alertView textFieldAtIndex:0];
+            self.listIndex = [indexTextField.text intValue] - 1;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+            [self performSelector:@selector(reloadDatas)];
+#pragma clang diagnostic pop
+        }
     }
     else {
-        alertView.hentai_account(nil, nil);
+        if (buttonIndex) {
+            UITextField *username = [alertView textFieldAtIndex:0];
+            UITextField *password = [alertView textFieldAtIndex:1];
+            alertView.hentai_account(username.text, password.text);
+        }
+        else {
+            alertView.hentai_account(nil, nil);
+        }
+    }
+}
+
+- (void)willPresentAlertView:(UIAlertView *)alertView {
+    if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
+        UITextField *indexTextField = [alertView textFieldAtIndex:0];
+        indexTextField.text = [NSString stringWithFormat:@"%d", self.listIndex+1];
     }
 }
 

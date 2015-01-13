@@ -35,6 +35,12 @@
     self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.bounds andColors:@[colorFriends[firstColorIndex], colorFriends[lastColorIndex]]];
 }
 
+- (void)allowNavigationBarGesture {
+    //添加讓 title 可以被 tap
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapNavigationAction:)];
+    [self.navigationController.navigationBar addGestureRecognizer:tapGestureRecognizer];
+}
+
 #pragma mark - Configuring the View Rotation Settings
 
 - (BOOL)shouldAutorotate {
@@ -57,6 +63,10 @@
     titleLabel.attributedText = attributedString;
     [titleLabel sizeToFit];
     self.navigationItem.titleView = titleLabel;
+}
+
+//空 method, 等著給人 override
+- (void)tapNavigationAction:(UITapGestureRecognizer *)tapGestureRecognizer {
 }
 
 #pragma mark - life cycle

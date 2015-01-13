@@ -10,6 +10,7 @@
 
 @interface ColorThemeViewController : UIViewController
 
+- (void)allowNavigationBarGesture;
 - (void)changeToColor:(NSString *)colorString;
 
 @end

@@ -168,6 +168,9 @@
     }];
 }
 
+- (void)allowNavigationBarGesture {
+}
+
 #pragma mark - life cycle
 
 - (void)viewWillAppear:(BOOL)animated {

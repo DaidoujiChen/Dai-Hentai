@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSMutableArray *listArray;
 @property (nonatomic, strong) UITableView *listTableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) NSLock *rollLock;
 @property (nonatomic, readonly) NSString *filterString;
 @property (nonatomic, assign) BOOL onceFlag;
 @property (nonatomic, strong) NSMutableDictionary *textViewCacheMapping;
@@ -37,7 +36,7 @@
 #pragma mark - SearchFilterV2ViewControllerDelegate
 
 - (void)onSearchFilterDone {
-    self.title = [HentaiSettingManager temporaryHentaiPrefer][@"searchText"];
+    self.listIndex = 0;
     [self reloadDatas];
 }
 
@@ -52,31 +51,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //無限滾
-    if (indexPath.section >= [self.listArray count] - 15 && [self.rollLock tryLock]) {
-        self.listIndex++;
-        
-        @weakify(self);
-        [self loadList: ^(BOOL successed, NSArray *listArray) {
-            @strongify(self);
-            
-            //多加一個判斷, 如果使用者還在這頁的話, 才做這些事
-            if (self) {
-                if (successed) {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                        [self.listArray addObjectsFromArray:listArray];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.listTableView reloadData];
-                        });
-                    });
-                }
-                else {
-                    self.listIndex--;
-                }
-                [self.rollLock unlock];
-            }
-        }];
-    }
     static NSString *identifier = @"MainTableViewCell";
     MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -176,6 +150,25 @@
     }
 }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
+        if (buttonIndex) {
+            UITextField *indexTextField = [alertView textFieldAtIndex:0];
+            self.listIndex = [indexTextField.text intValue] - 1;
+            [self reloadDatas];
+        }
+    }
+}
+
+- (void)willPresentAlertView:(UIAlertView *)alertView {
+    if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
+        UITextField *indexTextField = [alertView textFieldAtIndex:0];
+        indexTextField.text = [NSString stringWithFormat:@"%d", self.listIndex+1];
+    }
+}
+
 #pragma mark - private
 
 //製作 filter string
@@ -212,7 +205,6 @@
     //清除 sdwebimage 的圖片暫存
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDImageCache sharedImageCache] clearDisk];
-    self.listIndex = 0;
     [self.textViewCacheMapping removeAllObjects];
     [self.listArray removeAllObjects];
     [self.listTableView reloadData];
@@ -241,6 +233,7 @@
 
 //把 request 的判斷都放到這個 method 裡面來
 - (void)loadList:(void (^)(BOOL successed, NSArray *listArray))completion {
+    [SVProgressHUD show];
     [HentaiParser requestListAtFilterUrl:self.filterString forExHentai:NO completion: ^(HentaiParserStatus status, NSArray *listArray) {
         if (status && [listArray count]) {
             completion(YES, listArray);
@@ -248,6 +241,7 @@
         else {
             completion(NO, nil);
         }
+        [SVProgressHUD dismiss];
     }];
 }
 
@@ -271,25 +265,44 @@
     [self presentViewController:hentaiNavigation animated:YES completion:nil];
 }
 
+- (void)nextPageAction {
+    self.listIndex++;
+    [self reloadDatas];
+}
+
+- (void)prevPageAction {
+    self.listIndex--;
+    if (self.listIndex <= 0) {
+        self.listIndex = 0;
+    }
+    [self reloadDatas];
+}
+
 #pragma mark viewdidload 中用到的初始方法
 
 - (void)setupInitValues {
     
     //相關變數
-    self.title = [HentaiSettingManager temporaryHentaiPrefer][@"searchText"];
+    @weakify(self)
+    [RACObserve(self, listIndex) subscribeNext:^(NSNumber *index) {
+        @strongify(self);
+        
+        self.title = [NSString stringWithFormat:@"%@(%d)", [HentaiSettingManager temporaryHentaiPrefer][@"searchText"], self.listIndex + 1];
+    }];
     self.listIndex = 0;
     self.listArray = [NSMutableArray array];
-    self.rollLock = [NSLock new];
     self.onceFlag = YES;
     self.textViewCacheMapping = [NSMutableDictionary dictionary];
 }
 
 - (void)setupItemsOnNavigation {
     UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(presentSearchFilter)];
-    self.navigationItem.rightBarButtonItem = filterButton;
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextPageAction)];
+    self.navigationItem.rightBarButtonItems = @[filterButton, nextButton];
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(sliderControl)];
-    self.navigationItem.leftBarButtonItem = menuButton;
+    UIBarButtonItem *prevButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(prevPageAction)];
+    self.navigationItem.leftBarButtonItems = @[menuButton, prevButton];
 }
 
 - (void)setupListTableView {
@@ -327,6 +340,14 @@
     }];
 }
 
+#pragma mark * method to override
+
+- (void)tapNavigationAction:(UITapGestureRecognizer *)tapGestureRecognizer {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"此單位是跳跳忍者~ O3O" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"跳~ O3O", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
@@ -336,6 +357,7 @@
     [self setupListTableView];
     [self setupRefreshControlOnTableView];
     [self setupRecvNotifications];
+    [self allowNavigationBarGesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
