@@ -33,17 +33,15 @@
     MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *hentaiInfo = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"];
-    NSArray *images = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"images"];
     
     //設定 ipad / iphone 共通資訊
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIImage *image = [UIImage imageWithData:[[[[FilesManager documentFolder] fcd:@"Hentai"] fcd:[hentaiInfo hentai_hentaiKey]] read:[[images firstObject] hentai_lastTwoPathComponent]]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.thumbImageView.image = image;
+    NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
+    [cell.thumbImageView sd_setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!error) {
             [cell.thumbImageView hentai_pathShadow];
             [cell.backgroundImageView hentai_blurWithImage:image];
-        });
-    });
+        }
+    }];
     
     //設定 ipad 獨有需要的資訊
     if (isIPad) {
