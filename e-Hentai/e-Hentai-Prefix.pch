@@ -27,6 +27,10 @@
     #import <QuickDialog/QuickDialog.h>
     #import <FXBlurView.h>
 
+    //Realm
+    #import "HentaiSaveLibrary.h"
+    #import "HentaiCacheLibrary.h"
+
     //from project
     #import "TFHpple.h"
     #import "HentaiParser.h"
@@ -43,10 +47,6 @@
     #import "UIView+Hentai.h"
     #import "UIImageView+Hentai.h"
     #import "HentaiSettingManager.h"
-
-    //Realm
-    #import "HentaiSaveLibrary.h"
-    #import "HentaiCacheLibrary.h"
 
     //因為在 ios8 下, 回的 screenSize 是不固定的, 所以用這個方法來做判斷
     #define realScreenHeight MAX([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width)
