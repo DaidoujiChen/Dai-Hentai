@@ -59,18 +59,22 @@
         @weakify(self);
         [self loadList: ^(BOOL successed, NSArray *listArray) {
             @strongify(self);
-            if (successed) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    [self.listArray addObjectsFromArray:listArray];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.listTableView reloadData];
+            
+            //多加一個判斷, 如果使用者還在這頁的話, 才做這些事
+            if (self) {
+                if (successed) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        [self.listArray addObjectsFromArray:listArray];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.listTableView reloadData];
+                        });
                     });
-                });
+                }
+                else {
+                    self.listIndex--;
+                }
+                [self.rollLock unlock];
             }
-            else {
-                self.listIndex--;
-            }
-            [self.rollLock unlock];
         }];
     }
     static NSString *identifier = @"MainTableViewCell";
@@ -216,17 +220,21 @@
     @weakify(self);
     [self loadList: ^(BOOL successed, NSArray *listArray) {
         @strongify(self);
-        if (successed) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                [self.listArray addObjectsFromArray:listArray];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.listTableView reloadData];
-                    [self.refreshControl endRefreshing];
+        
+        //多加一個判斷, 如果使用者還在這頁的話, 才做這些事
+        if (self) {
+            if (successed) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    [self.listArray addObjectsFromArray:listArray];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.listTableView reloadData];
+                        [self.refreshControl endRefreshing];
+                    });
                 });
-            });
-        }
-        else {
-            [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
+            }
+            else {
+                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
+            }
         }
     }];
 }
@@ -337,18 +345,22 @@
         @weakify(self);
         [self loadList: ^(BOOL successed, NSArray *listArray) {
             @strongify(self);
-            if (successed) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    [self.listArray addObjectsFromArray:listArray];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.listTableView reloadData];
+            
+            //多加一個判斷, 如果使用者還在這頁的話, 才做這些事
+            if (self) {
+                if (successed) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        [self.listArray addObjectsFromArray:listArray];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.listTableView reloadData];
+                        });
                     });
-                });
+                }
+                else {
+                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
+                }
+                self.onceFlag = NO;
             }
-            else {
-                [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
-            }
-            self.onceFlag = NO;
         }];
     }
 }

@@ -103,8 +103,11 @@
     @weakify(self);
     [FLEXHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
         @strongify(self);
-        if ([object respondsToSelector:@selector(changeToColor:)] && object != self) {
-            [object performSelector:@selector(changeToColor:) withObject:self.currentColorString];
+        
+        if (self) {
+            if ([object respondsToSelector:@selector(changeToColor:)] && object != self) {
+                [object performSelector:@selector(changeToColor:) withObject:self.currentColorString];
+            }
         }
     }];
     [self.delegate themeColorDidChange];
