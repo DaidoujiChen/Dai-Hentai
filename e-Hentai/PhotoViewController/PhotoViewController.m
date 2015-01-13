@@ -49,8 +49,6 @@
 - (void)preloadImages:(NSArray *)images;
 - (NSInteger)availableCount;
 
-- (void)waitingOnDownloadFinish;
-- (void)checkEndOfFile;
 - (void)setupForDownloadedIndex:(NSUInteger)index;
 - (NSUInteger)indexOfHentaiKey;
 
@@ -94,9 +92,9 @@
 }
 
 - (void)saveAction {
-    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:@"過程是不能中斷的, 請保持網路順暢." cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"衝吧! O3O"] onClickIndex: ^(NSInteger clickIndex) {
-        [SVProgressHUD show];
-        [self waitingOnDownloadFinish];
+    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:nil cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"加入下載管理員~ O3O"] onClickIndex: ^(NSInteger clickIndex) {
+        [HentaiDownloadCenter addBook:self.hentaiInfo];
+        [self backAction];
     } onCancel: ^{
     }];
 }
@@ -201,50 +199,6 @@
     }
     else {
         [UIAlertView hentai_alertViewWithTitle:@"抓圖的過程中出問題囉~ >x<" message:@"請見諒~ >x<" cancelButtonTitle:@"好吧~ >x<"];
-        [SVProgressHUD dismiss];
-    }
-}
-
-//等待圖片下載完成
-- (void)waitingOnDownloadFinish {
-    @weakify(self);
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        @strongify(self);
-        [self.hentaiQueue waitUntilAllOperationsAreFinished];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self checkEndOfFile];
-        });
-    });
-}
-
-//檢查是不是還有圖片需要下載
-- (void)checkEndOfFile {
-    if ([self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {
-        self.hentaiIndex++;
-        @weakify(self);
-        [HentaiParser requestImagesAtURL:self.hentaiURLString atIndex:self.hentaiIndex completion: ^(HentaiParserStatus status, NSArray *images) {
-            @strongify(self);
-            switch (status) {
-                case HentaiParserStatusSuccess:
-                    [self.hentaiImageURLs addObjectsFromArray:images];
-                    [self preloadImages:images];
-                    [self waitingOnDownloadFinish];
-                    break;
-                case HentaiParserStatusNetworkFail:
-                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"網路失敗" cancelButtonTitle:@"確定"];
-                    break;
-                case HentaiParserStatusParseFail:
-                    [UIAlertView hentai_alertViewWithTitle:@"讀取失敗囉" message:@"解析失敗" cancelButtonTitle:@"確定"];
-                    break;
-            }
-        }];
-    }
-    else {
-        FMStream *saveFolder = [[FilesManager documentFolder] fcd:@"Hentai"];
-        [self.hentaiFilesManager moveToPath:[saveFolder.currentPath stringByAppendingPathComponent:self.hentaiKey]];
-        NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
-        [HentaiSaveLibrary addSaveInfo:saveInfo];
-        [self setupForDownloadedIndex:[self indexOfHentaiKey]];
         [SVProgressHUD dismiss];
     }
 }
