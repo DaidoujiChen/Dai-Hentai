@@ -34,7 +34,7 @@
     return [self filterDependOnURL:@"http://g.e-hentai.org/?page=%lu"];
 }
 
-#pragma mark - SearchFilterViewControllerDelegate
+#pragma mark - SearchFilterV2ViewControllerDelegate
 
 - (void)onSearchFilterDone {
     self.title = [HentaiSettingManager temporaryHentaiPrefer][@"searchText"];
@@ -193,6 +193,12 @@
         [filterURLString appendFormat:@"&f_search=%@", [HentaiSettingManager temporaryHentaiPrefer][@"searchText"]];
     }
     [filterURLString appendString:@"&f_apply=Apply+Filter"];
+    
+    //評分過濾
+    NSNumber *ratingIndex = [HentaiSettingManager temporaryHentaiPrefer][@"rating"];
+    if (ratingIndex && [ratingIndex intValue] != 0) {
+        [filterURLString appendFormat:@"&advsearch=1&f_sname=on&f_stags=on&f_sr=on&f_srdd=%d", [ratingIndex intValue] + 1];
+    }
     return [filterURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
@@ -248,7 +254,7 @@
 
 //present 搜尋跟過濾
 - (void)presentSearchFilter {
-    SearchFilterViewController *searchFilter = [SearchFilterViewController new];
+    SearchFilterV2ViewController *searchFilter = [SearchFilterV2ViewController new];
     searchFilter.delegate = self;
     HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:searchFilter];
     hentaiNavigation.autoRotate = NO;

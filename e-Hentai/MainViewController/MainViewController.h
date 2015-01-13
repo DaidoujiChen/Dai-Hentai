@@ -12,12 +12,12 @@
 #import "HentaiNavigationController.h"
 #import "PhotoViewController.h"
 #import "FakeViewController.h"
-#import "SearchFilterViewController.h"
+#import "SearchFilterV2ViewController.h"
 #import "MainTableViewCell.h"
 
 @protocol MainViewControllerDelegate;
 
-@interface MainViewController : ColorThemeViewController <UISearchBarDelegate, SearchFilterViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MainViewController : ColorThemeViewController <UISearchBarDelegate, SearchFilterV2ViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) id <MainViewControllerDelegate, OpenMenuProtocol> delegate;
 

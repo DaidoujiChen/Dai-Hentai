@@ -60,7 +60,6 @@
 		0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179766319E27E8D00E9005E /* DownloadManagerCell.xib */; };
 		0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766819E27EC100E9005E /* MenuDefaultCell.m */; };
 		017A536C1A5ABF6F0032C032 /* IPadMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017A536B1A5ABF6F0032C032 /* IPadMainTableViewCell.xib */; };
-		017AE5C21A00D24600317939 /* SearchFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 017AE5C01A00D24600317939 /* SearchFilterViewController.m */; };
 		017AE5C51A00D26A00317939 /* HentaiFilters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 017AE5C41A00D26A00317939 /* HentaiFilters.plist */; };
 		017AE5C71A00D7DD00317939 /* HentaiPrefer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 017AE5C61A00D7DD00317939 /* HentaiPrefer.plist */; };
 		0180D9161A0210FB002554FC /* exterior@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D9151A0210FB002554FC /* exterior@2x.png */; };
@@ -88,6 +87,7 @@
 		0199269519ADDB83009F814B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269419ADDB83009F814B /* main.m */; };
 		0199269919ADDB83009F814B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0199269819ADDB83009F814B /* AppDelegate.m */; };
 		019926A119ADDB83009F814B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019926A019ADDB83009F814B /* Images.xcassets */; };
+		019A28D01A64F16D006C1618 /* SearchFilterV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A28CF1A64F16D006C1618 /* SearchFilterV2ViewController.m */; };
 		019E11841A5D198F0053581F /* HentaiSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019E11831A5D198F0053581F /* HentaiSettingManager.m */; };
 		01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A166EB19E28D5E00203360 /* NSDictionary+Hentai.m */; };
 		01A907F01A493A96006F4179 /* HentaiCacheLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A907EF1A493A96006F4179 /* HentaiCacheLibrary.m */; };
@@ -194,8 +194,6 @@
 		0179766719E27EC100E9005E /* MenuDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuDefaultCell.h; path = MenuViewController/MenuDefaultCell/MenuDefaultCell.h; sourceTree = "<group>"; };
 		0179766819E27EC100E9005E /* MenuDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuDefaultCell.m; path = MenuViewController/MenuDefaultCell/MenuDefaultCell.m; sourceTree = "<group>"; };
 		017A536B1A5ABF6F0032C032 /* IPadMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPadMainTableViewCell.xib; sourceTree = "<group>"; };
-		017AE5BF1A00D24600317939 /* SearchFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchFilterViewController.h; path = SearchFilterViewController/SearchFilterViewController.h; sourceTree = "<group>"; };
-		017AE5C01A00D24600317939 /* SearchFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchFilterViewController.m; path = SearchFilterViewController/SearchFilterViewController.m; sourceTree = "<group>"; };
 		017AE5C41A00D26A00317939 /* HentaiFilters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = HentaiFilters.plist; path = SearchFilterViewController/HentaiFilters.plist; sourceTree = "<group>"; };
 		017AE5C61A00D7DD00317939 /* HentaiPrefer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = HentaiPrefer.plist; path = SearchFilterViewController/HentaiPrefer.plist; sourceTree = "<group>"; };
 		0180D9151A0210FB002554FC /* exterior@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exterior@2x.png"; sourceTree = "<group>"; };
@@ -234,6 +232,8 @@
 		0199269819ADDB83009F814B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		019926A019ADDB83009F814B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		019926A719ADDB83009F814B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		019A28CE1A64F16D006C1618 /* SearchFilterV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchFilterV2ViewController.h; path = SearchFilterViewController/SearchFilterV2ViewController.h; sourceTree = "<group>"; };
+		019A28CF1A64F16D006C1618 /* SearchFilterV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchFilterV2ViewController.m; path = SearchFilterViewController/SearchFilterV2ViewController.m; sourceTree = "<group>"; };
 		019E11821A5D198F0053581F /* HentaiSettingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HentaiSettingManager.h; path = "e-Hentai/SettingViewController/HentaiSettingManager/HentaiSettingManager.h"; sourceTree = SOURCE_ROOT; };
 		019E11831A5D198F0053581F /* HentaiSettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HentaiSettingManager.m; path = "e-Hentai/SettingViewController/HentaiSettingManager/HentaiSettingManager.m"; sourceTree = SOURCE_ROOT; };
 		01A166EA19E28D5E00203360 /* NSDictionary+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Hentai.h"; sourceTree = "<group>"; };
@@ -543,8 +543,8 @@
 			children = (
 				017AE5C41A00D26A00317939 /* HentaiFilters.plist */,
 				017AE5C61A00D7DD00317939 /* HentaiPrefer.plist */,
-				017AE5BF1A00D24600317939 /* SearchFilterViewController.h */,
-				017AE5C01A00D24600317939 /* SearchFilterViewController.m */,
+				019A28CE1A64F16D006C1618 /* SearchFilterV2ViewController.h */,
+				019A28CF1A64F16D006C1618 /* SearchFilterV2ViewController.m */,
 			);
 			name = SearchFilterViewController;
 			sourceTree = "<group>";
@@ -891,7 +891,6 @@
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
 				0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */,
 				019290241A25D6C70094B423 /* DaiPortalWarehouse.m in Sources */,
-				017AE5C21A00D24600317939 /* SearchFilterViewController.m in Sources */,
 				0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */,
 				0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */,
 				016BBF1019B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m in Sources */,
@@ -918,6 +917,7 @@
 				012BE8471A5D33B700F599B8 /* ThemeColorChangeViewController.m in Sources */,
 				01310BD51A00ABBC00C78DFE /* AppDelegate+SupportKit.m in Sources */,
 				016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */,
+				019A28D01A64F16D006C1618 /* SearchFilterV2ViewController.m in Sources */,
 				0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */,
 				0113EF411A5E23D000E02E33 /* FLEXHeapEnumerator.m in Sources */,
 				011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */,
