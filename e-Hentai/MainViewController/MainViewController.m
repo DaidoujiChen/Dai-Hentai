@@ -271,9 +271,8 @@
 }
 
 - (void)prevPageAction {
-    self.listIndex--;
-    if (self.listIndex <= 0) {
-        self.listIndex = 0;
+    if (self.listIndex != 0) {
+        self.listIndex--;
     }
     [self reloadDatas];
 }
