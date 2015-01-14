@@ -84,17 +84,21 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSString *sectinoText = self.listArray[section][@"title"];
-    UITextView *titleTextView = self.textViewCacheMapping[sectinoText];
+    NSString *sectionText = self.listArray[section][@"title"];
+    if (!sectionText) {
+        //因為從 report 看起來這邊會有危險, 但是不知道為什麼, 所以用這個奇怪的做法
+        sectionText = [NSString stringWithFormat:@"好險~好險~差點就閃退了(%d)", section];
+    }
+    UITextView *titleTextView = self.textViewCacheMapping[sectionText];
     if (!titleTextView) {
         titleTextView = [UITextView new];
         titleTextView.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0f];
-        titleTextView.text = sectinoText;
+        titleTextView.text = sectionText;
         titleTextView.clipsToBounds = NO;
         titleTextView.userInteractionEnabled = NO;
         titleTextView.textColor = [UIColor blackColor];
         [titleTextView hentai_pathShadow];
-        self.textViewCacheMapping[sectinoText] = titleTextView;
+        self.textViewCacheMapping[sectionText] = titleTextView;
     }
     CGSize textViewSize =  [titleTextView sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.bounds), MAXFLOAT)];
     return textViewSize.height;
@@ -216,13 +220,9 @@
         //多加一個判斷, 如果使用者還在這頁的話, 才做這些事
         if (self) {
             if (successed) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    [self.listArray addObjectsFromArray:listArray];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.listTableView reloadData];
-                        [self.refreshControl endRefreshing];
-                    });
-                });
+                [self.listArray addObjectsFromArray:listArray];
+                [self.listTableView reloadData];
+                [self.refreshControl endRefreshing];
             }
             else {
                 [UIAlertView hentai_alertViewWithTitle:@"讀取失敗" message:@"試試用下拉重新載入"];
