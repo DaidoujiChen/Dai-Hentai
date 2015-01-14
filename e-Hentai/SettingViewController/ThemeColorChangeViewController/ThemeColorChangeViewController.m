@@ -105,8 +105,11 @@
         @strongify(self);
         [FLEXHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
             if (self) {
-                if ([object respondsToSelector:@selector(changeToColor:)] && object != self) {
-                    [object performSelector:@selector(changeToColor:) withObject:self.currentColorString];
+                NSString *className = NSStringFromClass(actualClass);
+                if ([className rangeOfString:@"Proxy"].location == NSNotFound) {
+                    if ([object respondsToSelector:@selector(changeToColor:)] && object != self) {
+                        [object performSelector:@selector(changeToColor:) withObject:self.currentColorString];
+                    }
                 }
             }
         }];
