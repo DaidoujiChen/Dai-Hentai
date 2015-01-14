@@ -123,7 +123,6 @@
 - (void)hentaiStart {
     self.isFinished = NO;
     self.isExecuting = YES;
-    self.status = HentaiDownloadBookOperationStatusDownloading;
 }
 
 - (void)hentaiFinish {

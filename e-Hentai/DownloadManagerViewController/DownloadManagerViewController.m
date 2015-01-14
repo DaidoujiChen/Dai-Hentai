@@ -91,21 +91,12 @@
     self.title = @"下載管理員";
     [self setupItemsOnNavigation];
     [self setupDownloadManagerTableView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     @weakify(self);
     [HentaiDownloadCenter centerMonitor: ^(NSDictionary *centerDetail) {
         @strongify(self);
         self.centerDetail = centerDetail;
         [self.downloadManagerTableView reloadData];
     }];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [HentaiDownloadCenter centerMonitor:nil];
 }
 
 @end

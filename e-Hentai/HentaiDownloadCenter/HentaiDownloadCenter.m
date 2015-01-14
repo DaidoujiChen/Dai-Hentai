@@ -19,13 +19,11 @@
 
 //用來回報 download center 的狀態
 + (void)hentaiDownloadBookOperationChange:(HentaiDownloadBookOperation *)operation {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //center 本身需要掌握目前 operations 的活動, 因此這個部分不管 block 在不在都要做
-        [self operationActivity:operation];
-        
-        //然後刷新 monitor
-        [self refreshMonitor];
-    });
+    //center 本身需要掌握目前 operations 的活動, 因此這個部分不管 block 在不在都要做
+    [self operationActivity:operation];
+    
+    //然後刷新 monitor
+    [self refreshMonitor];
 }
 
 #pragma mark - class method
