@@ -101,18 +101,22 @@
 - (void)submitChange {
     [HentaiSettingManager temporarySettings][@"themeColor"] = self.currentColorString;
     @weakify(self);
-    [FLEXHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         @strongify(self);
-        
-        if (self) {
-            if ([object respondsToSelector:@selector(changeToColor:)] && object != self) {
-                [object performSelector:@selector(changeToColor:) withObject:self.currentColorString];
+        [FLEXHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
+            if (self) {
+                if ([object respondsToSelector:@selector(changeToColor:)] && object != self) {
+                    [object performSelector:@selector(changeToColor:) withObject:self.currentColorString];
+                }
             }
-        }
-    }];
-    [self.delegate themeColorDidChange];
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+        }];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate themeColorDidChange];
+            [self dismissViewControllerAnimated:YES completion:^{
+            }];
+        });
+    });
 }
 
 #pragma mark - life cycle
