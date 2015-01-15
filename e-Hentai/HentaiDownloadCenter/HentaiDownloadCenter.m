@@ -44,6 +44,7 @@
         newOperation.delegate = (id <HentaiDownloadBookOperationDelegate> )self;
         newOperation.hentaiInfo = hentaiInfo;
         newOperation.status = HentaiDownloadBookOperationStatusWaiting;
+        [self operationActivity:newOperation];
         [[self allBooksOperationQueue] addOperation:newOperation];
     }
 }

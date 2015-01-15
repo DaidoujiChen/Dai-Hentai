@@ -43,21 +43,6 @@
     return [self.hentaiResults count];
 }
 
-#pragma mark - life cycle
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        //kvo status
-        @weakify(self);
-        [RACObserve(self, status) subscribeNext:^(NSNumber *status) {
-            @strongify(self);
-            [self.delegate hentaiDownloadBookOperationChange:self];
-        }];
-    }
-    return self;
-}
-
 #pragma mark - Methods to Override
 
 - (BOOL)isConcurrent {
@@ -65,6 +50,14 @@
 }
 
 - (void)start {
+    
+    //kvo status
+    @weakify(self);
+    [RACObserve(self, status) subscribeNext:^(NSNumber *status) {
+        @strongify(self);
+        [self.delegate hentaiDownloadBookOperationChange:self];
+    }];
+    
     if ([self isCancelled]) {
         [self hentaiFinish];
         return;
