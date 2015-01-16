@@ -26,6 +26,7 @@
     #import <MWPhotoBrowser/MWPhotoBrowser.h>
     #import <QuickDialog/QuickDialog.h>
     #import <FXBlurView.h>
+    #import <JDStatusBarNotification/JDStatusBarNotification.h>
 
     //Realm
     #import "HentaiSaveLibrary.h"

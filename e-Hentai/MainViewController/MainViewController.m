@@ -139,7 +139,7 @@
             @strongify(self);
             if (clickIndex) {
                 if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
-                    [UIAlertView hentai_alertViewWithTitle:@"這本你正在抓~ O3O" message:nil cancelButtonTitle:@"好~ O3O"];
+                    [JDStatusBarNotification showWithStatus:@"這本你正在抓~ O3O" dismissAfter:2.0f styleName:JDStatusBarStyleWarning];
                 }
                 else {
                     PhotoViewController *photoViewController = [PhotoViewController new];
@@ -206,9 +206,6 @@
 //重新讀取資料
 - (void)reloadDatas {
     
-    //清除 sdwebimage 的圖片暫存
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] clearDisk];
     [self.textViewCacheMapping removeAllObjects];
     [self.listArray removeAllObjects];
     [self.listTableView reloadData];
@@ -327,18 +324,6 @@
     [self.refreshControl addTarget:self action:@selector(reloadDatas) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)setupRecvNotifications {
-    
-    //接 HentaiDownloadSuccessNotification
-    @weakify(self);
-    [[self portal:HentaiDownloadSuccessNotification] recv: ^(NSString *alertViewMessage) {
-        @strongify(self);
-        if (self && [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil) {
-            [UIAlertView hentai_alertViewWithTitle:@"下載完成!" message:alertViewMessage cancelButtonTitle:@"好~ O3O"];
-        }
-    }];
-}
-
 #pragma mark * method to override
 
 - (void)tapNavigationAction:(UITapGestureRecognizer *)tapGestureRecognizer {
@@ -355,7 +340,6 @@
     [self setupItemsOnNavigation];
     [self setupListTableView];
     [self setupRefreshControlOnTableView];
-    [self setupRecvNotifications];
     [self allowNavigationBarGesture];
 }
 

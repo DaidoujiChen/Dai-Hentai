@@ -104,6 +104,26 @@
     [tapGesture.view removeFromSuperview];
 }
 
+- (void)setupRecvNotifications {
+    
+    //接 HentaiDownloadSuccessNotification
+    @weakify(self);
+    [[self portal:HentaiDownloadSuccessNotification] recv: ^(NSString *alertViewMessage) {
+        @strongify(self);
+        if (self && [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil) {
+            [JDStatusBarNotification showWithStatus:@"下載完成!" dismissAfter:2.0f styleName:JDStatusBarStyleSuccess];
+        }
+    }];
+    
+    //接 HentaiDownloadFailNotification
+    [[self portal:HentaiDownloadFailNotification] recv: ^(NSString *alertViewMessage) {
+        @strongify(self);
+        if (self && [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil) {
+            [JDStatusBarNotification showWithStatus:@"下載失敗!" dismissAfter:2.0f styleName:JDStatusBarStyleError];
+        }
+    }];
+}
+
 #pragma mark viewdidload 中的初始設定
 
 //設定左邊的 viewcontroller
@@ -140,6 +160,7 @@
     self.panningMode = IIViewDeckAllViewsPanning;
     self.delegate = self;
 	self.shadowEnabled = NO;
+    [self setupRecvNotifications];
 	[self setupLeftViewController];
     [self setupRightViewController];
 	[self setupCenterViewController];

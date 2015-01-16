@@ -251,7 +251,12 @@
         else {
             self.failCount++;
             self.maxHentaiCount = [NSString stringWithFormat:@"%ld", [self.maxHentaiCount integerValue] - 1];
-            [self.hentaiImageURLs removeObject:urlString];
+            
+            for (NSString *eachURLString in self.hentaiImageURLs) {
+                if ([eachURLString isEqualToString:urlString]) {
+                    [self.hentaiImageURLs removeObject:eachURLString];
+                }
+            }
         }
     }
 }

@@ -37,7 +37,7 @@
     isExist = isExist | [self isDownloading:hentaiInfo];
     
     if (isExist) {
-        [UIAlertView hentai_alertViewWithTitle:@"不行~ O3O" message:@"你可能已經下載過或是正在下載中!" cancelButtonTitle:@"確定"];
+        [JDStatusBarNotification showWithStatus:@"你可能已經下載過或是正在下載中!" dismissAfter:2.0f styleName:JDStatusBarStyleWarning];
     }
     else {
         HentaiDownloadBookOperation *newOperation = [HentaiDownloadBookOperation new];

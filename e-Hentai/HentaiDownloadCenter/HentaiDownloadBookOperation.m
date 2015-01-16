@@ -105,7 +105,12 @@
         else {
             self.failCount++;
             self.maxHentaiCount = [NSString stringWithFormat:@"%ld", [self.maxHentaiCount integerValue] - 1];
-            [self.hentaiImageURLs removeObject:urlString];
+            
+            for (NSString *eachURLString in self.hentaiImageURLs) {
+                if ([eachURLString isEqualToString:urlString]) {
+                    [self.hentaiImageURLs removeObject:eachURLString];
+                }
+            }
         }
     }
     self.status = HentaiDownloadBookOperationStatusDownloading;
@@ -173,11 +178,17 @@
         if (![self isCancelled]) {
             NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
             
-            //如果 cache 有暫存就殺光光
-            [[[FilesManager cacheFolder] fcd:@"Hentai"] rd:self.hentaiKey];
-            [HentaiSaveLibrary addSaveInfo:saveInfo];
-            [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
-            [[self portal:HentaiDownloadSuccessNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
+            if ([self verifySaveInfo:saveInfo]) {
+                //如果 cache 有暫存就殺光光
+                [[[FilesManager cacheFolder] fcd:@"Hentai"] rd:self.hentaiKey];
+                [HentaiSaveLibrary addSaveInfo:saveInfo];
+                [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
+                [[self portal:HentaiDownloadSuccessNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
+            }
+            else {
+                [[self portal:HentaiDownloadFailNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
+            }
+            
             [self hentaiFinish];
         }
         else {
@@ -187,6 +198,43 @@
 }
 
 #pragma mark - private
+
+- (BOOL)verifySaveInfo:(NSDictionary *)saveInfo {
+    
+    //檢查 hentaiKey
+    if (!saveInfo[@"hentaiKey"]) {
+        return NO;
+    }
+    
+    //檢查 hentaiInfo
+    NSDictionary *hentaiInfo = saveInfo[@"hentaiInfo"];
+    if (!hentaiInfo[@"category"] || !hentaiInfo[@"filecount"] || !hentaiInfo[@"filesize"] || !hentaiInfo[@"posted"] || !hentaiInfo[@"rating"] || !hentaiInfo[@"thumb"] || !hentaiInfo[@"title"] || !hentaiInfo[@"title_jpn"] || !hentaiInfo[@"uploader"] || !hentaiInfo[@"url"]) {
+        return NO;
+    }
+    
+    //檢查 hentaiImageURLs
+    NSArray *images = saveInfo[@"images"];
+    for (id eachHentaiImageURL in images) {
+        if (![eachHentaiImageURL isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+    }
+    
+    //檢查 hentaiResult
+    NSDictionary *hentaiResult = saveInfo[@"hentaiResult"];
+    for (NSString *eachKey in hentaiResult) {
+        if (![hentaiResult[eachKey] isKindOfClass:[NSNumber class]]) {
+            return NO;
+        }
+    }
+    
+    //數量應該是會一致的
+    if ([images count] != [hentaiResult count]) {
+        return NO;
+    }
+    
+    return YES;
+}
 
 //建立一個新的 operation
 - (void)createNewOperation:(NSString *)urlString {

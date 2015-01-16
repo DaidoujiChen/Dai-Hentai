@@ -79,6 +79,8 @@
     QButtonElement *earseCacheButton = [[QButtonElement alloc] initWithTitle:@"點我清空暫存"];
     earseCacheButton.onSelected = ^{
         @strongify(self);
+        [[SDImageCache sharedImageCache] clearMemory];
+        [[SDImageCache sharedImageCache] clearDisk];
         [[FilesManager cacheFolder] rd:@"Hentai"];
         [HentaiCacheLibrary removeAllCacheInfo];
         [self cacheFolderSize];
