@@ -71,6 +71,16 @@
 
 #pragma mark - life cycle
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    @weakify(self);
+    [[self portal:@"ChangeThemeColor"] recv:^(NSString *colorString){
+        @strongify(self);
+        [self changeToColor:colorString];
+    }];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self changeToColor:[HentaiSettingManager temporarySettings][@"themeColor"]];

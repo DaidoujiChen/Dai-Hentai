@@ -9,7 +9,6 @@
 #import "ThemeColorChangeViewController.h"
 
 #import <objc/runtime.h>
-#import "FLEXHeapEnumerator.h"
 
 @interface ThemeColorChangeViewController ()
 
@@ -100,26 +99,10 @@
 
 - (void)submitChange {
     [HentaiSettingManager temporarySettings][@"themeColor"] = self.currentColorString;
-    @weakify(self);
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        @strongify(self);
-        [FLEXHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
-            if (self) {
-                NSString *className = NSStringFromClass(actualClass);
-                if ([className rangeOfString:@"Proxy"].location == NSNotFound) {
-                    if ([object respondsToSelector:@selector(changeToColor:)] && object != self) {
-                        [object performSelector:@selector(changeToColor:) withObject:self.currentColorString];
-                    }
-                }
-            }
-        }];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate themeColorDidChange];
-            [self dismissViewControllerAnimated:YES completion:^{
-            }];
-        });
-    });
+    [[self portal:@"ChangeThemeColor"] send:[DaiPortalPackage item:self.currentColorString]];
+    [self.delegate themeColorDidChange];
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 
 #pragma mark - life cycle

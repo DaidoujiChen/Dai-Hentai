@@ -12,7 +12,6 @@
 		010E3ADF19E3B93800B866FB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */; };
 		010E3AE119E3B94700B866FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3AE019E3B94700B866FB /* SystemConfiguration.framework */; };
 		010E3AE319E3B95200B866FB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010E3AE219E3B95200B866FB /* CoreText.framework */; };
-		0113EF411A5E23D000E02E33 /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0113EF401A5E23D000E02E33 /* FLEXHeapEnumerator.m */; };
 		0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080719B6F06200FE0DA1 /* FakeViewController.m */; };
 		0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080919B6F06200FE0DA1 /* HentaiNavigationController.m */; };
 		0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0118080F19B6F06200FE0DA1 /* MainViewController.m */; };
@@ -109,8 +108,6 @@
 		010E3ADE19E3B93800B866FB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		010E3AE019E3B94700B866FB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		010E3AE219E3B95200B866FB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		0113EF3F1A5E23D000E02E33 /* FLEXHeapEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXHeapEnumerator.h; sourceTree = "<group>"; };
-		0113EF401A5E23D000E02E33 /* FLEXHeapEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXHeapEnumerator.m; sourceTree = "<group>"; };
 		0118080619B6F06200FE0DA1 /* FakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeViewController.h; sourceTree = "<group>"; };
 		0118080719B6F06200FE0DA1 /* FakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeViewController.m; sourceTree = "<group>"; };
 		0118080819B6F06200FE0DA1 /* HentaiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiNavigationController.h; sourceTree = "<group>"; };
@@ -284,15 +281,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0113EF3E1A5E23D000E02E33 /* FLEXHeapEnumerator */ = {
-			isa = PBXGroup;
-			children = (
-				0113EF3F1A5E23D000E02E33 /* FLEXHeapEnumerator.h */,
-				0113EF401A5E23D000E02E33 /* FLEXHeapEnumerator.m */,
-			);
-			path = FLEXHeapEnumerator;
-			sourceTree = "<group>";
-		};
 		0118080519B6F06200FE0DA1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,7 +425,6 @@
 		0150033619B6E5E90055F47D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				0113EF3E1A5E23D000E02E33 /* FLEXHeapEnumerator */,
 				0131908B1A4A5C6B0056F2E6 /* Flurry */,
 				01B4231E1A44136400FAB920 /* Pgyer */,
 				019290161A25D6C70094B423 /* DaiPortal */,
@@ -919,7 +906,6 @@
 				016A359F19B6FB8A00E3371A /* HentaiParser.m in Sources */,
 				019A28D01A64F16D006C1618 /* SearchFilterV2ViewController.m in Sources */,
 				0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */,
-				0113EF411A5E23D000E02E33 /* FLEXHeapEnumerator.m in Sources */,
 				011AEA5619DD296400A15CA5 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
