@@ -13,6 +13,24 @@
 #define waitingQueue [self waitingAddressQueue]
 #define downloadingQueue [self downloadingAddressQueue]
 
+@interface WeakOperationContainer : NSObject
+
+@property (nonatomic, weak) HentaiDownloadBookOperation *weakOperation;
+
+@end
+
+@implementation WeakOperationContainer
+
+- (id)initWithOperation:(HentaiDownloadBookOperation *)operation {
+    self = [super init];
+    if (self) {
+        self.weakOperation = operation;
+    }
+    return self;
+}
+
+@end
+
 @implementation HentaiDownloadCenter
 
 #pragma mark - HentaiDownloadBookOperationDelegate
@@ -84,18 +102,6 @@
 
 #pragma mark - private
 
-//從 memory address access 該物件
-+ (instancetype)objectAtMemoryAddressString:(NSString *)addressString {
-    unsigned long long address = NSNotFound;
-    [[NSScanner scannerWithString:addressString] scanHexLongLong:&address];
-    if (address == NSNotFound) {
-        return nil;
-    }
-    void *asRawPointer = (void *)(intptr_t)address;
-    id value = (__bridge id)asRawPointer;
-    return value;
-}
-
 //刷新給監控方看的資料內容
 + (void)refreshMonitor {
     HentaiMonitorBlock monitor = [self monitor];
@@ -103,25 +109,41 @@
         NSMutableArray *waitingItems = [NSMutableArray array];
         NSMutableArray *downloadingItems = [NSMutableArray array];
         
-        for (NSString *eachWaitingString in waitingQueue) {
-            HentaiDownloadBookOperation *bookOperation = [self objectAtMemoryAddressString:eachWaitingString];
-            [waitingItems addObject:@{ @"hentaiInfo":bookOperation.hentaiInfo }];
+        [self cleanNilOperationInQueue:waitingQueue];
+        [self cleanNilOperationInQueue:downloadingQueue];
+        
+        for (WeakOperationContainer *eachWeakOperationContainer in waitingQueue) {
+            if (eachWeakOperationContainer.weakOperation) {
+                [waitingItems addObject:@{ @"hentaiInfo":eachWeakOperationContainer.weakOperation.hentaiInfo }];
+            }
         }
         
-        for (NSString *eachDownloadingString in downloadingQueue) {
-            HentaiDownloadBookOperation *bookOperation = [self objectAtMemoryAddressString:eachDownloadingString];
-            [downloadingItems addObject:@{ @"hentaiInfo":bookOperation.hentaiInfo, @"recvCount":@(bookOperation.recvCount), @"totalCount":@(bookOperation.totalCount) }];
+        for (WeakOperationContainer *eachWeakOperationContainer in downloadingQueue) {
+            if (eachWeakOperationContainer.weakOperation) {
+                [downloadingItems addObject:@{ @"hentaiInfo":eachWeakOperationContainer.weakOperation.hentaiInfo, @"recvCount":@(eachWeakOperationContainer.weakOperation.recvCount), @"totalCount":@(eachWeakOperationContainer.weakOperation.totalCount) }];;
+            }
         }
         monitor(@{ @"waitingItems":waitingItems, @"downloadingItems":downloadingItems });
     }
 }
 
+//如果有人是 nil 了, 把他們移除掉
++ (void)cleanNilOperationInQueue:(NSMutableArray *)queue {
+    NSMutableArray *removeItems = [NSMutableArray array];
+    for (WeakOperationContainer *eachWeakOperationContainer in queue) {
+        if (eachWeakOperationContainer.weakOperation == nil) {
+            [removeItems addObject:eachWeakOperationContainer];
+        }
+    }
+    [queue removeObjectsInArray:removeItems];
+}
+
 //找看某個 address 是否在 queue 裡面
-+ (NSInteger)findAddress:(NSString *)address inQueue:(NSMutableArray *)queue {
++ (NSInteger)findOperation:(NSOperation *)operation inQueue:(NSMutableArray *)queue {
     NSInteger addressAtIndex = NSNotFound;
-    for (NSString *eachDownloadingString in queue) {
-        if ([address isEqualToString:eachDownloadingString]) {
-            addressAtIndex = [queue indexOfObject:eachDownloadingString];
+    for (WeakOperationContainer *eachWeakOperationContainer in queue) {
+        if (eachWeakOperationContainer.weakOperation == operation) {
+            addressAtIndex = [queue indexOfObject:eachWeakOperationContainer];
             break;
         }
     }
@@ -131,17 +153,18 @@
 //記錄 operation 活動狀態
 + (void)operationActivity:(HentaiDownloadBookOperation *)operation {
     if (operation) {
-        NSString *operationAddressString = [NSString stringWithFormat:@"%p", operation];
+        //NSString *operationAddressString = [NSString stringWithFormat:@"%p", operation];
+        WeakOperationContainer *weakOperation = [[WeakOperationContainer alloc] initWithOperation:operation];
         
         switch (operation.status) {
                 //會進 waiting 有兩個原因, 一是數值 init, 另一則是數值確實到 waiting 了
             case HentaiDownloadBookOperationStatusWaiting:
             {
-                NSInteger waitingIndex = [self findAddress:operationAddressString inQueue:waitingQueue];
+                NSInteger waitingIndex = [self findOperation:operation inQueue:waitingQueue];
                 
                 //如果找不到這個 address, 就把他存起來
                 if (waitingIndex == NSNotFound) {
-                    [waitingQueue addObject:operationAddressString];
+                    [waitingQueue addObject:weakOperation];
                 }
                 break;
             }
@@ -149,12 +172,12 @@
                 //會進 downloading 有兩個原因, 一是由 waiting 轉為 downloading, 另一則是 download 中間 count 的變化
             case HentaiDownloadBookOperationStatusDownloading:
             {
-                NSInteger waitingIndex = [self findAddress:operationAddressString inQueue:waitingQueue];
+                NSInteger waitingIndex = [self findOperation:operation inQueue:waitingQueue];
                 
                 //如果 waiting queue 裡面有他, 把他從 waiting queue 裡面移除, 新增到 downloading queue
                 if (waitingIndex != NSNotFound) {
                     [waitingQueue removeObjectAtIndex:waitingIndex];
-                    [downloadingQueue addObject:operationAddressString];
+                    [downloadingQueue addObject:weakOperation];
                 }
                 break;
             }
@@ -162,7 +185,7 @@
                 //下載完的時候就把他從 download queue 移除
             case HentaiDownloadBookOperationStatusFinished:
             {
-                NSInteger downloadingIndex = [self findAddress:operationAddressString inQueue:downloadingQueue];
+                NSInteger downloadingIndex = [self findOperation:operation inQueue:downloadingQueue];
                 
                 //如果 download queue 裡面有他, 把他移除掉
                 if (downloadingIndex != NSNotFound) {

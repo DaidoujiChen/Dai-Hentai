@@ -50,14 +50,6 @@
 }
 
 - (void)start {
-    
-    //kvo status
-    @weakify(self);
-    [RACObserve(self, status) subscribeNext:^(NSNumber *status) {
-        @strongify(self);
-        [self.delegate hentaiDownloadBookOperationChange:self];
-    }];
-    
     if ([self isCancelled]) {
         [self hentaiFinish];
         return;
@@ -119,21 +111,37 @@
             }
         }
     }
-    self.status = HentaiDownloadBookOperationStatusDownloading;
+    
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        [self.delegate hentaiDownloadBookOperationChange:self];
+    });
 }
 
 #pragma mark - operation status
 
 - (void)hentaiStart {
-    self.isFinished = NO;
-    self.isExecuting = YES;
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        self.status = HentaiDownloadBookOperationStatusDownloading;
+        [self.delegate hentaiDownloadBookOperationChange:self];
+        self.isFinished = NO;
+        self.isExecuting = YES;
+    });
 }
 
 - (void)hentaiFinish {
-    [self.hentaiQueue cancelAllOperations];
-    self.isFinished = YES;
-    self.isExecuting = NO;
-    self.status = HentaiDownloadBookOperationStatusFinished;
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        self.status = HentaiDownloadBookOperationStatusFinished;
+        [self.delegate hentaiDownloadBookOperationChange:self];
+        [self.hentaiQueue cancelAllOperations];
+        self.isFinished = YES;
+        self.isExecuting = NO;
+    });
 }
 
 #pragma mark - download methods
