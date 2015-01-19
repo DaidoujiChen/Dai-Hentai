@@ -16,4 +16,8 @@
     return [NSString stringWithFormat:@"%@-%@", splitArray[lastPathIndex - 1], splitArray[lastPathIndex]];
 }
 
+- (NSString *)hentai_withoutSpace {
+    return [[self componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsJoinedByString:@""];
+}
+
 @end

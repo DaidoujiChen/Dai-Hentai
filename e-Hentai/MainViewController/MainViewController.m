@@ -115,12 +115,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *hentaiInfo = self.listArray[indexPath.section];
-    NSUInteger indexInHentaiSaveLibrary = [HentaiSaveLibrary indexOfHentaiKey:[hentaiInfo hentai_hentaiKey]];
-    BOOL isExist = (indexInHentaiSaveLibrary == NSNotFound)?NO:YES;
+    NSDictionary *saveInfo = [HentaiSaveLibrary saveInfoAtHentaiKey:[hentaiInfo hentai_hentaiKey]];
     
-    if (isExist) {
+    if (saveInfo) {
         PhotoViewController *photoViewController = [PhotoViewController new];
-        photoViewController.hentaiInfo = [HentaiSaveLibrary saveInfoAtIndex:indexInHentaiSaveLibrary][@"hentaiInfo"];
+        photoViewController.hentaiInfo = saveInfo[@"hentaiInfo"];
+        photoViewController.originGroup = @"";
         [self.delegate needToPushViewController:photoViewController];
     }
     else {
@@ -144,11 +144,16 @@
                 else {
                     PhotoViewController *photoViewController = [PhotoViewController new];
                     photoViewController.hentaiInfo = hentaiInfo;
+                    photoViewController.originGroup = @"";
                     [self.delegate needToPushViewController:photoViewController];
                 }
             }
             else {
-                [HentaiDownloadCenter addBook:hentaiInfo];
+                [GroupManager presentFromViewController:self completion:^(NSString *selectedGroup) {
+                    if (selectedGroup) {
+                        [HentaiDownloadCenter addBook:hentaiInfo toGroup:selectedGroup];
+                    }
+                }];
             }
         } onCancel:nil];
     }
@@ -189,8 +194,7 @@
     }
     
     //去除掉空白換行字符後, 如果長度不為 0, 則表示有字
-    NSCharacterSet *emptyCharacter = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    if ([[[HentaiSettingManager temporaryHentaiPrefer][@"searchText"] componentsSeparatedByCharactersInSet:emptyCharacter] componentsJoinedByString:@""].length) {
+    if ([[HentaiSettingManager temporaryHentaiPrefer][@"searchText"] hentai_withoutSpace].length) {
         [filterURLString appendFormat:@"&f_search=%@", [HentaiSettingManager temporaryHentaiPrefer][@"searchText"]];
     }
     [filterURLString appendString:@"&f_apply=Apply+Filter"];

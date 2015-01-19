@@ -195,7 +195,7 @@
             if ([self verifySaveInfo:saveInfo]) {
                 //如果 cache 有暫存就殺光光
                 [[[FilesManager cacheFolder] fcd:@"Hentai"] rd:self.hentaiKey];
-                [HentaiSaveLibrary addSaveInfo:saveInfo];
+                [HentaiSaveLibrary addSaveInfo:saveInfo toGroup:self.group];
                 [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
                 [[self portal:HentaiDownloadSuccessNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
             }

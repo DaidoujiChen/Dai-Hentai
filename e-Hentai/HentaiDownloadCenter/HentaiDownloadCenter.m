@@ -46,10 +46,10 @@
 
 #pragma mark - class method
 
-+ (void)addBook:(NSDictionary *)hentaiInfo {
++ (void)addBook:(NSDictionary *)hentaiInfo toGroup:(NSString *)group {
     
     //下載過的話不給下
-    BOOL isExist = ([HentaiSaveLibrary indexOfHentaiKey:[hentaiInfo hentai_hentaiKey]] == NSNotFound)?NO:YES;
+    BOOL isExist = ([HentaiSaveLibrary saveInfoAtHentaiKey:[hentaiInfo hentai_hentaiKey]])?YES:NO;
     
     //如果在 queue 裡面也不給下
     isExist = isExist | [self isDownloading:hentaiInfo];
@@ -61,6 +61,7 @@
         HentaiDownloadBookOperation *newOperation = [HentaiDownloadBookOperation new];
         newOperation.delegate = (id <HentaiDownloadBookOperationDelegate> )self;
         newOperation.hentaiInfo = hentaiInfo;
+        newOperation.group = group;
         newOperation.status = HentaiDownloadBookOperationStatusWaiting;
         [self operationActivity:newOperation];
         [[self allBooksOperationQueue] addOperation:newOperation];

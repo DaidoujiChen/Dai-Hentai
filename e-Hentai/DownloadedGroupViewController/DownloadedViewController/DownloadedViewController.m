@@ -15,24 +15,43 @@
 @property (nonatomic, strong) NSDictionary *currentInfo;
 @property (nonatomic, assign) BOOL onceFlag;
 @property (nonatomic, strong) NSMutableDictionary *textViewCacheMapping;
+@property (nonatomic, readonly) NSUInteger hentaiSaveLibraryCount;
 
 @end
 
 @implementation DownloadedViewController
 
+@dynamic hentaiSaveLibraryCount;
+
+#pragma mark - dynamic
+
+- (NSUInteger)hentaiSaveLibraryCount {
+    if (self.group) {
+        if ([self.group isEqualToString:@""]) {
+            return [HentaiSaveLibrary count];
+        }
+        else {
+            return [HentaiSaveLibrary countByGroup:self.group];
+        }
+    }
+    else {
+        return [HentaiSaveLibrary countByGroup:@""];
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [HentaiSaveLibrary count];
+    return self.hentaiSaveLibraryCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.section;
+    NSUInteger inverseIndex = self.hentaiSaveLibraryCount - 1 - indexPath.section;
     
     static NSString *identifier = @"MainTableViewCell";
     MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSDictionary *hentaiInfo = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"];
+    NSDictionary *hentaiInfo = [self saveInfoAtIndex:inverseIndex][@"hentaiInfo"];
     
     //設定 ipad / iphone 共通資訊
     NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
@@ -58,9 +77,9 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - section;
+    NSUInteger inverseIndex = self.hentaiSaveLibraryCount - 1 - section;
     
-    NSString *sectinoText = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"title"];
+    NSString *sectinoText = [self saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"title"];
     UITextView *titleTextView = self.textViewCacheMapping[sectinoText];
     if (!titleTextView) {
         titleTextView = [UITextView new];
@@ -77,16 +96,16 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - section;
+    NSUInteger inverseIndex = self.hentaiSaveLibraryCount - 1 - section;
     
-    NSString *sectinoText = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"title"];
+    NSString *sectinoText = [self saveInfoAtIndex:inverseIndex][@"hentaiInfo"][@"title"];
     return self.textViewCacheMapping[sectinoText];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger inverseIndex = [HentaiSaveLibrary count] - 1 - indexPath.section;
+    NSUInteger inverseIndex = self.hentaiSaveLibraryCount - 1 - indexPath.section;
     
-    self.currentInfo = [HentaiSaveLibrary saveInfoAtIndex:inverseIndex];
+    self.currentInfo = [self saveInfoAtIndex:inverseIndex];
     NSDictionary *hentaiInfo = self.currentInfo[@"hentaiInfo"];
     
     if ([[HentaiSettingManager temporarySettings][@"useNewBrowser"] boolValue]) {
@@ -112,6 +131,7 @@
     else {
         PhotoViewController *photoViewController = [PhotoViewController new];
         photoViewController.hentaiInfo = hentaiInfo;
+        photoViewController.originGroup = self.currentInfo[@"group"];
         [self.delegate needToPushViewController:photoViewController];
     }
 }
@@ -130,14 +150,28 @@
 }
 
 - (void)helpToDelete {
+    @weakify(self);
     [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex:^(NSInteger clickIndex) {
-        [self.navigationController popViewControllerAnimated:YES];
-        NSDictionary *hentaiInfo = self.currentInfo[@"hentaiInfo"];
-        NSString *hentaiKey = [hentaiInfo hentai_hentaiKey];
-        
-        [[[FilesManager documentFolder] fcd:@"Hentai"] rd:hentaiKey];
-        [HentaiSaveLibrary removeSaveInfoAtIndex:[HentaiSaveLibrary indexOfHentaiKey:hentaiKey]];
+        @strongify(self);
+        if (self) {
+            [self.navigationController popViewControllerAnimated:YES];
+            NSDictionary *hentaiInfo = self.currentInfo[@"hentaiInfo"];
+            NSString *hentaiKey = [hentaiInfo hentai_hentaiKey];
+            
+            [[[FilesManager documentFolder] fcd:@"Hentai"] rd:hentaiKey];
+            [HentaiSaveLibrary removeSaveInfoAtHentaiKey:hentaiKey];
+        }
     } onCancel:^{
+    }];
+}
+
+- (void)helpToChangeGroup:(UIViewController *)viewController {
+    @weakify(self);
+    [GroupManager presentFromViewController:viewController originGroup:self.currentInfo[@"group"] completion:^(NSString *selectedGroup) {
+        @strongify(self);
+        if (self && selectedGroup) {
+            [HentaiSaveLibrary changeToGroup:selectedGroup atHentaiKey:self.currentInfo[@"hentaiKey"]];
+        }
     }];
 }
 
@@ -146,14 +180,23 @@
 #pragma mark * override methods from MainViewController
 
 - (void)setupInitValues {
-    self.title = @"已經下載的漫畫";
+    if (self.group) {
+        if ([self.group isEqualToString:@""]) {
+            self.title = @"全部";
+        }
+        else {
+            self.title = self.group;
+        }
+    }
+    else {
+        self.title = @"未分類";
+    }
+
     self.onceFlag = NO;
     self.textViewCacheMapping = [NSMutableDictionary dictionary];
 }
 
 - (void)setupItemsOnNavigation {
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(sliderControl)];
-    self.navigationItem.leftBarButtonItem = menuButton;
 }
 
 - (void)setupRefreshControlOnTableView {
@@ -171,11 +214,32 @@
 - (void)allowNavigationBarGesture {
 }
 
+#pragma mark * misc
+
+- (NSDictionary *)saveInfoAtIndex:(NSUInteger)index {
+    if (self.group) {
+        if ([self.group isEqualToString:@""]) {
+            return [HentaiSaveLibrary saveInfoAtIndex:index];
+        }
+        else {
+            return [HentaiSaveLibrary saveInfoAtIndex:index byGroup:self.group];
+        }
+    }
+    else {
+        return [HentaiSaveLibrary saveInfoAtIndex:index byGroup:@""];
+    }
+}
+
 #pragma mark - life cycle
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.listTableView reloadData];
+    if (self.hentaiSaveLibraryCount) {
+        [self.listTableView reloadData];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

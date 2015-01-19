@@ -10,4 +10,6 @@
 
 @interface DownloadedViewController : MainViewController <MWPhotoBrowserDelegate>
 
+@property (nonatomic, strong) NSString *group;
+
 @end

@@ -17,6 +17,7 @@
 @interface PhotoViewController : ColorThemeViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadImageOperationDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSDictionary *hentaiInfo;
+@property (nonatomic, strong) NSString *originGroup;
 @property (weak, nonatomic) IBOutlet UITableView *hentaiTableView;
 
 @end

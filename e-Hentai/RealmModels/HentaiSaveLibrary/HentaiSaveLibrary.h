@@ -20,11 +20,15 @@
 @property RLMArray <HentaiSaveLibrary_HentaiResult> *hentaiResult;
 @property RLMArray <HentaiSaveLibrary_Images> *images;
 
-+ (void)addSaveInfo:(NSDictionary *)saveInfo;
++ (void)addSaveInfo:(NSDictionary *)saveInfo toGroup:(NSString *)group;
 + (NSUInteger)count;
-+ (NSUInteger)indexOfHentaiKey:(NSString *)hentaiKey;
++ (NSUInteger)countByGroup:(NSString *)group;
++ (void)changeToGroup:(NSString *)group atHentaiKey:(NSString *)hentaiKey;
++ (NSDictionary *)saveInfoAtHentaiKey:(NSString *)hentaiKey;
 + (NSDictionary *)saveInfoAtIndex:(NSUInteger)index;
-+ (void)removeSaveInfoAtIndex:(NSUInteger)index;
++ (NSDictionary *)saveInfoAtIndex:(NSUInteger)index byGroup:(NSString *)group;
++ (void)removeSaveInfoAtHentaiKey:(NSString *)hentaiKey;
++ (NSArray *)groups;
 
 @end
 

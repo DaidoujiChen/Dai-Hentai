@@ -24,7 +24,7 @@
 		<key>image</key>
 		<string>dropbox_copyrighted</string>
 		<key>controller</key>
-		<string>DownloadedViewController</string>
+		<string>DownloadedGroupViewController</string>
 	</dict>
 	<dict>
 		<key>displayName</key>

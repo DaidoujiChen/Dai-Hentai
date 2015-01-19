@@ -22,6 +22,7 @@ typedef enum {
 
 @property (nonatomic, weak) id <HentaiDownloadBookOperationDelegate> delegate;
 @property (nonatomic, strong) NSDictionary *hentaiInfo;
+@property (nonatomic, strong) NSString *group;
 @property (nonatomic, assign) HentaiDownloadBookOperationStatus status;
 @property (nonatomic, readonly) NSInteger recvCount;
 @property (nonatomic, readonly) NSInteger totalCount;

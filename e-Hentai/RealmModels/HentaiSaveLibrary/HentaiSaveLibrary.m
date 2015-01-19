@@ -13,10 +13,10 @@
 #pragma mark - class method
 
 //儲存整本作品的資訊
-+ (void)addSaveInfo:(NSDictionary *)saveInfo {
++ (void)addSaveInfo:(NSDictionary *)saveInfo toGroup:(NSString *)group {
     HentaiSaveLibrary *newLibrary = [HentaiSaveLibrary new];
     newLibrary.hentaiKey = saveInfo[@"hentaiKey"];
-    newLibrary.group = @"";
+    newLibrary.group = group;
     
     HentaiSaveLibrary_HentaiInfo *newInfo = [HentaiSaveLibrary_HentaiInfo new];
     newInfo.category = saveInfo[@"hentaiInfo"][@"category"];
@@ -57,22 +57,93 @@
     return [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] count];
 }
 
-//用 hentaiKey 查詢所在 index
-+ (NSUInteger)indexOfHentaiKey:(NSString *)hentaiKey {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hentaiKey contains[c] %@", hentaiKey];
+//某個 group 的數量
++ (NSUInteger)countByGroup:(NSString *)group {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group == %@", group];
+    return [[HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate] count];
+}
+
+//update 某一個作品的 group
++ (void)changeToGroup:(NSString *)group atHentaiKey:(NSString *)hentaiKey {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hentaiKey == %@", hentaiKey];
     RLMResults *resultObjects = [HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate];
     if (resultObjects.count) {
-        return [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] indexOfObject:[resultObjects firstObject]];
+        HentaiSaveLibrary *saveInfo = [resultObjects firstObject];
+        [[self hentaiSaveLibraryRealm] beginWriteTransaction];
+        saveInfo.group = group;
+        [[self hentaiSaveLibraryRealm] commitWriteTransaction];
     }
-    return NSNotFound;
+}
+
+//從 hentaikey 直接回 saveinfo
++ (NSDictionary *)saveInfoAtHentaiKey:(NSString *)hentaiKey {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hentaiKey == %@", hentaiKey];
+    RLMResults *resultObjects = [HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate];
+    if (resultObjects.count) {
+        HentaiSaveLibrary *saveInfo = [resultObjects firstObject];
+        return [self dictionaryFromRealm:saveInfo];
+    }
+    return nil;
 }
 
 //指定 index 返回內容
 + (NSDictionary *)saveInfoAtIndex:(NSUInteger)index {
-    NSMutableDictionary *returnInfo = [NSMutableDictionary dictionary];
     HentaiSaveLibrary *infoObject = [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] objectAtIndex:index];
+    return [self dictionaryFromRealm:infoObject];
+}
+
++ (NSDictionary *)saveInfoAtIndex:(NSUInteger)index byGroup:(NSString *)group {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group == %@", group];
+    HentaiSaveLibrary *infoObject = [[HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate] objectAtIndex:index];
+    return [self dictionaryFromRealm:infoObject];
+}
+
+//移除某一個 hentaikey 的內容
++ (void)removeSaveInfoAtHentaiKey:(NSString *)hentaiKey {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hentaiKey == %@", hentaiKey];
+    RLMResults *resultObjects = [HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate];
+    if (resultObjects.count) {
+        HentaiSaveLibrary *removeObject = [resultObjects firstObject];
+        [self removeHentaiSaveLibrary:removeObject];
+    }
+}
+
++ (NSArray *)groups {
+    NSMutableDictionary *categorys = [NSMutableDictionary dictionary];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group != %@", @""];
+    RLMResults *resultObjects = [HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate];    for (HentaiSaveLibrary *eachHentaiSaveLibrary in resultObjects) {
+        if (![eachHentaiSaveLibrary.group isEqualToString:@""]) {
+            categorys[eachHentaiSaveLibrary.group] = eachHentaiSaveLibrary.group;
+        }
+    }
+    NSMutableArray *groups = [NSMutableArray array];
+    for (NSString *eachKey in [categorys allKeys]) {
+        [groups addObject:@{@"title":eachKey, @"value":eachKey}];
+    }
+    return [groups sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
+        NSString *string1 = obj1[@"title"];
+        NSString *string2 = obj2[@"title"];
+        return [string1 compare:string2];
+    }];
+}
+
+#pragma mark - private
+
++ (void)removeHentaiSaveLibrary:(HentaiSaveLibrary *)removeObject {
+    [[self hentaiSaveLibraryRealm] beginWriteTransaction];
+    [[self hentaiSaveLibraryRealm] deleteObject:removeObject.hentaiInfo];
+    [[self hentaiSaveLibraryRealm] deleteObjects:removeObject.hentaiResult];
+    [[self hentaiSaveLibraryRealm] deleteObjects:removeObject.images];
+    [[self hentaiSaveLibraryRealm] deleteObject:removeObject];
+    [[self hentaiSaveLibraryRealm] commitWriteTransaction];
+}
+
++ (NSDictionary *)dictionaryFromRealm:(HentaiSaveLibrary *)realm {
+    NSMutableDictionary *returnInfo = [NSMutableDictionary dictionary];
+    HentaiSaveLibrary *infoObject = realm;
     
     returnInfo[@"hentaiKey"] = infoObject.hentaiKey;
+    returnInfo[@"group"] = infoObject.group;
     
     NSMutableDictionary *hentaiInfoDictionary = [NSMutableDictionary dictionary];
     HentaiSaveLibrary_HentaiInfo *hentaiInfoObject = infoObject.hentaiInfo;
@@ -102,20 +173,6 @@
     
     return returnInfo;
 }
-
-//移除某一個 index 內容
-+ (void)removeSaveInfoAtIndex:(NSUInteger)index {
-    HentaiSaveLibrary *removeObject = [[HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]] objectAtIndex:index];
-    
-    [[self hentaiSaveLibraryRealm] beginWriteTransaction];
-    [[self hentaiSaveLibraryRealm] deleteObject:removeObject.hentaiInfo];
-    [[self hentaiSaveLibraryRealm] deleteObjects:removeObject.hentaiResult];
-    [[self hentaiSaveLibraryRealm] deleteObjects:removeObject.images];
-    [[self hentaiSaveLibraryRealm] deleteObject:removeObject];
-    [[self hentaiSaveLibraryRealm] commitWriteTransaction];
-}
-
-#pragma mark - private
 
 //存在特定檔案
 + (RLMRealm *)hentaiSaveLibraryRealm {

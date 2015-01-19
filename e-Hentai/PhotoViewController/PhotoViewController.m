@@ -39,19 +39,6 @@
 
 @property (nonatomic, assign) BOOL isHighResolution;
 
-- (void)backAction;
-- (void)saveAction;
-- (void)deleteAction;
-
-- (void)setupInitValues;
-
-- (CGSize)imagePortraitHeight:(CGSize)landscapeSize;
-- (void)preloadImages:(NSArray *)images;
-- (NSInteger)availableCount;
-
-- (void)setupForDownloadedIndex:(NSUInteger)index;
-- (NSUInteger)indexOfHentaiKey;
-
 @end
 
 @implementation PhotoViewController
@@ -92,19 +79,39 @@
 }
 
 - (void)saveAction {
+    @weakify(self);
     [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:nil cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"加入下載管理員~ O3O"] onClickIndex: ^(NSInteger clickIndex) {
-        [HentaiDownloadCenter addBook:self.hentaiInfo];
-        [self backAction];
+        [GroupManager presentFromViewController:self completion:^(NSString *selectedGroup) {
+            @strongify(self);
+            if (self && selectedGroup) {
+                [HentaiDownloadCenter addBook:self.hentaiInfo toGroup:selectedGroup];
+                [self backAction];
+            }
+        }];
     } onCancel: ^{
     }];
 }
 
 - (void)deleteAction {
+    @weakify(self);
     [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex:^(NSInteger clickIndex) {
-        [[[FilesManager documentFolder] fcd:@"Hentai"] rd:self.hentaiKey];
-        [HentaiSaveLibrary removeSaveInfoAtIndex:[self indexOfHentaiKey]];
-        [self backAction];
+        @strongify(self);
+        if (self) {
+            [[[FilesManager documentFolder] fcd:@"Hentai"] rd:self.hentaiKey];
+            [HentaiSaveLibrary removeSaveInfoAtHentaiKey:self.hentaiKey];
+            [self backAction];
+        }
     } onCancel:^{
+    }];
+}
+
+- (void)changeGroupAction {
+    @weakify(self);
+    [GroupManager presentFromViewController:self originGroup:self.originGroup completion:^(NSString *selectedGroup) {
+        @strongify(self);
+        if (self && selectedGroup) {
+            [HentaiSaveLibrary changeToGroup:selectedGroup atHentaiKey:self.hentaiKey];
+        }
     }];
 }
 
@@ -204,20 +211,15 @@
 }
 
 //設定下載好的相關資料
-- (void)setupForDownloadedIndex:(NSUInteger)index {
+- (void)setupForDownloadedSaveInfo:(NSDictionary *)saveInfo {
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction)];
-    self.navigationItem.rightBarButtonItem = deleteButton;
-    NSDictionary *saveInfo = [HentaiSaveLibrary saveInfoAtIndex:index];
+    UIBarButtonItem *changeGroupButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(changeGroupAction)];
+    self.navigationItem.rightBarButtonItems = @[deleteButton, changeGroupButton];
     [self.hentaiImageURLs setArray:saveInfo[@"images"]];
     [self.hentaiResults setDictionary:saveInfo[@"hentaiResult"]];
     self.realDisplayCount = [self.hentaiImageURLs count];
     self.hentaiFilesManager = [[[FilesManager documentFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
     [self.hentaiTableView reloadData];
-}
-
-//找尋是不是有下載過
-- (NSUInteger)indexOfHentaiKey {
-    return [HentaiSaveLibrary indexOfHentaiKey:self.hentaiKey];
 }
 
 #pragma mark - HentaiDownloadImageOperationDelegate
@@ -365,11 +367,11 @@
     [super viewDidLoad];
     [self setupInitValues];
     
-    NSUInteger indexOfHentaiKey = [self indexOfHentaiKey];
+    NSDictionary *saveInfo = [HentaiSaveLibrary saveInfoAtHentaiKey:self.hentaiKey];
     
     //如果本機有存檔案就用本機的
-    if (indexOfHentaiKey != NSNotFound) {
-        [self setupForDownloadedIndex:indexOfHentaiKey];
+    if (saveInfo) {
+        [self setupForDownloadedSaveInfo:saveInfo];
     }
     //否則則從網路上取得
     else {
@@ -409,7 +411,7 @@
     //結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
     [self.hentaiQueue cancelAllOperations];
     
-    if ([self indexOfHentaiKey] != NSNotFound) {
+    if ([HentaiSaveLibrary saveInfoAtHentaiKey:self.hentaiKey]) {
         [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
     }
     else {

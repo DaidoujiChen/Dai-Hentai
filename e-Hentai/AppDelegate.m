@@ -73,7 +73,7 @@
     [SVProgressHUD show];
     NSArray *saveDatas = LWPArray(@"HentaiSaveLibrary");
     for (NSDictionary *eachData in saveDatas) {
-        [HentaiSaveLibrary addSaveInfo:eachData];
+        [HentaiSaveLibrary addSaveInfo:eachData toGroup:@""];
     }
     LWPDelete(@"HentaiSaveLibrary");
     
