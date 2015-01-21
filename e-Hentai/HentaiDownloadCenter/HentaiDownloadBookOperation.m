@@ -200,7 +200,7 @@
                 [[self portal:HentaiDownloadSuccessNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
             }
             else {
-                [[self portal:HentaiDownloadFailNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
+                [[self portal:HentaiDownloadFailNotification] send:[DaiPortalPackage item:@""]];
             }
             
             [self hentaiFinish];
