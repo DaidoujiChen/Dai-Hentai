@@ -73,6 +73,7 @@
 		0180D92C1A02140E002554FC /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92A1A02140E002554FC /* settings@3x.png */; };
 		0180D92F1A0214AD002554FC /* delivery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92D1A0214AD002554FC /* delivery@2x.png */; };
 		0180D9301A0214AD002554FC /* delivery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D92E1A0214AD002554FC /* delivery@3x.png */; };
+		01813D321A6F7E9C006DA12A /* DownloadedGroupFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01813D311A6F7E9C006DA12A /* DownloadedGroupFilterViewController.m */; };
 		01821A1B1A5A76FA007E5A76 /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01821A191A5A76FA007E5A76 /* MainTableViewCell.m */; };
 		01821A1C1A5A76FA007E5A76 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01821A1A1A5A76FA007E5A76 /* MainTableViewCell.xib */; };
 		018258421A5FC39800FA4678 /* HentaiSettingsV2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018258411A5FC39800FA4678 /* HentaiSettingsV2.plist */; };
@@ -210,6 +211,8 @@
 		0180D92A1A02140E002554FC /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
 		0180D92D1A0214AD002554FC /* delivery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delivery@2x.png"; sourceTree = "<group>"; };
 		0180D92E1A0214AD002554FC /* delivery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delivery@3x.png"; sourceTree = "<group>"; };
+		01813D301A6F7E9C006DA12A /* DownloadedGroupFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadedGroupFilterViewController.h; sourceTree = "<group>"; };
+		01813D311A6F7E9C006DA12A /* DownloadedGroupFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedGroupFilterViewController.m; sourceTree = "<group>"; };
 		01821A181A5A76FA007E5A76 /* MainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
 		01821A191A5A76FA007E5A76 /* MainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
 		01821A1A1A5A76FA007E5A76 /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
@@ -462,6 +465,7 @@
 			children = (
 				01622DE51A6F4192004D0632 /* DownloadedGroupViewController.h */,
 				01622DDC1A6F415F004D0632 /* DownloadedGroupViewController.m */,
+				01813D2F1A6F7E87006DA12A /* DownloadedGroupSearchViewController */,
 				01622DDD1A6F415F004D0632 /* DownloadedViewController */,
 			);
 			path = DownloadedGroupViewController;
@@ -578,6 +582,15 @@
 				0180D91A1A021282002554FC /* exterior@3x.png */,
 			);
 			path = MenuViewController;
+			sourceTree = "<group>";
+		};
+		01813D2F1A6F7E87006DA12A /* DownloadedGroupSearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				01813D301A6F7E9C006DA12A /* DownloadedGroupFilterViewController.h */,
+				01813D311A6F7E9C006DA12A /* DownloadedGroupFilterViewController.m */,
+			);
+			path = DownloadedGroupSearchViewController;
 			sourceTree = "<group>";
 		};
 		01821A171A5A76DA007E5A76 /* MainTableViewCell */ = {
@@ -929,6 +942,7 @@
 				016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */,
 				016BBF0E19B94E4F0015E11E /* LightWeightPlist+FilePath.m in Sources */,
 				0137F40C19C1688200528359 /* HentaiDownloadCenter.m in Sources */,
+				01813D321A6F7E9C006DA12A /* DownloadedGroupFilterViewController.m in Sources */,
 				0163E4721A3FD019007C3D58 /* DiveExHentai.m in Sources */,
 				019E11841A5D198F0053581F /* HentaiSettingManager.m in Sources */,
 				0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */,

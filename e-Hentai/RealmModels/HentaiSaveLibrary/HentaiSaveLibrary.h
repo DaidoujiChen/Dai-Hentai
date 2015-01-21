@@ -23,10 +23,12 @@
 + (void)addSaveInfo:(NSDictionary *)saveInfo toGroup:(NSString *)group;
 + (NSUInteger)count;
 + (NSUInteger)countByGroup:(NSString *)group;
++ (NSUInteger)countBySearchInfo:(NSDictionary *)searchInfo;
 + (void)changeToGroup:(NSString *)group atHentaiKey:(NSString *)hentaiKey;
 + (NSDictionary *)saveInfoAtHentaiKey:(NSString *)hentaiKey;
 + (NSDictionary *)saveInfoAtIndex:(NSUInteger)index;
 + (NSDictionary *)saveInfoAtIndex:(NSUInteger)index byGroup:(NSString *)group;
++ (NSDictionary *)saveInfoAtIndex:(NSUInteger)index bySearchInfo:(NSDictionary *)searchInfo;
 + (void)removeSaveInfoAtHentaiKey:(NSString *)hentaiKey;
 + (NSArray *)groups;
 
