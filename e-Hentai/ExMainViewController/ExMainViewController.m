@@ -14,6 +14,7 @@
 
 @property (nonatomic, assign) NSUInteger listIndex;
 @property (nonatomic, assign) BOOL onceFlag;
+@property (nonatomic, assign) BOOL exOnceFlag;
 
 @end
 
@@ -63,35 +64,21 @@
 
 #pragma mark - life cycle
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.onceFlag = NO;
+    self.exOnceFlag = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([HentaiSettingManager temporaryHentaiAccount][@"UserName"]) {
-        [SVProgressHUD show];
-        [DiveExHentai diveByUserName:[HentaiSettingManager temporaryHentaiAccount][@"UserName"] password:[HentaiSettingManager temporaryHentaiAccount][@"Password"] completion: ^(BOOL isSuccess) {
-            if (isSuccess) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-                [self performSelector:@selector(reloadDatas)];
-#pragma clang diagnostic pop
-            }
-            else {
-                [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
-            }
-            [SVProgressHUD dismiss];
-        }];
-    }
-    else {
-        UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"登入" message:@"輸入您可進入 exhentai 的帳號" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-        loginAlert.hentai_account = ^(NSString *userName, NSString *password) {
+    if (self.exOnceFlag) {
+        self.exOnceFlag = NO;
+        if ([HentaiSettingManager temporaryHentaiAccount][@"UserName"]) {
             [SVProgressHUD show];
-            [DiveExHentai diveByUserName:userName password:password completion: ^(BOOL isSuccess) {
+            [DiveExHentai diveByUserName:[HentaiSettingManager temporaryHentaiAccount][@"UserName"] password:[HentaiSettingManager temporaryHentaiAccount][@"Password"] completion: ^(BOOL isSuccess) {
                 if (isSuccess) {
-                    [HentaiSettingManager temporaryHentaiAccount][@"UserName"] = userName;
-                    [HentaiSettingManager temporaryHentaiAccount][@"Password"] = password;
-                    [HentaiSettingManager storeHentaiAccount];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
                     [self performSelector:@selector(reloadDatas)];
@@ -102,9 +89,31 @@
                 }
                 [SVProgressHUD dismiss];
             }];
-        };
-        [loginAlert addButtonWithTitle:@"Go~ O3O"];
-        [loginAlert show];
+        }
+        else {
+            UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"登入" message:@"輸入您可進入 exhentai 的帳號" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+            loginAlert.hentai_account = ^(NSString *userName, NSString *password) {
+                [SVProgressHUD show];
+                [DiveExHentai diveByUserName:userName password:password completion: ^(BOOL isSuccess) {
+                    if (isSuccess) {
+                        [HentaiSettingManager temporaryHentaiAccount][@"UserName"] = userName;
+                        [HentaiSettingManager temporaryHentaiAccount][@"Password"] = password;
+                        [HentaiSettingManager storeHentaiAccount];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+                        [self performSelector:@selector(reloadDatas)];
+#pragma clang diagnostic pop
+                    }
+                    else {
+                        [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
+                    }
+                    [SVProgressHUD dismiss];
+                }];
+            };
+            [loginAlert addButtonWithTitle:@"Go~ O3O"];
+            [loginAlert show];
+        }
     }
 }
 
