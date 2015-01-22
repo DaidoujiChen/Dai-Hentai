@@ -8,6 +8,13 @@
 
 #import "DownloadedViewController.h"
 
+typedef enum {
+    DisplayDownloadedTypeSearch,
+    DisplayDownloadedTypeGroupAll,
+    DisplayDownloadedTypeUnGroup,
+    DisplayDownloadedTypeSpecificGroup
+} DisplayDownloadedType;
+
 @interface DownloadedViewController ()
 
 @property (nonatomic, strong) UITableView *listTableView;
@@ -25,17 +32,21 @@
 
 #pragma mark - dynamic
 
+//根據 type 的不同, count 也會不一樣
 - (NSUInteger)hentaiSaveLibraryCount {
-    if (self.group) {
-        if ([self.group isEqualToString:@""]) {
+    switch ([self currentType]) {
+        case DisplayDownloadedTypeSearch:
+            return [HentaiSaveLibrary countBySearchInfo:self.searchInfo];
+            break;
+        case DisplayDownloadedTypeGroupAll:
             return [HentaiSaveLibrary count];
-        }
-        else {
+            break;
+        case DisplayDownloadedTypeSpecificGroup:
             return [HentaiSaveLibrary countByGroup:self.group];
-        }
-    }
-    else {
-        return [HentaiSaveLibrary countByGroup:@""];
+            break;
+        case DisplayDownloadedTypeUnGroup:
+            return [HentaiSaveLibrary countByGroup:@""];
+            break;
     }
 }
 
@@ -180,23 +191,27 @@
 #pragma mark * override methods from MainViewController
 
 - (void)setupInitValues {
-    if (self.group) {
-        if ([self.group isEqualToString:@""]) {
+    switch ([self currentType]) {
+        case DisplayDownloadedTypeSearch:
+            self.title = @"搜尋結果";
+            break;
+        case DisplayDownloadedTypeGroupAll:
             self.title = @"全部";
-        }
-        else {
+            break;
+        case DisplayDownloadedTypeSpecificGroup:
             self.title = self.group;
-        }
+            break;
+        case DisplayDownloadedTypeUnGroup:
+            self.title = @"未分類";
+            break;
     }
-    else {
-        self.title = @"未分類";
-    }
-
     self.onceFlag = NO;
     self.textViewCacheMapping = [NSMutableDictionary dictionary];
 }
 
 - (void)setupItemsOnNavigation {
+    UIBarButtonItem *changeGroupButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(changeGroupAction)];
+    self.navigationItem.rightBarButtonItem = changeGroupButton;
 }
 
 - (void)setupRefreshControlOnTableView {
@@ -216,17 +231,66 @@
 
 #pragma mark * misc
 
-- (NSDictionary *)saveInfoAtIndex:(NSUInteger)index {
-    if (self.group) {
-        if ([self.group isEqualToString:@""]) {
-            return [HentaiSaveLibrary saveInfoAtIndex:index];
-        }
-        else {
-            return [HentaiSaveLibrary saveInfoAtIndex:index byGroup:self.group];
-        }
+//目前究竟該顯示哪種資料
+- (DisplayDownloadedType)currentType {
+    if (self.searchInfo) {
+        return DisplayDownloadedTypeSearch;
     }
     else {
-        return [HentaiSaveLibrary saveInfoAtIndex:index byGroup:@""];
+        if (self.group) {
+            if ([self.group isEqualToString:@""]) {
+                return DisplayDownloadedTypeGroupAll;
+            }
+            else {
+                return DisplayDownloadedTypeSpecificGroup;
+            }
+        }
+        else {
+            return DisplayDownloadedTypeUnGroup;
+        }
+    }
+}
+
+//將目前全部的作品一次轉換到某一個 group
+- (void)changeGroupAction {
+    @weakify(self);
+    [GroupManager presentFromViewController:self completion:^(NSString *selectedGroup) {
+        @strongify(self);
+        [SVProgressHUD show];
+        if (self && selectedGroup) {
+            NSMutableArray *hentaiKeys = [NSMutableArray array];
+            for (int i=0; i<self.hentaiSaveLibraryCount; i++) {
+                NSDictionary *saveInfo = [self saveInfoAtIndex:i];
+                [hentaiKeys addObject:[saveInfo[@"hentaiInfo"] hentai_hentaiKey]];
+            }
+            
+            for (NSString *eachHentaiKey in hentaiKeys) {
+                [HentaiSaveLibrary changeToGroup:selectedGroup atHentaiKey:eachHentaiKey];
+            }
+            self.title = selectedGroup;
+            self.group = selectedGroup;
+            self.searchInfo = nil;
+            [self.listTableView reloadData];
+        }
+        [SVProgressHUD dismiss];
+    }];
+}
+
+//按照 type 不同, 取得的 saveinfo 也不一樣
+- (NSDictionary *)saveInfoAtIndex:(NSUInteger)index {
+    switch ([self currentType]) {
+        case DisplayDownloadedTypeSearch:
+            return [HentaiSaveLibrary saveInfoAtIndex:index bySearchInfo:self.searchInfo];
+            break;
+        case DisplayDownloadedTypeGroupAll:
+            return [HentaiSaveLibrary saveInfoAtIndex:index];
+            break;
+        case DisplayDownloadedTypeSpecificGroup:
+            return [HentaiSaveLibrary saveInfoAtIndex:index byGroup:self.group];
+            break;
+        case DisplayDownloadedTypeUnGroup:
+            return [HentaiSaveLibrary saveInfoAtIndex:index byGroup:@""];
+            break;
     }
 }
 

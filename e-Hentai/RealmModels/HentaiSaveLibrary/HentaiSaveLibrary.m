@@ -63,6 +63,12 @@
     return [[HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate] count];
 }
 
+//某個搜尋條件的數量
++ (NSUInteger)countBySearchInfo:(NSDictionary *)searchInfo {
+    RLMResults *hentaiSaveLibrarys = [self hentaiSaveLibraryBySearchInfo:searchInfo];
+    return [hentaiSaveLibrarys count];
+}
+
 //update 某一個作品的 group
 + (void)changeToGroup:(NSString *)group atHentaiKey:(NSString *)hentaiKey {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hentaiKey == %@", hentaiKey];
@@ -92,9 +98,17 @@
     return [self dictionaryFromRealm:infoObject];
 }
 
+//指定某個 group 內特定 index 的內容
 + (NSDictionary *)saveInfoAtIndex:(NSUInteger)index byGroup:(NSString *)group {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group == %@", group];
     HentaiSaveLibrary *infoObject = [[HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate] objectAtIndex:index];
+    return [self dictionaryFromRealm:infoObject];
+}
+
+//指定某一個搜尋條件內特定 index 的內容
++ (NSDictionary *)saveInfoAtIndex:(NSUInteger)index bySearchInfo:(NSDictionary *)searchInfo {
+    RLMResults *hentaiSaveLibrarys = [self hentaiSaveLibraryBySearchInfo:searchInfo];
+    HentaiSaveLibrary *infoObject = hentaiSaveLibrarys[index];
     return [self dictionaryFromRealm:infoObject];
 }
 
@@ -108,6 +122,7 @@
     }
 }
 
+//回傳共有多少 groups
 + (NSArray *)groups {
     NSMutableDictionary *categorys = [NSMutableDictionary dictionary];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group != %@", @""];
@@ -128,6 +143,44 @@
 }
 
 #pragma mark - private
+
++ (RLMResults *)hentaiSaveLibraryBySearchInfo:(NSDictionary *)searchInfo {
+    RLMResults *resultObjects;
+    NSMutableArray *predicateStrings = [NSMutableArray array];
+    NSMutableArray *arguments = [NSMutableArray array];
+    
+    //分類搜尋
+    if ([searchInfo[@"group"] isKindOfClass:[NSString class]]) {
+        if (![searchInfo[@"group"] isEqualToString:@""]) {
+            [predicateStrings addObject:@"(group == %@)"];
+            [arguments addObject:searchInfo[@"group"]];
+        }
+    }
+    else {
+        [predicateStrings addObject:@"(group == %@)"];
+        [arguments addObject:@""];
+    }
+    
+    //title 搜尋
+    if (searchInfo[@"titles"]) {
+        NSArray *titles = searchInfo[@"titles"];
+        for (NSString *eachTitle in titles) {
+            [predicateStrings addObject:@"(hentaiInfo.title contains[c] %@ OR hentaiInfo.title_jpn contains[c] %@)"];
+            [arguments addObject:eachTitle];
+            [arguments addObject:eachTitle];
+        }
+    }
+    
+    if ([predicateStrings count]) {
+        NSString *finalPredicateString = [predicateStrings componentsJoinedByString:@" AND "];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:finalPredicateString argumentArray:arguments];
+        resultObjects = [HentaiSaveLibrary objectsInRealm:[self hentaiSaveLibraryRealm] withPredicate:predicate];
+    }
+    else {
+        resultObjects = [HentaiSaveLibrary allObjectsInRealm:[self hentaiSaveLibraryRealm]];
+    }
+    return resultObjects;
+}
 
 + (void)removeHentaiSaveLibrary:(HentaiSaveLibrary *)removeObject {
     [[self hentaiSaveLibraryRealm] beginWriteTransaction];

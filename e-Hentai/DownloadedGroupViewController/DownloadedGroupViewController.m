@@ -17,6 +17,15 @@
 
 @implementation DownloadedGroupViewController
 
+#pragma mark - DownloadedGroupFilterViewControllerDelegate
+
+- (void)onSearchFilterDone:(NSDictionary *)searchInfo {
+    DownloadedViewController *downloadedViewController = [DownloadedViewController new];
+    downloadedViewController.searchInfo = searchInfo;
+    downloadedViewController.delegate = self.delegate;
+    [self.navigationController pushViewController:downloadedViewController animated:YES];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -46,12 +55,16 @@
 #pragma mark * init
 
 - (void)setupInitValues {
+    self.title = @"下載分類清單";
     self.groups = [NSMutableArray array];
 }
 
 - (void)setupItemsOnNavigation {
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(sliderControl)];
     self.navigationItem.leftBarButtonItem = menuButton;
+    
+    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(presentSearchFilter)];
+    self.navigationItem.rightBarButtonItem = filterButton;
 }
 
 - (void)setupDownloadedGroupTableView {
@@ -64,6 +77,16 @@
 }
 
 #pragma mark * misc
+
+//present 搜尋跟過濾
+- (void)presentSearchFilter {
+    DownloadedGroupFilterViewController *downloadedGroupFilter = [DownloadedGroupFilterViewController new];
+    downloadedGroupFilter.delegate = self;
+    HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:downloadedGroupFilter];
+    hentaiNavigation.autoRotate = NO;
+    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
+    [self presentViewController:hentaiNavigation animated:YES completion:nil];
+}
 
 //重載列表
 - (void)reloadGroups {

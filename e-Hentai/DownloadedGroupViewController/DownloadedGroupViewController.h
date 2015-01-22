@@ -11,8 +11,9 @@
 #import "OpenMenuProtocol.h"
 #import "MenuDefaultCell.h"
 #import "DownloadedViewController.h"
+#import "DownloadedGroupFilterViewController.h"
 
-@interface DownloadedGroupViewController : ColorThemeViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DownloadedGroupViewController : ColorThemeViewController <UITableViewDataSource, UITableViewDelegate, DownloadedGroupFilterViewControllerDelegate>
 
 @property (nonatomic, weak) id <MainViewControllerDelegate, OpenMenuProtocol> delegate;
 
