@@ -21,14 +21,6 @@ daidoujichen@gmail.com
 
 當然, 撇開內容的部分不談, 程式碼的部分歡迎精進以及指點.
 
-浦公英安裝
-======
-[Dai-Hentai](http://www.pgyer.com/DaiHentai)
-
-我自己用 iphone5 ios8.1 以及三位朋友分別用 4s, 6p, 6p 都安裝成功, 不需調整時間, 感謝浦公英!
-
-不知道為什麼這次要我填安裝密碼, 所以安裝密碼的設置為 `hentai`.
-
 app icon 與進場圖
 ======
 在 v1.4 版本之後, 會發現 app 不再是白白沒有圖示的樣子了, 不過礙於內容尺度的關係, 並沒有將圖片內含在這個專案的資料夾內, 很感謝 g+ 上的好朋友 [扇扇](https://plus.google.com/u/0/+%E8%8F%AF%E6%89%870402/posts) 願意幫這個忙, 讓這個 app 活在大家裝置裡面的時候不會這麼突兀.
@@ -95,3 +87,7 @@ app icon 與進場圖
 
 - FXBlurView
   - 模糊效果, 方便好用.
+
+- JDStatusBarNotification
+  - 直接在 statusbar 上秀訊息的工具.
+  
