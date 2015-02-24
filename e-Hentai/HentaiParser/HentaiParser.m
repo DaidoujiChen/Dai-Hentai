@@ -34,7 +34,7 @@
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 completion(HentaiParserStatusNetworkFail, nil);
             });
 		}
@@ -69,19 +69,19 @@
                             eachDictionary[@"rating"] = metaData[@"rating"];
                             eachDictionary[@"posted"] = [self dateStringFrom1970:[metaData[@"posted"] doubleValue]];
                         }
-                        dispatch_sync(dispatch_get_main_queue(), ^{
+                        dispatch_async(dispatch_get_main_queue(), ^{
                             completion(HentaiParserStatusSuccess, returnArray);
                         });
                     }
                     else {
-                        dispatch_sync(dispatch_get_main_queue(), ^{
+                        dispatch_async(dispatch_get_main_queue(), ^{
                             completion(HentaiParserStatusNetworkFail, nil);
                         });
                     }
                 }];
             }
             else {
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     completion(HentaiParserStatusParseFail, nil);
                 });
             }
@@ -96,7 +96,7 @@
 	NSURL *newURL = [NSURL URLWithString:newURLString];
 	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:newURL] queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 	    if (connectionError) {
-	        dispatch_sync(dispatch_get_main_queue(), ^{
+	        dispatch_async(dispatch_get_main_queue(), ^{
 	            completion(HentaiParserStatusNetworkFail, nil);
 			});
 		}
@@ -125,7 +125,7 @@
                     });
                 }
                 dispatch_group_wait(hentaiGroup, DISPATCH_TIME_FOREVER);
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     NSMutableArray *removeObjects = [NSMutableArray array];
                     for (id eachObj in returnArray) {
                         if ([eachObj isKindOfClass:[NSNull class]]) {
@@ -137,7 +137,7 @@
                 });
             }
             else {
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     completion(HentaiParserStatusNetworkFail, nil);
                 });
             }

@@ -45,7 +45,7 @@
 	}
 	else {
 		if (![self isCancelled]) {
-			dispatch_sync(dispatch_get_main_queue(), ^{
+			dispatch_async(dispatch_get_main_queue(), ^{
 			    [self.delegate downloadResult:self.downloadURLString heightOfSize:[imageHeight floatValue] isSuccess:YES];
 			    [self hentaiFinish];
 			});
