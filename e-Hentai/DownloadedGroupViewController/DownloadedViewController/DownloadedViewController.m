@@ -220,7 +220,7 @@ typedef enum {
 - (void)setupRecvNotifications {
     //接 HentaiDownloadSuccessNotification
     @weakify(self);
-    [[self portal:HentaiDownloadSuccessNotification] recv: ^(NSString *alertViewMessage) {
+    [[self portal:PortalHentaiDownloadSuccess] recv: ^(NSString *alertViewMessage) {
         @strongify(self);
         [self.listTableView reloadData];
     }];

@@ -12,7 +12,6 @@
 typedef enum {
     DaiPortalBlockAnalysisReturnTypeID,
     DaiPortalBlockAnalysisReturnTypeVoid,
-    DaiPortalBlockAnalysisReturnTypeUnknow
 } DaiPortalBlockAnalysisReturnType;
 
 #import <Foundation/Foundation.h>
@@ -21,5 +20,6 @@ typedef enum {
 
 + (NSUInteger)argumentsInBlock:(id)blockObj;
 + (DaiPortalBlockAnalysisReturnType)returnTypeInBlock:(id)blockObj;
++ (NSMethodSignature *)signature:(id)blockObj;
 
 @end

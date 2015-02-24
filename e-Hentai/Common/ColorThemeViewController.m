@@ -75,9 +75,11 @@
     [super viewDidLoad];
     
     @weakify(self);
-    [[self portal:@"ChangeThemeColor"] recv:^(NSString *colorString){
+    [[self portal:PortalChangeThemeColor] recv: ^(NSString *colorString) {
         @strongify(self);
-        [self changeToColor:colorString];
+        if (colorString) {
+            [self changeToColor:colorString];
+        }
     }];
 }
 

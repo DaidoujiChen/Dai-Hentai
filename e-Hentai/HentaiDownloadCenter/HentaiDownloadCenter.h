@@ -10,9 +10,6 @@
 
 #import "HentaiDownloadBookOperation.h"
 
-#define HentaiDownloadSuccessNotification @"HentaiDownloadSuccessNotification"
-#define HentaiDownloadFailNotification  @"HentaiDownloadFailNotification"
-
 typedef void (^HentaiMonitorBlock)(NSDictionary *centerDetail);
 
 @interface HentaiDownloadCenter : NSObject

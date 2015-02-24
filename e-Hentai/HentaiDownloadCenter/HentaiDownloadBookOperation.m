@@ -197,10 +197,10 @@
                 [[[FilesManager cacheFolder] fcd:@"Hentai"] rd:self.hentaiKey];
                 [HentaiSaveLibrary addSaveInfo:saveInfo toGroup:self.group];
                 [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
-                [[self portal:HentaiDownloadSuccessNotification] send:[DaiPortalPackage item:self.hentaiInfo[@"title"]]];
+                [[self portal:PortalHentaiDownloadSuccess] send:DaiPortalPackageItem(self.hentaiInfo[@"title"])];
             }
             else {
-                [[self portal:HentaiDownloadFailNotification] send:[DaiPortalPackage item:@""]];
+                [[self portal:PortalHentaiDownloadFail] send:DaiPortalPackageItem(self.hentaiInfo[@"title"])];
             }
             
             [self hentaiFinish];

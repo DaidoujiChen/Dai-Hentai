@@ -56,6 +56,14 @@
 		016DADA219E393DF00E528BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA119E393DF00E528BE /* CoreLocation.framework */; };
 		016DADA419E393EB00E528BE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA319E393EB00E528BE /* CoreMotion.framework */; };
 		016DADA619E3940C00E528BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016DADA519E3940C00E528BE /* Security.framework */; };
+		0171C44A1A9C1D0100320AA8 /* DaiPortal+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = 0171C4391A9C1D0100320AA8 /* DaiPortal+Internal.m */; };
+		0171C44B1A9C1D0100320AA8 /* DaiPortal+Reciver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0171C43B1A9C1D0100320AA8 /* DaiPortal+Reciver.m */; };
+		0171C44C1A9C1D0100320AA8 /* DaiPortal+Sender.m in Sources */ = {isa = PBXBuildFile; fileRef = 0171C43D1A9C1D0100320AA8 /* DaiPortal+Sender.m */; };
+		0171C44D1A9C1D0100320AA8 /* DaiPortal.m in Sources */ = {isa = PBXBuildFile; fileRef = 0171C43F1A9C1D0100320AA8 /* DaiPortal.m */; };
+		0171C44E1A9C1D0100320AA8 /* DaiPortalBlockAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 0171C4421A9C1D0100320AA8 /* DaiPortalBlockAnalysis.m */; };
+		0171C44F1A9C1D0100320AA8 /* DaiPortalMessager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0171C4441A9C1D0100320AA8 /* DaiPortalMessager.m */; };
+		0171C4501A9C1D0100320AA8 /* DaiPortalPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0171C4471A9C1D0100320AA8 /* DaiPortalPackage.m */; };
+		0171C4511A9C1D0100320AA8 /* SFExecuteOnDeallocInternalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0171C4491A9C1D0100320AA8 /* SFExecuteOnDeallocInternalObject.m */; };
 		01758F741A3FE07400677BA2 /* ExMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01758F731A3FE07400677BA2 /* ExMainViewController.m */; };
 		0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766219E27E8D00E9005E /* DownloadManagerCell.m */; };
 		0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179766319E27E8D00E9005E /* DownloadManagerCell.xib */; };
@@ -77,10 +85,6 @@
 		01821A1B1A5A76FA007E5A76 /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01821A191A5A76FA007E5A76 /* MainTableViewCell.m */; };
 		01821A1C1A5A76FA007E5A76 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01821A1A1A5A76FA007E5A76 /* MainTableViewCell.xib */; };
 		018258421A5FC39800FA4678 /* HentaiSettingsV2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018258411A5FC39800FA4678 /* HentaiSettingsV2.plist */; };
-		019290211A25D6C70094B423 /* DaiPortal.m in Sources */ = {isa = PBXBuildFile; fileRef = 019290181A25D6C70094B423 /* DaiPortal.m */; };
-		019290221A25D6C70094B423 /* DaiPortalBlockAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192901A1A25D6C70094B423 /* DaiPortalBlockAnalysis.m */; };
-		019290231A25D6C70094B423 /* DaiPortalPerformHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192901C1A25D6C70094B423 /* DaiPortalPerformHelper.m */; };
-		019290241A25D6C70094B423 /* DaiPortalWarehouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192901E1A25D6C70094B423 /* DaiPortalWarehouse.m */; };
 		019290251A25D6C70094B423 /* NSObject+DaiPortal.m in Sources */ = {isa = PBXBuildFile; fileRef = 019290201A25D6C70094B423 /* NSObject+DaiPortal.m */; };
 		0199268919ADDB83009F814B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268819ADDB83009F814B /* Foundation.framework */; };
 		0199268B19ADDB83009F814B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199268A19ADDB83009F814B /* CoreGraphics.framework */; };
@@ -191,6 +195,23 @@
 		016DADA119E393DF00E528BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		016DADA319E393EB00E528BE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		016DADA519E3940C00E528BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0171C4381A9C1D0100320AA8 /* DaiPortal+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiPortal+Internal.h"; sourceTree = "<group>"; };
+		0171C4391A9C1D0100320AA8 /* DaiPortal+Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiPortal+Internal.m"; sourceTree = "<group>"; };
+		0171C43A1A9C1D0100320AA8 /* DaiPortal+Reciver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiPortal+Reciver.h"; sourceTree = "<group>"; };
+		0171C43B1A9C1D0100320AA8 /* DaiPortal+Reciver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiPortal+Reciver.m"; sourceTree = "<group>"; };
+		0171C43C1A9C1D0100320AA8 /* DaiPortal+Sender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiPortal+Sender.h"; sourceTree = "<group>"; };
+		0171C43D1A9C1D0100320AA8 /* DaiPortal+Sender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiPortal+Sender.m"; sourceTree = "<group>"; };
+		0171C43E1A9C1D0100320AA8 /* DaiPortal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortal.h; sourceTree = "<group>"; };
+		0171C43F1A9C1D0100320AA8 /* DaiPortal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortal.m; sourceTree = "<group>"; };
+		0171C4411A9C1D0100320AA8 /* DaiPortalBlockAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalBlockAnalysis.h; sourceTree = "<group>"; };
+		0171C4421A9C1D0100320AA8 /* DaiPortalBlockAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalBlockAnalysis.m; sourceTree = "<group>"; };
+		0171C4431A9C1D0100320AA8 /* DaiPortalMessager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalMessager.h; sourceTree = "<group>"; };
+		0171C4441A9C1D0100320AA8 /* DaiPortalMessager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalMessager.m; sourceTree = "<group>"; };
+		0171C4451A9C1D0100320AA8 /* DaiPortalMetaMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalMetaMacros.h; sourceTree = "<group>"; };
+		0171C4461A9C1D0100320AA8 /* DaiPortalPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalPackage.h; sourceTree = "<group>"; };
+		0171C4471A9C1D0100320AA8 /* DaiPortalPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalPackage.m; sourceTree = "<group>"; };
+		0171C4481A9C1D0100320AA8 /* SFExecuteOnDeallocInternalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFExecuteOnDeallocInternalObject.h; sourceTree = "<group>"; };
+		0171C4491A9C1D0100320AA8 /* SFExecuteOnDeallocInternalObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFExecuteOnDeallocInternalObject.m; sourceTree = "<group>"; };
 		01758F721A3FE07400677BA2 /* ExMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExMainViewController.h; sourceTree = "<group>"; };
 		01758F731A3FE07400677BA2 /* ExMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExMainViewController.m; sourceTree = "<group>"; };
 		0179766119E27E8D00E9005E /* DownloadManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerCell.h; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.h; sourceTree = "<group>"; };
@@ -217,14 +238,6 @@
 		01821A191A5A76FA007E5A76 /* MainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
 		01821A1A1A5A76FA007E5A76 /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		018258411A5FC39800FA4678 /* HentaiSettingsV2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = HentaiSettingsV2.plist; path = SettingViewController/HentaiSettingsV2.plist; sourceTree = "<group>"; };
-		019290171A25D6C70094B423 /* DaiPortal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortal.h; sourceTree = "<group>"; };
-		019290181A25D6C70094B423 /* DaiPortal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortal.m; sourceTree = "<group>"; };
-		019290191A25D6C70094B423 /* DaiPortalBlockAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalBlockAnalysis.h; sourceTree = "<group>"; };
-		0192901A1A25D6C70094B423 /* DaiPortalBlockAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalBlockAnalysis.m; sourceTree = "<group>"; };
-		0192901B1A25D6C70094B423 /* DaiPortalPerformHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalPerformHelper.h; sourceTree = "<group>"; };
-		0192901C1A25D6C70094B423 /* DaiPortalPerformHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalPerformHelper.m; sourceTree = "<group>"; };
-		0192901D1A25D6C70094B423 /* DaiPortalWarehouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiPortalWarehouse.h; sourceTree = "<group>"; };
-		0192901E1A25D6C70094B423 /* DaiPortalWarehouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiPortalWarehouse.m; sourceTree = "<group>"; };
 		0192901F1A25D6C70094B423 /* NSObject+DaiPortal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DaiPortal.h"; sourceTree = "<group>"; };
 		019290201A25D6C70094B423 /* NSObject+DaiPortal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DaiPortal.m"; sourceTree = "<group>"; };
 		0199268519ADDB83009F814B /* e-Hentai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-Hentai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,6 +532,37 @@
 			path = LightWeightPlist;
 			sourceTree = "<group>";
 		};
+		0171C4371A9C1D0100320AA8 /* PortalCore */ = {
+			isa = PBXGroup;
+			children = (
+				0171C4381A9C1D0100320AA8 /* DaiPortal+Internal.h */,
+				0171C4391A9C1D0100320AA8 /* DaiPortal+Internal.m */,
+				0171C43A1A9C1D0100320AA8 /* DaiPortal+Reciver.h */,
+				0171C43B1A9C1D0100320AA8 /* DaiPortal+Reciver.m */,
+				0171C43C1A9C1D0100320AA8 /* DaiPortal+Sender.h */,
+				0171C43D1A9C1D0100320AA8 /* DaiPortal+Sender.m */,
+				0171C43E1A9C1D0100320AA8 /* DaiPortal.h */,
+				0171C43F1A9C1D0100320AA8 /* DaiPortal.m */,
+			);
+			path = PortalCore;
+			sourceTree = "<group>";
+		};
+		0171C4401A9C1D0100320AA8 /* PortalUtility */ = {
+			isa = PBXGroup;
+			children = (
+				0171C4411A9C1D0100320AA8 /* DaiPortalBlockAnalysis.h */,
+				0171C4421A9C1D0100320AA8 /* DaiPortalBlockAnalysis.m */,
+				0171C4431A9C1D0100320AA8 /* DaiPortalMessager.h */,
+				0171C4441A9C1D0100320AA8 /* DaiPortalMessager.m */,
+				0171C4451A9C1D0100320AA8 /* DaiPortalMetaMacros.h */,
+				0171C4461A9C1D0100320AA8 /* DaiPortalPackage.h */,
+				0171C4471A9C1D0100320AA8 /* DaiPortalPackage.m */,
+				0171C4481A9C1D0100320AA8 /* SFExecuteOnDeallocInternalObject.h */,
+				0171C4491A9C1D0100320AA8 /* SFExecuteOnDeallocInternalObject.m */,
+			);
+			path = PortalUtility;
+			sourceTree = "<group>";
+		};
 		01758F711A3FE05300677BA2 /* ExMainViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,16 +651,10 @@
 		019290161A25D6C70094B423 /* DaiPortal */ = {
 			isa = PBXGroup;
 			children = (
-				019290171A25D6C70094B423 /* DaiPortal.h */,
-				019290181A25D6C70094B423 /* DaiPortal.m */,
-				019290191A25D6C70094B423 /* DaiPortalBlockAnalysis.h */,
-				0192901A1A25D6C70094B423 /* DaiPortalBlockAnalysis.m */,
-				0192901B1A25D6C70094B423 /* DaiPortalPerformHelper.h */,
-				0192901C1A25D6C70094B423 /* DaiPortalPerformHelper.m */,
-				0192901D1A25D6C70094B423 /* DaiPortalWarehouse.h */,
-				0192901E1A25D6C70094B423 /* DaiPortalWarehouse.m */,
 				0192901F1A25D6C70094B423 /* NSObject+DaiPortal.h */,
 				019290201A25D6C70094B423 /* NSObject+DaiPortal.m */,
+				0171C4371A9C1D0100320AA8 /* PortalCore */,
+				0171C4401A9C1D0100320AA8 /* PortalUtility */,
 			);
 			path = DaiPortal;
 			sourceTree = "<group>";
@@ -904,31 +942,35 @@
 				0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */,
 				016BBF0D19B94E4F0015E11E /* LightWeightPlist+AccessObject.m in Sources */,
 				0150034519B6E5E90055F47D /* TFHppleElement.m in Sources */,
+				0171C44E1A9C1D0100320AA8 /* DaiPortalBlockAnalysis.m in Sources */,
+				0171C44B1A9C1D0100320AA8 /* DaiPortal+Reciver.m in Sources */,
 				016BBF0C19B94E4F0015E11E /* FMStream.m in Sources */,
 				01821A1B1A5A76FA007E5A76 /* MainTableViewCell.m in Sources */,
 				013F8F111A490D59002B8C47 /* HentaiSaveLibrary_HentaiResult.m in Sources */,
-				019290221A25D6C70094B423 /* DaiPortalBlockAnalysis.m in Sources */,
 				0150034619B6E5E90055F47D /* XPathQuery.m in Sources */,
 				01FB6FD419E23FB4006CBEF2 /* NSString+Hentai.m in Sources */,
 				013F8F0E1A490BB1002B8C47 /* HentaiSaveLibrary_HentaiInfo.m in Sources */,
+				0171C4501A9C1D0100320AA8 /* DaiPortalPackage.m in Sources */,
 				016BBF0F19B94E4F0015E11E /* LightWeightPlist+HandleCache.m in Sources */,
 				0118081619B6F06200FE0DA1 /* HentaiNavigationController.m in Sources */,
 				016BBF1519B953D40015E11E /* HentaiDownloadImageOperation.m in Sources */,
 				01758F741A3FE07400677BA2 /* ExMainViewController.m in Sources */,
 				0125A3661A5AD2EB00C52987 /* UIImageView+Hentai.m in Sources */,
+				0171C44A1A9C1D0100320AA8 /* DaiPortal+Internal.m in Sources */,
 				013F8F141A490DBA002B8C47 /* HentaiSaveLibrary_Images.m in Sources */,
 				01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */,
+				0171C44C1A9C1D0100320AA8 /* DaiPortal+Sender.m in Sources */,
 				0150034419B6E5E90055F47D /* TFHpple.m in Sources */,
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
 				0118081519B6F06200FE0DA1 /* FakeViewController.m in Sources */,
-				019290241A25D6C70094B423 /* DaiPortalWarehouse.m in Sources */,
 				0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */,
 				01051A941A6CDE1A00DE3461 /* GroupSelectViewController.m in Sources */,
 				01622DE11A6F415F004D0632 /* DownloadedGroupViewController.m in Sources */,
 				0137F40F19C1695800528359 /* HentaiDownloadBookOperation.m in Sources */,
 				01622DE41A6F418B004D0632 /* DownloadedViewController.m in Sources */,
 				016BBF1019B94E4F0015E11E /* LightWeightPlist+SourceFromDisk.m in Sources */,
-				019290231A25D6C70094B423 /* DaiPortalPerformHelper.m in Sources */,
+				0171C44F1A9C1D0100320AA8 /* DaiPortalMessager.m in Sources */,
+				0171C44D1A9C1D0100320AA8 /* DaiPortal.m in Sources */,
 				01A166EC19E28D5E00203360 /* NSDictionary+Hentai.m in Sources */,
 				01AD623E1A5797D500962CBD /* SettingV2ViewController.m in Sources */,
 				011AEA5119DD28DE00A15CA5 /* SliderViewController.m in Sources */,
@@ -938,7 +980,6 @@
 				013F8F171A490E06002B8C47 /* HentaiSaveLibrary.m in Sources */,
 				01D068E31A5AACF40062971E /* UIView+Hentai.m in Sources */,
 				016BBF1119B94E4F0015E11E /* LightWeightPlist.m in Sources */,
-				019290211A25D6C70094B423 /* DaiPortal.m in Sources */,
 				016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */,
 				016BBF0E19B94E4F0015E11E /* LightWeightPlist+FilePath.m in Sources */,
 				0137F40C19C1688200528359 /* HentaiDownloadCenter.m in Sources */,
@@ -946,6 +987,7 @@
 				0163E4721A3FD019007C3D58 /* DiveExHentai.m in Sources */,
 				019E11841A5D198F0053581F /* HentaiSettingManager.m in Sources */,
 				0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */,
+				0171C4511A9C1D0100320AA8 /* SFExecuteOnDeallocInternalObject.m in Sources */,
 				016BBF1219B94E4F0015E11E /* LightWeightPlistObjects.m in Sources */,
 				0199269519ADDB83009F814B /* main.m in Sources */,
 				01A907F01A493A96006F4179 /* HentaiCacheLibrary.m in Sources */,

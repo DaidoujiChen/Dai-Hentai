@@ -99,7 +99,7 @@
 
 - (void)submitChange {
     [HentaiSettingManager temporarySettings][@"themeColor"] = self.currentColorString;
-    [[self portal:@"ChangeThemeColor"] send:[DaiPortalPackage item:self.currentColorString]];
+    [[self portal:PortalChangeThemeColor] send:DaiPortalPackageItem(self.currentColorString)];
     [self.delegate themeColorDidChange];
     [self dismissViewControllerAnimated:YES completion:^{
     }];

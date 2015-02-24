@@ -33,18 +33,21 @@ enum {
 @implementation DaiPortalBlockAnalysis
 
 + (NSUInteger)argumentsInBlock:(id)blockObj {
-    struct Block *block = (__bridge void *)blockObj;
-    struct BlockDescriptor *descriptor = block->descriptor;
-    assert(block->flags & BLOCK_HAS_SIGNATURE);
-    int index = 0;
-    if (block->flags & BLOCK_HAS_COPY_DISPOSE) {
-        index += 2;
-    }
-    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:descriptor->rest[index]];
+    NSMethodSignature *signature = [self signature:blockObj];
     return [signature numberOfArguments];
 }
 
 + (DaiPortalBlockAnalysisReturnType)returnTypeInBlock:(id)blockObj {
+    NSMethodSignature *signature = [self signature:blockObj];
+    if (strncmp(signature.methodReturnType, "@", 1) == 0) {
+        return DaiPortalBlockAnalysisReturnTypeID;
+    }
+    else {
+        return DaiPortalBlockAnalysisReturnTypeVoid;
+    }
+}
+
++ (NSMethodSignature *)signature:(id)blockObj {
     struct Block *block = (__bridge void *)blockObj;
     struct BlockDescriptor *descriptor = block->descriptor;
     assert(block->flags & BLOCK_HAS_SIGNATURE);
@@ -53,15 +56,7 @@ enum {
         index += 2;
     }
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:descriptor->rest[index]];
-    if (strncmp(signature.methodReturnType, "@", 1) == 0) {
-        return DaiPortalBlockAnalysisReturnTypeID;
-    }
-    else if (strncmp(signature.methodReturnType, "v", 1) == 0) {
-        return DaiPortalBlockAnalysisReturnTypeVoid;
-    }
-    else {
-        return DaiPortalBlockAnalysisReturnTypeUnknow;
-    }
+    return signature;
 }
 
 @end

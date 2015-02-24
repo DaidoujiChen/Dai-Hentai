@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DaiPortal.h"
+#import "DaiPortal+Reciver.h"
+#import "DaiPortal+Sender.h"
 
 @interface NSObject (DaiPortal)
 

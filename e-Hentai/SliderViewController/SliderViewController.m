@@ -108,7 +108,7 @@
     
     //接 HentaiDownloadSuccessNotification
     @weakify(self);
-    [[self portal:HentaiDownloadSuccessNotification] recv: ^(NSString *alertViewMessage) {
+    [[self portal:PortalHentaiDownloadSuccess] recv: ^(NSString *alertViewMessage) {
         @strongify(self);
         if (self && [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil) {
             [JDStatusBarNotification showWithStatus:@"下載完成!" dismissAfter:2.0f styleName:JDStatusBarStyleSuccess];
@@ -116,7 +116,7 @@
     }];
     
     //接 HentaiDownloadFailNotification
-    [[self portal:HentaiDownloadFailNotification] recv: ^(NSString *alertViewMessage) {
+    [[self portal:PortalHentaiDownloadFail] recv: ^(NSString *alertViewMessage) {
         @strongify(self);
         if (self && [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil) {
             [JDStatusBarNotification showWithStatus:@"下載失敗!" dismissAfter:2.0f styleName:JDStatusBarStyleError];
