@@ -1,0 +1,1 @@
+../../../QuickDialog/quickdialog/QTextField.h

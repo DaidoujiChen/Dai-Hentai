@@ -313,6 +313,7 @@
     listTableViewRect.origin.x += 10;
     
     self.listTableView = [[UITableView alloc] initWithFrame:listTableViewRect style:UITableViewStyleGrouped];
+    self.listTableView.accessibilityIdentifier = @"listTableView";
     self.listTableView.delegate = self;
     self.listTableView.dataSource = self;
     self.listTableView.backgroundColor = [UIColor clearColor];

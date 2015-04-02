@@ -156,6 +156,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    self.view.accessibilityLabel = @"sliderView";
 	self.sizeMode = IIViewDeckViewSizeMode;
     self.panningMode = IIViewDeckAllViewsPanning;
     self.delegate = self;

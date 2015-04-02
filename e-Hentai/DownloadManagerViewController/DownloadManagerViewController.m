@@ -77,6 +77,7 @@
 
 - (void)setupDownloadManagerTableView {
     self.downloadManagerTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.downloadManagerTableView.accessibilityIdentifier = @"downloadManagerTableView";
     self.downloadManagerTableView.delegate = self;
     self.downloadManagerTableView.dataSource = self;
     self.downloadManagerTableView.backgroundColor = [UIColor clearColor];
