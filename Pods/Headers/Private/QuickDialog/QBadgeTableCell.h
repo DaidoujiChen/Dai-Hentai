@@ -1,0 +1,1 @@
+../../../QuickDialog/quickdialog/QBadgeTableCell.h

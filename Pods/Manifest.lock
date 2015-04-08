@@ -3,6 +3,9 @@ PODS:
   - DACircularProgress (2.2.0)
   - FXBlurView (1.6.3)
   - JDStatusBarNotification (1.5.0)
+  - KIF (3.2.1):
+    - KIF/XCTest (= 3.2.1)
+  - KIF/XCTest (3.2.1)
   - MBProgressHUD (0.9)
   - MWPhotoBrowser (1.4.1):
     - DACircularProgress
@@ -34,6 +37,7 @@ DEPENDENCIES:
   - ChameleonFramework (~> 1.1.1)
   - FXBlurView (~> 1.6.3)
   - JDStatusBarNotification (~> 1.5.0)
+  - KIF (~> 3.0)
   - MWPhotoBrowser (~> 1.4.1)
   - QuickDialog (~> 1.0)
   - ReactiveCocoa (~> 2.3.1)
@@ -44,19 +48,20 @@ DEPENDENCIES:
   - ViewDeck (~> 2.3.1)
 
 SPEC CHECKSUMS:
-  ChameleonFramework: c60096686e3771f5d78f26cfbfd08955a8a88cbd
-  DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
-  FXBlurView: abe1046285813c4f6e9008abbc324fc5ab32af90
-  JDStatusBarNotification: 04d412881181b925a9429fd84c9898c125e54600
-  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  MWPhotoBrowser: be05b3b7521e961382a4ba5579685bf5a00b93d8
-  PSTCollectionView: d9f466e4554cc83260ca9bde7beb27f308e8fd76
-  QuickDialog: 1f1df7b87d608bcbb3919f4ec809bd7d7ae50101
-  ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
-  Realm: 20b0bd13983d64fd22afeb47489729fd71b6b5c6
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  SupportKit: 03ee8dec9c5464c98c38e13a66af4af4b35a2551
-  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
-  ViewDeck: 654a493fc83928892ce483dea08a5302180aafce
+  ChameleonFramework: f824d2afa52182302ef72c706dfe5a8f0597f644
+  DACircularProgress: 0f92b77239d5f3c612fc66185e2998391ac8e054
+  FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
+  JDStatusBarNotification: 4ce8494aafef7907646411dd811149a3d73eba42
+  KIF: ef1691e54e1d969c3b4fd0b5b56a3d7ddf37f216
+  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
+  MWPhotoBrowser: 2531e682860d62b8a7ba8659de02eb9040e431e5
+  PSTCollectionView: 6749df92885353521f55279a7ce2b293762e2be4
+  QuickDialog: ea2e68e0611ec012bcbd9d0e1d703d566a4c7355
+  ReactiveCocoa: 334468a83b2c5f669f7cfb9a084415ee23219b4f
+  Realm: 9b7bebb86336e17789d7ac21b22f67a69808cb56
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  SupportKit: 0620a30b87fdbbfc59b53c53697c72036da23d83
+  SVProgressHUD: 3afb875b9eb23acd1bed9b82495695c68621a8b2
+  ViewDeck: 3e9bfcc36d889155d77ae47811a4d48714ee8d0c
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.3

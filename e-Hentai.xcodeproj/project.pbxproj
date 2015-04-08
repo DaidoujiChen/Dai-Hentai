@@ -104,8 +104,20 @@
 		01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */; };
 		01D068E31A5AACF40062971E /* UIView+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D068E21A5AACF40062971E /* UIView+Hentai.m */; };
 		01FB6FD419E23FB4006CBEF2 /* NSString+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */; };
+		15A3136E5E2A013E5D0DD04C /* libPods-HentaiTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */; };
+		1C55C2B61ACD18A400A74AAA /* DownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55C2B51ACD18A400A74AAA /* DownloadTests.m */; };
 		32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E356769FC894496F8A03AC25 /* libPods.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1C6ED88C1ACD13F400713301 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0199267D19ADDB83009F814B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0199268419ADDB83009F814B;
+			remoteInfo = "e-Hentai";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0103B8BD1A01E6FC00CF314F /* ColorThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorThemeViewController.h; sourceTree = "<group>"; };
@@ -272,8 +284,14 @@
 		01D068E21A5AACF40062971E /* UIView+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hentai.m"; sourceTree = "<group>"; };
 		01FB6FD219E23FB4006CBEF2 /* NSString+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hentai.h"; sourceTree = "<group>"; };
 		01FB6FD319E23FB4006CBEF2 /* NSString+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hentai.m"; sourceTree = "<group>"; };
+		1C55C2B51ACD18A400A74AAA /* DownloadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadTests.m; sourceTree = "<group>"; };
+		1C6ED8861ACD13F300713301 /* HentaiTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HentaiTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C6ED8891ACD13F400713301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		261F8AFB3698803CDFFF992B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		813D0DA40BF1B18C060F7C3C /* Pods-HentaiTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HentaiTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-HentaiTest/Pods-HentaiTest.release.xcconfig"; sourceTree = "<group>"; };
+		965912DFC9E1CD3C99BAA83D /* Pods-HentaiTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HentaiTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HentaiTest/Pods-HentaiTest.debug.xcconfig"; sourceTree = "<group>"; };
 		A3229B245A679B69931BB8A7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HentaiTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E356769FC894496F8A03AC25 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -296,6 +314,14 @@
 				0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */,
 				0199268919ADDB83009F814B /* Foundation.framework in Frameworks */,
 				32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C6ED8831ACD13F300713301 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A3136E5E2A013E5D0DD04C /* libPods-HentaiTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +684,7 @@
 			isa = PBXGroup;
 			children = (
 				0199268E19ADDB83009F814B /* e-Hentai */,
+				1C6ED8871ACD13F300713301 /* HentaiTest */,
 				0199268719ADDB83009F814B /* Frameworks */,
 				0199268619ADDB83009F814B /* Products */,
 				215E23A237E99B5BA75171C3 /* Pods */,
@@ -668,6 +695,7 @@
 			isa = PBXGroup;
 			children = (
 				0199268519ADDB83009F814B /* e-Hentai.app */,
+				1C6ED8861ACD13F300713301 /* HentaiTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -689,6 +717,7 @@
 				0199268C19ADDB83009F814B /* UIKit.framework */,
 				019926A719ADDB83009F814B /* XCTest.framework */,
 				E356769FC894496F8A03AC25 /* libPods.a */,
+				E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -787,11 +816,30 @@
 			name = DownloadManagerViewController;
 			sourceTree = "<group>";
 		};
+		1C6ED8871ACD13F300713301 /* HentaiTest */ = {
+			isa = PBXGroup;
+			children = (
+				1C55C2B51ACD18A400A74AAA /* DownloadTests.m */,
+				1C6ED8881ACD13F300713301 /* Supporting Files */,
+			);
+			path = HentaiTest;
+			sourceTree = "<group>";
+		};
+		1C6ED8881ACD13F300713301 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C6ED8891ACD13F400713301 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		215E23A237E99B5BA75171C3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				261F8AFB3698803CDFFF992B /* Pods.debug.xcconfig */,
 				A3229B245A679B69931BB8A7 /* Pods.release.xcconfig */,
+				965912DFC9E1CD3C99BAA83D /* Pods-HentaiTest.debug.xcconfig */,
+				813D0DA40BF1B18C060F7C3C /* Pods-HentaiTest.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -818,6 +866,26 @@
 			productReference = 0199268519ADDB83009F814B /* e-Hentai.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1C6ED8851ACD13F300713301 /* HentaiTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C6ED8901ACD13F400713301 /* Build configuration list for PBXNativeTarget "HentaiTest" */;
+			buildPhases = (
+				BDD5DFE77E7F24B49AAFCB00 /* Check Pods Manifest.lock */,
+				1C6ED8821ACD13F300713301 /* Sources */,
+				1C6ED8831ACD13F300713301 /* Frameworks */,
+				1C6ED8841ACD13F300713301 /* Resources */,
+				18AAD8C1D8E5F00CBE2D8748 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1C6ED88D1ACD13F400713301 /* PBXTargetDependency */,
+			);
+			name = HentaiTest;
+			productName = HentaiTest;
+			productReference = 1C6ED8861ACD13F300713301 /* HentaiTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -829,6 +897,10 @@
 				TargetAttributes = {
 					0199268419ADDB83009F814B = {
 						DevelopmentTeam = Y6TM8J7448;
+					};
+					1C6ED8851ACD13F300713301 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 0199268419ADDB83009F814B;
 					};
 				};
 			};
@@ -847,6 +919,7 @@
 			projectRoot = "";
 			targets = (
 				0199268419ADDB83009F814B /* e-Hentai */,
+				1C6ED8851ACD13F300713301 /* HentaiTest */,
 			);
 		};
 /* End PBXProject section */
@@ -883,6 +956,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1C6ED8841ACD13F300713301 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -901,7 +981,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		18AAD8C1D8E5F00CBE2D8748 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HentaiTest/Pods-HentaiTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		31D7142371B842CCABA93E38 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BDD5DFE77E7F24B49AAFCB00 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -986,7 +1096,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1C6ED8821ACD13F300713301 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C55C2B61ACD18A400A74AAA /* DownloadTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1C6ED88D1ACD13F400713301 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0199268419ADDB83009F814B /* e-Hentai */;
+			targetProxy = 1C6ED88C1ACD13F400713301 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		015B89E619FF9B2500CFA9DE /* SupportKitLocalizable.strings */ = {
@@ -1141,6 +1267,51 @@
 			};
 			name = Release;
 		};
+		1C6ED88E1ACD13F400713301 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 965912DFC9E1CD3C99BAA83D /* Pods-HentaiTest.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/e-Hentai.app/e-Hentai";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HentaiTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		1C6ED88F1ACD13F400713301 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 813D0DA40BF1B18C060F7C3C /* Pods-HentaiTest.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/e-Hentai.app/e-Hentai";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HentaiTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1158,6 +1329,15 @@
 			buildConfigurations = (
 				019926B819ADDB83009F814B /* Debug */,
 				019926B919ADDB83009F814B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C6ED8901ACD13F400713301 /* Build configuration list for PBXNativeTarget "HentaiTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C6ED88E1ACD13F400713301 /* Debug */,
+				1C6ED88F1ACD13F400713301 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
