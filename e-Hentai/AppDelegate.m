@@ -40,17 +40,6 @@
     return YES;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    [Pgyer lastestInformationByShortcut:@"DaiHentai" completion:^(NSDictionary *information) {
-        if ([information[@"appVersion"] floatValue] > [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] floatValue]) {
-            [UIAlertView hentai_alertViewWithTitle:[NSString stringWithFormat:@"新版本 v%@ 通知", information[@"appVersion"]] message:information[@"appUpdateDescription"] cancelButtonTitle:@"我不想更新~ O3O" otherButtonTitles:@[@"麻煩幫我跳轉更新頁~ O3O"] onClickIndex:^(NSInteger clickIndex) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.pgyer.com/DaiHentai"]];
-            } onCancel:^{
-            }];
-        }
-    }];
-}
-
 - (void)oldDataChecking {
     
     //舊的儲存方式搬移

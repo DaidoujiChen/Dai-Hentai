@@ -42,7 +42,6 @@
     #import "NSString+Hentai.h"
     #import "NSDictionary+Hentai.h"
     #import "NSObject+DaiPortal.h"
-    #import "Pgyer.h"
     #import "Flurry.h"
     #import "OpenMenuProtocol.h"
     #import "UIView+Hentai.h"
