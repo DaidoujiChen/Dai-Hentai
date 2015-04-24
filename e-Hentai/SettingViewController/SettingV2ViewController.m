@@ -19,13 +19,18 @@
 - (void)themeColorDidChange {
     QSection *changeColorSection = [self.root sectionWithKey:@"changeColorSection"];
     QLabelElement *sizeElement = changeColorSection.elements[0];
-    sizeElement.value = [HentaiSettingManager temporarySettings][@"themeColor"];
+    sizeElement.value = [Setting shared].themeColor;
     [self.quickDialogTableView reloadData];
 }
 
 #pragma mark - private
 
 #pragma mark * init
+
+- (void)setupItemsOnNavigation {
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(sliderControl)];
+    self.navigationItem.leftBarButtonItem = menuButton;
+}
 
 - (QRootElement *)rootMaker {
     
@@ -35,27 +40,45 @@
     root.title = @"設定";
     root.controllerName = @"SettingV2ViewController";
     
+    //設置一些簡易的開關們
+    [root addSection:[self switchsSection]];
+    
+    //更換顏色
+    [root addSection:[self changeColorSection]];
+    
+    //快取
+    [root addSection:[self cacheSizeSection]];
+    
+    //下載
+    [root addSection:[self downloadSizeScetion]];
+    return root;
+}
+
+#pragma mark * 功能區塊
+
+- (QSection *)switchsSection {
     //開關們的 section
-    QSection *switchs = [[QSection alloc] initWithTitle:@"開開關關"];
+    QSection *switchsSection = [[QSection alloc] initWithTitle:@"開開關關"];
     
     //高清開關
-    QBooleanElement *highResolutionElement = [[QBooleanElement alloc] initWithTitle:@"高清" BoolValue:[[HentaiSettingManager temporarySettings][@"highResolution"] boolValue]];
+    QBooleanElement *highResolutionElement = [[QBooleanElement alloc] initWithTitle:@"高清" BoolValue:[[Setting shared].highResolution boolValue]];
     highResolutionElement.controllerAction = @"highResolutionChange:";
-    [switchs addElement:highResolutionElement];
+    [switchsSection addElement:highResolutionElement];
     
     //顯示方式開關
-    QBooleanElement *browserElement = [[QBooleanElement alloc] initWithTitle:@"橫向瀏覽" BoolValue:[[HentaiSettingManager temporarySettings][@"useNewBrowser"] boolValue]];
+    QBooleanElement *browserElement = [[QBooleanElement alloc] initWithTitle:@"橫向瀏覽" BoolValue:[[Setting shared].useNewBrowser boolValue]];
     browserElement.controllerAction = @"browserChange:";
-    [switchs addElement:browserElement];
-    
-    [root addSection:switchs];
-    
+    [switchsSection addElement:browserElement];
+    return switchsSection;
+}
+
+- (QSection *)changeColorSection {
     //選顏色
-    QSection *changeColorSection = [[QSection alloc] initWithTitle:@"主題色彩"];
+    QSection *changeColorSection = [[QSection alloc] initWithTitle:@"更換顏色"];
     changeColorSection.key = @"changeColorSection";
-    QLabelElement *changeColorElement = [[QLabelElement alloc] initWithTitle:@"目前色彩" Value:[HentaiSettingManager temporarySettings][@"themeColor"]];
+    QLabelElement *changeColorElement = [[QLabelElement alloc] initWithTitle:@"目前主題顏色" Value:[Setting shared].themeColor];
     [changeColorSection addElement:changeColorElement];
-    QButtonElement *changeColorButton = [[QButtonElement alloc] initWithTitle:@"點我更換顏色"];
+    QButtonElement *changeColorButton = [[QButtonElement alloc] initWithTitle:@"點我更換主題顏色"];
     @weakify(self);
     changeColorButton.onSelected = ^{
         @strongify(self);
@@ -68,15 +91,17 @@
         }];
     };
     [changeColorSection addElement:changeColorButton];
-    
-    [root addSection:changeColorSection];
-    
+    return changeColorSection;
+}
+
+- (QSection *)cacheSizeSection {
     //暫存
     QSection *cacheSizeSection = [[QSection alloc] initWithTitle:@"暫存"];
     cacheSizeSection.key = @"cacheSizeSection";
     QLabelElement *cacheSizeElement = [[QLabelElement alloc] initWithTitle:@"占用容量" Value:@""];
     [cacheSizeSection addElement:cacheSizeElement];
     QButtonElement *earseCacheButton = [[QButtonElement alloc] initWithTitle:@"點我清空暫存"];
+    @weakify(self);
     earseCacheButton.onSelected = ^{
         @strongify(self);
         [[SDImageCache sharedImageCache] clearMemory];
@@ -86,14 +111,17 @@
         [self cacheFolderSize];
     };
     [cacheSizeSection addElement:earseCacheButton];
-    [root addSection:cacheSizeSection];
-    
+    return cacheSizeSection;
+}
+
+- (QSection *)downloadSizeScetion {
     //下載
     QSection *downloadSizeSection = [[QSection alloc] initWithTitle:@"下載"];
     downloadSizeSection.key = @"downloadSizeSection";
     QLabelElement *downloadSizeElement = [[QLabelElement alloc] initWithTitle:@"占用容量" Value:@""];
     [downloadSizeSection addElement:downloadSizeElement];
     QButtonElement *earseDownloadButton = [[QButtonElement alloc] initWithTitle:@"點我清除雜亂占用"];
+    @weakify(self);
     earseDownloadButton.onSelected = ^{
         @strongify(self);
         NSArray *folders = [[[FilesManager documentFolder] fcd:@"Hentai"] listFolders];
@@ -126,8 +154,7 @@
         [self documentFolderSize];
     };
     [downloadSizeSection addElement:earseDownloadButton];
-    [root addSection:downloadSizeSection];
-    return root;
+    return downloadSizeSection;
 }
 
 #pragma mark * actions
@@ -136,14 +163,14 @@
     if (highResolutionElement.boolValue) {
         [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"開啟高清開關後, 儲存的圖片將明顯變大!\n效果會在下一次下載, 觀看時生效!" cancelButtonTitle:@"好~ O3O"];
     }
-    [HentaiSettingManager temporarySettings][@"highResolution"] = @(highResolutionElement.boolValue);
+    [Setting shared].highResolution = @(highResolutionElement.boolValue);
 }
 
 - (void)browserChange:(QBooleanElement *)browserElement {
     if (browserElement.boolValue) {
         [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"目前這個功能僅在已下載功能中可使用~ O3O" cancelButtonTitle:@"好~ O3O"];
     }
-    [HentaiSettingManager temporarySettings][@"useNewBrowser"] = @(browserElement.boolValue);
+    [Setting shared].useNewBrowser = @(browserElement.boolValue);
 }
 
 #pragma mark * size calculate
@@ -206,13 +233,6 @@
     });
 }
 
-#pragma mark * init
-
-- (void)setupItemsOnNavigation {
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(sliderControl)];
-    self.navigationItem.leftBarButtonItem = menuButton;
-}
-
 #pragma mark - life cycle
 
 - (id)init {
@@ -231,7 +251,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [HentaiSettingManager storeSettings];
+    [[Setting shared] sync];
 }
 
 @end

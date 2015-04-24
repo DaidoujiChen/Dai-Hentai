@@ -1,0 +1,10 @@
+{
+    "items" :
+    [
+        {"displayName":"E-Hentai主頁", "image":"exterior", "controller":"MainViewController"},
+        {"displayName":"ExHentai主頁", "image":"exterior", "controller":"ExMainViewController"},
+        {"displayName":"已下載", "image":"dropbox_copyrighted", "controller":"DownloadedGroupViewController"},
+        {"displayName":"問題回報", "image":"phone2"},
+        {"displayName":"設定", "image":"settings", "controller":"SettingV2ViewController"}
+    ]
+}

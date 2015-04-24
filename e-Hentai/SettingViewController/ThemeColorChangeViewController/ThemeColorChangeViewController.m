@@ -53,7 +53,7 @@
 #pragma mark * init
 
 - (void)setupInitValues {
-    self.currentColorString = [HentaiSettingManager temporarySettings][@"themeColor"];
+    self.currentColorString = [Setting shared].themeColor;
     [self foundFlatColors];
 }
 
@@ -98,7 +98,7 @@
 }
 
 - (void)submitChange {
-    [HentaiSettingManager temporarySettings][@"themeColor"] = self.currentColorString;
+    [Setting shared].themeColor = self.currentColorString;
     [[self portal:PortalChangeThemeColor] send:DaiPortalPackageItem(self.currentColorString)];
     [self.delegate themeColorDidChange];
     [self dismissViewControllerAnimated:YES completion:^{

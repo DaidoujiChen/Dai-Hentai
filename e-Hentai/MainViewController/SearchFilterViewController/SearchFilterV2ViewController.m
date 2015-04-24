@@ -27,7 +27,7 @@
     
     //搜尋的 section
     QSection *searchSection = [[QSection alloc] initWithTitle:@"搜尋"];
-    QEntryElement *searchStringElement = [[QEntryElement alloc] initWithTitle:@"搜尋字串" Value:[HentaiSettingManager temporaryHentaiPrefer][@"searchText"] Placeholder:@"也可以什麼都不填"];
+    QEntryElement *searchStringElement = [[QEntryElement alloc] initWithTitle:@"搜尋字串" Value:[Prefer shared].searchText Placeholder:@"也可以什麼都不填"];
     searchStringElement.key = @"searchText";
     [searchSection addElement:searchStringElement];
     [root addSection:searchSection];
@@ -35,7 +35,7 @@
     //filter section
     QSection *switchsSection = [[QSection alloc] initWithTitle:@"Filters"];
     
-    NSNumber *ratingIndex = [HentaiSettingManager temporaryHentaiPrefer][@"rating"];
+    NSNumber *ratingIndex = [Prefer shared].rating;
     if (!ratingIndex) {
         ratingIndex = @(0);
     }
@@ -43,12 +43,11 @@
     ratingElement.key = @"rating";
     [switchsSection addElement:ratingElement];
     
-    NSArray *flags = [HentaiSettingManager temporaryHentaiPrefer][@"filtersFlag"];
-    for (int i = 0; i < [flags count]; i++) {
-        NSDictionary *filterInfo = [HentaiSettingManager staticFilters][i];
-        NSNumber *eachFlag = flags[i];
-        QBooleanElement *boolElement = [[QBooleanElement alloc] initWithTitle:filterInfo[@"title"] BoolValue:[eachFlag boolValue]];
-        boolElement.key = filterInfo[@"title"];
+    for (int i = 0; i < [Prefer shared].flags.count; i++) {
+        FilterItem *item = [Filter shared].items[i];
+        NSNumber *eachFlag = [Prefer shared].flags[i];
+        QBooleanElement *boolElement = [[QBooleanElement alloc] initWithTitle:item.title BoolValue:[eachFlag boolValue]];
+        boolElement.key = item.title;
         [switchsSection addElement:boolElement];
     }
     [root addSection:switchsSection];
@@ -77,13 +76,18 @@
     for (NSString *eachKey in [result allKeys]) {
         NSUInteger index = [self indexOfFilterString:eachKey];
         if (index == NSNotFound) {
-            [HentaiSettingManager temporaryHentaiPrefer][eachKey] = result[eachKey];
+            if ([eachKey isEqual:@"searchText"]) {
+                [Prefer shared].searchText = result[eachKey];
+            }
+            else if ([eachKey isEqual:@"rating"]) {
+                [Prefer shared].rating = result[eachKey];;
+            }
         }
         else {
-            [HentaiSettingManager temporaryHentaiPrefer][@"filtersFlag"][index] = result[eachKey];
+            [[Prefer shared].flags replaceObjectAtIndex:index withObject:result[eachKey]];
         }
     }
-    [HentaiSettingManager storeHentaiPrefer];
+    [[Prefer shared] sync];
     [self.delegate onSearchFilterDone];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -92,9 +96,9 @@
 
 //找看有沒有這個 filter string, 有的話就要用 index 寫回 filtersFlag, 沒有的就直接用 key 去寫值
 - (NSUInteger)indexOfFilterString:(NSString *)filterString {
-    for (NSDictionary *eachInfo in [HentaiSettingManager staticFilters]) {
-        if ([filterString isEqualToString:eachInfo[@"title"]]) {
-            return [[HentaiSettingManager staticFilters] indexOfObject:eachInfo];
+    for (FilterItem *item in [Filter shared].items) {
+        if ([filterString isEqualToString:item.title]) {
+            return [[Filter shared].items indexOfObject:item];
         }
     }
     return NSNotFound;

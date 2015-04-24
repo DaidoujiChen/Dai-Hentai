@@ -36,7 +36,7 @@
     #import "TFHpple.h"
     #import "HentaiParser.h"
     #import "FilesManager.h"
-    #import "LightWeightPlist.h"
+    #import "DaiStorage.h"
     #import "HentaiDownloadCenter.h"
     #import "UIAlertView+Hentai.h"
     #import "NSString+Hentai.h"
@@ -46,8 +46,14 @@
     #import "OpenMenuProtocol.h"
     #import "UIView+Hentai.h"
     #import "UIImageView+Hentai.h"
-    #import "HentaiSettingManager.h"
     #import "GroupManager.h"
+
+    //daistorage
+    #import "Menu.h"
+    #import "Filter.h"
+    #import "Prefer.h"
+    #import "Account.h"
+    #import "Setting.h"
 
     //portals
     #define PortalHentaiDownloadSuccess @"PortalHentaiDownloadSuccess"

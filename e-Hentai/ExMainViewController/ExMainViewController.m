@@ -75,9 +75,9 @@
     
     if (self.exOnceFlag) {
         self.exOnceFlag = NO;
-        if ([HentaiSettingManager temporaryHentaiAccount][@"UserName"]) {
+        if ([Account shared].username) {
             [SVProgressHUD show];
-            [DiveExHentai diveByUserName:[HentaiSettingManager temporaryHentaiAccount][@"UserName"] password:[HentaiSettingManager temporaryHentaiAccount][@"Password"] completion: ^(BOOL isSuccess) {
+            [DiveExHentai diveByUserName:[Account shared].username password:[Account shared].password completion: ^(BOOL isSuccess) {
                 if (isSuccess) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
@@ -97,9 +97,9 @@
                 [SVProgressHUD show];
                 [DiveExHentai diveByUserName:userName password:password completion: ^(BOOL isSuccess) {
                     if (isSuccess) {
-                        [HentaiSettingManager temporaryHentaiAccount][@"UserName"] = userName;
-                        [HentaiSettingManager temporaryHentaiAccount][@"Password"] = password;
-                        [HentaiSettingManager storeHentaiAccount];
+                        [Account shared].username = userName;
+                        [Account shared].password = password;
+                        [[Account shared] sync];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
                         [self performSelector:@selector(reloadDatas)];

@@ -1,0 +1,15 @@
+{
+    "items" :
+    [
+        {"title":"同人誌", "url":"f_doujinshi=1"},
+        {"title":"漫畫", "url":"f_manga=1"},
+        {"title":"藝術CG", "url":"f_artistcg=1"},
+        {"title":"遊戲CG", "url":"f_gamecg=1"},
+        {"title":"美式", "url":"f_western=1"},
+        {"title":"一般向", "url":"f_non-h=1"},
+        {"title":"圖片集", "url":"f_imageset=1"},
+        {"title":"Cosplay", "url":"f_cosplay=1"},
+        {"title":"亞洲情色", "url":"f_asianporn=1"},
+        {"title":"其他", "url":"f_misc=1"},
+    ]
+}

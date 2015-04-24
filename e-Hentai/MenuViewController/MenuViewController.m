@@ -22,23 +22,24 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[HentaiSettingManager staticMenuItems] count];
+    return [Menu shared].items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MenuItem *item = [Menu shared].items[indexPath.row];
     MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuDefaultCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.imageView.image = [UIImage imageNamed:[HentaiSettingManager staticMenuItems][indexPath.row][@"image"]];
+    cell.imageView.image = [UIImage imageNamed:item.image];
     
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     UIColor *textColor = [UIColor flatWhiteColor];
     NSDictionary *attributes = @{ NSForegroundColorAttributeName : textColor, NSFontAttributeName : font, NSTextEffectAttributeName : NSTextEffectLetterpressStyle };
     NSString *text;
-    if ([HentaiSettingManager staticMenuItems][indexPath.row][@"controller"]) {
-        text = [HentaiSettingManager staticMenuItems][indexPath.row][@"displayName"];
+    if (item.controller) {
+        text = item.displayName;
     }
     else {
-        text = [NSString stringWithFormat:@"%@ (%@)", [HentaiSettingManager staticMenuItems][indexPath.row][@"displayName"], self.unreadCount ? :@"讀取中"];
+        text = [NSString stringWithFormat:@"%@ (%@)", item.displayName, self.unreadCount ? :@"讀取中"];
     }
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:text attributes:attributes];
     cell.textLabel.attributedText = attributedString;
@@ -48,7 +49,8 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate needToChangeViewController:[HentaiSettingManager staticMenuItems][indexPath.row][@"controller"]];
+    MenuItem *item = [Menu shared].items[indexPath.row];
+    [self.delegate needToChangeViewController:item.controller];
 }
 
 #pragma mark - private

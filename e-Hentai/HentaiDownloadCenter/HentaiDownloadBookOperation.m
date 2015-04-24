@@ -257,7 +257,7 @@
     newOperation.isCacheOperation = NO;
     newOperation.hentaiKey = self.hentaiKey;
     newOperation.delegate = self;
-    newOperation.isHighResolution = [[HentaiSettingManager temporarySettings][@"highResolution"] boolValue];
+    newOperation.isHighResolution = [[Setting shared].highResolution boolValue];
     [self.hentaiQueue addOperation:newOperation];
 }
 

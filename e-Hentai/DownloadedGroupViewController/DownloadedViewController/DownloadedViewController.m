@@ -119,7 +119,7 @@ typedef enum {
     self.currentInfo = [self saveInfoAtIndex:inverseIndex];
     NSDictionary *hentaiInfo = self.currentInfo[@"hentaiInfo"];
     
-    if ([[HentaiSettingManager temporarySettings][@"useNewBrowser"] boolValue]) {
+    if ([[Setting shared].useNewBrowser boolValue]) {
         NSArray *hentaiImages = self.currentInfo[@"images"];
         
         self.photos = [NSMutableArray array];

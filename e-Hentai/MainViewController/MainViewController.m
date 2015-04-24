@@ -183,24 +183,24 @@
 //製作 filter string
 - (NSString *)filterDependOnURL:(NSString *)urlString {
     NSMutableString *filterURLString = [NSMutableString stringWithFormat:urlString, (unsigned long)self.listIndex];
-    NSArray *filters = [HentaiSettingManager temporaryHentaiPrefer][@"filtersFlag"];
     
     //建立過濾 url
-    for (NSInteger i = 0; i < [[HentaiSettingManager staticFilters] count]; i++) {
-        NSNumber *eachFlag = filters[i];
+    for (NSInteger i = 0; i < [Filter shared].items.count; i++) {
+        FilterItem *item = [Filter shared].items[i];
+        NSNumber *eachFlag = [Prefer shared].flags[i];
         if ([eachFlag boolValue]) {
-            [filterURLString appendFormat:@"&%@", [HentaiSettingManager staticFilters][i][@"url"]];
+            [filterURLString appendFormat:@"&%@", item.url];
         }
     }
     
     //去除掉空白換行字符後, 如果長度不為 0, 則表示有字
-    if ([[HentaiSettingManager temporaryHentaiPrefer][@"searchText"] hentai_withoutSpace].length) {
-        [filterURLString appendFormat:@"&f_search=%@", [HentaiSettingManager temporaryHentaiPrefer][@"searchText"]];
+    if ([[Prefer shared].searchText hentai_withoutSpace].length) {
+        [filterURLString appendFormat:@"&f_search=%@", [Prefer shared].searchText];
     }
     [filterURLString appendString:@"&f_apply=Apply+Filter"];
     
     //評分過濾
-    NSNumber *ratingIndex = [HentaiSettingManager temporaryHentaiPrefer][@"rating"];
+    NSNumber *ratingIndex = [Prefer shared].rating;
     if (ratingIndex && [ratingIndex intValue] != 0) {
         [filterURLString appendFormat:@"&advsearch=1&f_sname=on&f_stags=on&f_sr=on&f_srdd=%d", [ratingIndex intValue] + 1];
     }
@@ -287,7 +287,7 @@
     [RACObserve(self, listIndex) subscribeNext:^(NSNumber *index) {
         @strongify(self);
         
-        self.title = [NSString stringWithFormat:@"%@(%d)", [HentaiSettingManager temporaryHentaiPrefer][@"searchText"], self.listIndex + 1];
+        self.title = [NSString stringWithFormat:@"%@(%d)", [Prefer shared].searchText, self.listIndex + 1];
     }];
     self.listIndex = 0;
     self.listArray = [NSMutableArray array];
