@@ -302,7 +302,12 @@ typedef enum {
         [self.listTableView reloadData];
     }
     else {
-        [self.navigationController popViewControllerAnimated:YES];
+        @weakify(self);
+        [UIAlertView hentai_alertViewWithTitle:@"這個分類沒有作品喔!" message:@"點擊確定返回上一頁!" cancelButtonTitle:@"確定!" otherButtonTitles:nil onClickIndex:^(NSInteger clickIndex) {
+        } onCancel:^{
+            @strongify(self);
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }
 }
 
