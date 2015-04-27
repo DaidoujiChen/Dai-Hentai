@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *type;
-@property (nonatomic, readonly) Class aClass;
+@property (nonatomic, readonly) Class propertyClass;
 @property (nonatomic, readonly) SEL setter;
 @property (nonatomic, readonly) SEL getter;
 @property (nonatomic, readonly) SEL importName;

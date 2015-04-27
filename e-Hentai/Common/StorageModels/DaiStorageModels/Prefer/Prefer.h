@@ -8,10 +8,12 @@
 
 #import "DaiStorage.h"
 
+DaiStorageArrayConverter(NSNumber)
+
 @interface Prefer : DaiStorage
 
 @property (nonatomic, strong) NSString *searchText;
-@property (nonatomic, strong) DaiStorageArray *flags;
+@property (nonatomic, strong) NSNumberArray *flags;
 @property (nonatomic, strong) NSNumber *rating;
 
 - (void)sync;

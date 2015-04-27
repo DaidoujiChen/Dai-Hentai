@@ -9,8 +9,10 @@
 #import "DaiStorage.h"
 #import "MenuItem.h"
 
+DaiStorageArrayConverter(MenuItem)
+
 @interface Menu : DaiStorage
 
-@property (nonatomic, strong) DaiStorageArray *items;
+@property (nonatomic, strong) MenuItemArray *items;
 
 @end

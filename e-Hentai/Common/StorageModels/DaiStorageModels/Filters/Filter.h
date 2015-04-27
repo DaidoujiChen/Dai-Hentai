@@ -9,8 +9,10 @@
 #import "DaiStorage.h"
 #import "FilterItem.h"
 
+DaiStorageArrayConverter(FilterItem)
+
 @interface Filter : DaiStorage
 
-@property (nonatomic, strong) DaiStorageArray *items;
+@property (nonatomic, strong) FilterItemArray *items;
 
 @end

@@ -13,6 +13,4 @@
 @property (nonatomic, readonly) NSString *aClassName;
 @property (nonatomic, readonly) Class aClass;
 
-- (void)setAllowClass:(id)allowClass;
-
 @end

@@ -7,52 +7,178 @@
 //
 
 #import "DaiStorageProperty.h"
+#import <objc/runtime.h>
+
+@interface SelectorCache : NSObject
+
+@property Class cacheClass;
+@property SEL cacheSelector;
+
+@end
+
+@implementation SelectorCache
+
+@end
+
+@interface DaiStorageProperty ()
+
+@property Class propertyClass;
+@property SEL setter;
+@property SEL getter;
+@property SEL importName;
+@property SEL importType;
+@property SEL exportName;
+@property SEL exportType;
+
+@end
 
 @implementation DaiStorageProperty
 
-@dynamic aClass, setter, getter, importName, importType, exportName, exportType;
-
-#pragma mark - readonly
-
-- (Class)aClass {
-	return NSClassFromString(self.type);
+- (Class)propertyClass {
+    if (!self.type) {
+        return nil;
+    }
+    
+    if (!_propertyClass) {
+        _propertyClass = [self classFromCache:self.type];
+    }
+    return _propertyClass;
 }
 
 - (SEL)setter {
-	NSString *selectorName = [NSString stringWithFormat:@"set%@%@:", [[self.name substringToIndex:1] uppercaseString], [self.name substringFromIndex:1]];
-	return NSSelectorFromString(selectorName);
+    if (!self.name) {
+        return nil;
+    }
+    
+    if (!_setter) {
+        _setter = [self setterFromCache:self.name];
+    }
+    return _setter;
 }
 
 - (SEL)getter {
-	return NSSelectorFromString(self.name);
+    if (!self.name) {
+        return nil;
+    }
+    
+    if (!_getter) {
+        _getter = [self getterFromCache:self.name];
+    }
+    return _getter;
 }
 
 - (SEL)importName {
-    return [self importSelector:self.name];
+    if (!self.name) {
+        return nil;
+    }
+    
+    if (!_importName) {
+        _importName = [self importSelectorFromCache:self.name];
+    }
+    return _importName;
 }
 
 - (SEL)importType {
-    return [self importSelector:self.type];
+    if (!self.type) {
+        return nil;
+    }
+    
+    if (!_importType) {
+        _importType = [self importSelectorFromCache:self.type];
+    }
+    return _importType;
 }
 
 - (SEL)exportName {
-    return [self exportSelector:self.name];
+    if (!self.name) {
+        return nil;
+    }
+    
+    if (!_exportName) {
+        _exportName = [self exportSelectorFromCache:self.name];
+    }
+    return _exportName;
 }
 
 - (SEL)exportType {
-    return [self exportSelector:self.type];
+    if (!self.type) {
+        return nil;
+    }
+    
+    if (!_exportType) {
+        _exportType = [self exportSelectorFromCache:self.type];
+    }
+    return _exportType;
 }
 
 #pragma mark - private instance method
 
-- (SEL)importSelector:(NSString *)specialName {
-    NSString *selectorString = [NSString stringWithFormat:@"daiStorage_ruleImport%@:", specialName];
-    return NSSelectorFromString(selectorString);
+- (Class)classFromCache:(NSString *)className {
+    if ([DaiStorageProperty classCache][className]) {
+        SelectorCache *selectorCache = [DaiStorageProperty classCache][className];
+        return selectorCache.cacheClass;
+    }
+    else {
+        SelectorCache *selectorCache = [SelectorCache new];
+        selectorCache.cacheClass = NSClassFromString(className);
+        [DaiStorageProperty classCache][className] = selectorCache;
+        return selectorCache.cacheClass;
+    }
 }
 
-- (SEL)exportSelector:(NSString *)specialName {
-    NSString *selectorString = [NSString stringWithFormat:@"daiStorage_ruleExport%@:", specialName];
-    return NSSelectorFromString(selectorString);
+- (SEL)setterFromCache:(NSString *)name {
+    if ([DaiStorageProperty setterCache][name]) {
+        SelectorCache *selectorCache = [DaiStorageProperty setterCache][name];
+        return selectorCache.cacheSelector;
+    }
+    else {
+        SelectorCache *selectorCache = [SelectorCache new];
+        NSString *selectorName = [NSString stringWithFormat:@"set%@%@:", [[name substringToIndex:1] uppercaseString], [name substringFromIndex:1]];
+        selectorCache.cacheSelector = NSSelectorFromString(selectorName);
+        [DaiStorageProperty setterCache][name] = selectorCache;
+        return selectorCache.cacheSelector;
+    }
+}
+
+- (SEL)getterFromCache:(NSString *)name {
+    if ([DaiStorageProperty getterCache][name]) {
+        SelectorCache *selectorCache = [DaiStorageProperty getterCache][name];
+        return selectorCache.cacheSelector;
+    }
+    else {
+        SelectorCache *selectorCache = [SelectorCache new];
+        selectorCache.cacheSelector = NSSelectorFromString(name);
+        [DaiStorageProperty getterCache][name] = selectorCache;
+        return selectorCache.cacheSelector;
+    }
+}
+
+- (SEL)importSelectorFromCache:(NSString *)name {
+    if ([DaiStorageProperty importSelectorCache][name]) {
+        SelectorCache *selectorCache = [DaiStorageProperty importSelectorCache][name];
+        return selectorCache.cacheSelector;
+    }
+    else {
+        SelectorCache *selectorCache = [SelectorCache new];
+        NSString *selectorString = [NSString stringWithFormat:@"daiStorage_ruleImport_%@:", name];
+        selectorCache.cacheSelector = NSSelectorFromString(selectorString);
+        [DaiStorageProperty importSelectorCache][name] = selectorCache;
+        return selectorCache.cacheSelector;
+    }
+}
+
+- (SEL)exportSelectorFromCache:(NSString *)name {
+    if ([DaiStorageProperty exportSelectorCache][name]) {
+        SelectorCache *selectorCache = [DaiStorageProperty exportSelectorCache][name];
+        return selectorCache.cacheSelector;
+    }
+    else {
+        SelectorCache *selectorCache = [SelectorCache new];
+        NSString *selectorString = [NSString stringWithFormat:@"daiStorage_ruleExport_%@:", name];
+        selectorCache.cacheSelector = NSSelectorFromString(selectorString);
+        [DaiStorageProperty exportSelectorCache][name] = selectorCache;
+        return selectorCache.cacheSelector;
+    }
 }
 
 #pragma mark - class method
@@ -70,6 +196,48 @@
 
 + (DaiStorageProperty *)propertyType:(NSString *)type {
 	return [self propertyName:nil type:type];
+}
+
+#pragma mark - private class method
+
++ (NSMutableDictionary *)importSelectorCache {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
+}
+
++ (NSMutableDictionary *)exportSelectorCache {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
+}
+
++ (NSMutableDictionary *)classCache {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
+}
+
++ (NSMutableDictionary *)setterCache {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
+}
+
++ (NSMutableDictionary *)getterCache {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 @end

@@ -19,6 +19,8 @@
 @implementation DaiStorageTypeChecking
 
 + (DaiStorageType)on:(id)anObject {
+    NSAssert(anObject, @"判斷的物件不能為 nil");
+    
 	if (isDaiStorageSubclass(anObject)) {
 		return DaiStorageTypeDaiStorage;
 	}

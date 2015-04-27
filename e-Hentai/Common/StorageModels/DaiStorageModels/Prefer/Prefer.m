@@ -13,7 +13,6 @@
 - (id)init {
     self = [super init];
     if (self) {
-        [self.flags setAllowClass:[NSNumber class]];
         [self importPath:[DaiStoragePath document] defaultPath:[DaiStoragePath resource]];
     }
     return self;

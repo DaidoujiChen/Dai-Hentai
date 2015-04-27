@@ -13,7 +13,6 @@
 - (id)init {
     self = [super init];
     if (self) {
-        [self.items setAllowClass:[MenuItem class]];
         [self importPath:[DaiStoragePath resource]];
     }
     return self;

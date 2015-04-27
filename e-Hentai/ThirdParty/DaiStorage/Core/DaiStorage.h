@@ -19,6 +19,7 @@
 
 - (void)importPath:(DaiStoragePath *)importPath;
 - (void)importPath:(DaiStoragePath *)importPath defaultPath:(DaiStoragePath *)defaultPath;
+- (void)importPath:(DaiStoragePath *)importPath defaultPath:(DaiStoragePath *)defaultPath migrations:(MigrationBlock)migrations;
 - (BOOL)exportPath:(DaiStoragePath *)exportPath;
 
 - (void)reworkRuleForClass:(__unsafe_unretained Class)aClass whenImport:(ImportRuleBlock)importRule whenExport:(ExportRuleBlock)exportRule;
