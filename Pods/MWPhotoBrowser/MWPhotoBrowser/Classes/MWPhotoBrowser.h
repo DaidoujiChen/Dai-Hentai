@@ -25,6 +25,8 @@
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index;
+- (void)helpToDelete;
+- (void)helpToChangeGroup:(UIViewController *)viewController;
 
 @optional
 

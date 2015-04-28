@@ -203,6 +203,14 @@
 	
 }
 
+- (void)deleteAction {
+    [self.delegate helpToDelete];
+}
+
+- (void)changeGroupAction {
+    [self.delegate helpToChangeGroup:self];
+}
+
 - (void)performLayout {
     
     // Setup
@@ -429,6 +437,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     _viewIsActive = YES;
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction)];
+    UIBarButtonItem *changeGroupButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(changeGroupAction)];
+    self.navigationItem.rightBarButtonItems = @[deleteButton, changeGroupButton];
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
