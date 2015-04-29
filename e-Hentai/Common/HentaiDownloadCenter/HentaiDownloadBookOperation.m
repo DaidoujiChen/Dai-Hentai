@@ -7,6 +7,7 @@
 //
 
 #import "HentaiDownloadBookOperation.h"
+#import "HentaiInfo.h"
 
 @interface HentaiDownloadBookOperation ()
 
@@ -65,7 +66,9 @@
     [self.hentaiQueue setMaxConcurrentOperationCount:2];
     self.maxHentaiCount = self.hentaiInfo[@"filecount"];
     
+    @weakify(self);
     dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
         [self checkEndOfFile];
     });
 }
@@ -136,6 +139,7 @@
     @weakify(self);
     dispatch_async(dispatch_get_main_queue(), ^{
         @strongify(self);
+        [self removeHentaiInfo:self.hentaiInfo.hentai_hentaiKey];
         self.status = HentaiDownloadBookOperationStatusFinished;
         [self.delegate hentaiDownloadBookOperationChange:self];
         [self.hentaiQueue cancelAllOperations];
@@ -212,6 +216,10 @@
 }
 
 #pragma mark - private
+
+- (void)removeHentaiInfo:(NSString *)hentaiKey {
+    [[[FilesManager documentFolder] fcd:@"Downloading"] rd:hentaiKey];
+}
 
 - (BOOL)verifySaveInfo:(NSDictionary *)saveInfo {
     
