@@ -32,7 +32,9 @@
 
 + (void)requestListAtFilterUrl:(NSString *)urlString forExHentai:(BOOL)isForExHentai completion:(void (^)(HentaiParserStatus status, NSArray *listArray))completion {
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    @weakify(self);
 	[NSURLConnection sendAsynchronousRequest:urlRequest queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        @strongify(self);
 	    if (connectionError) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(HentaiParserStatusNetworkFail, nil);
@@ -54,7 +56,9 @@
                 }
                 
                 //這段是從 e hentai 的 api 抓資料
+                @weakify(self);
                 [self requestGDataAPIWithURLStrings:urlStringArray forExHentai:(BOOL)isForExHentai completion: ^(HentaiParserStatus status, NSArray *gMetaData) {
+                    @strongify(self);
                     if (status) {
                         for (NSUInteger i = 0; i < [gMetaData count]; i++) {
                             NSMutableDictionary *eachDictionary = returnArray[i];
@@ -94,7 +98,9 @@
 	//http://g.e-hentai.org/g/735601/35fe0802c8/?p=2
 	NSString *newURLString = [NSString stringWithFormat:@"%@?p=%lud", urlString, index];
 	NSURL *newURL = [NSURL URLWithString:newURLString];
+    @weakify(self);
 	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:newURL] queue:[self defaultOperationQueue] completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        @strongify(self);
 	    if (connectionError) {
 	        dispatch_async(dispatch_get_main_queue(), ^{
 	            completion(HentaiParserStatusNetworkFail, nil);
@@ -113,7 +119,9 @@
                 
                 for (NSUInteger i = 0; i < [pageURL count]; i++) {
                     TFHppleElement *e = pageURL[i];
+                    @weakify(self);
                     dispatch_group_async(hentaiGroup, hentaiQueue, ^{
+                        @strongify(self);
                         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
                         [self requestCurrentImage:[NSURL URLWithString:[e attributes][@"href"]] atIndex:i completion: ^(HentaiParserStatus status, NSString *imageString, NSUInteger index) {
                             if (status == HentaiParserStatusSuccess) {

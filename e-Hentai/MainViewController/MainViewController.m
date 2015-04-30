@@ -359,9 +359,13 @@
             //多加一個判斷, 如果使用者還在這頁的話, 才做這些事
             if (self) {
                 if (successed) {
+                    @weakify(self);
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        @strongify(self);
                         [self.listArray addObjectsFromArray:listArray];
+                        @weakify(self);
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            @strongify(self);
                             [self.listTableView reloadData];
                         });
                     });

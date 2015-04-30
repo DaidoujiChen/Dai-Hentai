@@ -15,7 +15,9 @@
 @implementation FakeViewController
 
 - (void)onPresentCompletion {
+    @weakify(self);
     [self dismissViewControllerAnimated:NO completion: ^{
+        @strongify(self);
         self.BackBlock();
     }];
 }

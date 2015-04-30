@@ -45,7 +45,9 @@
 	}
 	else {
 		if (![self isCancelled]) {
+            @weakify(self);
 			dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self);
 			    [self.delegate downloadResult:self.downloadURLString heightOfSize:[imageHeight floatValue] isSuccess:YES];
 			    [self hentaiFinish];
 			});
@@ -76,7 +78,9 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	if (![self isCancelled]) {
+        @weakify(self);
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            @strongify(self);
 		    UIImage *image = [self resizeImageWithImage:[[UIImage alloc] initWithData:self.recvData]];
             
 		    if (self.isCacheOperation) {
@@ -87,7 +91,9 @@
 			}
             
 		    //讓檔案轉存這件事情不擋線程
+            @weakify(self);
 		    dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self);
 		        [self.delegate downloadResult:self.downloadURLString heightOfSize:image.size.height isSuccess:YES];
 		        [self hentaiFinish];
 			});

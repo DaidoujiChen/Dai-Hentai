@@ -23,10 +23,7 @@
 #pragma mark - dynamic
 
 - (NSString *)filterString {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    NSString *filterString = [self performSelector:@selector(filterDependOnURL:) withObject:@"http://exhentai.org//?page=%lu"];
-#pragma clang diagnostic pop
+    avoidPerformSelectorWarning(NSString *filterString = [self performSelector:@selector(filterDependOnURL:) withObject:@"http://exhentai.org//?page=%lu"];)
     return filterString;
 }
 
@@ -37,10 +34,7 @@
         if (buttonIndex) {
             UITextField *indexTextField = [alertView textFieldAtIndex:0];
             self.listIndex = [indexTextField.text intValue] - 1;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-            [self performSelector:@selector(reloadDatas)];
-#pragma clang diagnostic pop
+            avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
         }
     }
     else {
@@ -77,12 +71,11 @@
         self.exOnceFlag = NO;
         if ([Account shared].username) {
             [SVProgressHUD show];
+            @weakify(self);
             [DiveExHentai diveByUserName:[Account shared].username password:[Account shared].password completion: ^(BOOL isSuccess) {
+                @strongify(self);
                 if (isSuccess) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-                    [self performSelector:@selector(reloadDatas)];
-#pragma clang diagnostic pop
+                    avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
                 }
                 else {
                     [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
@@ -95,15 +88,14 @@
             loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
             loginAlert.hentai_account = ^(NSString *userName, NSString *password) {
                 [SVProgressHUD show];
+                @weakify(self);
                 [DiveExHentai diveByUserName:userName password:password completion: ^(BOOL isSuccess) {
+                    @strongify(self);
                     if (isSuccess) {
                         [Account shared].username = userName;
                         [Account shared].password = password;
                         [[Account shared] sync];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-                        [self performSelector:@selector(reloadDatas)];
-#pragma clang diagnostic pop
+                        avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
                     }
                     else {
                         [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];

@@ -12,8 +12,11 @@
 #define avoidPerformSelectorWarning(CODE) \
 	_Pragma("clang diagnostic push") \
 	_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+    _Pragma("clang diagnostic push") \
+    _Pragma("clang diagnostic ignored \"-Wundeclared-selector\"") \
 	CODE \
-	_Pragma("clang diagnostic pop")
+	_Pragma("clang diagnostic pop") \
+    _Pragma("clang diagnostic pop")
 
 #define DaiStorageArrayConverter(AnyClass) \
 @interface AnyClass##Array : DaiStorageArray \

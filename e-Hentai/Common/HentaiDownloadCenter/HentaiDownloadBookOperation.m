@@ -65,7 +65,9 @@
     [self.hentaiQueue setMaxConcurrentOperationCount:2];
     self.maxHentaiCount = self.hentaiInfo[@"filecount"];
     
+    @weakify(self);
     dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
         [self checkEndOfFile];
     });
 }
@@ -160,7 +162,9 @@
         @strongify(self);
         [self.hentaiQueue waitUntilAllOperationsAreFinished];
         if (![self isCancelled]) {
+            @weakify(self);
             dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self);
                 [self checkEndOfFile];
             });
         }
