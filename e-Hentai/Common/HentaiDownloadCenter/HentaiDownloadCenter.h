@@ -17,6 +17,7 @@ typedef void (^HentaiMonitorBlock)(NSDictionary *centerDetail);
 + (void)addBook:(NSDictionary *)hentaiInfo toGroup:(NSString *)group;
 + (BOOL)isDownloading:(NSDictionary *)hentaiInfo;
 + (BOOL)isActiveFolder:(NSString *)folder;
++ (NSInteger)countInCenter;
 
 + (void)centerMonitor:(HentaiMonitorBlock)monitor;
 

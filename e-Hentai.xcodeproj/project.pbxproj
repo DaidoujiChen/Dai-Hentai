@@ -76,6 +76,8 @@
 		15A3136E5E2A013E5D0DD04C /* libPods-HentaiTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */; };
 		1C55C2B61ACD18A400A74AAA /* DownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55C2B51ACD18A400A74AAA /* DownloadTests.m */; };
 		1C85F9991AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C85F9981AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m */; };
+		1CA6B8961AF0E35800FEEDFD /* DaiSurvivor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B8951AF0E35800FEEDFD /* DaiSurvivor.m */; };
+		1CEAF3CA1AF1F88200AFE77F /* HentaiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF3C91AF1F88200AFE77F /* HentaiInfo.m */; };
 		1CF5EDCF1AE9E04C00ECD8B7 /* DaiStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF5EDC41AE9E04C00ECD8B7 /* DaiStorage.m */; };
 		1CF5EDD01AE9E04C00ECD8B7 /* DaiStorageArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF5EDC61AE9E04C00ECD8B7 /* DaiStorageArray.m */; };
 		1CF5EDD11AE9E04C00ECD8B7 /* DaiStoragePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF5EDCA1AE9E04C00ECD8B7 /* DaiStoragePath.m */; };
@@ -236,6 +238,10 @@
 		1C6ED8891ACD13F400713301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C85F9971AEDE6FE009165B4 /* DaiStoragePropertiesInObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiStoragePropertiesInObject.h; sourceTree = "<group>"; };
 		1C85F9981AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiStoragePropertiesInObject.m; sourceTree = "<group>"; };
+		1CA6B8941AF0E35800FEEDFD /* DaiSurvivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiSurvivor.h; sourceTree = "<group>"; };
+		1CA6B8951AF0E35800FEEDFD /* DaiSurvivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiSurvivor.m; sourceTree = "<group>"; };
+		1CEAF3C81AF1F88200AFE77F /* HentaiInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiInfo.h; sourceTree = "<group>"; };
+		1CEAF3C91AF1F88200AFE77F /* HentaiInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiInfo.m; sourceTree = "<group>"; };
 		1CF5EDC31AE9E04C00ECD8B7 /* DaiStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiStorage.h; sourceTree = "<group>"; };
 		1CF5EDC41AE9E04C00ECD8B7 /* DaiStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiStorage.m; sourceTree = "<group>"; };
 		1CF5EDC51AE9E04C00ECD8B7 /* DaiStorageArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiStorageArray.h; sourceTree = "<group>"; };
@@ -426,6 +432,7 @@
 		0150033619B6E5E90055F47D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				1CA6B8931AF0E35800FEEDFD /* DaiSurvivor */,
 				1CF5EDC11AE9E04C00ECD8B7 /* DaiStorage */,
 				0131908B1A4A5C6B0056F2E6 /* Flurry */,
 				019290161A25D6C70094B423 /* DaiPortal */,
@@ -729,6 +736,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1CA6B8931AF0E35800FEEDFD /* DaiSurvivor */ = {
+			isa = PBXGroup;
+			children = (
+				1CA6B8941AF0E35800FEEDFD /* DaiSurvivor.h */,
+				1CA6B8951AF0E35800FEEDFD /* DaiSurvivor.m */,
+			);
+			path = DaiSurvivor;
+			sourceTree = "<group>";
+		};
+		1CEAF3C71AF1F83000AFE77F /* Downloading */ = {
+			isa = PBXGroup;
+			children = (
+				1CEAF3C81AF1F88200AFE77F /* HentaiInfo.h */,
+				1CEAF3C91AF1F88200AFE77F /* HentaiInfo.m */,
+			);
+			path = Downloading;
+			sourceTree = "<group>";
+		};
 		1CF5EDC11AE9E04C00ECD8B7 /* DaiStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -839,6 +864,7 @@
 		1CF5EE231AE9FE1100ECD8B7 /* DaiStorageModels */ = {
 			isa = PBXGroup;
 			children = (
+				1CEAF3C71AF1F83000AFE77F /* Downloading */,
 				1CF5EE241AE9FE1100ECD8B7 /* Account */,
 				1CF5EE271AE9FE1100ECD8B7 /* Filters */,
 				1CF5EE2D1AE9FE1100ECD8B7 /* Menu */,
@@ -1040,6 +1066,11 @@
 				TargetAttributes = {
 					0199268419ADDB83009F814B = {
 						DevelopmentTeam = Y6TM8J7448;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					1C6ED8851ACD13F300713301 = {
 						CreatedOnToolsVersion = 6.2;
@@ -1188,6 +1219,7 @@
 				1CF5EE6C1AE9FEC600ECD8B7 /* GroupSelectViewController.m in Sources */,
 				01821A1B1A5A76FA007E5A76 /* MainTableViewCell.m in Sources */,
 				1CF5EDD11AE9E04C00ECD8B7 /* DaiStoragePath.m in Sources */,
+				1CEAF3CA1AF1F88200AFE77F /* HentaiInfo.m in Sources */,
 				0150034619B6E5E90055F47D /* XPathQuery.m in Sources */,
 				1CF5EE481AE9FE1100ECD8B7 /* Account.m in Sources */,
 				1CF5EDCF1AE9E04C00ECD8B7 /* DaiStorage.m in Sources */,
@@ -1226,6 +1258,7 @@
 				1CF5EE4A1AE9FE1100ECD8B7 /* Filter.m in Sources */,
 				016BBF0B19B94E4F0015E11E /* FilesManager.m in Sources */,
 				1C85F9991AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m in Sources */,
+				1CA6B8961AF0E35800FEEDFD /* DaiSurvivor.m in Sources */,
 				1CF5EE551AE9FE1100ECD8B7 /* HentaiSaveLibrary_HentaiInfo.m in Sources */,
 				01813D321A6F7E9C006DA12A /* DownloadedGroupFilterViewController.m in Sources */,
 				0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */,

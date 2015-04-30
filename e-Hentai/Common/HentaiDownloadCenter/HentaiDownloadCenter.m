@@ -9,6 +9,7 @@
 #import "HentaiDownloadCenter.h"
 
 #import <objc/runtime.h>
+#import "HentaiInfo.h"
 
 #define waitingQueue [self waitingAddressQueue]
 #define downloadingQueue [self downloadingAddressQueue]
@@ -65,6 +66,7 @@
         newOperation.status = HentaiDownloadBookOperationStatusWaiting;
         [self operationActivity:newOperation];
         [[self allBooksOperationQueue] addOperation:newOperation];
+        [self addHentaiInfo:hentaiInfo toGroup:group];
     }
 }
 
@@ -101,7 +103,27 @@
     [self refreshMonitor];
 }
 
++ (NSInteger)countInCenter {
+    return [self allBooksOperationQueue].operations.count;
+}
+
 #pragma mark - private
+
++ (void)addHentaiInfo:(NSDictionary *)hentaiInfo toGroup:(NSString *)group {
+    HentaiInfo *newHentaiInfo = [HentaiInfo new];
+    newHentaiInfo.category = hentaiInfo[@"category"];
+    newHentaiInfo.filecount = hentaiInfo[@"filecount"];
+    newHentaiInfo.filesize = hentaiInfo[@"filesize"];
+    newHentaiInfo.posted = hentaiInfo[@"posted"];
+    newHentaiInfo.rating = hentaiInfo[@"rating"];
+    newHentaiInfo.thumb = hentaiInfo[@"thumb"];
+    newHentaiInfo.title = hentaiInfo[@"title"];
+    newHentaiInfo.title_jpn = hentaiInfo[@"title_jpn"];
+    newHentaiInfo.uploader = hentaiInfo[@"uploader"];
+    newHentaiInfo.url = hentaiInfo[@"url"];
+    newHentaiInfo.group = group;
+    [newHentaiInfo exportPath:[[[DaiStoragePath document] fcd:@"Downloading"] fcd:hentaiInfo.hentai_hentaiKey]];
+}
 
 //刷新給監控方看的資料內容
 + (void)refreshMonitor {

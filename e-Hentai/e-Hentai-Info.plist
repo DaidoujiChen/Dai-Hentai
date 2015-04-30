@@ -37,6 +37,10 @@
 	<string>2.41</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -49,5 +53,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>開啟背景下載的黑魔法~ O3&lt;</string>
 </dict>
 </plist>
