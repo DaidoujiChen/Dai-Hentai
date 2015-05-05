@@ -40,7 +40,7 @@
 + (void)registerClass:(NSString *)className {
 	Class superclass = (Class)objc_getClass("DaiStorageArray");
 	Class newClass = objc_allocateClassPair(superclass, [className UTF8String], 0);
-    Protocol *newProtocol = objc_getProtocol([[self splitToProtocol:className] UTF8String]);
+    __unsafe_unretained Protocol *newProtocol = objc_getProtocol([[self splitToProtocol:className] UTF8String]);
     if (!newProtocol) {
         newProtocol = objc_allocateProtocol([[self splitToProtocol:className] UTF8String]);
         objc_registerProtocol(newProtocol);
