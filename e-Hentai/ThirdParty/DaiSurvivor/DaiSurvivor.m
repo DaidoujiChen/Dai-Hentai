@@ -87,8 +87,8 @@
 			    if (!weakSelf.isEnterBackground) {
 			        break;
 				}
-
-			    if (weakSelf.backgroundTimeRemaining < 30.0f && !weakSelf.isUpdatingLocation) {
+                
+			    if (weakSelf.backgroundTimeRemaining < 30.0f && !weakSelf.isUpdatingLocation && weakSelf.isNeedAliveInBackground()) {
 			        dispatch_async(dispatch_get_main_queue(), ^{
 						[weakSelf requestUpdatingLocation];
 					});
