@@ -34,9 +34,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.41</string>
+	<string>2.5</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>開啟背景下載的黑魔法~ O3&lt;</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -53,7 +55,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>開啟背景下載的黑魔法~ O3&lt;</string>
 </dict>
 </plist>
