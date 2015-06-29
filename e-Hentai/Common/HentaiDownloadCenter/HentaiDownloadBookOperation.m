@@ -99,7 +99,7 @@
         }
         else {
             self.failCount++;
-            self.maxHentaiCount = [NSString stringWithFormat:@"%ld", [self.maxHentaiCount integerValue] - 1];
+            self.maxHentaiCount = [NSString stringWithFormat:@"%td", [self.maxHentaiCount integerValue] - 1];
             
             NSUInteger removeIndex = NSNotFound;
             for (NSString *eachURLString in self.hentaiImageURLs) {

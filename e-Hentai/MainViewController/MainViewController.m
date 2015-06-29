@@ -87,7 +87,7 @@
     NSString *sectionText = self.listArray[section][@"title"];
     if (!sectionText) {
         //因為從 report 看起來這邊會有危險, 但是不知道為什麼, 所以用這個奇怪的做法
-        sectionText = [NSString stringWithFormat:@"好險~好險~差點就閃退了(%d)", section];
+        sectionText = [NSString stringWithFormat:@"好險~好險~差點就閃退了(%td)", section];
     }
     UITextView *titleTextView = self.textViewCacheMapping[sectionText];
     if (!titleTextView) {
@@ -174,7 +174,7 @@
 - (void)willPresentAlertView:(UIAlertView *)alertView {
     if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
         UITextField *indexTextField = [alertView textFieldAtIndex:0];
-        indexTextField.text = [NSString stringWithFormat:@"%d", self.listIndex+1];
+        indexTextField.text = [NSString stringWithFormat:@"%td", self.listIndex+1];
     }
 }
 
@@ -287,7 +287,7 @@
     [RACObserve(self, listIndex) subscribeNext:^(NSNumber *index) {
         @strongify(self);
         
-        self.title = [NSString stringWithFormat:@"%@(%d)", [Prefer shared].searchText, self.listIndex + 1];
+        self.title = [NSString stringWithFormat:@"%@(%td)", [Prefer shared].searchText, self.listIndex + 1];
     }];
     self.listIndex = 0;
     self.listArray = [NSMutableArray array];

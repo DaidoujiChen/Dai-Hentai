@@ -37,7 +37,7 @@
 
 - (DaiPortalBlockAnalysisReturnType)returnTypeInBlock {
     NSNumber *returnTypeInBlock = objc_getAssociatedObject(self, _cmd);
-    return [returnTypeInBlock integerValue];
+    return (DaiPortalBlockAnalysisReturnType)returnTypeInBlock.integerValue;
 }
 
 - (NSString *)resultPortalIdentifier {

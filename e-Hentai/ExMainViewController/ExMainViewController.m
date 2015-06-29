@@ -52,7 +52,7 @@
 - (void)willPresentAlertView:(UIAlertView *)alertView {
     if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
         UITextField *indexTextField = [alertView textFieldAtIndex:0];
-        indexTextField.text = [NSString stringWithFormat:@"%d", self.listIndex+1];
+        indexTextField.text = [NSString stringWithFormat:@"%td", self.listIndex+1];
     }
 }
 

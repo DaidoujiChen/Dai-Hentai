@@ -252,7 +252,7 @@
         }
         else {
             self.failCount++;
-            self.maxHentaiCount = [NSString stringWithFormat:@"%ld", [self.maxHentaiCount integerValue] - 1];
+            self.maxHentaiCount = [NSString stringWithFormat:@"%td", [self.maxHentaiCount integerValue] - 1];
             
             NSUInteger removeIndex = NSNotFound;
             for (NSString *eachURLString in self.hentaiImageURLs) {
@@ -277,7 +277,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 當前頁數 / ( 可到頁數 / 已下載頁數 / 總共頁數 )
-    self.title = [NSString stringWithFormat:@"%ld/(%ld/%ld/%@)", indexPath.row + 1, self.realDisplayCount, [self.hentaiResults count], self.maxHentaiCount];
+    self.title = [NSString stringWithFormat:@"%td/(%td/%td/%@)", indexPath.row + 1, self.realDisplayCount, [self.hentaiResults count], self.maxHentaiCount];
     
     //無限滾
     if (indexPath.row >= [self.hentaiImageURLs count] - 20 && ([self.hentaiImageURLs count] + self.failCount) == (self.hentaiIndex + 1) * 40 && [self.hentaiImageURLs count] < [self.maxHentaiCount integerValue]) {

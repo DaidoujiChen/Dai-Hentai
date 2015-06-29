@@ -1407,7 +1407,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Pgyer",
 					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Flurry",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1438,7 +1437,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Pgyer",
 					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Flurry",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
