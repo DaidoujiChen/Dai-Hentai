@@ -75,6 +75,7 @@
 		15A3136E5E2A013E5D0DD04C /* libPods-HentaiTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */; };
 		1C55C2B61ACD18A400A74AAA /* DownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55C2B51ACD18A400A74AAA /* DownloadTests.m */; };
 		1C85F9991AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C85F9981AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m */; };
+		1C8CA58F1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8CA58E1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.m */; };
 		1CA6B8961AF0E35800FEEDFD /* DaiSurvivor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA6B8951AF0E35800FEEDFD /* DaiSurvivor.m */; };
 		1CEAF3CA1AF1F88200AFE77F /* HentaiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF3C91AF1F88200AFE77F /* HentaiInfo.m */; };
 		1CF5EDCF1AE9E04C00ECD8B7 /* DaiStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF5EDC41AE9E04C00ECD8B7 /* DaiStorage.m */; };
@@ -235,6 +236,8 @@
 		1C6ED8891ACD13F400713301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C85F9971AEDE6FE009165B4 /* DaiStoragePropertiesInObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiStoragePropertiesInObject.h; sourceTree = "<group>"; };
 		1C85F9981AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiStoragePropertiesInObject.m; sourceTree = "<group>"; };
+		1C8CA58D1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Hentai.h"; sourceTree = "<group>"; };
+		1C8CA58E1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Hentai.m"; sourceTree = "<group>"; };
 		1CA6B8941AF0E35800FEEDFD /* DaiSurvivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiSurvivor.h; sourceTree = "<group>"; };
 		1CA6B8951AF0E35800FEEDFD /* DaiSurvivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiSurvivor.m; sourceTree = "<group>"; };
 		1CEAF3C81AF1F88200AFE77F /* HentaiInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiInfo.h; sourceTree = "<group>"; };
@@ -790,6 +793,8 @@
 				1CF5EDFF1AE9FD6200ECD8B7 /* UIImageView+Hentai.m */,
 				1CF5EE001AE9FD6200ECD8B7 /* UIView+Hentai.h */,
 				1CF5EE011AE9FD6200ECD8B7 /* UIView+Hentai.m */,
+				1C8CA58D1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.h */,
+				1C8CA58E1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.m */,
 			);
 			path = Caterogy;
 			sourceTree = "<group>";
@@ -1227,6 +1232,7 @@
 				0199269919ADDB83009F814B /* AppDelegate.m in Sources */,
 				1CF5EE6F1AE9FEC600ECD8B7 /* HentaiDownloadImageOperation.m in Sources */,
 				0118081B19B6F06200FE0DA1 /* PhotoViewController.m in Sources */,
+				1C8CA58F1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.m in Sources */,
 				1CF5EE561AE9FE1100ECD8B7 /* HentaiSaveLibrary_HentaiResult.m in Sources */,
 				1CF5EE0F1AE9FD6200ECD8B7 /* UIAlertView+Hentai.m in Sources */,
 				1CF5EE4B1AE9FE1100ECD8B7 /* FilterItem.m in Sources */,

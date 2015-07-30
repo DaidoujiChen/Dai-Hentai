@@ -27,35 +27,6 @@
     return filterString;
 }
 
-#pragma mark - UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
-        if (buttonIndex) {
-            UITextField *indexTextField = [alertView textFieldAtIndex:0];
-            self.listIndex = [indexTextField.text intValue] - 1;
-            avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
-        }
-    }
-    else {
-        if (buttonIndex) {
-            UITextField *username = [alertView textFieldAtIndex:0];
-            UITextField *password = [alertView textFieldAtIndex:1];
-            alertView.hentai_account(username.text, password.text);
-        }
-        else {
-            alertView.hentai_account(nil, nil);
-        }
-    }
-}
-
-- (void)willPresentAlertView:(UIAlertView *)alertView {
-    if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
-        UITextField *indexTextField = [alertView textFieldAtIndex:0];
-        indexTextField.text = [NSString stringWithFormat:@"%td", self.listIndex+1];
-    }
-}
-
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
@@ -84,16 +55,18 @@
             }];
         }
         else {
-            UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"登入" message:@"輸入您可進入 exhentai 的帳號" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-            loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-            loginAlert.hentai_account = ^(NSString *userName, NSString *password) {
-                [SVProgressHUD show];
+            @weakify(self);
+            [UIAlertView hentai_alertViewWithTitle:@"登入" message:@"輸入您可進入 exhentai 的帳號" style:UIAlertViewStyleLoginAndPasswordInput willPresent:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"Go~ O3O"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
+                @strongify(self);
+                UITextField *username = [alertView textFieldAtIndex:0];
+                UITextField *password = [alertView textFieldAtIndex:1];
+                
                 @weakify(self);
-                [DiveExHentai diveByUserName:userName password:password completion: ^(BOOL isSuccess) {
+                [DiveExHentai diveByUserName:username.text password:password.text completion: ^(BOOL isSuccess) {
                     @strongify(self);
                     if (isSuccess) {
-                        [Account shared].username = userName;
-                        [Account shared].password = password;
+                        [Account shared].username = username.text;
+                        [Account shared].password = password.text;
                         [[Account shared] sync];
                         avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
                     }
@@ -102,9 +75,7 @@
                     }
                     [SVProgressHUD dismiss];
                 }];
-            };
-            [loginAlert addButtonWithTitle:@"Go~ O3O"];
-            [loginAlert show];
+            } onCancel:nil];
         }
     }
 }

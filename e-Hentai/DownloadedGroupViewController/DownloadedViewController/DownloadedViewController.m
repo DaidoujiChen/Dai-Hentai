@@ -162,7 +162,7 @@ typedef enum {
 
 - (void)helpToDelete {
     @weakify(self);
-    [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex:^(NSInteger clickIndex) {
+    [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
         @strongify(self);
         if (self) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -172,8 +172,7 @@ typedef enum {
             [[[FilesManager documentFolder] fcd:@"Hentai"] rd:hentaiKey];
             [HentaiSaveLibrary removeSaveInfoAtHentaiKey:hentaiKey];
         }
-    } onCancel:^{
-    }];
+    } onCancel:nil];
 }
 
 - (void)helpToChangeGroup:(UIViewController *)viewController {
@@ -303,8 +302,7 @@ typedef enum {
     }
     else {
         @weakify(self);
-        [UIAlertView hentai_alertViewWithTitle:@"這個分類沒有作品喔!" message:@"點擊確定返回上一頁!" cancelButtonTitle:@"確定!" otherButtonTitles:nil onClickIndex:^(NSInteger clickIndex) {
-        } onCancel:^{
+        [UIAlertView hentai_alertViewWithTitle:@"這個分類沒有作品喔!" message:@"點擊確定返回上一頁!" cancelButtonTitle:@"確定!" otherButtonTitles:nil onClickIndex:nil onCancel: ^(UIAlertView *alertView) {
             @strongify(self);
             [self.navigationController popViewControllerAnimated:YES];
         }];

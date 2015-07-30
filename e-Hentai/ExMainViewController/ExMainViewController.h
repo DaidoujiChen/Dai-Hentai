@@ -8,6 +8,6 @@
 
 #import "MainViewController.h"
 
-@interface ExMainViewController : MainViewController <UIAlertViewDelegate>
+@interface ExMainViewController : MainViewController
 
 @end

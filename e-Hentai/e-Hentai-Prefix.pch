@@ -48,6 +48,8 @@
     #import "UIImageView+Hentai.h"
     #import "GroupManager.h"
     #import "ColorThemeViewController.h"
+    #import "HentaiNavigationController.h"
+    #import "UIBarButtonItem+Hentai.h"
 
     //daistorage
     #import "Menu.h"
