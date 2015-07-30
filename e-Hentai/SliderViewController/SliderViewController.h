@@ -7,10 +7,8 @@
 //
 
 #import "IIViewDeckController.h"
-
 #import "MainViewController.h"
 #import "MenuViewController.h"
-#import "DownloadManagerViewController.h"
 
 @interface SliderViewController : IIViewDeckController <MainViewControllerDelegate, MenuViewControllerDelegate, IIViewDeckControllerDelegate, OpenMenuProtocol>
 
