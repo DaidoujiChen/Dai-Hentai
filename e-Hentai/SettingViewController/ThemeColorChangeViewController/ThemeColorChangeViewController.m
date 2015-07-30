@@ -28,7 +28,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //建立 cell
-    MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AvailableColorCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     cell.textLabel.text = self.availableColors[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if ([self.availableColors[indexPath.row] isEqualToString:self.currentColorString]) {
@@ -77,7 +77,7 @@
     availableColorsTableView.delegate = self;
     availableColorsTableView.dataSource = self;
     availableColorsTableView.backgroundColor = [UIColor clearColor];
-    [availableColorsTableView registerClass:[MenuDefaultCell class] forCellReuseIdentifier:@"AvailableColorCell"];
+    [availableColorsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.view addSubview:availableColorsTableView];
 }
 

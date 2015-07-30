@@ -33,7 +33,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuDefaultCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = self.groups[indexPath.row][@"title"];
     return cell;
@@ -72,7 +72,7 @@
     self.downloadedGroupTableView.delegate = self;
     self.downloadedGroupTableView.dataSource = self;
     self.downloadedGroupTableView.backgroundColor = [UIColor clearColor];
-    [self.downloadedGroupTableView registerClass:[MenuDefaultCell class] forCellReuseIdentifier:@"MenuDefaultCell"];
+    [self.downloadedGroupTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.view addSubview:self.downloadedGroupTableView];
 }
 

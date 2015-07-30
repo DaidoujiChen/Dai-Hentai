@@ -45,7 +45,6 @@
 		01758F741A3FE07400677BA2 /* ExMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01758F731A3FE07400677BA2 /* ExMainViewController.m */; };
 		0179766419E27E8D00E9005E /* DownloadManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766219E27E8D00E9005E /* DownloadManagerCell.m */; };
 		0179766519E27E8D00E9005E /* DownloadManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179766319E27E8D00E9005E /* DownloadManagerCell.xib */; };
-		0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0179766819E27EC100E9005E /* MenuDefaultCell.m */; };
 		017A536C1A5ABF6F0032C032 /* IPadMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017A536B1A5ABF6F0032C032 /* IPadMainTableViewCell.xib */; };
 		0180D9161A0210FB002554FC /* exterior@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D9151A0210FB002554FC /* exterior@2x.png */; };
 		0180D91C1A021282002554FC /* exterior@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180D91A1A021282002554FC /* exterior@3x.png */; };
@@ -192,8 +191,6 @@
 		0179766119E27E8D00E9005E /* DownloadManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerCell.h; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.h; sourceTree = "<group>"; };
 		0179766219E27E8D00E9005E /* DownloadManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManagerCell.m; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.m; sourceTree = "<group>"; };
 		0179766319E27E8D00E9005E /* DownloadManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DownloadManagerCell.xib; path = DownloadManagerViewController/DownloadManagerCell/DownloadManagerCell.xib; sourceTree = "<group>"; };
-		0179766719E27EC100E9005E /* MenuDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuDefaultCell.h; path = MenuViewController/MenuDefaultCell/MenuDefaultCell.h; sourceTree = "<group>"; };
-		0179766819E27EC100E9005E /* MenuDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuDefaultCell.m; path = MenuViewController/MenuDefaultCell/MenuDefaultCell.m; sourceTree = "<group>"; };
 		017A536B1A5ABF6F0032C032 /* IPadMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPadMainTableViewCell.xib; sourceTree = "<group>"; };
 		0180D9151A0210FB002554FC /* exterior@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exterior@2x.png"; sourceTree = "<group>"; };
 		0180D91A1A021282002554FC /* exterior@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exterior@3x.png"; sourceTree = "<group>"; };
@@ -405,7 +402,6 @@
 			children = (
 				011AEA5319DD296400A15CA5 /* MenuViewController.h */,
 				011AEA5419DD296400A15CA5 /* MenuViewController.m */,
-				0179766619E27EB200E9005E /* MenuDefaultCell */,
 			);
 			name = MenuViewController;
 			sourceTree = "<group>";
@@ -535,15 +531,6 @@
 				01519AF41A3053BA0091C985 /* IPadDownloadManagerCell.xib */,
 			);
 			name = DownloadManagerCell;
-			sourceTree = "<group>";
-		};
-		0179766619E27EB200E9005E /* MenuDefaultCell */ = {
-			isa = PBXGroup;
-			children = (
-				0179766719E27EC100E9005E /* MenuDefaultCell.h */,
-				0179766819E27EC100E9005E /* MenuDefaultCell.m */,
-			);
-			name = MenuDefaultCell;
 			sourceTree = "<group>";
 		};
 		017AE5BE1A00D22E00317939 /* SearchFilterViewController */ = {
@@ -1261,7 +1248,6 @@
 				1CA6B8961AF0E35800FEEDFD /* DaiSurvivor.m in Sources */,
 				1CF5EE551AE9FE1100ECD8B7 /* HentaiSaveLibrary_HentaiInfo.m in Sources */,
 				01813D321A6F7E9C006DA12A /* DownloadedGroupFilterViewController.m in Sources */,
-				0179766919E27EC100E9005E /* MenuDefaultCell.m in Sources */,
 				1CF5EE111AE9FD6200ECD8B7 /* UIView+Hentai.m in Sources */,
 				0171C4511A9C1D0100320AA8 /* SFExecuteOnDeallocInternalObject.m in Sources */,
 				0199269519ADDB83009F814B /* main.m in Sources */,

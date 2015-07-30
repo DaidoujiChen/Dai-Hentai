@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ColorThemeViewController.h"
-#import "MenuDefaultCell.h"
-
 @protocol MenuViewControllerDelegate;
 
 @interface MenuViewController : ColorThemeViewController <UITableViewDelegate, UITableViewDataSource>
