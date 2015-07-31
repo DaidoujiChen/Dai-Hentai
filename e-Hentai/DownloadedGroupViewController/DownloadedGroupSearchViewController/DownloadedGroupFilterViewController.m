@@ -16,7 +16,7 @@
 
 @implementation DownloadedGroupFilterViewController
 
-#pragma mark - private
+#pragma mark - private instance method
 
 #pragma mark * init
 
@@ -56,10 +56,33 @@
 }
 
 - (void)setupItemsOnNavigation {
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelAction)];
+    
+    // 設定取消按鈕
+    @weakify(self);
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel blockAction: ^{
+        @strongify(self);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction)];
+    // 設定確認按鈕
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone blockAction: ^{
+        @strongify(self);
+        if (self) {
+            NSMutableDictionary *result = [NSMutableDictionary dictionary];
+            [self.root fetchValueIntoObject:result];
+            
+            NSMutableDictionary *searchInfo = [NSMutableDictionary dictionary];
+            if (![[result[@"searchText"] hentai_withoutSpace] isEqualToString:@""]) {
+                NSArray *titles = [result[@"searchText"] componentsSeparatedByString:@" "];
+                searchInfo[@"titles"] = titles;
+            }
+            searchInfo[@"group"] = self.groups[[result[@"group"] integerValue]][@"value"];
+            
+            [self.delegate onSearchFilterDone:searchInfo];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
     self.navigationItem.rightBarButtonItem = doneButton;
 }
 
@@ -68,27 +91,6 @@
     [self.groups addObject:@{@"title":@"全部", @"value":@""}];
     [self.groups addObject:@{@"title":@"未分類", @"value":[NSNull null]}];
     [self.groups addObjectsFromArray:[HentaiSaveLibrary groups]];
-}
-
-#pragma mark * actions
-
-- (void)cancelAction {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)doneAction {
-    NSMutableDictionary *result = [NSMutableDictionary dictionary];
-    [self.root fetchValueIntoObject:result];
-    
-    NSMutableDictionary *searchInfo = [NSMutableDictionary dictionary];
-    if (![[result[@"searchText"] hentai_withoutSpace] isEqualToString:@""]) {
-        NSArray *titles = [result[@"searchText"] componentsSeparatedByString:@" "];
-        searchInfo[@"titles"] = titles;
-    }
-    searchInfo[@"group"] = self.groups[[result[@"group"] integerValue]][@"value"];
-    
-    [self.delegate onSearchFilterDone:searchInfo];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - life cycle
