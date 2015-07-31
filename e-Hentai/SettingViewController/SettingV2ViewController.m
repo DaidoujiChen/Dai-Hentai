@@ -203,7 +203,7 @@
 }
 
 - (void)timeoutSecondsChange:(QEntryElement *)timeoutSecondsElement {
-    [Setting shared].timeoutSeconds =@([timeoutSecondsElement.textValue doubleValue]);
+    [Setting shared].timeoutSeconds = @([timeoutSecondsElement.textValue doubleValue]);
 }
 
 - (void)loadingPicsAtSameTimeChange:(QEntryElement *)loadingPicsAtSameTimeElement {
