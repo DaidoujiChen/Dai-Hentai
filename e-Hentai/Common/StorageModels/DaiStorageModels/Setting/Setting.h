@@ -13,6 +13,9 @@
 @property (nonatomic, strong) NSNumber *highResolution;
 @property (nonatomic, strong) NSString *themeColor;
 @property (nonatomic, strong) NSNumber *useNewBrowser;
+@property (nonatomic, strong) NSNumber *retryTimes;
+@property (nonatomic, strong) NSNumber *timeoutSeconds;
+@property (nonatomic, strong) NSNumber *loadingPicsAtSameTime;
 
 - (void)sync;
 
