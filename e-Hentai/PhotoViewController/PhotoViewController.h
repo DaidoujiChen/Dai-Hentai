@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ColorThemeViewController.h"
 #import "FakeViewController.h"
 #import "HentaiPhotoCell.h"
 #import "HentaiDownloadImageOperation.h"
