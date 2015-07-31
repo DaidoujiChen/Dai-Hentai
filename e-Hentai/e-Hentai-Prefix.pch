@@ -32,24 +32,26 @@
     #import "HentaiSaveLibrary.h"
     #import "HentaiCacheLibrary.h"
 
+    //category
+    #import "UIAlertView+Hentai.h"
+    #import "NSString+Hentai.h"
+    #import "NSDictionary+Hentai.h"
+    #import "NSObject+DaiPortal.h"
+    #import "UIView+Hentai.h"
+    #import "UIImageView+Hentai.h"
+    #import "UIBarButtonItem+Hentai.h"
+
     //from project
     #import "TFHpple.h"
     #import "HentaiParser.h"
     #import "FilesManager.h"
     #import "DaiStorage.h"
     #import "HentaiDownloadCenter.h"
-    #import "UIAlertView+Hentai.h"
-    #import "NSString+Hentai.h"
-    #import "NSDictionary+Hentai.h"
-    #import "NSObject+DaiPortal.h"
     #import "Flurry.h"
     #import "OpenMenuProtocol.h"
-    #import "UIView+Hentai.h"
-    #import "UIImageView+Hentai.h"
     #import "GroupManager.h"
     #import "ColorThemeViewController.h"
     #import "HentaiNavigationController.h"
-    #import "UIBarButtonItem+Hentai.h"
 
     //daistorage
     #import "Menu.h"
