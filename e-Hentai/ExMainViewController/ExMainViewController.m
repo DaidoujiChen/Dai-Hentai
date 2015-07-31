@@ -57,11 +57,10 @@
         else {
             @weakify(self);
             [UIAlertView hentai_alertViewWithTitle:@"登入" message:@"輸入您可進入 exhentai 的帳號" style:UIAlertViewStyleLoginAndPasswordInput willPresent:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"Go~ O3O"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
-                @strongify(self);
                 UITextField *username = [alertView textFieldAtIndex:0];
                 UITextField *password = [alertView textFieldAtIndex:1];
                 
-                @weakify(self);
+                [SVProgressHUD show];
                 [DiveExHentai diveByUserName:username.text password:password.text completion: ^(BOOL isSuccess) {
                     @strongify(self);
                     if (isSuccess) {
