@@ -50,7 +50,7 @@
     [self.navigationController pushViewController:downloadedViewController animated:YES];
 }
 
-#pragma mark - private
+#pragma mark - private instance method
 
 #pragma mark * init
 
@@ -60,10 +60,22 @@
 }
 
 - (void)setupItemsOnNavigation {
+    
+    // 設定開啟選單按鈕
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(sliderControl)];
     self.navigationItem.leftBarButtonItem = menuButton;
     
-    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(presentSearchFilter)];
+    // 設定開啟 filter 按鈕
+    @weakify(self);
+    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch blockAction: ^{
+        @strongify(self);
+        DownloadedGroupFilterViewController *downloadedGroupFilter = [DownloadedGroupFilterViewController new];
+        downloadedGroupFilter.delegate = self;
+        HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:downloadedGroupFilter];
+        hentaiNavigation.autoRotate = NO;
+        hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
+        [self presentViewController:hentaiNavigation animated:YES completion:nil];
+    }];
     self.navigationItem.rightBarButtonItem = filterButton;
 }
 
@@ -77,16 +89,6 @@
 }
 
 #pragma mark * misc
-
-//present 搜尋跟過濾
-- (void)presentSearchFilter {
-    DownloadedGroupFilterViewController *downloadedGroupFilter = [DownloadedGroupFilterViewController new];
-    downloadedGroupFilter.delegate = self;
-    HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:downloadedGroupFilter];
-    hentaiNavigation.autoRotate = NO;
-    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
-    [self presentViewController:hentaiNavigation animated:YES completion:nil];
-}
 
 //重載列表
 - (void)reloadGroups {
