@@ -43,6 +43,9 @@
     //設置一些簡易的開關們
     [root addSection:[self switchsSection]];
     
+    //设置网络使用相关
+    [root addSection:[self networkSection]];
+    
     //更換顏色
     [root addSection:[self changeColorSection]];
     
@@ -70,6 +73,28 @@
     browserElement.controllerAction = @"browserChange:";
     [switchsSection addElement:browserElement];
     return switchsSection;
+}
+
+- (QSection *)networkSection{
+    //网络使用的 section
+    QSection *networkSection = [[QSection alloc] initWithTitle:@"网络使用"];
+    
+    //最大重试次数
+    QEntryElement *retryTimesElement = [[QEntryElement alloc] initWithTitle:@"允许重试次数" Value:[[Setting shared].retryTimes stringValue] Placeholder:@"输入一个整数"];
+    retryTimesElement.controllerAction = @"retryTimesChange:";
+    [networkSection addElement:retryTimesElement];
+    
+    //下载超时时间
+    QEntryElement *timeoutSecondsElement = [[QEntryElement alloc] initWithTitle:@"图片下载超时时间" Value:[[Setting shared].timeoutSeconds stringValue] Placeholder:@"以秒为单位"];
+    timeoutSecondsElement.controllerAction = @"timeoutSecondsChange:";
+    [networkSection addElement:timeoutSecondsElement];
+    
+    //同时下载图片数量
+    QEntryElement *loadingPicsAtSameTimeElement = [[QEntryElement alloc] initWithTitle:@"允许同时下载图片数量" Value:[[Setting shared].loadingPicsAtSameTime stringValue] Placeholder:@"输入一个整数"];
+    loadingPicsAtSameTimeElement.controllerAction = @"loadingPicsAtSameTimeChange:";
+    [networkSection addElement:loadingPicsAtSameTimeElement];
+    
+    return networkSection;
 }
 
 - (QSection *)changeColorSection {
@@ -171,6 +196,18 @@
         [UIAlertView hentai_alertViewWithTitle:@"注意~ O3O" message:@"目前這個功能僅在已下載功能中可使用~ O3O" cancelButtonTitle:@"好~ O3O"];
     }
     [Setting shared].useNewBrowser = @(browserElement.boolValue);
+}
+
+- (void)retryTimesChange:(QEntryElement *)retryTimesElement {
+    [Setting shared].retryTimes = @([retryTimesElement.textValue integerValue]);
+}
+
+- (void)timeoutSecondsChange:(QEntryElement *)timeoutSecondsElement {
+    [Setting shared].timeoutSeconds =@([timeoutSecondsElement.textValue doubleValue]);
+}
+
+- (void)loadingPicsAtSameTimeChange:(QEntryElement *)loadingPicsAtSameTimeElement {
+    [Setting shared].loadingPicsAtSameTime = @([loadingPicsAtSameTimeElement.textValue integerValue]);
 }
 
 #pragma mark * size calculate

@@ -132,9 +132,9 @@
     self.hentaiURLString = self.hentaiInfo[@"url"];
     self.maxHentaiCount = self.hentaiInfo[@"filecount"];
     
-    //OperationQueue 限制數量為 5
+    //OperationQueue 限制數量為 从设置读入
     self.hentaiQueue = [NSOperationQueue new];
-    [self.hentaiQueue setMaxConcurrentOperationCount:5];
+    [self.hentaiQueue setMaxConcurrentOperationCount:[[Setting shared].loadingPicsAtSameTime integerValue]];
     
     //相關參數初始化
     self.hentaiImageURLs = [NSMutableArray array];
@@ -247,7 +247,7 @@
         }
         self.retryMap[urlString] = retryCount;
         
-        if ([retryCount integerValue] <= 3) {
+        if ([retryCount integerValue] <= [[Setting shared].retryTimes integerValue]) {
             [self createNewOperation:urlString];
         }
         else {

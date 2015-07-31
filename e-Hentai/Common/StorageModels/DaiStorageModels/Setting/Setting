@@ -1,5 +1,8 @@
 {
     "highResolution": 0,
     "themeColor": "flatPinkColor",
-    "useNewBrowser": 0
+    "useNewBrowser": 0,
+    "retryTimes": 3,
+    "timeoutSeconds": 14.0,
+    "loadingPicsAtSameTime": 5
 }

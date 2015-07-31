@@ -93,7 +93,7 @@
         }
         self.retryMap[urlString] = retryCount;
         
-        if ([retryCount integerValue] <= 3) {
+        if ([retryCount integerValue] <= [[Setting shared].retryTimes integerValue]) {
             [self createNewOperation:urlString];
             return;
         }
