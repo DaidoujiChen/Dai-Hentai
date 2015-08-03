@@ -186,12 +186,22 @@
 }
 
 - (void)createNewOperation:(NSString *)urlString {
+    [self createNewOperation:urlString isHighPrior:false];
+}
+
+- (void)createNewOperation:(NSString *)urlString isHighPrior:(BOOL)isHighPrior {
     HentaiDownloadImageOperation *newOperation = [HentaiDownloadImageOperation new];
     newOperation.downloadURLString = urlString;
     newOperation.isCacheOperation = YES;
     newOperation.hentaiKey = self.hentaiKey;
     newOperation.delegate = self;
     newOperation.isHighResolution = self.isHighResolution;
+    if (isHighPrior) {
+        [newOperation setQueuePriority:NSOperationQueuePriorityHigh];
+    }
+    else {
+        [newOperation setQueuePriority:NSOperationQueuePriorityNormal];
+    }
     [self.hentaiQueue addOperation:newOperation];
 }
 
@@ -248,7 +258,7 @@
         self.retryMap[urlString] = retryCount;
         
         if ([retryCount integerValue] <= [[Setting shared].retryTimes integerValue]) {
-            [self createNewOperation:urlString];
+            [self createNewOperation:urlString isHighPrior:true];
         }
         else {
             self.failCount++;
