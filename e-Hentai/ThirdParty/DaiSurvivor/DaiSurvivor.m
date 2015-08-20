@@ -55,6 +55,7 @@
 
 + (void)load {
 	DaiSurvivor *shared = [self shared];
+    [[NSNotificationCenter defaultCenter] addObserver:shared selector:@selector(handleDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:shared selector:@selector(handleEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:shared selector:@selector(handleEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
@@ -62,6 +63,10 @@
 #pragma mark - private instance method
 
 #pragma mark * handle app enter background / foreground
+
+- (void)handleDidBecomeActive {
+    [self checkingLocationAccess];
+}
 
 - (void)handleEnterBackground {
 	//從外部判斷是否要在背景運行
@@ -168,7 +173,6 @@
 		shared.isEnterBackground = NO;
 		shared.locationManager = [CLLocationManager new];
 		shared.locationManager.delegate = (id <CLLocationManagerDelegate> )shared;
-		[shared checkingLocationAccess];
 	});
 	return shared;
 }
