@@ -80,7 +80,7 @@
 
 - (void)saveAction {
     @weakify(self);
-    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:nil cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"加入下載管理員~ O3O"] onClickIndex: ^(NSInteger clickIndex) {
+    [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:nil cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"加入下載管理員~ O3O"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
         [GroupManager presentFromViewController:self completion:^(NSString *selectedGroup) {
             @strongify(self);
             if (self && selectedGroup) {
@@ -88,21 +88,19 @@
                 [self backAction];
             }
         }];
-    } onCancel: ^{
-    }];
+    } onCancel:nil];
 }
 
 - (void)deleteAction {
     @weakify(self);
-    [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex:^(NSInteger clickIndex) {
+    [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
         @strongify(self);
         if (self) {
             [[[FilesManager documentFolder] fcd:@"Hentai"] rd:self.hentaiKey];
             [HentaiSaveLibrary removeSaveInfoAtHentaiKey:self.hentaiKey];
             [self backAction];
         }
-    } onCancel:^{
-    }];
+    } onCancel:nil];
 }
 
 - (void)changeGroupAction {

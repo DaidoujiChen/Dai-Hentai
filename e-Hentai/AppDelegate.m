@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
 #import "AppDelegate+SupportKit.h"
 #import "DaiSurvivor.h"
+#import "SliderViewController.h"
 #import "HentaiInfo.h"
 
 @implementation AppDelegate
@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-	[DaiSurvivor shared].isNeedAliveInBackground = ^BOOL (void) {
+	[DaiSurvivor shared].isNeedAliveInBackground = ^BOOL(void) {
 		return [HentaiDownloadCenter countInCenter];
 	};
     
@@ -52,13 +52,13 @@
 - (void)downloadLostRecovery {
     NSArray *losts = [[[FilesManager documentFolder] fcd:@"Downloading"] listFolders];
     if (losts.count) {
-        [UIAlertView hentai_alertViewWithTitle:@"O3O\" 發現有些東西沒有下載完成 " message:@"請問是否將他們加回下載列表?" cancelButtonTitle:@"不用" otherButtonTitles:@[@"要~ O3O"] onClickIndex:^(NSInteger clickIndex) {
+        [UIAlertView hentai_alertViewWithTitle:@"O3O\" 發現有些東西沒有下載完成 " message:@"請問是否將他們加回下載列表?" cancelButtonTitle:@"不用" otherButtonTitles:@[@"要~ O3O"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
             for (NSString *folder in losts) {
                 HentaiInfo *lostHentaiInfo = [HentaiInfo new];
                 [lostHentaiInfo importPath:[[[DaiStoragePath document] fcd:@"Downloading"] fcd:folder]];
                 [HentaiDownloadCenter addBook:lostHentaiInfo.storeContents toGroup:lostHentaiInfo.group];
             }
-        } onCancel:^{
+        } onCancel: ^(UIAlertView *alertView) {
             for (NSString *folder in losts) {
                 [[[FilesManager documentFolder] fcd:@"Downloading"] rd:folder];
             }

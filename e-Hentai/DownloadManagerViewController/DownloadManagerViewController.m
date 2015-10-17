@@ -30,7 +30,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"DownloadManagerCell";
-    DownloadManagerCell *cell = (DownloadManagerCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    DownloadManagerCell *cell = (DownloadManagerCell *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *currentArray;
     if (indexPath.section) {

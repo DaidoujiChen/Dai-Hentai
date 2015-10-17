@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "HentaiNavigationController.h"
-#import "SliderViewController.h"
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

@@ -7,7 +7,6 @@
 //
 
 #import "MenuViewController.h"
-
 #import "AppDelegate+SupportKit.h"
 
 @interface MenuViewController ()
@@ -26,11 +25,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MenuItem *item = [Menu shared].items[indexPath.row];
-    MenuDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuDefaultCell"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.imageView.image = [UIImage imageNamed:item.image];
+    static NSString *identifier = @"UITableViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
+    MenuItem *item = [Menu shared].items[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor clearColor];
+    cell.imageView.image = [UIImage imageNamed:item.image];
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     UIColor *textColor = [UIColor flatWhiteColor];
     NSDictionary *attributes = @{ NSForegroundColorAttributeName : textColor, NSFontAttributeName : font, NSTextEffectAttributeName : NSTextEffectLetterpressStyle };
@@ -39,7 +40,7 @@
         text = item.displayName;
     }
     else {
-        text = [NSString stringWithFormat:@"%@ (%@)", item.displayName, self.unreadCount ? :@"讀取中"];
+        text = [NSString stringWithFormat:@"%@ (%@)", item.displayName, self.unreadCount ? : @"讀取中"];
     }
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:text attributes:attributes];
     cell.textLabel.attributedText = attributedString;
@@ -53,7 +54,7 @@
     [self.delegate needToChangeViewController:item.controller];
 }
 
-#pragma mark - private
+#pragma mark - private instance method
 
 - (void)setupMenuTableView {
     self.menuTableView = [[UITableView alloc] initWithFrame:self.view.bounds];
@@ -61,7 +62,7 @@
     self.menuTableView.dataSource = self;
     self.menuTableView.backgroundColor = [UIColor clearColor];
     self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.menuTableView registerClass:[MenuDefaultCell class] forCellReuseIdentifier:@"MenuDefaultCell"];
+    [self.menuTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.view addSubview:self.menuTableView];
 }
 

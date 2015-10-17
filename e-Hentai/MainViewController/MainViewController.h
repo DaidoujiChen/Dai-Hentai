@@ -7,17 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#import "ColorThemeViewController.h"
-#import "HentaiNavigationController.h"
-#import "PhotoViewController.h"
-#import "FakeViewController.h"
 #import "SearchFilterV2ViewController.h"
 #import "MainTableViewCell.h"
+#import "PhotoViewController.h"
 
 @protocol MainViewControllerDelegate;
 
-@interface MainViewController : ColorThemeViewController <UISearchBarDelegate, SearchFilterV2ViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MainViewController : ColorThemeViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SearchFilterV2ViewControllerDelegate>
 
 @property (nonatomic, weak) id <MainViewControllerDelegate, OpenMenuProtocol> delegate;
 

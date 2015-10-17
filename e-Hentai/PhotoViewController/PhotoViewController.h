@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ColorThemeViewController.h"
-#import "HentaiNavigationController.h"
 #import "FakeViewController.h"
 #import "HentaiPhotoCell.h"
 #import "HentaiDownloadImageOperation.h"
 
-@interface PhotoViewController : ColorThemeViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadImageOperationDelegate, UIAlertViewDelegate>
+@interface PhotoViewController : ColorThemeViewController <UITableViewDataSource, UITableViewDelegate, HentaiDownloadImageOperationDelegate>
 
 @property (nonatomic, strong) NSDictionary *hentaiInfo;
 @property (nonatomic, strong) NSString *originGroup;

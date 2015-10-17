@@ -7,9 +7,7 @@
 //
 
 #import "GroupManager.h"
-
 #import "GroupSelectViewController.h"
-#import "HentaiNavigationController.h"
 
 @implementation GroupManager
 

@@ -6,10 +6,7 @@
 //  Copyright (c) 2015年 ChilunChen. All rights reserved.
 //
 
-#import "ColorThemeViewController.h"
-
 #import "OpenMenuProtocol.h"
-#import "MenuDefaultCell.h"
 #import "DownloadedViewController.h"
 #import "DownloadedGroupFilterViewController.h"
 

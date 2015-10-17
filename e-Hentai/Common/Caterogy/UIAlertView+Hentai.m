@@ -32,15 +32,15 @@
 	return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setHentai_account:(HentaiAccountBlock)hentai_account {
-    objc_setAssociatedObject(self, @selector(hentai_account), hentai_account, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setHentai_alert:(HentaiAlertBlock)hentai_alert {
+    objc_setAssociatedObject(self, @selector(hentai_alert), hentai_alert, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (HentaiAccountBlock)hentai_account {
+- (HentaiAlertBlock)hentai_alert {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-#pragma mark - instance method
+#pragma mark - class method
 
 + (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message {
 	return [UIAlertView hentai_alertViewWithTitle:title message:message cancelButtonTitle:@"取消"];
@@ -64,19 +64,39 @@
 	return alert;
 }
 
++ (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message style:(UIAlertViewStyle)style willPresent:(HentaiAlertBlock)willPresent cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtons onClickIndex:(HentaiClickBlock)clicked onCancel:(HentaiCancelBlock)cancelled {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:[self class] cancelButtonTitle:cancelButtonTitle otherButtonTitles:nil];
+    alert.alertViewStyle = style;
+    alert.hentai_clicked = clicked;
+    alert.hentai_cancelled = cancelled;
+    alert.hentai_alert = willPresent;
+    
+    for (NSString *buttonTitle in otherButtons) {
+        [alert addButtonWithTitle:buttonTitle];
+    }
+    [alert show];
+    return alert;
+}
+
 #pragma mark - UIAlertViewDelegate
 
 + (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == alertView.cancelButtonIndex) {
 		if (alertView.hentai_cancelled) {
-			alertView.hentai_cancelled();
+			alertView.hentai_cancelled(alertView);
 		}
 	}
 	else {
 		if (alertView.hentai_clicked) {
-			alertView.hentai_clicked(buttonIndex - 1);
+			alertView.hentai_clicked(alertView, buttonIndex - 1);
 		}
 	}
+}
+
++ (void)willPresentAlertView:(UIAlertView *)alertView {
+    if (alertView.hentai_alert) {
+        alertView.hentai_alert(alertView);
+    }
 }
 
 @end

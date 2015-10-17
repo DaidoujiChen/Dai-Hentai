@@ -7,8 +7,7 @@
 //
 
 #import "MainViewController.h"
-
-//avoid import cycle
+#import "FakeViewController.h"
 #import "DownloadedViewController.h"
 
 @interface MainViewController ()
@@ -29,12 +28,14 @@
 
 #pragma mark - dynamic
 
+// 產生過濾網址的 string
 - (NSString *)filterString {
     return [self filterDependOnURL:@"http://g.e-hentai.org/?page=%lu"];
 }
 
 #pragma mark - SearchFilterV2ViewControllerDelegate
 
+// 搜尋畫面按 done 回來時
 - (void)onSearchFilterDone {
     self.listIndex = 0;
     [self reloadDatas];
@@ -42,8 +43,9 @@
 
 #pragma mark - UITableViewDataSource
 
+// 一個 section 一個 row
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.listArray count];
+    return self.listArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -53,12 +55,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"MainTableViewCell";
     MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     NSDictionary *hentaiInfo = self.listArray[indexPath.section];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     //設定 ipad / iphone 共通資訊
     NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
-    [cell.thumbImageView sd_setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [cell.thumbImageView sd_setImageWithURL:imageURL completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error) {
             [cell.thumbImageView hentai_pathShadow];
             [cell.backgroundImageView hentai_blurWithImage:image];
@@ -79,10 +82,7 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 250.0f;
-}
-
+// 設定 section header 的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     NSString *sectionText = self.listArray[section][@"title"];
     if (!sectionText) {
@@ -104,6 +104,11 @@
     return textViewSize.height;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 250.0f;
+}
+
+// 顯示 section header 的字樣
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NSString *sectinoText = self.listArray[section][@"title"];
     return self.textViewCacheMapping[sectinoText];
@@ -124,7 +129,6 @@
         [self.delegate needToPushViewController:photoViewController];
     }
     else {
-        @weakify(self);
         NSString *alertTitle;
         NSString *alertMessage;
         if (isIPad) {
@@ -135,7 +139,9 @@
             alertTitle = hentaiInfo[@"category"];
             alertMessage = [self alertMessage:hentaiInfo];
         }
-        [UIAlertView hentai_alertViewWithTitle:alertTitle message:alertMessage cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex:^(NSInteger clickIndex) {
+        
+        @weakify(self);
+        [UIAlertView hentai_alertViewWithTitle:alertTitle message:alertMessage cancelButtonTitle:@"都不要~ O3O" otherButtonTitles:@[@"下載", @"直接看"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
             @strongify(self);
             if (clickIndex) {
                 if ([HentaiDownloadCenter isDownloading:hentaiInfo]) {
@@ -149,7 +155,7 @@
                 }
             }
             else {
-                [GroupManager presentFromViewController:self completion:^(NSString *selectedGroup) {
+                [GroupManager presentFromViewController:self completion: ^(NSString *selectedGroup) {
                     if (selectedGroup) {
                         [HentaiDownloadCenter addBook:hentaiInfo toGroup:selectedGroup];
                     }
@@ -159,26 +165,9 @@
     }
 }
 
-#pragma mark - UIAlertViewDelegate
+#pragma mark - private instance method
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
-        if (buttonIndex) {
-            UITextField *indexTextField = [alertView textFieldAtIndex:0];
-            self.listIndex = [indexTextField.text intValue] - 1;
-            [self reloadDatas];
-        }
-    }
-}
-
-- (void)willPresentAlertView:(UIAlertView *)alertView {
-    if ([alertView.title isEqualToString:@"此單位是跳跳忍者~ O3O"]) {
-        UITextField *indexTextField = [alertView textFieldAtIndex:0];
-        indexTextField.text = [NSString stringWithFormat:@"%td", self.listIndex+1];
-    }
-}
-
-#pragma mark - private
+#pragma mark * misc
 
 //製作 filter string
 - (NSString *)filterDependOnURL:(NSString *)urlString {
@@ -206,6 +195,18 @@
     }
     return [filterURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
+
+//製造來放 alertview 跳出來的訊息
+- (NSString *)alertMessage:(NSDictionary *)hentaiInfo {
+    NSMutableString *alertMessage = [NSMutableString string];
+    [alertMessage appendString:@"這部作品叫做:\n"];
+    [alertMessage appendFormat:@"%@\n", hentaiInfo[@"title"]];
+    [alertMessage appendFormat:@"評價:%@\n", hentaiInfo[@"rating"]];
+    [alertMessage appendFormat:@"總共: %@ 頁, %@\n", hentaiInfo[@"filecount"], hentaiInfo[@"filesize"]];
+    return alertMessage;
+}
+
+#pragma mark * reload methods
 
 //重新讀取資料
 - (void)reloadDatas {
@@ -246,39 +247,7 @@
     }];
 }
 
-//製造來放 alertview 跳出來的訊息
-- (NSString *)alertMessage:(NSDictionary *)hentaiInfo {
-    NSMutableString *alertMessage = [NSMutableString string];
-    [alertMessage appendString:@"這部作品叫做:\n"];
-    [alertMessage appendFormat:@"%@\n", hentaiInfo[@"title"]];
-    [alertMessage appendFormat:@"評價:%@\n", hentaiInfo[@"rating"]];
-    [alertMessage appendFormat:@"總共: %@ 頁, %@\n", hentaiInfo[@"filecount"], hentaiInfo[@"filesize"]];
-    return alertMessage;
-}
-
-//present 搜尋跟過濾
-- (void)presentSearchFilter {
-    SearchFilterV2ViewController *searchFilter = [SearchFilterV2ViewController new];
-    searchFilter.delegate = self;
-    HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:searchFilter];
-    hentaiNavigation.autoRotate = NO;
-    hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
-    [self presentViewController:hentaiNavigation animated:YES completion:nil];
-}
-
-- (void)nextPageAction {
-    self.listIndex++;
-    [self reloadDatas];
-}
-
-- (void)prevPageAction {
-    if (self.listIndex != 0) {
-        self.listIndex--;
-    }
-    [self reloadDatas];
-}
-
-#pragma mark viewdidload 中用到的初始方法
+#pragma mark * viewdidload 中用到的初始方法
 
 - (void)setupInitValues {
     
@@ -296,12 +265,41 @@
 }
 
 - (void)setupItemsOnNavigation {
-    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(presentSearchFilter)];
-    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextPageAction)];
+    
+    // 跳 filter
+    @weakify(self);
+    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch blockAction: ^{
+        @strongify(self);
+        SearchFilterV2ViewController *searchFilter = [SearchFilterV2ViewController new];
+        searchFilter.delegate = self;
+        HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:searchFilter];
+        hentaiNavigation.autoRotate = NO;
+        hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
+        [self presentViewController:hentaiNavigation animated:YES completion:nil];
+    }];
+    
+    // 跳下一頁
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward blockAction: ^{
+        @strongify(self);
+        self.listIndex++;
+        [self reloadDatas];
+    }];
     self.navigationItem.rightBarButtonItems = @[filterButton, nextButton];
     
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self.delegate action:@selector(sliderControl)];
-    UIBarButtonItem *prevButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(prevPageAction)];
+    // 跳出選單
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks blockAction: ^{
+        @strongify(self);
+        [self.delegate sliderControl];
+    }];
+    
+    // 上一頁
+    UIBarButtonItem *prevButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind blockAction: ^{
+        @strongify(self);
+        if (self.listIndex != 0) {
+            self.listIndex--;
+        }
+        [self reloadDatas];
+    }];
     self.navigationItem.leftBarButtonItems = @[menuButton, prevButton];
 }
 
@@ -331,10 +329,19 @@
 
 #pragma mark * method to override
 
+// 點擊到 navigation bar 時, 需要跳出的 alert
 - (void)tapNavigationAction:(UITapGestureRecognizer *)tapGestureRecognizer {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"此單位是跳跳忍者~ O3O" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"跳~ O3O", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert show];
+    @weakify(self);
+    [UIAlertView hentai_alertViewWithTitle:@"此單位是跳跳忍者~ O3O" message:nil style:UIAlertViewStylePlainTextInput willPresent: ^(UIAlertView *alertView) {
+        @strongify(self);
+        UITextField *indexTextField = [alertView textFieldAtIndex:0];
+        indexTextField.text = [NSString stringWithFormat:@"%td", self.listIndex + 1];
+    } cancelButtonTitle:@"取消" otherButtonTitles:@[@"跳~ O3O"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
+        @strongify(self);
+        UITextField *indexTextField = [alertView textFieldAtIndex:0];
+        self.listIndex = [indexTextField.text intValue] - 1;
+        [self reloadDatas];
+    } onCancel:nil];
 }
 
 #pragma mark - life cycle

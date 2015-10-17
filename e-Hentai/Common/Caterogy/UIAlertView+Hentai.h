@@ -8,18 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^HentaiClickBlock)(NSInteger clickIndex);
-typedef void (^HentaiCancelBlock)(void);
-typedef void (^HentaiAccountBlock)(NSString *userName, NSString *password);
+typedef void (^HentaiClickBlock)(UIAlertView *alertView, NSInteger clickIndex);
+typedef void (^HentaiCancelBlock)(UIAlertView *alertView);
+typedef void (^HentaiAlertBlock)(UIAlertView *alertView);
 
 @interface UIAlertView (Hentai) <UIAlertViewDelegate>
 
 + (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message;
 + (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle;
 + (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtons onClickIndex:(HentaiClickBlock)clicked onCancel:(HentaiCancelBlock)cancelled;
++ (UIAlertView *)hentai_alertViewWithTitle:(NSString *)title message:(NSString *)message style:(UIAlertViewStyle)style willPresent:(HentaiAlertBlock)willPresent cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtons onClickIndex:(HentaiClickBlock)clicked onCancel:(HentaiCancelBlock)cancelled;
 
 @property (nonatomic, copy) HentaiClickBlock hentai_clicked;
 @property (nonatomic, copy) HentaiCancelBlock hentai_cancelled;
-@property (nonatomic, copy) HentaiAccountBlock hentai_account;
+@property (nonatomic, copy) HentaiAlertBlock hentai_alert;
 
 @end

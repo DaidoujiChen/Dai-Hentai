@@ -8,10 +8,6 @@
 
 #import "SearchFilterV2ViewController.h"
 
-@interface SearchFilterV2ViewController ()
-
-@end
-
 @implementation SearchFilterV2ViewController
 
 #pragma mark - private
@@ -56,40 +52,42 @@
 }
 
 - (void)setupItemsOnNavigation {
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelAction)];
+    
+    // 設定取消按鈕動作
+    @weakify(self);
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel blockAction: ^{
+        @strongify(self);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction)];
+    // 設定確定按鈕動作
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone blockAction: ^{
+        @strongify(self);
+        if (self) {
+            NSMutableDictionary *result = [NSMutableDictionary dictionary];
+            [self.root fetchValueIntoObject:result];
+            
+            for (NSString *eachKey in [result allKeys]) {
+                NSUInteger index = [self indexOfFilterString:eachKey];
+                if (index == NSNotFound) {
+                    if ([eachKey isEqual:@"searchText"]) {
+                        [Prefer shared].searchText = result[eachKey];
+                    }
+                    else if ([eachKey isEqual:@"rating"]) {
+                        [Prefer shared].rating = result[eachKey];;
+                    }
+                }
+                else {
+                    [[Prefer shared].flags replaceObjectAtIndex:index withObject:result[eachKey]];
+                }
+            }
+            [[Prefer shared] sync];
+            [self.delegate onSearchFilterDone];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
     self.navigationItem.rightBarButtonItem = doneButton;
-}
-
-#pragma mark * actions
-
-- (void)cancelAction {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)doneAction {
-    NSMutableDictionary *result = [NSMutableDictionary dictionary];
-    [self.root fetchValueIntoObject:result];
-    
-    for (NSString *eachKey in [result allKeys]) {
-        NSUInteger index = [self indexOfFilterString:eachKey];
-        if (index == NSNotFound) {
-            if ([eachKey isEqual:@"searchText"]) {
-                [Prefer shared].searchText = result[eachKey];
-            }
-            else if ([eachKey isEqual:@"rating"]) {
-                [Prefer shared].rating = result[eachKey];;
-            }
-        }
-        else {
-            [[Prefer shared].flags replaceObjectAtIndex:index withObject:result[eachKey]];
-        }
-    }
-    [[Prefer shared] sync];
-    [self.delegate onSearchFilterDone];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark * misc

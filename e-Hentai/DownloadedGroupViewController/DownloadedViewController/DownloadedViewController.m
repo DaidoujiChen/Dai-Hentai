@@ -32,7 +32,7 @@ typedef enum {
 
 #pragma mark - dynamic
 
-//根據 type 的不同, count 也會不一樣
+// 根據 type 的不同, count 也會不一樣
 - (NSUInteger)hentaiSaveLibraryCount {
     switch ([self currentType]) {
         case DisplayDownloadedTypeSearch:
@@ -64,16 +64,16 @@ typedef enum {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *hentaiInfo = [self saveInfoAtIndex:inverseIndex][@"hentaiInfo"];
     
-    //設定 ipad / iphone 共通資訊
+    // 設定 ipad / iphone 共通資訊
     NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
-    [cell.thumbImageView sd_setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [cell.thumbImageView sd_setImageWithURL:imageURL completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error) {
             [cell.thumbImageView hentai_pathShadow];
             [cell.backgroundImageView hentai_blurWithImage:image];
         }
     }];
     
-    //設定 ipad 獨有需要的資訊
+    // 設定 ipad 獨有需要的資訊
     if (isIPad) {
         cell.categoryLabel.text = [NSString stringWithFormat:@"分類 : %@", hentaiInfo[@"category"]];
         cell.ratingLabel.text = [NSString stringWithFormat:@"評價 : %@", hentaiInfo[@"rating"]];
@@ -162,7 +162,7 @@ typedef enum {
 
 - (void)helpToDelete {
     @weakify(self);
-    [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex:^(NSInteger clickIndex) {
+    [UIAlertView hentai_alertViewWithTitle:@"警告~ O3O" message:@"確定要刪除這部作品嗎?" cancelButtonTitle:@"我按錯了~ Q3Q" otherButtonTitles:@[@"對~ O3O 不好看~"] onClickIndex:  ^(UIAlertView *alertView, NSInteger clickIndex) {
         @strongify(self);
         if (self) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -172,13 +172,12 @@ typedef enum {
             [[[FilesManager documentFolder] fcd:@"Hentai"] rd:hentaiKey];
             [HentaiSaveLibrary removeSaveInfoAtHentaiKey:hentaiKey];
         }
-    } onCancel:^{
-    }];
+    } onCancel:nil];
 }
 
 - (void)helpToChangeGroup:(UIViewController *)viewController {
     @weakify(self);
-    [GroupManager presentFromViewController:viewController originGroup:self.currentInfo[@"group"] completion:^(NSString *selectedGroup) {
+    [GroupManager presentFromViewController:viewController originGroup:self.currentInfo[@"group"] completion: ^(NSString *selectedGroup) {
         @strongify(self);
         if (self && selectedGroup) {
             [HentaiSaveLibrary changeToGroup:selectedGroup atHentaiKey:self.currentInfo[@"hentaiKey"]];
@@ -186,7 +185,7 @@ typedef enum {
     }];
 }
 
-#pragma mark - private
+#pragma mark - private instance method
 
 #pragma mark * override methods from MainViewController
 
@@ -210,7 +209,31 @@ typedef enum {
 }
 
 - (void)setupItemsOnNavigation {
-    UIBarButtonItem *changeGroupButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(changeGroupAction)];
+    
+    // 將目前全部的作品一次轉換到另一個 group
+    @weakify(self);
+    UIBarButtonItem *changeGroupButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose blockAction: ^{
+        [GroupManager presentFromViewController:self completion: ^(NSString *selectedGroup) {
+            @strongify(self);
+            [SVProgressHUD show];
+            if (self && selectedGroup) {
+                NSMutableArray *hentaiKeys = [NSMutableArray array];
+                for (int i = 0; i < self.hentaiSaveLibraryCount; i++) {
+                    NSDictionary *saveInfo = [self saveInfoAtIndex:i];
+                    [hentaiKeys addObject:[saveInfo[@"hentaiInfo"] hentai_hentaiKey]];
+                }
+                
+                for (NSString *eachHentaiKey in hentaiKeys) {
+                    [HentaiSaveLibrary changeToGroup:selectedGroup atHentaiKey:eachHentaiKey];
+                }
+                self.title = selectedGroup;
+                self.group = selectedGroup;
+                self.searchInfo = nil;
+                [self.listTableView reloadData];
+            }
+            [SVProgressHUD dismiss];
+        }];
+    }];
     self.navigationItem.rightBarButtonItem = changeGroupButton;
 }
 
@@ -218,7 +241,7 @@ typedef enum {
 }
 
 - (void)setupRecvNotifications {
-    //接 HentaiDownloadSuccessNotification
+    // 接 HentaiDownloadSuccessNotification
     @weakify(self);
     [[self portal:PortalHentaiDownloadSuccess] recv: ^(NSString *alertViewMessage) {
         @strongify(self);
@@ -231,7 +254,7 @@ typedef enum {
 
 #pragma mark * misc
 
-//目前究竟該顯示哪種資料
+// 目前究竟該顯示哪種資料
 - (DisplayDownloadedType)currentType {
     if (self.searchInfo) {
         return DisplayDownloadedTypeSearch;
@@ -251,32 +274,7 @@ typedef enum {
     }
 }
 
-//將目前全部的作品一次轉換到某一個 group
-- (void)changeGroupAction {
-    @weakify(self);
-    [GroupManager presentFromViewController:self completion:^(NSString *selectedGroup) {
-        @strongify(self);
-        [SVProgressHUD show];
-        if (self && selectedGroup) {
-            NSMutableArray *hentaiKeys = [NSMutableArray array];
-            for (int i=0; i<self.hentaiSaveLibraryCount; i++) {
-                NSDictionary *saveInfo = [self saveInfoAtIndex:i];
-                [hentaiKeys addObject:[saveInfo[@"hentaiInfo"] hentai_hentaiKey]];
-            }
-            
-            for (NSString *eachHentaiKey in hentaiKeys) {
-                [HentaiSaveLibrary changeToGroup:selectedGroup atHentaiKey:eachHentaiKey];
-            }
-            self.title = selectedGroup;
-            self.group = selectedGroup;
-            self.searchInfo = nil;
-            [self.listTableView reloadData];
-        }
-        [SVProgressHUD dismiss];
-    }];
-}
-
-//按照 type 不同, 取得的 saveinfo 也不一樣
+// 按照 type 不同, 取得的 saveinfo 也不一樣
 - (NSDictionary *)saveInfoAtIndex:(NSUInteger)index {
     switch ([self currentType]) {
         case DisplayDownloadedTypeSearch:
@@ -303,8 +301,7 @@ typedef enum {
     }
     else {
         @weakify(self);
-        [UIAlertView hentai_alertViewWithTitle:@"這個分類沒有作品喔!" message:@"點擊確定返回上一頁!" cancelButtonTitle:@"確定!" otherButtonTitles:nil onClickIndex:^(NSInteger clickIndex) {
-        } onCancel:^{
+        [UIAlertView hentai_alertViewWithTitle:@"這個分類沒有作品喔!" message:@"點擊確定返回上一頁!" cancelButtonTitle:@"確定!" otherButtonTitles:nil onClickIndex:nil onCancel: ^(UIAlertView *alertView) {
             @strongify(self);
             [self.navigationController popViewControllerAnimated:YES];
         }];

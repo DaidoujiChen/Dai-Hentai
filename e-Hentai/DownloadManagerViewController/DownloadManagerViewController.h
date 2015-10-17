@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ColorThemeViewController.h"
 #import "DownloadManagerCell.h"
 
 @interface DownloadManagerViewController : ColorThemeViewController <UITableViewDelegate, UITableViewDataSource>
