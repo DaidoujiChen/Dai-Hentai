@@ -72,6 +72,7 @@
 		01BBD60119E3D428003538CF /* HentaiPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */; };
 		01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */; };
 		01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */; };
+		01D969B91BD2212E00BAB6FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D969B81BD2212E00BAB6FF /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		15A3136E5E2A013E5D0DD04C /* libPods-HentaiTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */; };
 		1C55C2B61ACD18A400A74AAA /* DownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55C2B51ACD18A400A74AAA /* DownloadTests.m */; };
 		1C85F9991AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C85F9981AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m */; };
@@ -231,6 +232,7 @@
 		01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HentaiPhotoCell.xib; path = HentaiPhotoCell/HentaiPhotoCell.xib; sourceTree = "<group>"; };
 		01CD0E2B19DE808B006155FD /* DownloadManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerViewController.h; path = DownloadManagerViewController/DownloadManagerViewController.h; sourceTree = "<group>"; };
 		01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManagerViewController.m; path = DownloadManagerViewController/DownloadManagerViewController.m; sourceTree = "<group>"; };
+		01D969B81BD2212E00BAB6FF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1C55C2B51ACD18A400A74AAA /* DownloadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadTests.m; sourceTree = "<group>"; };
 		1C6ED8861ACD13F300713301 /* HentaiTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HentaiTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6ED8891ACD13F400713301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 				0199269119ADDB83009F814B /* InfoPlist.strings */,
 				0199269419ADDB83009F814B /* main.m */,
 				0199269619ADDB83009F814B /* e-Hentai-Prefix.pch */,
+				01D969B81BD2212E00BAB6FF /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1108,6 +1111,7 @@
 				0180D9161A0210FB002554FC /* exterior@2x.png in Resources */,
 				0180D92F1A0214AD002554FC /* delivery@2x.png in Resources */,
 				0199269319ADDB83009F814B /* InfoPlist.strings in Resources */,
+				01D969B91BD2212E00BAB6FF /* Launch Screen.storyboard in Resources */,
 				0180D9201A0212C8002554FC /* dropbox_copyrighted@3x.png in Resources */,
 				1CF5EE491AE9FE1100ECD8B7 /* Filter in Resources */,
 				0180D9301A0214AD002554FC /* delivery@3x.png in Resources */,
