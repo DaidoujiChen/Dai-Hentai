@@ -37,9 +37,20 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 @interface SDImageCache : NSObject
 
 /**
+ * Decompressing images that are downloaded and cached can improve peformance but can consume lot of memory.
+ * Defaults to YES. Set this to NO if you are experiencing a crash due to excessive memory consumption.
+ */
+@property (assign, nonatomic) BOOL shouldDecompressImages;
+
+/**
  * The maximum "total cost" of the in-memory image cache. The cost function is the number of pixels held in memory.
  */
 @property (assign, nonatomic) NSUInteger maxMemoryCost;
+
+/**
+ * The maximum number of objects the cache should hold.
+ */
+@property (assign, nonatomic) NSUInteger maxMemoryCountLimit;
 
 /**
  * The maximum length of time to keep an image in the cache, in seconds
@@ -64,6 +75,16 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
  * @param ns The namespace to use for this cache store
  */
 - (id)initWithNamespace:(NSString *)ns;
+
+/**
+ * Init a new cache store with a specific namespace and directory
+ *
+ * @param ns        The namespace to use for this cache store
+ * @param directory Directory to cache disk images in
+ */
+- (id)initWithNamespace:(NSString *)ns diskCacheDirectory:(NSString *)directory;
+
+-(NSString *)makeDiskCachePath:(NSString*)fullNamespace;
 
 /**
  * Add a read-only cache path to search for images pre-cached by SDImageCache
@@ -133,15 +154,15 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 
 
 /**
- * Remove the image from memory and disk cache synchronously
+ * Remove the image from memory and disk cache asynchronously
  *
  * @param key             The unique image cache key
- * @param completionBlock An block that should be executed after the image has been removed (optional)
+ * @param completion      An block that should be executed after the image has been removed (optional)
  */
 - (void)removeImageForKey:(NSString *)key withCompletion:(SDWebImageNoParamsBlock)completion;
 
 /**
- * Remove the image from memory and optionally disk cache synchronously
+ * Remove the image from memory and optionally disk cache asynchronously
  *
  * @param key      The unique image cache key
  * @param fromDisk Also remove cache entry from disk if YES
@@ -149,11 +170,11 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 - (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk;
 
 /**
- * Remove the image from memory and optionally disk cache synchronously
+ * Remove the image from memory and optionally disk cache asynchronously
  *
  * @param key             The unique image cache key
  * @param fromDisk        Also remove cache entry from disk if YES
- * @param completionBlock An block that should be executed after the image has been removed (optional)
+ * @param completion      An block that should be executed after the image has been removed (optional)
  */
 - (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk withCompletion:(SDWebImageNoParamsBlock)completion;
 
@@ -164,7 +185,7 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 
 /**
  * Clear all disk cached images. Non-blocking method - returns immediately.
- * @param completionBlock An block that should be executed after cache expiration completes (optional)
+ * @param completion    An block that should be executed after cache expiration completes (optional)
  */
 - (void)clearDiskOnCompletion:(SDWebImageNoParamsBlock)completion;
 

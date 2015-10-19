@@ -2,19 +2,17 @@ PODS:
   - ChameleonFramework (2.0.4):
     - ChameleonFramework/Default (= 2.0.4)
   - ChameleonFramework/Default (2.0.4)
-  - DACircularProgress (2.2.0)
+  - DACircularProgress (2.3.1)
   - FXBlurView (1.6.3)
   - JDStatusBarNotification (1.5.2)
   - KIF (3.2.1):
     - KIF/XCTest (= 3.2.1)
   - KIF/XCTest (3.2.1)
-  - MBProgressHUD (0.9)
-  - MWPhotoBrowser (1.4.1):
-    - DACircularProgress
-    - MBProgressHUD (~> 0.8)
-    - PSTCollectionView (~> 1.2)
-    - SDWebImage (~> 3.7)
-  - PSTCollectionView (1.2.3)
+  - MBProgressHUD (0.9.1)
+  - MWPhotoBrowser (2.1.1):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
   - QuickDialog (1.0):
     - QuickDialog/Core (= 1.0)
   - QuickDialog/Core (1.0)
@@ -28,9 +26,9 @@ PODS:
   - Realm (0.96.0):
     - Realm/Headers (= 0.96.0)
   - Realm/Headers (0.96.0)
-  - SDWebImage (3.7.1):
-    - SDWebImage/Core (= 3.7.1)
-  - SDWebImage/Core (3.7.1)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
   - SupportKit (2.4.0)
   - SVProgressHUD (1.1.2)
   - ViewDeck (2.3.1)
@@ -40,7 +38,7 @@ DEPENDENCIES:
   - FXBlurView (~> 1.6.3)
   - JDStatusBarNotification (~> 1.5.2)
   - KIF (~> 3.0)
-  - MWPhotoBrowser (~> 1.4.1)
+  - MWPhotoBrowser (~> 2.1.1)
   - QuickDialog (~> 1.0)
   - ReactiveCocoa (~> 2.3.1)
   - Realm (~> 0.96.0)
@@ -51,17 +49,16 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
-  DACircularProgress: 0f92b77239d5f3c612fc66185e2998391ac8e054
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
   JDStatusBarNotification: a36d09ccbb047217572b074a61e7ca10dddc5f0a
   KIF: ef1691e54e1d969c3b4fd0b5b56a3d7ddf37f216
-  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
-  MWPhotoBrowser: 2531e682860d62b8a7ba8659de02eb9040e431e5
-  PSTCollectionView: 6749df92885353521f55279a7ce2b293762e2be4
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   QuickDialog: ea2e68e0611ec012bcbd9d0e1d703d566a4c7355
   ReactiveCocoa: 334468a83b2c5f669f7cfb9a084415ee23219b4f
   Realm: d1b1eff5264cd6a3158b7a9b6c499d7f6ad3a860
-  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SupportKit: 0620a30b87fdbbfc59b53c53697c72036da23d83
   SVProgressHUD: 3afb875b9eb23acd1bed9b82495695c68621a8b2
   ViewDeck: 3e9bfcc36d889155d77ae47811a4d48714ee8d0c

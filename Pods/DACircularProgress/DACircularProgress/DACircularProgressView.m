@@ -14,6 +14,7 @@
 
 @property(nonatomic, strong) UIColor *trackTintColor;
 @property(nonatomic, strong) UIColor *progressTintColor;
+@property(nonatomic, strong) UIColor *innerTintColor;
 @property(nonatomic) NSInteger roundedCorners;
 @property(nonatomic) CGFloat thicknessRatio;
 @property(nonatomic) CGFloat progress;
@@ -25,6 +26,7 @@
 
 @dynamic trackTintColor;
 @dynamic progressTintColor;
+@dynamic innerTintColor;
 @dynamic roundedCorners;
 @dynamic thicknessRatio;
 @dynamic progress;
@@ -49,12 +51,9 @@
     
     CGFloat progress = MIN(self.progress, 1.0f - FLT_EPSILON);
     CGFloat radians = 0;
-    if (clockwise)
-    {
+    if (clockwise) {
         radians = (float)((progress * 2.0f * M_PI) - M_PI_2);
-    }
-    else
-    {
+    } else {
         radians = (float)(3 * M_PI_2 - (progress * 2.0f * M_PI));
     }
     
@@ -102,7 +101,7 @@
         CGContextAddEllipseInRect(context, endEllipseRect);
         CGContextFillPath(context);
     }
-    
+
     CGContextSetBlendMode(context, kCGBlendModeClear);
     CGFloat innerRadius = radius * (1.0f - self.thicknessRatio);
     CGRect clearRect = (CGRect) {
@@ -113,6 +112,13 @@
     };
     CGContextAddEllipseInRect(context, clearRect);
     CGContextFillPath(context);
+
+    if (self.innerTintColor) {
+        CGContextSetBlendMode(context, kCGBlendModeNormal);
+        CGContextSetFillColorWithColor(context, [self.innerTintColor CGColor]);
+        CGContextAddEllipseInRect(context, clearRect);
+        CGContextFillPath(context);
+    }
 }
 
 @end
@@ -129,6 +135,7 @@
         DACircularProgressView *circularProgressViewAppearance = [DACircularProgressView appearance];
         [circularProgressViewAppearance setTrackTintColor:[[UIColor whiteColor] colorWithAlphaComponent:0.3f]];
         [circularProgressViewAppearance setProgressTintColor:[UIColor whiteColor]];
+        [circularProgressViewAppearance setInnerTintColor:nil];
         [circularProgressViewAppearance setBackgroundColor:[UIColor clearColor]];
         [circularProgressViewAppearance setThicknessRatio:0.3f];
         [circularProgressViewAppearance setRoundedCorners:NO];
@@ -161,6 +168,7 @@
     [self.circularProgressLayer setNeedsDisplay];
 }
 
+
 #pragma mark - Progress
 
 - (CGFloat)progress
@@ -175,22 +183,51 @@
 
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated
 {
+    [self setProgress:progress animated:animated initialDelay:0.0];
+}
+
+- (void)setProgress:(CGFloat)progress
+           animated:(BOOL)animated
+       initialDelay:(CFTimeInterval)initialDelay
+{
+    CGFloat pinnedProgress = MIN(MAX(progress, 0.0f), 1.0f);
+    [self setProgress:progress
+             animated:animated
+         initialDelay:initialDelay
+         withDuration:fabs(self.progress - pinnedProgress)];
+}
+
+- (void)setProgress:(CGFloat)progress
+           animated:(BOOL)animated
+       initialDelay:(CFTimeInterval)initialDelay
+       withDuration:(CFTimeInterval)duration
+{
     [self.layer removeAnimationForKey:@"indeterminateAnimation"];
     [self.circularProgressLayer removeAnimationForKey:@"progress"];
     
     CGFloat pinnedProgress = MIN(MAX(progress, 0.0f), 1.0f);
     if (animated) {
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"progress"];
-        animation.duration = fabsf(self.progress - pinnedProgress); // Same duration as UIProgressView animation
+        animation.duration = duration;
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.fillMode = kCAFillModeForwards;
         animation.fromValue = [NSNumber numberWithFloat:self.progress];
         animation.toValue = [NSNumber numberWithFloat:pinnedProgress];
+        animation.beginTime = CACurrentMediaTime() + initialDelay;
+        animation.delegate = self;
         [self.circularProgressLayer addAnimation:animation forKey:@"progress"];
     } else {
         [self.circularProgressLayer setNeedsDisplay];
+        self.circularProgressLayer.progress = pinnedProgress;
     }
-    self.circularProgressLayer.progress = pinnedProgress;
 }
+
+- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
+{
+   NSNumber *pinnedProgressNumber = [animation valueForKey:@"toValue"];
+   self.circularProgressLayer.progress = [pinnedProgressNumber floatValue];
+}
+
 
 #pragma mark - UIAppearance methods
 
@@ -213,6 +250,17 @@
 - (void)setProgressTintColor:(UIColor *)progressTintColor
 {
     self.circularProgressLayer.progressTintColor = progressTintColor;
+    [self.circularProgressLayer setNeedsDisplay];
+}
+
+- (UIColor *)innerTintColor
+{
+    return self.circularProgressLayer.innerTintColor;
+}
+
+- (void)setInnerTintColor:(UIColor *)innerTintColor
+{
+    self.circularProgressLayer.innerTintColor = innerTintColor;
     [self.circularProgressLayer setNeedsDisplay];
 }
 
@@ -246,12 +294,14 @@
 
 - (void)setIndeterminate:(NSInteger)indeterminate
 {
-    if (indeterminate && !self.indeterminate) {
-        CABasicAnimation *spinAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        spinAnimation.byValue = [NSNumber numberWithFloat:indeterminate > 0 ? 2.0f*M_PI : -2.0f*M_PI];
-        spinAnimation.duration = self.indeterminateDuration;
-        spinAnimation.repeatCount = HUGE_VALF;
-        [self.layer addAnimation:spinAnimation forKey:@"indeterminateAnimation"];
+    if (indeterminate) {
+        if (!self.indeterminate) {
+            CABasicAnimation *spinAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+            spinAnimation.byValue = [NSNumber numberWithDouble:indeterminate > 0 ? 2.0f*M_PI : -2.0f*M_PI];
+            spinAnimation.duration = self.indeterminateDuration;
+            spinAnimation.repeatCount = HUGE_VALF;
+            [self.layer addAnimation:spinAnimation forKey:@"indeterminateAnimation"];
+        }
     } else {
         [self.layer removeAnimationForKey:@"indeterminateAnimation"];
     }
