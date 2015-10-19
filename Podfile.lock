@@ -2,7 +2,7 @@ PODS:
   - ChameleonFramework (1.1.1)
   - DACircularProgress (2.2.0)
   - FXBlurView (1.6.3)
-  - JDStatusBarNotification (1.5.0)
+  - JDStatusBarNotification (1.5.2)
   - KIF (3.2.1):
     - KIF/XCTest (= 3.2.1)
   - KIF/XCTest (3.2.1)
@@ -36,7 +36,7 @@ PODS:
 DEPENDENCIES:
   - ChameleonFramework (~> 1.1.1)
   - FXBlurView (~> 1.6.3)
-  - JDStatusBarNotification (~> 1.5.0)
+  - JDStatusBarNotification (~> 1.5.2)
   - KIF (~> 3.0)
   - MWPhotoBrowser (~> 1.4.1)
   - QuickDialog (~> 1.0)
@@ -51,7 +51,7 @@ SPEC CHECKSUMS:
   ChameleonFramework: f824d2afa52182302ef72c706dfe5a8f0597f644
   DACircularProgress: 0f92b77239d5f3c612fc66185e2998391ac8e054
   FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
-  JDStatusBarNotification: 4ce8494aafef7907646411dd811149a3d73eba42
+  JDStatusBarNotification: a36d09ccbb047217572b074a61e7ca10dddc5f0a
   KIF: ef1691e54e1d969c3b4fd0b5b56a3d7ddf37f216
   MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
   MWPhotoBrowser: 2531e682860d62b8a7ba8659de02eb9040e431e5

@@ -12,7 +12,7 @@ pod 'SVProgressHUD', '~> 1.1.2'
 pod 'MWPhotoBrowser', '~> 1.4.1'
 pod 'QuickDialog', '~> 1.0'
 pod 'FXBlurView', '~> 1.6.3'
-pod 'JDStatusBarNotification', '~> 1.5.0'
+pod 'JDStatusBarNotification', '~> 1.5.2'
 
 target 'HentaiTest', :exclusive => true do
     pod 'KIF', '~> 3.0', :configurations => ['Debug']

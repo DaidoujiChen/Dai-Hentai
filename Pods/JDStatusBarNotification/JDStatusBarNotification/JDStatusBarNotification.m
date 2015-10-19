@@ -19,6 +19,10 @@
 @interface JDStatusBarNotificationViewController : UIViewController
 @end
 
+@interface UIApplication (mainWindow)
+- (UIWindow*)mainApplicationWindowIgnoringWindow:(UIWindow*)ignoringWindow;
+@end
+
 @interface JDStatusBarNotification ()
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
 @property (nonatomic, strong, readonly) UIView *progressView;
@@ -152,7 +156,7 @@
 - (void)setupDefaultStyles;
 {
     self.defaultStyle = [JDStatusBarStyle defaultStyleWithName:JDStatusBarStyleDefault];
-
+    
     self.userStyles = [NSMutableDictionary dictionary];
     for (NSString *styleName in [JDStatusBarStyle allDefaultStyleIdentifier]) {
         [self.userStyles setObject:[JDStatusBarStyle defaultStyleWithName:styleName] forKey:styleName];
@@ -278,7 +282,7 @@
     } completion:^(BOOL finished) {
         [self.overlayWindow removeFromSuperview];
         [self.overlayWindow setHidden:YES];
-        _overlayWindow.rootViewController = nil;        
+        _overlayWindow.rootViewController = nil;
         _overlayWindow = nil;
         _progressView = nil;
         _topBar = nil;
@@ -456,9 +460,8 @@
 
 - (void)updateWindowTransform;
 {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if (window == nil && [[[UIApplication sharedApplication] windows] count] > 0) window = [[UIApplication sharedApplication] windows][0];
-    
+    UIWindow *window = [[UIApplication sharedApplication]
+                        mainApplicationWindowIgnoringWindow:self.overlayWindow];
     _overlayWindow.transform = window.transform;
     _overlayWindow.frame = window.frame;
 }
@@ -467,7 +470,7 @@
 {
     CGFloat width = MAX(rect.size.width, rect.size.height);
     CGFloat height = MIN(rect.size.width, rect.size.height);
-
+    
     // on ios7 fix position, if statusBar has double height
     CGFloat yPos = 0;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height > 20.0) {
@@ -479,13 +482,22 @@
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;
 {
-    NSValue *barFrameValue = notification.userInfo[UIApplicationStatusBarFrameUserInfoKey];
-    [UIView animateWithDuration:0.5 animations:^{
+    CGRect newBarFrame = [notification.userInfo[UIApplicationStatusBarFrameUserInfoKey] CGRectValue];
+    NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
+    
+    // update window & statusbar
+    void(^updateBlock)() = ^{
         [self updateWindowTransform];
-        [self updateTopBarFrameWithStatusBarFrame:[barFrameValue CGRectValue]];
-        
-        // update progress
-        self.progress = self.progress;
+        [self updateTopBarFrameWithStatusBarFrame:newBarFrame];
+        self.progress = self.progress; // // relayout progress bar
+    };
+    
+    [UIView animateWithDuration:duration animations:^{
+        updateBlock();
+    } completion:^(BOOL finished) {
+        // this hack fixes a broken frame after the rotation (#35)
+        // but rotation animation is still broken
+        updateBlock();
     }];
 }
 
@@ -494,49 +506,54 @@
 // A custom view controller, so the statusBarStyle & rotation behaviour is correct
 @implementation JDStatusBarNotificationViewController
 
-- (UIViewController*)keyWindowRootViewController {
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    UIWindow *ourWindow = [[self view] window];
-    
-    // return directly, keywindow isn't our window
-    if (keyWindow != ourWindow) {
-        return [keyWindow rootViewController];
-    }
-    
-    // find another window, if our window is the key window (should fix #24)
-    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
-        if (window != ourWindow) {
-            return [window rootViewController];
-        }
-    }
-    
-    // only our window found
-    return nil;
-}
-
 // rotation
 
+- (UIViewController*)mainController
+{
+    UIWindow *mainAppWindow = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self.view.window];
+    UIViewController *topController = mainAppWindow.rootViewController;
+    
+    while(topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    return topController;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return [[self keyWindowRootViewController]
-            shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    return [[self mainController] shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (BOOL)shouldAutorotate {
-    return [[self keyWindowRootViewController] shouldAutorotate];
+    return [[self mainController] shouldAutorotate];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    return [[self keyWindowRootViewController] supportedInterfaceOrientations];
+    return [[self mainController] supportedInterfaceOrientations];
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return [[self keyWindowRootViewController]
-            preferredInterfaceOrientationForPresentation];
+    return [[self mainController] preferredInterfaceOrientationForPresentation];
 }
 
 // statusbar
 
+static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
+    static BOOL enabled = NO;
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
+        enabled = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIViewControllerBasedStatusBarAppearance"] boolValue];
+    });
+    
+    return enabled;
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
+    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
+        return [[self mainController] preferredStatusBarStyle];
+    }
+    
     return [[UIApplication sharedApplication] statusBarStyle];
 }
 
@@ -544,5 +561,23 @@
     return NO;
 }
 
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
+        return [[self mainController] preferredStatusBarUpdateAnimation];
+    }
+    return [super preferredStatusBarUpdateAnimation];
+}
+
 @end
 
+@implementation UIApplication (mainWindow)
+// we don't want the keyWindow, since it could be our own window
+- (UIWindow*)mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow {
+    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+        if (!window.hidden && window != ignoringWindow) {
+            return window;
+        }
+    }
+    return nil;
+}
+@end
