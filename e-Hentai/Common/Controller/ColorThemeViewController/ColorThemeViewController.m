@@ -29,7 +29,7 @@
     [invocation getReturnValue:&returnColor];
     
     //換顏色
-    NSArray *colorFriends = [NSArray arrayOfColorsWithColorScheme:ColorSchemeAnalogous for:returnColor flatScheme:YES];
+    NSArray *colorFriends = [NSArray arrayOfColorsWithColorScheme:ColorSchemeAnalogous usingColor:returnColor withFlatScheme:YES];
     NSUInteger firstColorIndex = [colorFriends indexOfObject:[colorFriends firstObject]];
     NSUInteger lastColorIndex = [colorFriends indexOfObject:[colorFriends lastObject]];
     self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.bounds andColors:@[colorFriends[firstColorIndex], colorFriends[lastColorIndex]]];

@@ -5,7 +5,7 @@
  
  The MIT License (MIT)
  
- Copyright (c) 2014 Vicc Alexander.
+ Copyright (c) 2014-2015 Vicc Alexander.
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,29 +29,8 @@
 
 #import "UIColor+Chameleon.h"
 
-#pragma mark - Chameleon - UIColor Methods Shorthand
-//UIColor Methods Shorthand
-#define ComplementaryFlatColorOf(color) [UIColor colorWithComplementaryFlatColorOf:color]
-#define FlatVersionOf(color) [UIColor colorWithFlatVersionOf:color]
-#define RandomFlatColorWithShade(shade) [UIColor colorWithRandomFlatColorOfShadeStyle:shade]
-#define ContrastColorOf(backgroundColor, returnFlat) [UIColor colorWithContrastingBlackOrWhiteColorOn:backgroundColor isFlat:returnFlat]
-#define GradientColor(gradientStyle, frame, colors) [UIColor colorWithGradientStyle:gradientStyle withFrame:frame andColors:colors]
+#pragma mark - Light Shades Shorthand
 
-#pragma mark - Chameleon - UIStatusBar Methods Shorthand
-//UIStatusBar Methods Shorthand
-#define StatusBarContrastColorOf(backgroundColor) [ChameleonStatusBar statusBarStyleForColor:backgroundColor]
-
-#pragma mark - Chameleon - NSArray Methods Shorthand
-//NSArray Methods Shorthand
-#define ColorScheme(colorSchemeType,color,isFlatScheme) [NSArray arrayOfColorsWithColorScheme:colorSchemeType for:color flatScheme:isFlatScheme]
-
-#pragma mark - Chameleon - Special Colors Shorthand
-//Special Colors Shorthand
-#define RandomFlatColor [UIColor randomFlatColor]
-#define ClearColor [UIColor clearColor]
-
-#pragma mark - Chameleon - Light Shades Shorthand
-//Chameleon Flat Colors - Light Shades Shorthand
 #define FlatBlack [UIColor flatBlackColor]
 #define FlatBlue [UIColor flatBlueColor]
 #define FlatBrown [UIColor flatBrownColor]
@@ -77,8 +56,10 @@
 #define FlatWhite [UIColor flatWhiteColor]
 #define FlatYellow [UIColor flatYellowColor]
 
-#pragma mark - Chameleon - Dark Shades Shorthand
-//Chameleon Flat Colors - Dark Shades Shorthand
+// ---------------------------------------------------
+
+#pragma mark - Dark Shades Shorthand
+
 #define FlatBlackDark [UIColor flatBlackColorDark]
 #define FlatBlueDark [UIColor flatBlueColorDark]
 #define FlatBrownDark [UIColor flatBrownColorDark]
@@ -103,3 +84,43 @@
 #define FlatWatermelonDark [UIColor flatWatermelonColorDark]
 #define FlatWhiteDark [UIColor flatWhiteColorDark]
 #define FlatYellowDark [UIColor flatYellowColorDark]
+
+// ---------------------------------------------------
+
+#pragma mark - Special Colors Shorthand
+
+#define RandomFlatColor [UIColor randomFlatColor]
+#define ClearColor [UIColor clearColor]
+
+// ---------------------------------------------------
+
+#pragma mark - UIColor Methods Shorthand
+
+#define AverageColorFromImage(image) [UIColor colorWithAverageColorFromImage:image]
+#define AverageColorFromImageWithAlpha(image, alpha) [UIColor colorWithAverageColorFromImage:image withAlpha:alpha]
+
+#define RandomFlatColorWithShade(shade) [UIColor colorWithRandomFlatColorOfShadeStyle:shade]
+#define RandomFlatColorWithShadeAndAlpha(shade, alpha) [UIColor colorWithRandomFlatColorOfShadeStyle:shade withAlpha:alpha]
+
+#define ComplementaryFlatColor(color) [UIColor colorWithComplementaryFlatColorOf:color]
+#define ComplementaryFlatColorWithAlpha(color, alpha) [UIColor colorWithComplementaryFlatColorOf:color withAlpha:alpha]
+
+#define ContrastColor(backgroundColor, returnFlat) [UIColor colorWithContrastingBlackOrWhiteColorOn:backgroundColor isFlat:returnFlat]
+#define ContrastColorWithAlpha(backgroundColor, returnFlat, alpha) [UIColor colorWithContrastingBlackOrWhiteColorOn:backgroundColor isFlat:returnFlat alpha:alpha]
+
+#define GradientColor(gradientStyle, frame, colors) [UIColor colorWithGradientStyle:gradientStyle withFrame:frame andColors:colors]
+
+#define HexColor(hexString) [UIColor colorWithHexString:hexString]
+#define HexColorWithAlpha(hexString, alpha) [UIColor colorWithHexString:hexString withAlpha:alpha]
+
+#define RandomFlatColorWithShade(shade) [UIColor colorWithRandomFlatColorOfShadeStyle:shade]
+#define RandomFlatColorWithShadeAndAlpha(shade, alpha) [UIColor colorWithRandomFlatColorOfShadeStyle:shade withAlpha:alpha]
+
+// ---------------------------------------------------
+
+#pragma mark - NSArray Shorthand
+
+#define ColorsWithScheme(colorSchemeType, color, isFlatScheme) [NSArray arrayOfColorsWithColorScheme:colorSchemeType usingColor:color withFlatScheme:isFlatScheme]
+#define ColorsFromImage(image, isFlatScheme) [NSArray arrayOfColorsFromImage:image withFlatScheme:isFlatScheme]
+
+

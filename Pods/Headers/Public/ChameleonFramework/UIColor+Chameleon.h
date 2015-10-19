@@ -1,1 +1,1 @@
-../../../ChameleonFramework/Chameleon/UIColor+Chameleon.h
+../../../ChameleonFramework/Pod/Classes/Objective-C/UIColor+Chameleon.h

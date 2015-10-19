@@ -1,5 +1,7 @@
 PODS:
-  - ChameleonFramework (1.1.1)
+  - ChameleonFramework (2.0.4):
+    - ChameleonFramework/Default (= 2.0.4)
+  - ChameleonFramework/Default (2.0.4)
   - DACircularProgress (2.2.0)
   - FXBlurView (1.6.3)
   - JDStatusBarNotification (1.5.2)
@@ -34,7 +36,7 @@ PODS:
   - ViewDeck (2.3.1)
 
 DEPENDENCIES:
-  - ChameleonFramework (~> 1.1.1)
+  - ChameleonFramework (~> 2.0.4)
   - FXBlurView (~> 1.6.3)
   - JDStatusBarNotification (~> 1.5.2)
   - KIF (~> 3.0)
@@ -48,7 +50,7 @@ DEPENDENCIES:
   - ViewDeck (~> 2.3.1)
 
 SPEC CHECKSUMS:
-  ChameleonFramework: f824d2afa52182302ef72c706dfe5a8f0597f644
+  ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   DACircularProgress: 0f92b77239d5f3c612fc66185e2998391ac8e054
   FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
   JDStatusBarNotification: a36d09ccbb047217572b074a61e7ca10dddc5f0a

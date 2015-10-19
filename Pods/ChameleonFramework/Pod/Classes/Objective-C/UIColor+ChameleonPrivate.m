@@ -1,38 +1,118 @@
+//
+//  UIColor+ChameleonPrivate.m
+//  Chameleon
+//
+//  Created by Vicc Alexander on 6/6/15.
+//  Copyright (c) 2015 Vicc Alexander. All rights reserved.
+//
 
-//  UIColor+CIELAB.m
+#import "UIColor+ChameleonPrivate.h"
 
-/*
- 
- The MIT License (MIT)
- 
- Copyright (c) 2014 Vicc Alexander.
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in all
- copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- SOFTWARE.
- 
- */
+@implementation UIColor (ChameleonPrivate)
 
-#import "UIColor+CIELAB.h"
-#import "UIColor+Chameleon.h"
+@dynamic count;
 
-@implementation UIColor (LAB)
+#pragma mark - Associated Objects Methods
 
-#pragma mark - Public Getter Methods
+- (void)setCount:(NSUInteger)count {
+    objc_setAssociatedObject(self, @selector(count), [NSNumber numberWithUnsignedInteger:count], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSUInteger)count {
+    NSNumber *number = objc_getAssociatedObject(self, @selector(count));
+    return [number unsignedIntegerValue];
+}
+
+#pragma mark - Class Methods
+
+// Would not have been possible without - http://stackoverflow.com/a/1262893
++ (UIColor *)colorFromImage:(UIImage *)image atPoint:(CGPoint)point {
+    
+    //Encapsulate our image
+    CGImageRef imageRef = image.CGImage;
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    
+    //Specify the colorspace we're in
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    //Extract the data we need
+    unsigned char *rawData = (unsigned char *) calloc(height * width * 4, sizeof(unsigned char));
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow,
+                                                 colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    //Release colorspace
+    CGColorSpaceRelease(colorSpace);
+    
+    //Draw and release image
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    
+    //rawData now contains the image data in RGBA8888
+    NSInteger byteIndex = (bytesPerRow * point.y) + (point.x * bytesPerPixel);
+    
+    //Define our RGBA values
+    CGFloat red = (rawData[byteIndex] * 1.f) / 255.f;
+    CGFloat green = (rawData[byteIndex + 1] * 1.f) / 255.f;
+    CGFloat blue = (rawData[byteIndex + 2] * 1.f) / 255.f;
+    CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.f;
+    
+    //Free our rawData
+    free(rawData);
+    
+    //Return color
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
+
+- (UIColor *)colorWithMinimumSaturation:(CGFloat)saturation {
+    if (!self)
+        return nil;
+    
+    CGFloat h, s, b, a;
+    [self getHue:&h saturation:&s brightness:&b alpha:&a];
+    
+    if (s < saturation)
+        return [UIColor colorWithHue:h saturation:saturation brightness:b alpha:a];
+    
+    return self;
+}
+
+#pragma mark - Instance Methods
+
+- (BOOL)isDistinct:(UIColor *)color {
+    
+    if (!self || !color) {
+        return NO;
+    }
+    
+    CGFloat r, g, b, a;
+    CGFloat rc, gc, bc, ac;
+    
+    [self getRed:&r green:&g blue:&b alpha:&a];
+    [color getRed:&rc green:&gc blue:&bc alpha:&ac];
+    
+    CGFloat threshold = 0.25f;
+    
+    if (fabs(r - rc) > threshold || fabs(g - gc) > threshold ||
+        
+        fabs(b - bc) > threshold || fabs(a - ac) > threshold) {
+        
+        // Check for grays
+        if (abs(r - g < 0.03f && fabs(r - b) < 0.03f)) {
+            
+            if (fabs(rc - gc) < 0.03f && (fabs(rc - bc) < 0.03f)) {
+                return NO;
+            }
+                
+        }
+        
+        return YES;
+    }
+    
+    return NO;
+}
 
 - (BOOL)getValueForX:(CGFloat *)X valueForY:(CGFloat *)Y valueForZ:(CGFloat *)Z alpha:(CGFloat *)alpha{
     
@@ -69,11 +149,13 @@
         CGFloat Y = [XYZValues[1] floatValue];
         CGFloat Z = [XYZValues[2] floatValue];
         
-        //Run our new XYZ values through our LAB algorithm to convert them into LAB values
-        NSArray *LABValues = [self arrayOfLABValuesForX:X Y:Y Z:Z alpha:alpha1];
-        *L = [LABValues[0] floatValue];
-        *A = [LABValues[1] floatValue];
-        *B = [LABValues[2] floatValue];
+        if (L != nil && A != nil && B != nil) {
+            //Run our new XYZ values through our LAB algorithm to convert them into LAB values
+            NSArray *LABValues = [self arrayOfLABValuesForX:X Y:Y Z:Z alpha:alpha1];
+            *L = [LABValues[0] floatValue];
+            *A = [LABValues[1] floatValue];
+            *B = [LABValues[2] floatValue];
+        }
         
         return YES;
     }

@@ -1,1 +1,1 @@
-../../../ChameleonFramework/Chameleon/Chameleon.h
+../../../ChameleonFramework/Pod/Classes/Objective-C/Chameleon.h

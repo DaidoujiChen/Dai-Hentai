@@ -1,1 +1,0 @@
-../../../ChameleonFramework/Chameleon/ChameleonStatusBar.h

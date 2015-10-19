@@ -1,1 +1,1 @@
-../../../ChameleonFramework/Chameleon/NSArray+Chameleon.h
+../../../ChameleonFramework/Pod/Classes/Objective-C/NSArray+Chameleon.h

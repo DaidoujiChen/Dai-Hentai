@@ -1,1 +1,1 @@
-../../../ChameleonFramework/Chameleon/UIViewController+Chameleon.h
+../../../ChameleonFramework/Pod/Classes/Objective-C/UIViewController+Chameleon.h
