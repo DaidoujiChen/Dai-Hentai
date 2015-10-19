@@ -1,1 +1,1 @@
-../../../../Realm/include-ios/Realm/RLMArray.h
+../../../../Realm/include/realm/RLMArray.h

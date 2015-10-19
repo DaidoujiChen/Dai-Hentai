@@ -1,1 +1,1 @@
-../../../../Realm/include-ios/Realm/RLMArray_Private.hpp
+../../../../Realm/include/realm/RLMArray_Private.hpp

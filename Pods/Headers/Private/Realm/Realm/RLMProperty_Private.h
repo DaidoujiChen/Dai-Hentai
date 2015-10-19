@@ -1,1 +1,1 @@
-../../../../Realm/include-ios/Realm/RLMProperty_Private.h
+../../../../Realm/include/realm/RLMProperty_Private.h

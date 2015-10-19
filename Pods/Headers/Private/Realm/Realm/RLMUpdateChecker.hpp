@@ -1,1 +1,1 @@
-../../../../Realm/include-ios/Realm/RLMUpdateChecker.hpp
+../../../../Realm/include/realm/RLMUpdateChecker.hpp

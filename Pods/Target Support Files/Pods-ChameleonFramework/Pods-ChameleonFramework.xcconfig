@@ -1,1 +1,0 @@
-PODS_CHAMELEONFRAMEWORK_OTHER_LDFLAGS = -framework "CoreGraphics" -framework "QuartzCore"

@@ -23,9 +23,9 @@ PODS:
   - ReactiveCocoa/no-arc (2.3.1)
   - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
-  - Realm (0.89.1):
-    - Realm/Headers (= 0.89.1)
-  - Realm/Headers (0.89.1)
+  - Realm (0.96.0):
+    - Realm/Headers (= 0.96.0)
+  - Realm/Headers (0.96.0)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
@@ -41,7 +41,7 @@ DEPENDENCIES:
   - MWPhotoBrowser (~> 1.4.1)
   - QuickDialog (~> 1.0)
   - ReactiveCocoa (~> 2.3.1)
-  - Realm (~> 0.89.0)
+  - Realm (~> 0.96.0)
   - SDWebImage (~> 3.6)
   - SupportKit (~> 2.4.0)
   - SVProgressHUD (~> 1.1.2)
@@ -58,10 +58,10 @@ SPEC CHECKSUMS:
   PSTCollectionView: 6749df92885353521f55279a7ce2b293762e2be4
   QuickDialog: ea2e68e0611ec012bcbd9d0e1d703d566a4c7355
   ReactiveCocoa: 334468a83b2c5f669f7cfb9a084415ee23219b4f
-  Realm: 9b7bebb86336e17789d7ac21b22f67a69808cb56
+  Realm: d1b1eff5264cd6a3158b7a9b6c499d7f6ad3a860
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
   SupportKit: 0620a30b87fdbbfc59b53c53697c72036da23d83
   SVProgressHUD: 3afb875b9eb23acd1bed9b82495695c68621a8b2
   ViewDeck: 3e9bfcc36d889155d77ae47811a4d48714ee8d0c
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.39.0

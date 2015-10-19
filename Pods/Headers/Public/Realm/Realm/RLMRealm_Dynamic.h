@@ -1,1 +1,1 @@
-../../../../Realm/include-ios/Realm/RLMRealm_Dynamic.h
+../../../../Realm/include/realm/RLMRealm_Dynamic.h

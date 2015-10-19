@@ -1020,6 +1020,7 @@
 				0199268219ADDB83009F814B /* Frameworks */,
 				0199268319ADDB83009F814B /* Resources */,
 				05038E7270B743ACB9E277E0 /* Copy Pods Resources */,
+				1DAEA727EF87422DA4D98594 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1039,6 +1040,7 @@
 				1C6ED8831ACD13F300713301 /* Frameworks */,
 				1C6ED8841ACD13F300713301 /* Resources */,
 				18AAD8C1D8E5F00CBE2D8748 /* Copy Pods Resources */,
+				C064ED0D997D6B030B2FC5DD /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1166,6 +1168,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HentaiTest/Pods-HentaiTest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1DAEA727EF87422DA4D98594 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		31D7142371B842CCABA93E38 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1194,6 +1211,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C064ED0D997D6B030B2FC5DD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HentaiTest/Pods-HentaiTest-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -1,1 +1,1 @@
-../../../../Realm/include-ios/Realm/RLMQueryUtil.hpp
+../../../../Realm/include/realm/RLMQueryUtil.hpp
