@@ -31,6 +31,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     cell.textLabel.text = self.availableColors[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor clearColor];
     if ([self.availableColors[indexPath.row] isEqualToString:self.currentColorString]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
