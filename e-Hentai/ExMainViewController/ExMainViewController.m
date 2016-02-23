@@ -27,6 +27,10 @@
     return filterString;
 }
 
+- (BOOL) isExHentai {
+    return YES;
+}
+
 #pragma mark - life cycle
 
 - (void)viewDidLoad {

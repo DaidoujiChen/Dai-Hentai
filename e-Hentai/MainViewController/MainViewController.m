@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UITableView *listTableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, readonly) NSString *filterString;
+@property (nonatomic, readonly) BOOL isExHentai;
 @property (nonatomic, assign) BOOL onceFlag;
 @property (nonatomic, strong) NSMutableDictionary *textViewCacheMapping;
 
@@ -31,6 +32,10 @@
 // 產生過濾網址的 string
 - (NSString *)filterString {
     return [self filterDependOnURL:@"http://g.e-hentai.org/?page=%lu"];
+}
+
+- (BOOL) isExHentai {
+    return NO;
 }
 
 #pragma mark - SearchFilterV2ViewControllerDelegate
@@ -236,7 +241,7 @@
 //把 request 的判斷都放到這個 method 裡面來
 - (void)loadList:(void (^)(BOOL successed, NSArray *listArray))completion {
     [SVProgressHUD show];
-    [HentaiParser requestListAtFilterUrl:self.filterString forExHentai:NO completion: ^(HentaiParserStatus status, NSArray *listArray) {
+    [HentaiParser requestListAtFilterUrl:self.filterString forExHentai:[self isExHentai] completion: ^(HentaiParserStatus status, NSArray *listArray) {
         if (status && [listArray count]) {
             completion(YES, listArray);
         }
