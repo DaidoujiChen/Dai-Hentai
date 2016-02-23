@@ -72,7 +72,7 @@
 		01BBD60119E3D428003538CF /* HentaiPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BBD5FF19E3D428003538CF /* HentaiPhotoCell.m */; };
 		01BBD60219E3D428003538CF /* HentaiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BBD60019E3D428003538CF /* HentaiPhotoCell.xib */; };
 		01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */; };
-		01D969B91BD2212E00BAB6FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D969B81BD2212E00BAB6FF /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		01D969B91BD2212E00BAB6FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D969B81BD2212E00BAB6FF /* Launch Screen.storyboard */; };
 		15A3136E5E2A013E5D0DD04C /* libPods-HentaiTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */; };
 		1C55C2B61ACD18A400A74AAA /* DownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55C2B51ACD18A400A74AAA /* DownloadTests.m */; };
 		1C85F9991AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C85F9981AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m */; };
@@ -1440,6 +1440,7 @@
 					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Flurry",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = tw.daidouji.daihentai;
 				PRODUCT_NAME = "e-Hentai";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1470,6 +1471,7 @@
 					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Flurry",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = tw.daidouji.daihentai;
 				PRODUCT_NAME = "e-Hentai";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
