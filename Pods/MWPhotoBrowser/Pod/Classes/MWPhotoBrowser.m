@@ -374,6 +374,9 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     _viewIsActive = YES;
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction)];
+    UIBarButtonItem *changeGroupButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(changeGroupAction)];
+    self.navigationItem.rightBarButtonItems = @[deleteButton, changeGroupButton];
     
     // Autoplay if first is video
     if (!_viewHasAppearedInitially) {
@@ -1525,6 +1528,14 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 }
 
 #pragma mark - Misc
+
+- (void)deleteAction {
+    [self.delegate helpToDelete];
+}
+
+- (void)changeGroupAction {
+    [self.delegate helpToChangeGroup:self];
+}
 
 - (void)doneButtonPressed:(id)sender {
     // Only if we're modal and there's a done button
