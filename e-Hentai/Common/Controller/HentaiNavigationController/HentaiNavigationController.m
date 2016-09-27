@@ -20,7 +20,7 @@
 	return self.autoRotate;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
 	return self.hentaiMask;
 }
 

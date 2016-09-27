@@ -119,7 +119,7 @@
     self.title = @"Loading...";
     
     //navigation bar 上的兩個 button
-    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backAction)];
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
     self.navigationItem.leftBarButtonItem = newBackButton;
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(saveAction)];
     self.navigationItem.rightBarButtonItem = saveButton;
@@ -338,7 +338,7 @@
     NSString *eachImageString = self.hentaiImageURLs[indexPath.row];
     if (self.hentaiResults[[eachImageString hentai_lastTwoPathComponent]]) {
         //如果畫面是直向的時候, 長度要重新算
-        if (self.interfaceOrientation == UIDeviceOrientationPortrait) {
+        if ([UIApplication sharedApplication].statusBarOrientation == UIDeviceOrientationPortrait) {
             CGSize newSize = [self imagePortraitHeight:CGSizeMake(realScreenHeight, [self.hentaiResults[[eachImageString hentai_lastTwoPathComponent]] floatValue])];
             return newSize.height;
         }
