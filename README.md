@@ -21,6 +21,10 @@ daidoujichen@gmail.com
 
 當然, 撇開內容的部分不談, 程式碼的部分歡迎精進以及指點.
 
+開啟專案時, 請選擇 `e-Hentai.xcworkspace` 而非 `e-Hentai.xcodeproj` 呦
+
+![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-10-22+%E4%B8%8B%E5%8D%8810.26.35.png)
+
 app icon 與進場圖
 ======
 在 v1.4 版本之後, 會發現 app 不再是白白沒有圖示的樣子了, 不過礙於內容尺度的關係, 並沒有將圖片內含在這個專案的資料夾內, 很感謝 g+ 上的好朋友 [扇扇](https://plus.google.com/u/0/+%E8%8F%AF%E6%89%870402/posts) 願意幫這個忙, 讓這個 app 活在大家裝置裡面的時候不會這麼突兀.
