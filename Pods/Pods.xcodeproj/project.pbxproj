@@ -4521,6 +4521,7 @@
 			baseConfigurationReference = 8D1342E20AFA1272D5A81455B0831361 /* MWPhotoBrowser.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/SupportKit/SupportKit.bundle/Info.plist";
 				PRODUCT_NAME = MWPhotoBrowser;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -4662,6 +4663,7 @@
 			baseConfigurationReference = 8D1342E20AFA1272D5A81455B0831361 /* MWPhotoBrowser.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/SupportKit/SupportKit.bundle/Info.plist";
 				PRODUCT_NAME = MWPhotoBrowser;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
