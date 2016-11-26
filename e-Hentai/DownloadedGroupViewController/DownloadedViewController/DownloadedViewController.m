@@ -66,7 +66,7 @@ typedef enum {
     
     // 設定 ipad / iphone 共通資訊
     NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
-    [cell.thumbImageView sd_setImageWithURL:imageURL completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [cell.thumbImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageHandleCookies completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error) {
             [cell.thumbImageView hentai_pathShadow];
             [cell.backgroundImageView hentai_blurWithImage:image];

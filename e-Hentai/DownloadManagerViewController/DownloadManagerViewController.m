@@ -44,7 +44,7 @@
         cell.statusLabel.text = [NSString stringWithFormat:@"下載中 : %@ / %@", recvCountString, totalCountString];
     }
     NSDictionary *currentHentaiInfo = currentArray[indexPath.row][@"hentaiInfo"];
-    [cell.thumbnailImageView sd_setImageWithURL:currentHentaiInfo[@"thumb"] placeholderImage:nil options:SDWebImageRefreshCached];
+    [cell.thumbnailImageView sd_setImageWithURL:currentHentaiInfo[@"thumb"] placeholderImage:nil options:SDWebImageRefreshCached | SDWebImageHandleCookies];
     cell.titleLabel.text = currentHentaiInfo[@"title"];
     return cell;
 }
