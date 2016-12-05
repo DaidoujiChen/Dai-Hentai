@@ -115,7 +115,7 @@
 		1CF5EE6E1AE9FEC600ECD8B7 /* HentaiDownloadCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF5EE641AE9FEC600ECD8B7 /* HentaiDownloadCenter.m */; };
 		1CF5EE6F1AE9FEC600ECD8B7 /* HentaiDownloadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF5EE661AE9FEC600ECD8B7 /* HentaiDownloadImageOperation.m */; };
 		1CF5EE701AE9FEC600ECD8B7 /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF5EE691AE9FEC600ECD8B7 /* HentaiParser.m */; };
-		32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E356769FC894496F8A03AC25 /* libPods.a */; };
+		C9FDA782703F2FD9F87AF018 /* libPods-e-Hentai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F1C213CA92A458DB588568 /* libPods-e-Hentai.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,9 +315,12 @@
 		1CF5EE681AE9FEC600ECD8B7 /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
 		1CF5EE691AE9FEC600ECD8B7 /* HentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiParser.m; sourceTree = "<group>"; };
 		261F8AFB3698803CDFFF992B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		637C750279B15894A3E019CC /* Pods-e-Hentai.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-e-Hentai.debug.xcconfig"; path = "Pods/Target Support Files/Pods-e-Hentai/Pods-e-Hentai.debug.xcconfig"; sourceTree = "<group>"; };
+		78F1C213CA92A458DB588568 /* libPods-e-Hentai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-e-Hentai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		813D0DA40BF1B18C060F7C3C /* Pods-HentaiTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HentaiTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-HentaiTest/Pods-HentaiTest.release.xcconfig"; sourceTree = "<group>"; };
 		965912DFC9E1CD3C99BAA83D /* Pods-HentaiTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HentaiTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HentaiTest/Pods-HentaiTest.debug.xcconfig"; sourceTree = "<group>"; };
 		A3229B245A679B69931BB8A7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D615CB6370BC827E0D506A9A /* Pods-e-Hentai.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-e-Hentai.release.xcconfig"; path = "Pods/Target Support Files/Pods-e-Hentai/Pods-e-Hentai.release.xcconfig"; sourceTree = "<group>"; };
 		E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HentaiTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E356769FC894496F8A03AC25 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -340,7 +343,7 @@
 				016DAD9C19E393B900E528BE /* AddressBook.framework in Frameworks */,
 				0199268D19ADDB83009F814B /* UIKit.framework in Frameworks */,
 				0199268919ADDB83009F814B /* Foundation.framework in Frameworks */,
-				32CA5E85EA0A4F0184817634 /* libPods.a in Frameworks */,
+				C9FDA782703F2FD9F87AF018 /* libPods-e-Hentai.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +644,7 @@
 				019926A719ADDB83009F814B /* XCTest.framework */,
 				E356769FC894496F8A03AC25 /* libPods.a */,
 				E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */,
+				78F1C213CA92A458DB588568 /* libPods-e-Hentai.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1004,6 +1008,8 @@
 				A3229B245A679B69931BB8A7 /* Pods.release.xcconfig */,
 				965912DFC9E1CD3C99BAA83D /* Pods-HentaiTest.debug.xcconfig */,
 				813D0DA40BF1B18C060F7C3C /* Pods-HentaiTest.release.xcconfig */,
+				637C750279B15894A3E019CC /* Pods-e-Hentai.debug.xcconfig */,
+				D615CB6370BC827E0D506A9A /* Pods-e-Hentai.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1015,12 +1021,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 019926B719ADDB83009F814B /* Build configuration list for PBXNativeTarget "e-Hentai" */;
 			buildPhases = (
-				31D7142371B842CCABA93E38 /* Check Pods Manifest.lock */,
+				31D7142371B842CCABA93E38 /* [CP] Check Pods Manifest.lock */,
 				0199268119ADDB83009F814B /* Sources */,
 				0199268219ADDB83009F814B /* Frameworks */,
 				0199268319ADDB83009F814B /* Resources */,
-				05038E7270B743ACB9E277E0 /* Copy Pods Resources */,
-				1DAEA727EF87422DA4D98594 /* Embed Pods Frameworks */,
+				05038E7270B743ACB9E277E0 /* [CP] Copy Pods Resources */,
+				1DAEA727EF87422DA4D98594 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1035,12 +1041,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C6ED8901ACD13F400713301 /* Build configuration list for PBXNativeTarget "HentaiTest" */;
 			buildPhases = (
-				BDD5DFE77E7F24B49AAFCB00 /* Check Pods Manifest.lock */,
+				BDD5DFE77E7F24B49AAFCB00 /* [CP] Check Pods Manifest.lock */,
 				1C6ED8821ACD13F300713301 /* Sources */,
 				1C6ED8831ACD13F300713301 /* Frameworks */,
 				1C6ED8841ACD13F300713301 /* Resources */,
-				18AAD8C1D8E5F00CBE2D8748 /* Copy Pods Resources */,
-				C064ED0D997D6B030B2FC5DD /* Embed Pods Frameworks */,
+				18AAD8C1D8E5F00CBE2D8748 /* [CP] Copy Pods Resources */,
+				C064ED0D997D6B030B2FC5DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1138,29 +1144,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05038E7270B743ACB9E277E0 /* Copy Pods Resources */ = {
+		05038E7270B743ACB9E277E0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-e-Hentai/Pods-e-Hentai-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		18AAD8C1D8E5F00CBE2D8748 /* Copy Pods Resources */ = {
+		18AAD8C1D8E5F00CBE2D8748 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1168,59 +1174,59 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HentaiTest/Pods-HentaiTest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1DAEA727EF87422DA4D98594 /* Embed Pods Frameworks */ = {
+		1DAEA727EF87422DA4D98594 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-e-Hentai/Pods-e-Hentai-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		31D7142371B842CCABA93E38 /* Check Pods Manifest.lock */ = {
+		31D7142371B842CCABA93E38 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BDD5DFE77E7F24B49AAFCB00 /* Check Pods Manifest.lock */ = {
+		BDD5DFE77E7F24B49AAFCB00 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C064ED0D997D6B030B2FC5DD /* Embed Pods Frameworks */ = {
+		C064ED0D997D6B030B2FC5DD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1432,7 +1438,7 @@
 		};
 		019926B819ADDB83009F814B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 261F8AFB3698803CDFFF992B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 637C750279B15894A3E019CC /* Pods-e-Hentai.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1448,7 +1454,6 @@
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "e-Hentai/e-Hentai-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Flurry",
@@ -1464,7 +1469,7 @@
 		};
 		019926B919ADDB83009F814B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3229B245A679B69931BB8A7 /* Pods.release.xcconfig */;
+			baseConfigurationReference = D615CB6370BC827E0D506A9A /* Pods-e-Hentai.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1480,7 +1485,6 @@
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "e-Hentai/e-Hentai-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/e-Hentai/ThirdParty/Flurry",
