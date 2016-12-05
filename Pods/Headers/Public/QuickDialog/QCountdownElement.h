@@ -1,1 +1,0 @@
-../../../QuickDialog/quickdialog/QCountdownElement.h

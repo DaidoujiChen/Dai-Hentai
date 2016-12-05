@@ -1,1 +1,0 @@
-../../../ChameleonFramework/Pod/Classes/Objective-C/UINavigationController+Chameleon.h
