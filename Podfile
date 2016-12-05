@@ -4,7 +4,7 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 
 target 'e-Hentai' do
-    xcodeproj 'e-Hentai'
+    project 'e-Hentai'
 
     pod 'ViewDeck', '~> 2.3.1'
     pod 'SDWebImage', '~> 3.6'
