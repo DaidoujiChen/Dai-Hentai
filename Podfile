@@ -14,7 +14,7 @@ target 'e-Hentai' do
     pod 'Realm', '~> 0.96.0'
     pod 'SVProgressHUD', '~> 1.1.2'
     pod 'MWPhotoBrowser', '~> 2.1.1'
-    pod 'QuickDialog', '~> 1.0'
+    pod 'QuickDialog', '~> 1.1.0'
     pod 'FXBlurView', '~> 1.6.3'
     pod 'JDStatusBarNotification', '~> 1.5.2'
 
