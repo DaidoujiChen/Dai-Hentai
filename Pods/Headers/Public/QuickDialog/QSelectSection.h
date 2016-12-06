@@ -1,1 +1,0 @@
-../../../QuickDialog/quickdialog/QSelectSection.h
