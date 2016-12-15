@@ -112,7 +112,7 @@
         HentaiNavigationController *hentaiNavigation = [[HentaiNavigationController alloc] initWithRootViewController:themeColorChangeViewController];
         hentaiNavigation.autoRotate = NO;
         hentaiNavigation.hentaiMask = UIInterfaceOrientationMaskPortrait;
-        [self presentViewController:hentaiNavigation animated:YES completion:^{
+        [self presentViewController:hentaiNavigation animated:YES completion: ^{
         }];
     };
     [changeColorSection addElement:changeColorButton];

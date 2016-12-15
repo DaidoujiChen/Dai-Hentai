@@ -135,7 +135,7 @@
     for (NSString *eachKey in [categorys allKeys]) {
         [groups addObject:@{@"title":eachKey, @"value":eachKey}];
     }
-    return [groups sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
+    return [groups sortedArrayUsingComparator: ^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
         NSString *string1 = obj1[@"title"];
         NSString *string2 = obj2[@"title"];
         return [string1 compare:string2];

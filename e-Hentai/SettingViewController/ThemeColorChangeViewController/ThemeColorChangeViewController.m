@@ -94,7 +94,7 @@
 #pragma mark * button actions
 
 - (void)dismiss {
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES completion: ^{
     }];
 }
 
@@ -102,7 +102,7 @@
     [Setting shared].themeColor = self.currentColorString;
     [[self portal:PortalChangeThemeColor] send:DaiPortalPackageItem(self.currentColorString)];
     [self.delegate themeColorDidChange];
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES completion: ^{
     }];
 }
 

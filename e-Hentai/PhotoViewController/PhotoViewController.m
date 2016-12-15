@@ -81,7 +81,7 @@
 - (void)saveAction {
     @weakify(self);
     [UIAlertView hentai_alertViewWithTitle:@"你想要儲存這本漫畫嗎?" message:nil cancelButtonTitle:@"不要好了...Q3Q" otherButtonTitles:@[@"加入下載管理員~ O3O"] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
-        [GroupManager presentFromViewController:self completion:^(NSString *selectedGroup) {
+        [GroupManager presentFromViewController:self completion: ^(NSString *selectedGroup) {
             @strongify(self);
             if (self && selectedGroup) {
                 [HentaiDownloadCenter addBook:self.hentaiInfo toGroup:selectedGroup];
@@ -105,7 +105,7 @@
 
 - (void)changeGroupAction {
     @weakify(self);
-    [GroupManager presentFromViewController:self originGroup:self.originGroup completion:^(NSString *selectedGroup) {
+    [GroupManager presentFromViewController:self originGroup:self.originGroup completion: ^(NSString *selectedGroup) {
         @strongify(self);
         if (self && selectedGroup) {
             [HentaiSaveLibrary changeToGroup:selectedGroup atHentaiKey:self.hentaiKey];

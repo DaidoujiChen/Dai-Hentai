@@ -80,7 +80,7 @@
 
 - (void)cancelAction {
     @weakify(self);
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES completion: ^{
         @strongify(self);
         if (self) {
             self.completion(nil);
@@ -95,7 +95,7 @@
     NSString *createGroupString = [result[@"createGroup"] hentai_withoutSpace];
     
     @weakify(self);
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES completion: ^{
         @strongify(self);
         
         if (self) {

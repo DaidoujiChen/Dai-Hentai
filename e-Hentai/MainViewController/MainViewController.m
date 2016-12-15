@@ -66,7 +66,7 @@
     
     //設定 ipad / iphone 共通資訊
     NSURL *imageURL = [NSURL URLWithString:hentaiInfo[@"thumb"]];
-    [cell.thumbImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageHandleCookies completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [cell.thumbImageView sd_setImageWithURL:imageURL placeholderImage:nil options:SDWebImageHandleCookies completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error) {
             [cell.thumbImageView hentai_pathShadow];
             [cell.backgroundImageView hentai_blurWithImage:image];
@@ -258,7 +258,7 @@
     
     //相關變數
     @weakify(self)
-    [RACObserve(self, listIndex) subscribeNext:^(NSNumber *index) {
+    [RACObserve(self, listIndex) subscribeNext: ^(NSNumber *index) {
         @strongify(self);
         
         self.title = [NSString stringWithFormat:@"%@(%td)", [Prefer shared].searchText, self.listIndex + 1];
