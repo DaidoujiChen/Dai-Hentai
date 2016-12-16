@@ -31,15 +31,15 @@ daidoujichen@gmail.com
 2. 重建（還原） `Pods`
   ![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-12-07+%E4%B8%8A%E5%8D%8810.27.08.png)
 
-```bash
-$ cd Dai-Hentai # 進入專案目錄
-$ pod install # 不要使用 pod update
+ ```bash
+ $ cd Dai-Hentai # 進入專案目錄
+ $ pod install # 不要使用 pod update
 ```
 
  *如果無法使用 `pod` 指令, 請先安裝 [CocoaPods](https://cocoapods.org/)*
 
-```bash
-sudo gem install cocoapods
+ ```bash
+ sudo gem install cocoapods
 ```
 3. 開啓專案
   **請選擇 `e-Hentai.xcworkspace` 而非 `e-Hentai.xcodeproj` 呦**
