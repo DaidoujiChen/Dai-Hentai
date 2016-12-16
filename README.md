@@ -24,16 +24,27 @@ daidoujichen@gmail.com
 安裝與使用
 ======
 由於 `Pods` 已經不隨著專案被打包下載, 要請大家下載之後, 在解壓縮的目錄下先輸入 `pod install` 安裝相依套件
-![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-12-07+%E4%B8%8A%E5%8D%8810.27.08.png)
-如果無法使用 `pod` 指令, 請先安裝 [CocoaPods](https://cocoapods.org/)
 
-`````
-sudo gem install cocoapods
-`````
+1. 獲取專案（兩種方法）
+ a) 使用 `Download ZIP` 或 `Release` 下載專案打包並解壓縮；
+ b) 通過 `$ git clone https://github.com/DaidoujiChen/Dai-Hentai.git` 複製專案數據庫；
+2. 重建（還原） `Pods`
+  ![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-12-07+%E4%B8%8A%E5%8D%8810.27.08.png)
 
-開啟專案時, 請選擇 `e-Hentai.xcworkspace` 而非 `e-Hentai.xcodeproj` 呦
+  ```bash
+  $ cd Dai-Hentai # 進入專案目錄
+  $ pod install # 不要使用 pod update
+  ```
+  
+  如果無法使用 `pod` 指令, 請先安裝 [CocoaPods](https://cocoapods.org/)
 
-![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-10-22+%E4%B8%8B%E5%8D%8810.26.35.png)
+  ```bash
+  sudo gem install cocoapods
+  ```
+3. 開啓專案
+  **請選擇 `e-Hentai.xcworkspace` 而非 `e-Hentai.xcodeproj` 呦**
+
+  ![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-10-22+%E4%B8%8B%E5%8D%8810.26.35.png)
 
 app icon 與進場圖
 ======
