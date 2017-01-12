@@ -21,7 +21,7 @@ daidoujichen@gmail.com
 
 當然, 撇開內容的部分不談, 程式碼的部分歡迎精進以及指點.
 
-安裝與使用
+原生 Xcode 直接安裝方法
 ======
 1. 獲取專案（兩種方法）
  a) 使用 `Download ZIP` 或 `Release` 下載專案打包並解壓縮；
@@ -43,6 +43,17 @@ daidoujichen@gmail.com
   **請選擇 `e-Hentai.xcworkspace` 而非 `e-Hentai.xcodeproj` 呦**
 
   ![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-10-22+%E4%B8%8B%E5%8D%8810.26.35.png)
+  
+Windows / Linux 不需 JB 安裝方法
+======
+由 @codexss 提供不需要 JB 也可以安裝的方法, 因為第三方的軟件沒有開源, 所以不保證整個使用過程的安全性喔, 請要使用的人自行斟酌,
+
+1. 從 [Release](https://github.com/DaidoujiChen/Dai-Hentai/releases) 下載最新版本的 ipa 檔案
+2. 從 [Cydia Impactor](http://www.cydiaimpactor.com/) 下載重新打證工具
+3. 插上 iPhone 打開 Cydia Impactor 
+4. 將 `e-Hentai.ipa` 拖放進 Cydia Impactor 軟件
+5. 登上你的蘋果id(安全性待考證)
+6. 點擊開始，等待你的手機出現 Dai-Hentai 吧
 
 app icon 與進場圖
 ======
