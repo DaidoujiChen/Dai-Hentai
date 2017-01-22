@@ -7,8 +7,58 @@
 //
 
 #import "ExMainViewController.h"
+#import "DiveExHentaiV2.h"
 
-#import "DiveExHentai.h"
+@interface LoginWebViewController : UIViewController
+
+@property (nonatomic, strong) NSTimer *checkTimer;
+
+@end
+
+@implementation LoginWebViewController
+
+#pragma mark - login check
+
+- (void)checkingLoop {
+    [DiveExHentaiV2 replaceCookies];
+    if ([DiveExHentaiV2 checkCookie]) {
+        [self cancelAction];
+    }
+}
+
+#pragma mark - navigation bar button action
+
+- (void)cancelAction {
+    @weakify(self);
+    [self dismissViewControllerAnimated:YES completion: ^{
+        @strongify(self);
+        [self.checkTimer invalidate];
+    }];
+}
+
+#pragma mark - setup inits
+
+- (void)setupInitValues {
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelAction)];
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    
+    // 開一個登入網頁
+    UIWebView *loginWebView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://forums.e-hentai.org/index.php?act=Login&CODE=01"]]];
+    [self.view addSubview:loginWebView];
+    
+    // 用一個 timer 等到有正確的 cookie
+    self.checkTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(checkingLoop) userInfo:nil repeats:YES];
+}
+
+#pragma mark - life cycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupInitValues];
+}
+
+@end
 
 @interface ExMainViewController ()
 
@@ -19,6 +69,14 @@
 @end
 
 @implementation ExMainViewController
+
+#pragma mark - private
+
+- (void)presentLoginWebView {
+    LoginWebViewController *loginWebViewController = [LoginWebViewController new];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginWebViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
 
 #pragma mark - dynamic
 
@@ -42,18 +100,26 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (self.exOnceFlag) {
+    if ([DiveExHentaiV2 checkCookie]) {
+        avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
+    }
+    else if (self.exOnceFlag) {
         self.exOnceFlag = NO;
+        
         if ([Account shared].username) {
             [SVProgressHUD show];
             @weakify(self);
-            [DiveExHentai diveByUserName:[Account shared].username password:[Account shared].password completion: ^(BOOL isSuccess) {
+            [DiveExHentaiV2 diveBy:[Account shared].username andPassword:[Account shared].password completion: ^(BOOL isSuccess) {
                 @strongify(self);
                 if (isSuccess) {
                     avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
                 }
                 else {
-                    [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
+                    @weakify(self);
+                    [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:nil cancelButtonTitle:@"好吧~ Q3Q" otherButtonTitles:@[ @"或許我可以試試 WebView O3O" ] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
+                        @strongify(self);
+                        [self presentLoginWebView];
+                    } onCancel: nil];
                 }
                 [SVProgressHUD dismiss];
             }];
@@ -65,7 +131,7 @@
                 UITextField *password = [alertView textFieldAtIndex:1];
                 
                 [SVProgressHUD show];
-                [DiveExHentai diveByUserName:username.text password:password.text completion: ^(BOOL isSuccess) {
+                [DiveExHentaiV2 diveBy:username.text andPassword:password.text completion: ^(BOOL isSuccess) {
                     @strongify(self);
                     if (isSuccess) {
                         [Account shared].username = username.text;
@@ -74,7 +140,11 @@
                         avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
                     }
                     else {
-                        [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:@"Sorry, 晚點再試吧." cancelButtonTitle:@"好~ O3O"];
+                        @weakify(self);
+                        [UIAlertView hentai_alertViewWithTitle:@"也許哪邊出錯囉~ >3<" message:nil cancelButtonTitle:@"好吧~ Q3Q" otherButtonTitles:@[ @"或許我可以試試 WebView O3O" ] onClickIndex: ^(UIAlertView *alertView, NSInteger clickIndex) {
+                            @strongify(self);
+                            [self presentLoginWebView];
+                        } onCancel: nil];
                     }
                     [SVProgressHUD dismiss];
                 }];
