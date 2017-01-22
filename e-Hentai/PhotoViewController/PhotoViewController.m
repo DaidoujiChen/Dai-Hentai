@@ -7,6 +7,7 @@
 //
 
 #import "PhotoViewController.h"
+#import "HentaiWatching.h"
 
 @interface PhotoViewController ()
 
@@ -85,7 +86,6 @@
             @strongify(self);
             if (self && selectedGroup) {
                 [HentaiDownloadCenter addBook:self.hentaiInfo toGroup:selectedGroup];
-                [self backAction];
             }
         }];
     } onCancel:nil];
@@ -378,6 +378,7 @@
     }
     //否則則從網路上取得
     else {
+        [HentaiWatching startOn:self.hentaiKey];
         self.hentaiFilesManager = [[[FilesManager cacheFolder] fcd:@"Hentai"] fcd:self.hentaiKey];
         [SVProgressHUD show];
         @weakify(self);
@@ -410,10 +411,14 @@
     if (!self.isRemovedHUD) {
         [SVProgressHUD dismiss];
     }
+}
+
+- (void)dealloc {
     
     //結束時把 queue 清掉, 並且記錄目前已下載的東西有哪些
     [self.hentaiQueue cancelAllOperations];
     
+    [HentaiWatching stopOn:self.hentaiKey];
     if ([HentaiSaveLibrary saveInfoAtHentaiKey:self.hentaiKey]) {
         [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
     }

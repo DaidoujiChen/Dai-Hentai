@@ -8,6 +8,7 @@
 
 #import "HentaiDownloadBookOperation.h"
 #import "HentaiInfo.h"
+#import "HentaiWatching.h"
 
 @interface HentaiDownloadBookOperation ()
 
@@ -199,10 +200,14 @@
             NSDictionary *saveInfo = @{ @"hentaiKey":self.hentaiKey, @"images":self.hentaiImageURLs, @"hentaiResult":self.hentaiResults, @"hentaiInfo":self.hentaiInfo };
             
             if ([self verifySaveInfo:saveInfo]) {
-                //如果 cache 有暫存就殺光光
-                [[[FilesManager cacheFolder] fcd:@"Hentai"] rd:self.hentaiKey];
+                
+                // 如果使用者沒有在看了, 就砍掉快取的部分
+                if (![HentaiWatching inCache:self.hentaiKey]) {
+                    NSLog(@"finish and remove");
+                    [[[FilesManager cacheFolder] fcd:@"Hentai"] rd:self.hentaiKey];
+                    [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
+                }
                 [HentaiSaveLibrary addSaveInfo:saveInfo toGroup:self.group];
-                [HentaiCacheLibrary removeCacheInfoForKey:self.hentaiKey];
                 [[self portal:PortalHentaiDownloadSuccess] send:DaiPortalPackageItem(self.hentaiInfo[@"title"])];
             }
             else {

@@ -74,6 +74,7 @@
 		01CD0E2E19DE808B006155FD /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */; };
 		01D969B91BD2212E00BAB6FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D969B81BD2212E00BAB6FF /* Launch Screen.storyboard */; };
 		15A3136E5E2A013E5D0DD04C /* libPods-HentaiTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E056981E32B4E112468B6BC6 /* libPods-HentaiTest.a */; };
+		1C1B6F681E3490EF005631A6 /* HentaiWatching.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B6F671E3490EF005631A6 /* HentaiWatching.m */; };
 		1C55C2B61ACD18A400A74AAA /* DownloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55C2B51ACD18A400A74AAA /* DownloadTests.m */; };
 		1C85F9991AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C85F9981AEDE6FE009165B4 /* DaiStoragePropertiesInObject.m */; };
 		1C8CA58F1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8CA58E1B6A0E0E002FE034 /* UIBarButtonItem+Hentai.m */; };
@@ -233,6 +234,8 @@
 		01CD0E2B19DE808B006155FD /* DownloadManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManagerViewController.h; path = DownloadManagerViewController/DownloadManagerViewController.h; sourceTree = "<group>"; };
 		01CD0E2C19DE808B006155FD /* DownloadManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManagerViewController.m; path = DownloadManagerViewController/DownloadManagerViewController.m; sourceTree = "<group>"; };
 		01D969B81BD2212E00BAB6FF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		1C1B6F661E3490EF005631A6 /* HentaiWatching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiWatching.h; sourceTree = "<group>"; };
+		1C1B6F671E3490EF005631A6 /* HentaiWatching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiWatching.m; sourceTree = "<group>"; };
 		1C55C2B51ACD18A400A74AAA /* DownloadTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadTests.m; sourceTree = "<group>"; };
 		1C6ED8861ACD13F300713301 /* HentaiTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HentaiTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6ED8891ACD13F400713301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -361,6 +364,7 @@
 		0118080519B6F06200FE0DA1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1C1B6F651E3490D7005631A6 /* HentaiWatching */,
 				1CF5EE581AE9FEC600ECD8B7 /* DiveExHentai */,
 				1CF5EE5B1AE9FEC600ECD8B7 /* GroupManager */,
 				1CF5EE601AE9FEC600ECD8B7 /* HentaiDownloadCenter */,
@@ -714,6 +718,15 @@
 				0179766019E27E7B00E9005E /* DownloadManagerCell */,
 			);
 			name = DownloadManagerViewController;
+			sourceTree = "<group>";
+		};
+		1C1B6F651E3490D7005631A6 /* HentaiWatching */ = {
+			isa = PBXGroup;
+			children = (
+				1C1B6F661E3490EF005631A6 /* HentaiWatching.h */,
+				1C1B6F671E3490EF005631A6 /* HentaiWatching.m */,
+			);
+			path = HentaiWatching;
 			sourceTree = "<group>";
 		};
 		1C6ED8871ACD13F300713301 /* HentaiTest */ = {
@@ -1241,6 +1254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C1B6F681E3490EF005631A6 /* HentaiWatching.m in Sources */,
 				0118081919B6F06200FE0DA1 /* MainViewController.m in Sources */,
 				1CF5EDD21AE9E04C00ECD8B7 /* DaiStorageProperty.m in Sources */,
 				1CF5EE501AE9FE1100ECD8B7 /* Prefer.m in Sources */,
