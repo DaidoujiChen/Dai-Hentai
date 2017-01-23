@@ -100,13 +100,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([DiveExHentaiV2 checkCookie]) {
-        avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
-    }
-    else if (self.exOnceFlag) {
+    if (self.exOnceFlag) {
         self.exOnceFlag = NO;
         
-        if ([Account shared].username) {
+        if ([DiveExHentaiV2 checkCookie]) {
+            avoidPerformSelectorWarning([self performSelector:@selector(reloadDatas)];)
+        }
+        else if ([Account shared].username) {
             [SVProgressHUD show];
             @weakify(self);
             [DiveExHentaiV2 diveBy:[Account shared].username andPassword:[Account shared].password completion: ^(BOOL isSuccess) {
