@@ -1,0 +1,17 @@
+PODS:
+  - couchbase-lite-ios (1.3.1):
+    - couchbase-lite-ios/SQLite (= 1.3.1)
+  - couchbase-lite-ios/SQLite (1.3.1)
+  - hpple (0.2.0)
+
+DEPENDENCIES:
+  - couchbase-lite-ios (~> 1.3.1)
+  - hpple (~> 0.2.0)
+
+SPEC CHECKSUMS:
+  couchbase-lite-ios: e4672e9c623e31584602c0300c299c363acebb05
+  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
+
+PODFILE CHECKSUM: 4226671777d575885bf6b5d5710570bb83547c37
+
+COCOAPODS: 1.1.1

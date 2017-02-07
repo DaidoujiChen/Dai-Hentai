@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27CBB749A05354D6EBC4D78A485987DD /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = A75619C23CC6FD18ADE18A605F213525 /* TFHpple.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2900BBB0E348B27CB56BB4EDBFDCC217 /* hpple-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 795339332E469BB4D24389821A04DFF4 /* hpple-dummy.m */; };
+		304D0089FF6B1AA9C4945F98B0608FC4 /* TFHpple.h in Headers */ = {isa = PBXBuildFile; fileRef = 0600D6A133127DFE10FC2CB8C8B68FA3 /* TFHpple.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73A8A6E4698E960A415A3E1A4F0DE83D /* Pods-Dai-Hentai-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 684DDC4E0076C8BA25FDB12DE227D878 /* Pods-Dai-Hentai-dummy.m */; };
+		8AE12797467F34DFAFC9A2D6B845070A /* TFHppleElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 3138170B509FBF756775BFC4EF91CB71 /* TFHppleElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99F362E74AF6E4A827EDE9BFDA830B18 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 933023D251DCB2C0CA895BB668346C68 /* TFHppleElement.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B605EE59AB6B03E27320B603A360457A /* XPathQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B0F976539488F0F55EA7DBA8BC82018 /* XPathQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C09F9C1CA785EA1C53AB6E0F4B4889AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		C8B0326368C14774292DEA5A99122622 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D542D493B80CE9F09CA95C1512C8771 /* XPathQuery.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CB9AD13A6A7E9426182BAAC76968F3EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1BE50E8D926E225BB0184769054C214D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14BCE7CBCC9F55255DE8C00DDB9DA5D3;
+			remoteInfo = hpple;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		003B0F9CA730414F65709900C2409168 /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLiteListener.framework; sourceTree = "<group>"; };
+		0487F100D9394982817698750F9345A7 /* hpple.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = hpple.xcconfig; sourceTree = "<group>"; };
+		0600D6A133127DFE10FC2CB8C8B68FA3 /* TFHpple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		0B0F976539488F0F55EA7DBA8BC82018 /* XPathQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		0F72AFA027D65F95441C14FF7EC11F6B /* CBLDatabaseChange.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLDatabaseChange.h; path = CouchbaseLite.framework/Headers/CBLDatabaseChange.h; sourceTree = "<group>"; };
+		0FD88CC5972F0449C7E4C1AEFC32819E /* CouchbaseLite.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CouchbaseLite.h; path = CouchbaseLite.framework/Headers/CouchbaseLite.h; sourceTree = "<group>"; };
+		17A7CD0FE2B75AB2E48DBADC511B1794 /* CBLModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLModel.h; path = CouchbaseLite.framework/Headers/CBLModel.h; sourceTree = "<group>"; };
+		1E3223F60962A2E65CF9611603C9D029 /* CBLAuthenticator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLAuthenticator.h; path = CouchbaseLite.framework/Headers/CBLAuthenticator.h; sourceTree = "<group>"; };
+		1E875C6265D33C31A9839168FD0F17C4 /* CBLQueryBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLQueryBuilder.h; path = CouchbaseLite.framework/Headers/CBLQueryBuilder.h; sourceTree = "<group>"; };
+		20C4695742C9565A31F34E8DAF804BD7 /* CBLManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLManager.h; path = CouchbaseLite.framework/Headers/CBLManager.h; sourceTree = "<group>"; };
+		269832F1C0CAC0952F8F5027929CBFDD /* libPods-Dai-Hentai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Dai-Hentai.a"; path = "libPods-Dai-Hentai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3138170B509FBF756775BFC4EF91CB71 /* TFHppleElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		390264062CB1E6E24FBDC7545CA9A0B5 /* CBLBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLBase.h; path = CouchbaseLite.framework/Headers/CBLBase.h; sourceTree = "<group>"; };
+		4C4DEDD70848CD60083BDD2E9B925747 /* CBLAttachment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLAttachment.h; path = CouchbaseLite.framework/Headers/CBLAttachment.h; sourceTree = "<group>"; };
+		5EF882C8AB63FFFF6E22895F50E89366 /* libhpple.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libhpple.a; path = libhpple.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		684DDC4E0076C8BA25FDB12DE227D878 /* Pods-Dai-Hentai-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Dai-Hentai-dummy.m"; sourceTree = "<group>"; };
+		6E81D792F2333D51371E339241C7B14E /* CBLModelFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLModelFactory.h; path = CouchbaseLite.framework/Headers/CBLModelFactory.h; sourceTree = "<group>"; };
+		729DE331A697F845678498A344A0BA6C /* Pods-Dai-Hentai.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dai-Hentai.release.xcconfig"; sourceTree = "<group>"; };
+		746AF49C2463ADF2499E763B8140D1F6 /* CBLUITableSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLUITableSource.h; path = CouchbaseLite.framework/Headers/CBLUITableSource.h; sourceTree = "<group>"; };
+		795339332E469BB4D24389821A04DFF4 /* hpple-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "hpple-dummy.m"; sourceTree = "<group>"; };
+		7D542D493B80CE9F09CA95C1512C8771 /* XPathQuery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		80CEBB5A99A9902E220EE2E4265455AC /* hpple-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "hpple-prefix.pch"; sourceTree = "<group>"; };
+		81D0AAD89D1747DAA22CEE0CE06B624B /* CBLDynamicObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLDynamicObject.h; path = CouchbaseLite.framework/Headers/CBLDynamicObject.h; sourceTree = "<group>"; };
+		933023D251DCB2C0CA895BB668346C68 /* TFHppleElement.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		942305E52ACF6C793762BB31B4DA61C4 /* Pods-Dai-Hentai-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Dai-Hentai-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A31E2FC28A0D599C3630DF46644432B0 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		A75619C23CC6FD18ADE18A605F213525 /* TFHpple.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		A907EA78322E0D664A1C9511A4FDD4BB /* CBLDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLDatabase.h; path = CouchbaseLite.framework/Headers/CBLDatabase.h; sourceTree = "<group>"; };
+		AEC946FF287547FF6C0E28B0FC7A51A9 /* Pods-Dai-Hentai.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dai-Hentai.debug.xcconfig"; sourceTree = "<group>"; };
+		B5FCBA1899C6C1642CFBDA8E0FE4E037 /* CBLQuery+Geo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBLQuery+Geo.h"; path = "CouchbaseLite.framework/Headers/CBLQuery+Geo.h"; sourceTree = "<group>"; };
+		B8945E752FE40D86D7451AD22E2E0674 /* CBLGeometry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLGeometry.h; path = CouchbaseLite.framework/Headers/CBLGeometry.h; sourceTree = "<group>"; };
+		BD86CF6154D7CDDE42C550007D774DF1 /* CBLView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLView.h; path = CouchbaseLite.framework/Headers/CBLView.h; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CFBD0F096798D53907CB9086225FD5E1 /* CBLReplication.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLReplication.h; path = CouchbaseLite.framework/Headers/CBLReplication.h; sourceTree = "<group>"; };
+		D00E068B1E18DD2899D794D510EB3B0E /* CBLQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLQuery.h; path = CouchbaseLite.framework/Headers/CBLQuery.h; sourceTree = "<group>"; };
+		D1C1377AEE570B4348BDBFC07B3F69B7 /* Pods-Dai-Hentai-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Dai-Hentai-frameworks.sh"; sourceTree = "<group>"; };
+		D2AE8F37738CB80679A81254A124F71E /* CouchbaseLiteListener.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CouchbaseLiteListener.h; path = CouchbaseLiteListener.framework/Headers/CouchbaseLiteListener.h; sourceTree = "<group>"; };
+		D2FDEF890072930032EA1888367C51F6 /* CBLQuery+FullTextSearch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBLQuery+FullTextSearch.h"; path = "CouchbaseLite.framework/Headers/CBLQuery+FullTextSearch.h"; sourceTree = "<group>"; };
+		E612D5F3A70D0BF409ED78B27FCCFA32 /* CBLJSON.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLJSON.h; path = CouchbaseLite.framework/Headers/CBLJSON.h; sourceTree = "<group>"; };
+		E6E36BA9340A41C14D197A6F8BBB4721 /* CBLRevision.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLRevision.h; path = CouchbaseLite.framework/Headers/CBLRevision.h; sourceTree = "<group>"; };
+		EAD8F4D9B550F3571A33738D2C508B39 /* Pods-Dai-Hentai-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Dai-Hentai-acknowledgements.plist"; sourceTree = "<group>"; };
+		EDA2631CAE0D0512CEF2686F015865CD /* Pods-Dai-Hentai-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Dai-Hentai-resources.sh"; sourceTree = "<group>"; };
+		EEDB5FE3261EAA6CACAC43DB4D2BA50D /* CBLAuthenticator+OpenID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBLAuthenticator+OpenID.h"; path = "CouchbaseLite.framework/Headers/CBLAuthenticator+OpenID.h"; sourceTree = "<group>"; };
+		F5404B265624FD67D13C6BD2976CD324 /* CBLDocument.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLDocument.h; path = CouchbaseLite.framework/Headers/CBLDocument.h; sourceTree = "<group>"; };
+		F62AF3459A5C67092A29853DAA70158B /* CBLListener.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBLListener.h; path = CouchbaseLiteListener.framework/Headers/CBLListener.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB7FBC80CC65C86DBBDD983FA1A34C98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB9AD13A6A7E9426182BAAC76968F3EA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF13BA3628926C09FA19BB68C9D690F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C09F9C1CA785EA1C53AB6E0F4B4889AC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03B96A76A6446CC5AA8AE610DEB8673F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5EF882C8AB63FFFF6E22895F50E89366 /* libhpple.a */,
+				269832F1C0CAC0952F8F5027929CBFDD /* libPods-Dai-Hentai.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F0904F81978E6DC8933904DCFC94907 /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				0600D6A133127DFE10FC2CB8C8B68FA3 /* TFHpple.h */,
+				A75619C23CC6FD18ADE18A605F213525 /* TFHpple.m */,
+				3138170B509FBF756775BFC4EF91CB71 /* TFHppleElement.h */,
+				933023D251DCB2C0CA895BB668346C68 /* TFHppleElement.m */,
+				0B0F976539488F0F55EA7DBA8BC82018 /* XPathQuery.h */,
+				7D542D493B80CE9F09CA95C1512C8771 /* XPathQuery.m */,
+				25A24D317736B6EF7704D7DDAEE1E1AB /* Support Files */,
+			);
+			name = hpple;
+			path = hpple;
+			sourceTree = "<group>";
+		};
+		25A24D317736B6EF7704D7DDAEE1E1AB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0487F100D9394982817698750F9345A7 /* hpple.xcconfig */,
+				795339332E469BB4D24389821A04DFF4 /* hpple-dummy.m */,
+				80CEBB5A99A9902E220EE2E4265455AC /* hpple-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/hpple";
+			sourceTree = "<group>";
+		};
+		5216EAD278899A0E40BB7188B5B46037 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E690F2D34DC50AF294BA99376E87F954 /* Pods-Dai-Hentai */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		5C18E5704D208B711DFB308D5CDD82AC /* couchbase-lite-ios */ = {
+			isa = PBXGroup;
+			children = (
+				7D39B5E1739B02C7820B8CC1BC846A5F /* SQLite */,
+			);
+			name = "couchbase-lite-ios";
+			path = "couchbase-lite-ios";
+			sourceTree = "<group>";
+		};
+		6BA4E8471AB471E435B06673C24B8048 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5C18E5704D208B711DFB308D5CDD82AC /* couchbase-lite-ios */,
+				1F0904F81978E6DC8933904DCFC94907 /* hpple */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7D39B5E1739B02C7820B8CC1BC846A5F /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				4C4DEDD70848CD60083BDD2E9B925747 /* CBLAttachment.h */,
+				1E3223F60962A2E65CF9611603C9D029 /* CBLAuthenticator.h */,
+				EEDB5FE3261EAA6CACAC43DB4D2BA50D /* CBLAuthenticator+OpenID.h */,
+				390264062CB1E6E24FBDC7545CA9A0B5 /* CBLBase.h */,
+				A907EA78322E0D664A1C9511A4FDD4BB /* CBLDatabase.h */,
+				0F72AFA027D65F95441C14FF7EC11F6B /* CBLDatabaseChange.h */,
+				F5404B265624FD67D13C6BD2976CD324 /* CBLDocument.h */,
+				81D0AAD89D1747DAA22CEE0CE06B624B /* CBLDynamicObject.h */,
+				B8945E752FE40D86D7451AD22E2E0674 /* CBLGeometry.h */,
+				E612D5F3A70D0BF409ED78B27FCCFA32 /* CBLJSON.h */,
+				F62AF3459A5C67092A29853DAA70158B /* CBLListener.h */,
+				20C4695742C9565A31F34E8DAF804BD7 /* CBLManager.h */,
+				17A7CD0FE2B75AB2E48DBADC511B1794 /* CBLModel.h */,
+				6E81D792F2333D51371E339241C7B14E /* CBLModelFactory.h */,
+				D00E068B1E18DD2899D794D510EB3B0E /* CBLQuery.h */,
+				D2FDEF890072930032EA1888367C51F6 /* CBLQuery+FullTextSearch.h */,
+				B5FCBA1899C6C1642CFBDA8E0FE4E037 /* CBLQuery+Geo.h */,
+				1E875C6265D33C31A9839168FD0F17C4 /* CBLQueryBuilder.h */,
+				CFBD0F096798D53907CB9086225FD5E1 /* CBLReplication.h */,
+				E6E36BA9340A41C14D197A6F8BBB4721 /* CBLRevision.h */,
+				746AF49C2463ADF2499E763B8140D1F6 /* CBLUITableSource.h */,
+				BD86CF6154D7CDDE42C550007D774DF1 /* CBLView.h */,
+				0FD88CC5972F0449C7E4C1AEFC32819E /* CouchbaseLite.h */,
+				D2AE8F37738CB80679A81254A124F71E /* CouchbaseLiteListener.h */,
+				F2846F4E673A3B2CE2A2C1A7C31A14DD /* Frameworks */,
+			);
+			name = SQLite;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				6BA4E8471AB471E435B06673C24B8048 /* Pods */,
+				03B96A76A6446CC5AA8AE610DEB8673F /* Products */,
+				5216EAD278899A0E40BB7188B5B46037 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E690F2D34DC50AF294BA99376E87F954 /* Pods-Dai-Hentai */ = {
+			isa = PBXGroup;
+			children = (
+				942305E52ACF6C793762BB31B4DA61C4 /* Pods-Dai-Hentai-acknowledgements.markdown */,
+				EAD8F4D9B550F3571A33738D2C508B39 /* Pods-Dai-Hentai-acknowledgements.plist */,
+				684DDC4E0076C8BA25FDB12DE227D878 /* Pods-Dai-Hentai-dummy.m */,
+				D1C1377AEE570B4348BDBFC07B3F69B7 /* Pods-Dai-Hentai-frameworks.sh */,
+				EDA2631CAE0D0512CEF2686F015865CD /* Pods-Dai-Hentai-resources.sh */,
+				AEC946FF287547FF6C0E28B0FC7A51A9 /* Pods-Dai-Hentai.debug.xcconfig */,
+				729DE331A697F845678498A344A0BA6C /* Pods-Dai-Hentai.release.xcconfig */,
+			);
+			name = "Pods-Dai-Hentai";
+			path = "Target Support Files/Pods-Dai-Hentai";
+			sourceTree = "<group>";
+		};
+		F2846F4E673A3B2CE2A2C1A7C31A14DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A31E2FC28A0D599C3630DF46644432B0 /* CouchbaseLite.framework */,
+				003B0F9CA730414F65709900C2409168 /* CouchbaseLiteListener.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E7387974B42D1AD84A55A70BE32853EE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				304D0089FF6B1AA9C4945F98B0608FC4 /* TFHpple.h in Headers */,
+				8AE12797467F34DFAFC9A2D6B845070A /* TFHppleElement.h in Headers */,
+				B605EE59AB6B03E27320B603A360457A /* XPathQuery.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		14BCE7CBCC9F55255DE8C00DDB9DA5D3 /* hpple */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4701EDD16CCB00DDFB232BB1BC913C2 /* Build configuration list for PBXNativeTarget "hpple" */;
+			buildPhases = (
+				406337421C6B80A133870D8E9E8592AF /* Sources */,
+				DF13BA3628926C09FA19BB68C9D690F5 /* Frameworks */,
+				E7387974B42D1AD84A55A70BE32853EE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hpple;
+			productName = hpple;
+			productReference = 5EF882C8AB63FFFF6E22895F50E89366 /* libhpple.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BC8616FC0CA575FAE994B158D81F12EE /* Pods-Dai-Hentai */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 191D0E145B474E0AEA761F928CF05377 /* Build configuration list for PBXNativeTarget "Pods-Dai-Hentai" */;
+			buildPhases = (
+				9468722AC359F74015C95F2EC176D961 /* Sources */,
+				DB7FBC80CC65C86DBBDD983FA1A34C98 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8B2FEEBA4B1A15EC77BCFEE883D5CC7 /* PBXTargetDependency */,
+			);
+			name = "Pods-Dai-Hentai";
+			productName = "Pods-Dai-Hentai";
+			productReference = 269832F1C0CAC0952F8F5027929CBFDD /* libPods-Dai-Hentai.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 03B96A76A6446CC5AA8AE610DEB8673F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14BCE7CBCC9F55255DE8C00DDB9DA5D3 /* hpple */,
+				BC8616FC0CA575FAE994B158D81F12EE /* Pods-Dai-Hentai */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		406337421C6B80A133870D8E9E8592AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2900BBB0E348B27CB56BB4EDBFDCC217 /* hpple-dummy.m in Sources */,
+				27CBB749A05354D6EBC4D78A485987DD /* TFHpple.m in Sources */,
+				99F362E74AF6E4A827EDE9BFDA830B18 /* TFHppleElement.m in Sources */,
+				C8B0326368C14774292DEA5A99122622 /* XPathQuery.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9468722AC359F74015C95F2EC176D961 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A8A6E4698E960A415A3E1A4F0DE83D /* Pods-Dai-Hentai-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E8B2FEEBA4B1A15EC77BCFEE883D5CC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = hpple;
+			target = 14BCE7CBCC9F55255DE8C00DDB9DA5D3 /* hpple */;
+			targetProxy = 1BE50E8D926E225BB0184769054C214D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		015A368F878AC3E2CEAE21DDE8026304 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		37B32BC1D587F251CC5947BE526810EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0487F100D9394982817698750F9345A7 /* hpple.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/hpple/hpple-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		44CDBB6D11DE06DB64D6268622BDC47E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		90A5F4CE4338E18B6EBCC161DA6FA64A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0487F100D9394982817698750F9345A7 /* hpple.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/hpple/hpple-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A67C6B109BB4ED511A02C3E0ECC8D273 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEC946FF287547FF6C0E28B0FC7A51A9 /* Pods-Dai-Hentai.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A8A7727BAA5A6AC71175F557F8D3E5DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 729DE331A697F845678498A344A0BA6C /* Pods-Dai-Hentai.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		191D0E145B474E0AEA761F928CF05377 /* Build configuration list for PBXNativeTarget "Pods-Dai-Hentai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A67C6B109BB4ED511A02C3E0ECC8D273 /* Debug */,
+				A8A7727BAA5A6AC71175F557F8D3E5DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				015A368F878AC3E2CEAE21DDE8026304 /* Debug */,
+				44CDBB6D11DE06DB64D6268622BDC47E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4701EDD16CCB00DDFB232BB1BC913C2 /* Build configuration list for PBXNativeTarget "hpple" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90A5F4CE4338E18B6EBCC161DA6FA64A /* Debug */,
+				37B32BC1D587F251CC5947BE526810EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
