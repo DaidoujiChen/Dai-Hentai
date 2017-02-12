@@ -11,7 +11,7 @@
 
 @interface Couchbase : NSObject
 
-+ (void)tryCreate;
-+ (void)tryQuery;
++ (void)addGalleryBy:(NSString *)gid token:(NSString *)token index:(NSInteger)index pages:(NSArray<NSString *> *)pages;
++ (NSArray<NSString *> *)galleryBy:(NSString *)gid token:(NSString *)token index:(NSInteger)index;
 
 @end

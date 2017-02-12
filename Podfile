@@ -8,6 +8,7 @@ target 'Dai-Hentai' do
 
     pod 'hpple', '~> 0.2.0'
     pod 'couchbase-lite-ios', '~> 1.3.1'
+    pod 'SDWebImage', '~> 4.0.0'
 
 end
 

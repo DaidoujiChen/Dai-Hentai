@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HentaiInfo.h"
 
 typedef enum {
 	HentaiParserStatusNetworkFail = -1,
@@ -14,12 +15,23 @@ typedef enum {
 	HentaiParserStatusSuccess
 } HentaiParserStatus;
 
+typedef enum {
+    HentaiParserTypeEh,
+    HentaiParserTypeEx
+} HentaiParserType;
+
 @interface HentaiParser : NSObject
 
-// 取得 filter 過後的列表
-+ (void)requestListAtFilterUrl:(NSString *)urlString forExHentai:(BOOL)isForExHentai completion:(void (^)(HentaiParserStatus status, NSArray *lists))completion;
+// o.o 不想一直寫 isExHentai 這個 flag
++ (Class)parserType:(HentaiParserType)type;
 
-// 取得某一本漫畫中的圖片連結
-+ (void)requestImagesAtURL:(NSString *)urlString atIndex:(NSUInteger)index completion:(void (^)(HentaiParserStatus status, NSArray *images))completion;
+// 取得 filter 過後的列表
++ (void)requestListAtFilterUrl:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSArray<HentaiInfo *> *infos))completion;
+
+// 取得 gallery 圖片頁面們
++ (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(HentaiParserStatus status, NSArray<NSString *> *imagePages))completion;
+
+// 取得圖片頁面中, 真實圖片網址
++ (void)requestImageURL:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSString *imageURL))completion;
 
 @end

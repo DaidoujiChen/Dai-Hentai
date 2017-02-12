@@ -7,15 +7,18 @@
 //
 
 #import "ListViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "ListCell.h"
-#import "HentaiParser.h"
+#import "EHentaiParser.h"
+#import "ExHentaiParser.h"
+#import "GalleryViewController.h"
 
 @interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSCache *thumbCache;
-@property (nonatomic, strong) NSMutableArray *galleries;
+@property (nonatomic, strong) Class parser;
+@property (nonatomic, strong) NSMutableArray<HentaiInfo *> *galleries;
 
 @end
 
@@ -37,36 +40,30 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(ListCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *galleryInfo = self.galleries[indexPath.row];
-    cell.title.text = [galleryInfo[@"title_jpn"] length] ? galleryInfo[@"title_jpn"] : galleryInfo[@"title"];
-    cell.category.text = galleryInfo[@"category"];
-    cell.rating.text = galleryInfo[@"rating"];
-    
-    UIImage *cachedImage = [self.thumbCache objectForKey:galleryInfo[@"thumb"]];
-    if (cachedImage) {
-        cell.thumbImageView.image = cachedImage;
-    }
-    else {
-        NSInteger keepRow = indexPath.row;
-        NSURL *url = [NSURL URLWithString:self.galleries[indexPath.row][@"thumb"]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (!error) {
-                UIImage *image = [UIImage imageWithData:data];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSInteger currentIndex = [collectionView indexPathForCell:cell].row;
-                    if (keepRow == currentIndex) {
-                        cell.thumbImageView.image = image;
-                    }
-                });
-            }
-        }] resume];
+    HentaiInfo *info = self.galleries[indexPath.row];
+    cell.title.text = info.title_jpn.length ? info.title_jpn : info.title;
+    cell.category.text = info.category;
+    cell.rating.text = info.rating;
+    [cell.thumbImageView sd_setImageWithURL:[NSURL URLWithString:info.thumb] placeholderImage:nil options:SDWebImageHandleCookies];
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HentaiInfo *info = self.galleries[indexPath.row];
+    [self performSegueWithIdentifier:@"PushToGallery" sender:info];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PushToGallery"]) {
+        GalleryViewController *next = (GalleryViewController *)segue.destinationViewController;
+        next.info = sender;
     }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat width = collectionView.bounds.size.width - 20;
     CGFloat height = 150;
     return CGSizeMake(width, height);
@@ -76,7 +73,7 @@
 
 - (void)initValues {
     self.galleries = [NSMutableArray array];
-    self.thumbCache = [NSCache new];
+    self.parser = [HentaiParser parserType:HentaiParserTypeEh];
 }
 
 #pragma mark - Life Cycle
@@ -90,9 +87,9 @@
     [super viewWillAppear:animated];
     
     __weak ListViewController *weakSelf = self;
-    [HentaiParser requestListAtFilterUrl:@"https://e-hentai.org/" forExHentai:NO completion: ^(HentaiParserStatus status, NSArray *lists) {
+    [weakSelf.parser requestListAtFilterUrl:@"https://e-hentai.org/" completion: ^(HentaiParserStatus status, NSArray<HentaiInfo *> *infos) {
         if (status == HentaiParserStatusSuccess) {
-            [weakSelf.galleries addObjectsFromArray:lists];
+            [weakSelf.galleries addObjectsFromArray:infos];
             [weakSelf.collectionView reloadData];
         }
     }];
