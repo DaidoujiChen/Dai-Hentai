@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSDictionary<NSString *, NSNumber *> *> *heights;
 @property (nonatomic, strong) NSLock *pageLocker;
 @property (nonatomic, assign) BOOL rotating;
+@property (nonatomic, assign) BOOL isBarsHidden;
 
 @end
 
@@ -128,7 +129,7 @@
 // 自動滑到某頁
 - (void)scrollToIndex:(NSInteger)index {
     UICollectionViewScrollPosition scrollDirection = self.scrollDirect == UICollectionViewScrollDirectionHorizontal ? UICollectionViewScrollPositionCenteredHorizontally : UICollectionViewScrollPositionCenteredVertically;
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index - 1 inSection:0] atScrollPosition:scrollDirection animated:YES];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index - 1 inSection:0] atScrollPosition:scrollDirection animated:NO];
 }
 
 // 刷新新 load 好的頁面
@@ -276,6 +277,61 @@
     }
 }
 
+#pragma mark * Show / Hidden Bars Animation
+
+- (void)layoutBars {
+    CGRect newFrame = self.navigationController.navigationBar.frame;
+    
+    // navigation bar 伸縮
+    if (self.isBarsHidden) {
+        newFrame.origin.y = -CGRectGetHeight(newFrame);
+    }
+    else {
+        newFrame.origin.y = 0;
+    }
+    self.navigationController.navigationBar.frame = newFrame;
+    [self.navigationController.navigationBar layoutSubviews];
+    
+    // tabbar 伸縮
+    CGFloat screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
+    newFrame = self.tabBarController.tabBar.frame;
+    if (self.isBarsHidden) {
+        newFrame.origin.y = screenHeight;
+    }
+    else {
+        newFrame.origin.y = screenHeight - CGRectGetHeight(newFrame);
+    }
+    self.tabBarController.tabBar.frame = newFrame;
+    [self.tabBarController.tabBar layoutSubviews];
+    
+    // collection view 伸縮
+    UIEdgeInsets newInsets = self.collectionView.contentInset;
+    if (self.isBarsHidden) {
+        newInsets.top = 0;
+        newInsets.bottom = 0;
+    }
+    else {
+        newInsets.top = CGRectGetHeight(self.navigationController.navigationBar.frame);
+        newInsets.bottom = CGRectGetHeight(self.tabBarController.tabBar.frame);
+    }
+    self.collectionView.contentInset = newInsets;
+    [self.collectionView.collectionViewLayout invalidateLayout];
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)recognizer {
+    [self.navigationController.navigationBar.layer removeAllAnimations];
+    [self.tabBarController.tabBar.layer removeAllAnimations];
+    
+    self.isBarsHidden = !self.isBarsHidden;
+    __weak GalleryViewController *weakSelf = self;
+    [UIView animateWithDuration:0.3f animations: ^{
+        if (weakSelf) {
+            __strong GalleryViewController *strongSelf = weakSelf;
+            [strongSelf layoutBars];
+        }
+    }];
+}
+
 #pragma mark * init
 
 // 初始化參數們
@@ -304,9 +360,15 @@
     NSString *folder = self.info.title_jpn.length ? self.info.title_jpn : self.info.title;
     folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
     self.manager = [[FilesManager documentFolder] fcd:folder];
+    self.navigationItem.prompt = folder;
     
     // 轉向時的判斷
     self.rotating = NO;
+    
+    // 顯示相關
+    self.isBarsHidden = NO;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    [self.view addGestureRecognizer:tapGesture];
 }
 
 #pragma mark - Life Cycle
@@ -330,10 +392,15 @@
         if (weakSelf) {
             __strong GalleryViewController *strongSelf = weakSelf;
             strongSelf.rotating = NO;
-            [strongSelf.collectionView.collectionViewLayout invalidateLayout];
+            [strongSelf layoutBars];
             [strongSelf scrollToIndex:userCurrentIndex];
         }
     }];
+}
+
+// 這個畫面讓 status bar 消失
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 // 版面有變動時, 會重設大小
