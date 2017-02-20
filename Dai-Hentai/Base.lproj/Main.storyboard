@@ -32,7 +32,7 @@
             </objects>
             <point key="canvasLocation" x="-1607" y="-278"/>
         </scene>
-        <!--觀看紀錄-->
+        <!--歷史-->
         <scene sceneID="6aD-W1-BRn">
             <objects>
                 <tableViewController id="7Ce-Sf-g22" sceneMemberID="viewController">
@@ -55,13 +55,13 @@
                             <outlet property="delegate" destination="7Ce-Sf-g22" id="QRx-TU-dPi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="觀看紀錄" id="jZF-yx-c7U"/>
+                    <navigationItem key="navigationItem" title="歷史" id="jZF-yx-c7U"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ts5-ko-xKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="94" y="374"/>
         </scene>
-        <!--下載中-->
+        <!--最愛-->
         <scene sceneID="wvT-rG-BeG">
             <objects>
                 <tableViewController id="A45-Z5-88C" sceneMemberID="viewController">
@@ -84,13 +84,13 @@
                             <outlet property="delegate" destination="A45-Z5-88C" id="teb-ta-eCP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="下載中" id="EDI-Tf-vR8"/>
+                    <navigationItem key="navigationItem" title="最愛" id="EDI-Tf-vR8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4e-GK-CoI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="94" y="1024"/>
         </scene>
-        <!--已下載-->
+        <!--下載-->
         <scene sceneID="Tcy-ee-7qV">
             <objects>
                 <tableViewController id="YtF-Di-rH4" sceneMemberID="viewController">
@@ -113,7 +113,7 @@
                             <outlet property="delegate" destination="YtF-Di-rH4" id="x24-Ft-Ujs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="已下載" id="CK9-bI-x6W"/>
+                    <navigationItem key="navigationItem" title="下載" id="CK9-bI-x6W"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gNs-Vk-1nc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,11 +165,11 @@
             </objects>
             <point key="canvasLocation" x="-730" y="2323"/>
         </scene>
-        <!--已下載-->
+        <!--下載-->
         <scene sceneID="60n-Vv-q3G">
             <objects>
                 <navigationController id="Zn6-pD-8g1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="已下載" id="yff-qe-7jA"/>
+                    <tabBarItem key="tabBarItem" title="下載" id="yff-qe-7jA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KE0-Ug-70E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -182,11 +182,11 @@
             </objects>
             <point key="canvasLocation" x="-730" y="1675"/>
         </scene>
-        <!--下載中-->
+        <!--最愛-->
         <scene sceneID="eFH-CR-pc3">
             <objects>
                 <navigationController id="1mK-q0-dtP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="下載中" id="jNy-ua-k7V"/>
+                    <tabBarItem key="tabBarItem" title="最愛" id="jNy-ua-k7V"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1fy-SS-6vp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -199,11 +199,11 @@
             </objects>
             <point key="canvasLocation" x="-730" y="1024"/>
         </scene>
-        <!--觀看歷史-->
+        <!--歷史-->
         <scene sceneID="ai7-XZ-UxE">
             <objects>
                 <navigationController id="nff-1U-hH1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="觀看歷史" id="b0Q-ae-4aD"/>
+                    <tabBarItem key="tabBarItem" title="歷史" id="b0Q-ae-4aD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gvy-za-D7m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -245,7 +245,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-jt-omR">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-jt-omR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZPO-XK-LZy">
@@ -365,7 +365,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lH0-qQ-rWK">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lH0-qQ-rWK">
                                 <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="GD1-9Q-TEJ">
