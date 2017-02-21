@@ -24,6 +24,7 @@
 @property (nonatomic, assign) NSInteger userCurrentIndex;
 @property (nonatomic, strong) FMStream *manager;
 @property (nonatomic, strong) NSMutableArray<NSString *> *imagePages;
+@property (nonatomic, strong) NSMutableArray<NSString *> *loadingImagePages;
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSDictionary<NSString *, NSNumber *> *> *heights;
 @property (nonatomic, strong) NSLock *pageLocker;
 @property (nonatomic, assign) BOOL rotating;
@@ -215,33 +216,38 @@
 // 從 https://e-hentai.org/s/107f1048f2/1030726-1 頁面中
 // 取得真實的圖片連結 ex: http://114.33.249.224:18053/h/e6d61323621dc2c578266d3192578edb66ad1517-99131-1280-845-jpg/keystamp=1487226600-fd28acd1f7;fileindex=50314533;xres=1280/60785277_p0.jpg
 - (void)loadImage:(NSString *)imagePage {
-    __weak GalleryViewController *weakSelf = self;
-    [EHentaiParser requestImageURL:imagePage completion: ^(HentaiParserStatus status, NSString *imageURL) {
-        if (weakSelf) {
-            if (status == HentaiParserStatusSuccess) {
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]];
-                NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
-                    if (weakSelf) {
-                        __strong GalleryViewController *strongSelf = weakSelf;
-                        [strongSelf onImageReady:imagePage data:data isNeedWriteFile:YES];
-                    }
-                    
-                    if (error) {
-                        NSLog(@"===== Load imagePage Fail : %@", imagePage);
-                    }
-                }];
-                [task resume];
-                [NSTimer scheduledTimerWithTimeInterval:30.0f repeats:NO block: ^(NSTimer *timer) {
-                    if (task.state != NSURLSessionTaskStateCompleted) {
-                        [task cancel];
-                    }
-                }];
+    if (![self.loadingImagePages containsObject:imagePage]) {
+        [self.loadingImagePages addObject:imagePage];
+        __weak GalleryViewController *weakSelf = self;
+        [EHentaiParser requestImageURL:imagePage completion: ^(HentaiParserStatus status, NSString *imageURL) {
+            if (weakSelf) {
+                if (status == HentaiParserStatusSuccess) {
+                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]];
+                    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
+                        if (weakSelf) {
+                            __strong GalleryViewController *strongSelf = weakSelf;
+                            [strongSelf onImageReady:imagePage data:data isNeedWriteFile:YES];
+                        }
+                        
+                        if (error) {
+                            NSLog(@"===== Load imagePage Fail : %@", imagePage);
+                        }
+                        [weakSelf.loadingImagePages removeObject:imagePage];
+                    }];
+                    [task resume];
+                    [NSTimer scheduledTimerWithTimeInterval:30.0f repeats:NO block: ^(NSTimer *timer) {
+                        if (task.state != NSURLSessionTaskStateCompleted) {
+                            [task cancel];
+                        }
+                    }];
+                }
+                else {
+                    NSLog(@"===== requestImageURLWithURLString fail");
+                    [weakSelf.loadingImagePages removeObject:imagePage];
+                }
             }
-            else {
-                NSLog(@"===== requestImageURLWithURLString fail");
-            }
-        }
-    }];
+        }];
+    }
 }
 
 // 從 https://e-hentai.org/g/1030726/c854450405/ 大頁中
@@ -351,6 +357,7 @@
     // 讀取頁面相關設定
     self.pageLocker = [NSLock new];
     self.imagePages = [NSMutableArray array];
+    self.loadingImagePages = [NSMutableArray array];
     self.heights = [NSMutableDictionary dictionary];
     self.totalPageIndex = floor(self.info.filecount.floatValue / 40.0f);
     self.currentPageIndex = 0;
