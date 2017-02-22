@@ -309,6 +309,9 @@
     }
     self.tabBarController.tabBar.frame = newFrame;
     [self.tabBarController.tabBar layoutSubviews];
+}
+
+- (void)layoutCollectionView {
     
     // collection view 伸縮
     UIEdgeInsets newInsets = self.collectionView.contentInset;
@@ -334,6 +337,11 @@
         if (weakSelf) {
             __strong GalleryViewController *strongSelf = weakSelf;
             [strongSelf layoutBars];
+        }
+    } completion: ^(BOOL finished) {
+        if (weakSelf && finished) {
+            __strong GalleryViewController *strongSelf = weakSelf;
+            [strongSelf layoutCollectionView];
         }
     }];
 }
@@ -400,6 +408,7 @@
             __strong GalleryViewController *strongSelf = weakSelf;
             strongSelf.rotating = NO;
             [strongSelf layoutBars];
+            [strongSelf layoutCollectionView];
             [strongSelf scrollToIndex:userCurrentIndex];
         }
     }];
