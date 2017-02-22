@@ -27,4 +27,6 @@
 
 - (void)removeAllObjects;
 
+- (void)restoreContents:(NSMutableDictionary *)importContents defaultContent:(NSMutableDictionary *)defaultContent;
+
 @end

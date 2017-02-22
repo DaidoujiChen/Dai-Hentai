@@ -99,7 +99,8 @@ else { \
 }
 
 + (void)parseShowKey:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSString *showKey))completion {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    [request setValue:urlString forHTTPHeaderField:@"Referer"];
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
@@ -182,8 +183,9 @@ else { \
     }
 }
 
-+ (void)requestListAtFilterUrl:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSArray<HentaiInfo *> *infos))completion {
++ (void)requestListUsingFilter:(NSString *)filter completion:(void (^)(HentaiParserStatus status, NSArray<HentaiInfo *> *infos))completion {
     
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", [self domain], filter];
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
         

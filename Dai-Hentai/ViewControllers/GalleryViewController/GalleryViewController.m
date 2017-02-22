@@ -43,7 +43,7 @@
 
 // 觸發讀取圖片
 - (void)toggleLoadPages {
-    if (self.currentPageIndex <= self.totalPageIndex && self.userCurrentIndex+ 20 >= self.imagePages.count) {
+    if (self.currentPageIndex <= self.totalPageIndex && self.userCurrentIndex + 20 >= self.imagePages.count) {
         [self loadPages];
     }
 }

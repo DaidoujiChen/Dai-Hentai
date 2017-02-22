@@ -12,6 +12,8 @@
 #import "EHentaiParser.h"
 #import "ExHentaiParser.h"
 #import "GalleryViewController.h"
+#import "Couchbase.h"
+#import "SearchViewController.h"
 
 @interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -19,6 +21,9 @@
 
 @property (nonatomic, strong) Class parser;
 @property (nonatomic, strong) NSMutableArray<HentaiInfo *> *galleries;
+@property (nonatomic, assign) NSInteger pageIndex;
+@property (nonatomic, strong) NSLock *pageLocker;
+@property (nonatomic, assign) BOOL isEndOfGalleries;
 
 @end
 
@@ -35,6 +40,9 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (!self.isEndOfGalleries && indexPath.row + 20 >= self.galleries.count) {
+        [self fetchGalleries];
+    }
     ListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ListCell" forIndexPath:indexPath];
     return cell;
 }
@@ -54,13 +62,6 @@
     [self performSegueWithIdentifier:@"PushToGallery" sender:info];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"PushToGallery"]) {
-        GalleryViewController *next = (GalleryViewController *)segue.destinationViewController;
-        next.info = sender;
-    }
-}
-
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -72,8 +73,38 @@
 #pragma mark - Private Instance Method
 
 - (void)initValues {
-    self.galleries = [NSMutableArray array];
     self.parser = [HentaiParser parserType:HentaiParserTypeEh];
+    self.galleries = [NSMutableArray array];
+    self.pageIndex = 0;
+    self.pageLocker = [NSLock new];
+    self.isEndOfGalleries = NO;
+}
+
+- (void)reloadGalleries {
+    [self.galleries removeAllObjects];
+    [self.collectionView reloadData];
+    self.pageIndex = 0;
+    self.isEndOfGalleries = NO;
+    [self fetchGalleries];
+}
+
+- (void)fetchGalleries {
+    if ([self.pageLocker tryLock]) {
+        SearchInfo *info = [Couchbase searchInfo];
+        __weak ListViewController *weakSelf = self;
+        [self.parser requestListUsingFilter:[info query:self.pageIndex] completion: ^(HentaiParserStatus status, NSArray<HentaiInfo *> *infos) {
+            if (weakSelf) {
+                __strong ListViewController *strongSelf = weakSelf;
+                if (status == HentaiParserStatusSuccess) {
+                    [strongSelf.galleries addObjectsFromArray:infos];
+                    [strongSelf.collectionView reloadData];
+                    strongSelf.pageIndex++;
+                    strongSelf.isEndOfGalleries = infos.count == 0;
+                }
+            }
+            [weakSelf.pageLocker unlock];
+        }];
+    }
 }
 
 #pragma mark - Life Cycle
@@ -81,18 +112,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initValues];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    __weak ListViewController *weakSelf = self;
-    [weakSelf.parser requestListAtFilterUrl:@"https://e-hentai.org/" completion: ^(HentaiParserStatus status, NSArray<HentaiInfo *> *infos) {
-        if (status == HentaiParserStatusSuccess) {
-            [weakSelf.galleries addObjectsFromArray:infos];
-            [weakSelf.collectionView reloadData];
-        }
-    }];
+    [self reloadGalleries];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -103,6 +123,25 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(layoutSubviews)];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PushToGallery"]) {
+        GalleryViewController *galleryViewController = (GalleryViewController *)segue.destinationViewController;
+        galleryViewController.info = sender;
+    }
+    else if ([segue.identifier isEqualToString:@"PushToSearch"]) {
+        SearchViewController *searchViewController = (SearchViewController *)segue.destinationViewController;
+        searchViewController.info = [Couchbase searchInfo];
+    }
+}
+
+- (IBAction)unwindFromSearch:(UIStoryboardSegue *)segue {
+    if ([segue.identifier isEqualToString:@"PopToList"]) {
+        SearchViewController *searchViewController = (SearchViewController *)segue.sourceViewController;
+        [Couchbase setSearchInfo:searchViewController.info];
+        [self reloadGalleries];
+    }
 }
 
 @end
