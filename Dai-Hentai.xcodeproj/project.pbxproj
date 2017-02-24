@@ -10,15 +10,22 @@
 		1C000ED91E570F9C004060A5 /* ImageURLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C000ED81E570F9C004060A5 /* ImageURLOperation.m */; };
 		1C0608431E53473500E6A285 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0608421E53473500E6A285 /* GalleryViewController.m */; };
 		1C0608471E534ADF00E6A285 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0608461E534ADF00E6A285 /* GalleryCell.m */; };
+		1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0867FA1E5C8F3D00E361B5 /* SearchViewController.m */; };
+		1C0867FF1E5C96B100E361B5 /* SearchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0867FE1E5C96B100E361B5 /* SearchInfo.m */; };
 		1C1AD0341E49B79800544217 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1AD0331E49B79800544217 /* main.m */; };
 		1C1AD0371E49B79800544217 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1AD0361E49B79800544217 /* AppDelegate.m */; };
 		1C1AD03D1E49B79800544217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD03B1E49B79800544217 /* Main.storyboard */; };
 		1C1AD03F1E49B79800544217 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD03E1E49B79800544217 /* Assets.xcassets */; };
 		1C1AD0421E49B79800544217 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD0401E49B79800544217 /* LaunchScreen.storyboard */; };
+		1C33D10B1E5F34BC00F0EB12 /* SearchKeywordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D1091E5F34BC00F0EB12 /* SearchKeywordCell.m */; };
+		1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D10D1E5F35A600F0EB12 /* SearchRatingCell.m */; };
+		1C33D1111E5F391A00F0EB12 /* SearchCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D1101E5F391A00F0EB12 /* SearchCategoryCell.m */; };
+		1C3DDE021E6094A00034B3E2 /* CategoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DDE011E6094A00034B3E2 /* CategoryItem.m */; };
 		1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CA72E1E49C13400D94CFB /* HentaiParser.m */; };
 		1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */; };
 		1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9294E71E4C4330001AB1CE /* ListViewController.m */; };
 		1C9294EC1E4C4A0D001AB1CE /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9294EB1E4C4A0D001AB1CE /* ListCell.m */; };
+		1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97CB311E5EBF17000A8874 /* SearchBaseCell.m */; };
 		1CA2707E1E50B9F80054AA6E /* EHentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA2707D1E50B9F80054AA6E /* EHentaiParser.m */; };
 		1CA270811E50BA0B0054AA6E /* ExHentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA270801E50BA0B0054AA6E /* ExHentaiParser.m */; };
 		1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */; };
@@ -43,6 +50,10 @@
 		1C0608421E53473500E6A285 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		1C0608451E534ADF00E6A285 /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
 		1C0608461E534ADF00E6A285 /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
+		1C0867F91E5C8F3D00E361B5 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		1C0867FA1E5C8F3D00E361B5 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		1C0867FD1E5C96B100E361B5 /* SearchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchInfo.h; sourceTree = "<group>"; };
+		1C0867FE1E5C96B100E361B5 /* SearchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchInfo.m; sourceTree = "<group>"; };
 		1C1AD02F1E49B79800544217 /* Dai-Hentai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dai-Hentai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C1AD0331E49B79800544217 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1C1AD0351E49B79800544217 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +62,14 @@
 		1C1AD03E1E49B79800544217 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C1AD0411E49B79800544217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C1AD0431E49B79800544217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C33D1081E5F34BC00F0EB12 /* SearchKeywordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchKeywordCell.h; sourceTree = "<group>"; };
+		1C33D1091E5F34BC00F0EB12 /* SearchKeywordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchKeywordCell.m; sourceTree = "<group>"; };
+		1C33D10C1E5F35A600F0EB12 /* SearchRatingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRatingCell.h; sourceTree = "<group>"; };
+		1C33D10D1E5F35A600F0EB12 /* SearchRatingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRatingCell.m; sourceTree = "<group>"; };
+		1C33D10F1E5F391A00F0EB12 /* SearchCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryCell.h; sourceTree = "<group>"; };
+		1C33D1101E5F391A00F0EB12 /* SearchCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryCell.m; sourceTree = "<group>"; };
+		1C3DDE001E6094A00034B3E2 /* CategoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryItem.h; sourceTree = "<group>"; };
+		1C3DDE011E6094A00034B3E2 /* CategoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryItem.m; sourceTree = "<group>"; };
 		1C7CA72D1E49C13400D94CFB /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
 		1C7CA72E1E49C13400D94CFB /* HentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiParser.m; sourceTree = "<group>"; };
 		1C9288AD1E5594B8004E796B /* GalleryCollectionViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCollectionViewHandler.h; sourceTree = "<group>"; };
@@ -59,6 +78,8 @@
 		1C9294E71E4C4330001AB1CE /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		1C9294EA1E4C4A0D001AB1CE /* ListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCell.h; sourceTree = "<group>"; };
 		1C9294EB1E4C4A0D001AB1CE /* ListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCell.m; sourceTree = "<group>"; };
+		1C97CB301E5EBF17000A8874 /* SearchBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBaseCell.h; sourceTree = "<group>"; };
+		1C97CB311E5EBF17000A8874 /* SearchBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBaseCell.m; sourceTree = "<group>"; };
 		1CA2707C1E50B9F80054AA6E /* EHentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHentaiParser.h; sourceTree = "<group>"; };
 		1CA2707D1E50B9F80054AA6E /* EHentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHentaiParser.m; sourceTree = "<group>"; };
 		1CA2707F1E50BA0B0054AA6E /* ExHentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExHentaiParser.h; sourceTree = "<group>"; };
@@ -119,6 +140,24 @@
 			path = GalleryCell;
 			sourceTree = "<group>";
 		};
+		1C0867F81E5C8F2100E361B5 /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C0867F91E5C8F3D00E361B5 /* SearchViewController.h */,
+				1C0867FA1E5C8F3D00E361B5 /* SearchViewController.m */,
+			);
+			path = SearchViewController;
+			sourceTree = "<group>";
+		};
+		1C0867FC1E5C969200E361B5 /* SearchInfo */ = {
+			isa = PBXGroup;
+			children = (
+				1C0867FD1E5C96B100E361B5 /* SearchInfo.h */,
+				1C0867FE1E5C96B100E361B5 /* SearchInfo.m */,
+			);
+			path = SearchInfo;
+			sourceTree = "<group>";
+		};
 		1C1AD0261E49B79800544217 = {
 			isa = PBXGroup;
 			children = (
@@ -162,10 +201,47 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1C33D1061E5F34BC00F0EB12 /* SearchCategoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C33D10F1E5F391A00F0EB12 /* SearchCategoryCell.h */,
+				1C33D1101E5F391A00F0EB12 /* SearchCategoryCell.m */,
+			);
+			path = SearchCategoryCell;
+			sourceTree = "<group>";
+		};
+		1C33D1071E5F34BC00F0EB12 /* SearchKeywordCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C33D1081E5F34BC00F0EB12 /* SearchKeywordCell.h */,
+				1C33D1091E5F34BC00F0EB12 /* SearchKeywordCell.m */,
+			);
+			path = SearchKeywordCell;
+			sourceTree = "<group>";
+		};
+		1C33D10A1E5F34BC00F0EB12 /* SearchRatingCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C33D10C1E5F35A600F0EB12 /* SearchRatingCell.h */,
+				1C33D10D1E5F35A600F0EB12 /* SearchRatingCell.m */,
+			);
+			path = SearchRatingCell;
+			sourceTree = "<group>";
+		};
+		1C3DDDFF1E6094A00034B3E2 /* CategoryItem */ = {
+			isa = PBXGroup;
+			children = (
+				1C3DDE001E6094A00034B3E2 /* CategoryItem.h */,
+				1C3DDE011E6094A00034B3E2 /* CategoryItem.m */,
+			);
+			path = CategoryItem;
+			sourceTree = "<group>";
+		};
 		1C7CA7281E49B95200D94CFB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				1C7CA72B1E49C10400D94CFB /* ListViewController */,
+				1C0867F81E5C8F2100E361B5 /* SearchViewController */,
 				1C0608401E53471100E6A285 /* GalleryViewController */,
 			);
 			path = ViewControllers;
@@ -178,6 +254,7 @@
 				1CBF607F1E4D9ABC000CA9E5 /* FilesManager */,
 				1CEC12AE1E500E9A00F3E3C4 /* DaiStorage */,
 				1CEC12C41E500F4400F3E3C4 /* DaiStorageModels */,
+				1C3DDDFF1E6094A00034B3E2 /* CategoryItem */,
 				1CE8E5DF1E4D7A03005B1B18 /* Couchbase */,
 			);
 			path = Models;
@@ -186,6 +263,7 @@
 		1C7CA72A1E49BFB600D94CFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1C97CB2F1E5EBF00000A8874 /* SearchBaseCell */,
 				1C9294E91E4C49EC001AB1CE /* ListCell */,
 				1C0608441E534AC000E6A285 /* GalleryCell */,
 			);
@@ -223,6 +301,18 @@
 				1C9294EB1E4C4A0D001AB1CE /* ListCell.m */,
 			);
 			path = ListCell;
+			sourceTree = "<group>";
+		};
+		1C97CB2F1E5EBF00000A8874 /* SearchBaseCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C33D1061E5F34BC00F0EB12 /* SearchCategoryCell */,
+				1C33D1071E5F34BC00F0EB12 /* SearchKeywordCell */,
+				1C33D10A1E5F34BC00F0EB12 /* SearchRatingCell */,
+				1C97CB301E5EBF17000A8874 /* SearchBaseCell.h */,
+				1C97CB311E5EBF17000A8874 /* SearchBaseCell.m */,
+			);
+			path = SearchBaseCell;
 			sourceTree = "<group>";
 		};
 		1CBF607F1E4D9ABC000CA9E5 /* FilesManager */ = {
@@ -284,6 +374,7 @@
 		1CEC12C41E500F4400F3E3C4 /* DaiStorageModels */ = {
 			isa = PBXGroup;
 			children = (
+				1C0867FC1E5C969200E361B5 /* SearchInfo */,
 				1CEC12C51E500F7B00F3E3C4 /* HentaiInfo */,
 			);
 			path = DaiStorageModels;
@@ -442,12 +533,18 @@
 				1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */,
 				1CE8E5E21E4D7A24005B1B18 /* Couchbase.m in Sources */,
 				1C1AD0341E49B79800544217 /* main.m in Sources */,
+				1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */,
 				1C0608471E534ADF00E6A285 /* GalleryCell.m in Sources */,
+				1C0867FF1E5C96B100E361B5 /* SearchInfo.m in Sources */,
 				1CEC12C31E500E9A00F3E3C4 /* DaiStorageTypeChecking.m in Sources */,
 				1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */,
 				1CEC12C01E500E9A00F3E3C4 /* DaiStoragePath.m in Sources */,
+				1C3DDE021E6094A00034B3E2 /* CategoryItem.m in Sources */,
+				1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */,
 				1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */,
+				1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */,
 				1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */,
+				1C33D1111E5F391A00F0EB12 /* SearchCategoryCell.m in Sources */,
 				1CEC12C21E500E9A00F3E3C4 /* DaiStorageProperty.m in Sources */,
 				1C000ED91E570F9C004060A5 /* ImageURLOperation.m in Sources */,
 				1C0608431E53473500E6A285 /* GalleryViewController.m in Sources */,
@@ -457,6 +554,7 @@
 				1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */,
 				1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */,
 				1CA2707E1E50B9F80054AA6E /* EHentaiParser.m in Sources */,
+				1C33D10B1E5F34BC00F0EB12 /* SearchKeywordCell.m in Sources */,
 				1CA270811E50BA0B0054AA6E /* ExHentaiParser.m in Sources */,
 				1CEC12BE1E500E9A00F3E3C4 /* DaiStorage.m in Sources */,
 			);

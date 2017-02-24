@@ -26,7 +26,7 @@ typedef enum {
 + (Class)parserType:(HentaiParserType)type;
 
 // 取得 filter 過後的列表
-+ (void)requestListAtFilterUrl:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSArray<HentaiInfo *> *infos))completion;
++ (void)requestListUsingFilter:(NSString *)filter completion:(void (^)(HentaiParserStatus status, NSArray<HentaiInfo *> *infos))completion;
 
 // 取得 gallery 圖片頁面們
 + (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(HentaiParserStatus status, NSArray<NSString *> *imagePages))completion;
