@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Couchbase.h"
 
-@interface SearchViewController : UIViewController <UITableViewDataSource>
+@interface SearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) SearchInfo *info;
 
