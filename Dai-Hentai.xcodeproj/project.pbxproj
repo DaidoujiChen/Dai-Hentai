@@ -416,6 +416,7 @@
 				5F6B103CB5164C6D1B5F3CB2 /* [CP] Check Pods Manifest.lock */,
 				1C1AD02B1E49B79800544217 /* Sources */,
 				1C1AD02C1E49B79800544217 /* Frameworks */,
+				1C8A5EE01E71863F00A6095F /* ShellScript */,
 				1C1AD02D1E49B79800544217 /* Resources */,
 				8242C7F3CAE38698E20FDCC6 /* [CP] Embed Pods Frameworks */,
 				E4A04B382EE4A3F56A06DA93 /* [CP] Copy Pods Resources */,
@@ -477,6 +478,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1C8A5EE01E71863F00A6095F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Daidouji - this script is from https://github.com/alokc83/Xcode-build-and-version-generator/blob/master/xcode-build-number-generator.sh\n\n# Credits\n# sekati@github for intial direction about automatic versioning\n# http://www.codinghorror.com/blog/2007/02/whats-in-a-version-number-anyway.html (For unferstanding the Software Versoining)\n#Feel free to leave comment or report issues\n\n#CHECKING WHICH info.plist need to be used\nif [[ -e InfoT2.plist ]]\nthen\nplistFile=\"InfoT2.plist\"\nelse\nplistFile=\"${INFOPLIST_FILE}\"\nfi\n\n# Daidouji - http://www.mactricksandtips.com/2010/01/working-with-the-date-function-in-terminal.html\n# date '+The Current Time:%nYear: %Y%nMonth: %m%nWeek: %V%nDay: %A (%d of the month, %j of the year)%nHour: %H%nMinute: %M%nSecond: %S'\n# output\n# The Current Time:\n# Year: 2016\n# Month: 04\n# Week: 16\n# Day: 周五 (22 of the month, 113 of the year)\n# Hour: 10\n# Minute: 38\n# Second: 30\n\n### only uncomment section below if testing the format in terminal\n# echo \"BuildNumber1 = $MONTH$DATE$YEAR\"\n# echo \"or BUILD NUMBER = $DATE$MONTH$YEAR\"\n# echo \"or BUILD NUMBER = $MONTHNUMBER$DATE$YEAR Format is |Month Number Date Year|\"\n# echo \"or BUILD NUMBER = $DATE$MONTHNUMBER$YEAR format is |Date MonthNumber Year|\"\n############################\n\n#### Uncomment only one one style or last one will be in effect\n#buildNumber=$MONTH$DATE$YEAR\n#buildNumber=$DATE$MONTH$YEAR\n#buildNumber=$MONTHNUMBER$DATE$YEAR\n#buildNumber=$DATE$MONTHNUMBER$YEAR\nbuildNumber=`date '+%Y%m%d%H%M'`\n\necho \"Final Build number is $buildNumber\"\necho \"$plistFile\"\n## Below command write buildNumber in the property list\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$plistFile\"";
+		};
 		5F6B103CB5164C6D1B5F3CB2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
