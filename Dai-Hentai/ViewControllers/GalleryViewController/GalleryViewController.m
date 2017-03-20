@@ -129,6 +129,9 @@
 
 // 自動滑到某頁
 - (void)scrollToIndex:(NSInteger)index {
+    if (!self.maxAllowScrollIndex) {
+        return;
+    }
     UICollectionViewScrollPosition scrollDirection = self.scrollDirect == UICollectionViewScrollDirectionHorizontal ? UICollectionViewScrollPositionCenteredHorizontally : UICollectionViewScrollPositionCenteredVertically;
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index - 1 inSection:0] atScrollPosition:scrollDirection animated:NO];
 }
