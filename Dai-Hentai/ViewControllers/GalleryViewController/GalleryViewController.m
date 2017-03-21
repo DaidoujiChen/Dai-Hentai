@@ -240,7 +240,7 @@
                         }
                         
                         if (error) {
-                            NSLog(@"===== Load imagePage Fail : %@", imagePage);
+                            NSLog(@"===== Load imagePage Fail : %@, %@", imagePage, imageURL);
                         }
                         [weakSelf.loadingImagePages removeObject:imagePage];
                     }];
