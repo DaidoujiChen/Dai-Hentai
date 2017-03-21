@@ -216,6 +216,13 @@
     }
 }
 
+- (void)cancelTimeoutRequest:(NSTimer *)timer {
+    NSURLSessionDataTask *task = timer.userInfo;
+    if (task.state != NSURLSessionTaskStateCompleted) {
+        [task cancel];
+    }
+}
+
 // 從 https://e-hentai.org/s/107f1048f2/1030726-1 頁面中
 // 取得真實的圖片連結 ex: http://114.33.249.224:18053/h/e6d61323621dc2c578266d3192578edb66ad1517-99131-1280-845-jpg/keystamp=1487226600-fd28acd1f7;fileindex=50314533;xres=1280/60785277_p0.jpg
 - (void)loadImage:(NSString *)imagePage {
@@ -238,11 +245,7 @@
                         [weakSelf.loadingImagePages removeObject:imagePage];
                     }];
                     [task resume];
-                    [NSTimer scheduledTimerWithTimeInterval:30.0f repeats:NO block: ^(NSTimer *timer) {
-                        if (task.state != NSURLSessionTaskStateCompleted) {
-                            [task cancel];
-                        }
-                    }];
+                    [NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(cancelTimeoutRequest:) userInfo:task repeats:NO];
                 }
                 else {
                     NSLog(@"===== requestImageURLWithURLString fail");
