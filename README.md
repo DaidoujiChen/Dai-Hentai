@@ -8,6 +8,12 @@ alt="newHentai" width="240" height="180" border="10" /></a>
 
 版面跟內容重新規劃, 因為生活忙碌所以沒有確切的完成日期, >w<"
 
+## 最新版本試玩
+
+[點我導向 appetize](https://appetize.io/embed/qk23vcyrmbtecy7n12h6118wa4?device=iphone7&scale=100&orientation=portrait&osVersion=10.0&deviceColor=white)
+
+但是由於是免費帳號, 所以試玩一個月只有 100 分鐘的額度, 付費每一分鐘 0.05 鎂, 成本實在過高, 有玩到的人只能說有拜拜, 沒有玩到的人可以直接用下面的 IPA 檔案...如果能的話啦 O3Ob
+
 ## 最新版本 IPA
 
 因為懶惰所以懶得每次一直手動發布版本, 所以用了一個自動生產 ipa 的服務, 會在每當有新的 commit 時運作
