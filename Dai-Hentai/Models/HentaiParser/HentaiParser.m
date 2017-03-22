@@ -225,6 +225,7 @@ else { \
                             info.filesize = [NSByteCountFormatter stringFromByteCount:[gMetaData[@"filesize"] floatValue] countStyle:NSByteCountFormatterCountStyleFile];
                             info.rating = gMetaData[@"rating"];
                             info.posted = [self dateStringFrom1970:[gMetaData[@"posted"] doubleValue]];
+                            [info.tags addObjectsFromArray:gMetaData[@"tags"]];
                             [infos addObject:info];
                         }
                         completionToMainThread(HentaiParserStatusSuccess, infos);

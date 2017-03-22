@@ -8,6 +8,8 @@
 
 #import "DaiStorage.h"
 
+DaiStorageArrayConverter(NSString)
+
 @interface HentaiInfo : DaiStorage
 
 @property (nonatomic, strong) NSString *gid;
@@ -21,5 +23,6 @@
 @property (nonatomic, strong) NSString *filesize;
 @property (nonatomic, strong) NSString *rating;
 @property (nonatomic, strong) NSString *posted;
+@property (nonatomic, strong) NSStringArray *tags;
 
 @end
