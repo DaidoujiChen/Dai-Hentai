@@ -12,6 +12,7 @@
 		1C0608471E534ADF00E6A285 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0608461E534ADF00E6A285 /* GalleryCell.m */; };
 		1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0867FA1E5C8F3D00E361B5 /* SearchViewController.m */; };
 		1C0867FF1E5C96B100E361B5 /* SearchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0867FE1E5C96B100E361B5 /* SearchInfo.m */; };
+		1C0CF4981E82D466005ADDFA /* HistoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CF4971E82D466005ADDFA /* HistoriesViewController.m */; };
 		1C1AD0341E49B79800544217 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1AD0331E49B79800544217 /* main.m */; };
 		1C1AD0371E49B79800544217 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1AD0361E49B79800544217 /* AppDelegate.m */; };
 		1C1AD03D1E49B79800544217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD03B1E49B79800544217 /* Main.storyboard */; };
@@ -54,6 +55,8 @@
 		1C0867FA1E5C8F3D00E361B5 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		1C0867FD1E5C96B100E361B5 /* SearchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchInfo.h; sourceTree = "<group>"; };
 		1C0867FE1E5C96B100E361B5 /* SearchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchInfo.m; sourceTree = "<group>"; };
+		1C0CF4961E82D466005ADDFA /* HistoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoriesViewController.h; sourceTree = "<group>"; };
+		1C0CF4971E82D466005ADDFA /* HistoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoriesViewController.m; sourceTree = "<group>"; };
 		1C1AD02F1E49B79800544217 /* Dai-Hentai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dai-Hentai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C1AD0331E49B79800544217 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1C1AD0351E49B79800544217 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		1CA2707D1E50B9F80054AA6E /* EHentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHentaiParser.m; sourceTree = "<group>"; };
 		1CA2707F1E50BA0B0054AA6E /* ExHentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExHentaiParser.h; sourceTree = "<group>"; };
 		1CA270801E50BA0B0054AA6E /* ExHentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExHentaiParser.m; sourceTree = "<group>"; };
+		1CAF38941E854B8500A4C0DD /* PrivateListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateListViewController.h; sourceTree = "<group>"; };
 		1CBF60801E4D9ABC000CA9E5 /* FilesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesManager.h; sourceTree = "<group>"; };
 		1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesManager.m; sourceTree = "<group>"; };
 		1CBF60821E4D9ABC000CA9E5 /* FMStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMStream.h; sourceTree = "<group>"; };
@@ -156,6 +160,15 @@
 				1C0867FE1E5C96B100E361B5 /* SearchInfo.m */,
 			);
 			path = SearchInfo;
+			sourceTree = "<group>";
+		};
+		1C0CF4951E82D449005ADDFA /* HistoriesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C0CF4961E82D466005ADDFA /* HistoriesViewController.h */,
+				1C0CF4971E82D466005ADDFA /* HistoriesViewController.m */,
+			);
+			path = HistoriesViewController;
 			sourceTree = "<group>";
 		};
 		1C1AD0261E49B79800544217 = {
@@ -242,6 +255,7 @@
 			children = (
 				1C7CA72B1E49C10400D94CFB /* ListViewController */,
 				1C0867F81E5C8F2100E361B5 /* SearchViewController */,
+				1C0CF4951E82D449005ADDFA /* HistoriesViewController */,
 				1C0608401E53471100E6A285 /* GalleryViewController */,
 			);
 			path = ViewControllers;
@@ -250,6 +264,7 @@
 		1C7CA7291E49BFB600D94CFB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1CAF38951E85623800A4C0DD /* Category */,
 				1C7CA72C1E49C13400D94CFB /* HentaiParser */,
 				1CBF607F1E4D9ABC000CA9E5 /* FilesManager */,
 				1CEC12AE1E500E9A00F3E3C4 /* DaiStorage */,
@@ -274,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				1C9294E61E4C4330001AB1CE /* ListViewController.h */,
+				1CAF38941E854B8500A4C0DD /* PrivateListViewController.h */,
 				1C9294E71E4C4330001AB1CE /* ListViewController.m */,
 			);
 			path = ListViewController;
@@ -313,6 +329,13 @@
 				1C97CB311E5EBF17000A8874 /* SearchBaseCell.m */,
 			);
 			path = SearchBaseCell;
+			sourceTree = "<group>";
+		};
+		1CAF38951E85623800A4C0DD /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		1CBF607F1E4D9ABC000CA9E5 /* FilesManager */ = {
@@ -567,6 +590,7 @@
 				1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */,
 				1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */,
 				1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */,
+				1C0CF4981E82D466005ADDFA /* HistoriesViewController.m in Sources */,
 				1CA2707E1E50B9F80054AA6E /* EHentaiParser.m in Sources */,
 				1C33D10B1E5F34BC00F0EB12 /* SearchKeywordCell.m in Sources */,
 				1CA270811E50BA0B0054AA6E /* ExHentaiParser.m in Sources */,
