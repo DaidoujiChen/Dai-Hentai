@@ -11,6 +11,7 @@
 #import "EHentaiParser.h"
 #import "ExHentaiParser.h"
 #import "FilesManager.h"
+#import "Couchbase.h"
 
 @interface GalleryViewController () <GalleryCollectionViewHandlerDelegate>
 
@@ -397,8 +398,26 @@
 - (void)viewDidLoad {
     NSLog(@"===== %@, %@", [FilesManager documentFolder].currentPath, self.info.filecount);
     [super viewDidLoad];
+    NSInteger userLatestPage = [Couchbase fetchUserLatestPage:self.info];
+    if (userLatestPage) {
+        __weak GalleryViewController *weakSelf = self;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"O3O" message:@"您曾經閱讀過此作品" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *continueAction = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"繼續從 %td 頁看起", userLatestPage] style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
+            [weakSelf scrollToIndex:userLatestPage];
+        }];
+        [alert addAction:continueAction];
+        
+        UIAlertAction *giveupAction = [UIAlertAction actionWithTitle:@"我要從頭看" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:giveupAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     [self initValues];
     [self loadPages];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Couchbase updateUserLatestPage:self.info userLatestPage:self.userCurrentIndex];
 }
 
 // 當轉向時需要處理 cell 的 size, 避免產生不必要的 warning

@@ -25,4 +25,7 @@ DaiStorageArrayConverter(NSString)
 @property (nonatomic, strong) NSString *posted;
 @property (nonatomic, strong) NSStringArray *tags;
 
+@property (nonatomic, strong) NSNumber *userLatestPage;
+@property (nonatomic, strong) NSNumber *timeStamp;
+
 @end

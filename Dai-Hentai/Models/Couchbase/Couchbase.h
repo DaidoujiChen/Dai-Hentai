@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "SearchInfo.h"
+#import "HentaiInfo.h"
 
 @interface Couchbase : NSObject
 
@@ -17,5 +18,9 @@
 
 + (SearchInfo *)searchInfo;
 + (void)setSearchInfo:(SearchInfo *)searchInfo;
+
++ (NSInteger)fetchUserLatestPage:(HentaiInfo *)hentaiInfo;
++ (void)updateUserLatestPage:(HentaiInfo *)hentaiInfo userLatestPage:(NSInteger)userLatestPage;
++ (NSArray<NSDictionary *> *)historiesFrom:(NSInteger)start to:(NSInteger)end;
 
 @end

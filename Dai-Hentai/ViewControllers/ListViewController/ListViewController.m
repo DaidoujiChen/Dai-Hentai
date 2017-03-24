@@ -6,26 +6,13 @@
 //  Copyright © 2017年 DaidoujiChen. All rights reserved.
 //
 
-#import "ListViewController.h"
+#import "PrivateListViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ListCell.h"
 #import "EHentaiParser.h"
 #import "ExHentaiParser.h"
 #import "GalleryViewController.h"
-#import "Couchbase.h"
 #import "SearchViewController.h"
-
-@interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
-@property (nonatomic, strong) Class parser;
-@property (nonatomic, strong) NSMutableArray<HentaiInfo *> *galleries;
-@property (nonatomic, assign) NSInteger pageIndex;
-@property (nonatomic, strong) NSLock *pageLocker;
-@property (nonatomic, assign) BOOL isEndOfGalleries;
-
-@end
 
 @implementation ListViewController
 

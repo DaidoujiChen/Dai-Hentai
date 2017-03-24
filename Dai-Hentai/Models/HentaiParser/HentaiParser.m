@@ -226,6 +226,7 @@ else { \
                             info.rating = gMetaData[@"rating"];
                             info.posted = [self dateStringFrom1970:[gMetaData[@"posted"] doubleValue]];
                             [info.tags addObjectsFromArray:gMetaData[@"tags"]];
+                            info.userLatestPage = @(0);
                             [infos addObject:info];
                         }
                         completionToMainThread(HentaiParserStatusSuccess, infos);

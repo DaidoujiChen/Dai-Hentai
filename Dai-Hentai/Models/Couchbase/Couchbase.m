@@ -8,6 +8,7 @@
 
 #import "Couchbase.h"
 #import <objc/runtime.h>
+#import "HentaiParser.h"
 
 @implementation Couchbase
 
@@ -46,6 +47,34 @@
             NSLog(@"DB init error : %@", error);
         }
         else {
+            objc_setAssociatedObject(self, _cmd, db, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+    });
+    return objc_getAssociatedObject(self, _cmd);
+}
+
++ (CBLDatabase *)histories {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        CBLManager *manager = [CBLManager sharedInstance];
+        NSError *error;
+        CBLDatabase *db = [manager databaseNamed:@"histories" error:&error];
+        if (error) {
+            NSLog(@"DB init error : %@", error);
+        }
+        else {
+            
+            CBLView *query = [db viewNamed:@"query"];
+            [query setMapBlock: ^(CBLJSONDict *doc, CBLMapEmitBlock emit) {
+                NSString *key = [NSString stringWithFormat:@"%@-%@", doc[@"gid"], doc[@"token"]];
+                emit(key, nil);
+            } version:@"1"];
+            
+            CBLView *sort = [db viewNamed:@"sort"];
+            [sort setMapBlock: ^(CBLJSONDict *doc, CBLMapEmitBlock emit) {
+                emit(doc[@"timeStamp"], nil);
+            } version:@"1"];
+            
             objc_setAssociatedObject(self, _cmd, db, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     });
@@ -115,6 +144,82 @@
                 }
                 return YES;
             } error:nil];
+        }
+    }
+}
+
+#pragma mark * Histories
+
++ (NSInteger)fetchUserLatestPage:(HentaiInfo *)hentaiInfo {
+    NSString *key = [NSString stringWithFormat:@"%@-%@", hentaiInfo.gid, hentaiInfo.token];
+    CBLQuery *query = [[[self histories] viewNamed:@"query"] createQuery];
+    query.keys = @[ key ];
+    NSError *error;
+    CBLQueryEnumerator *results = [query run:&error];
+    if (error) {
+        NSLog(@"fetchUserLatestPage Fail");
+        return 0;
+    }
+    else {
+        NSInteger userLatestPage = 0;
+        if (results.count) {
+            CBLDocument *prevDocument = [results rowAtIndex:0].document;
+            if (prevDocument.properties[@"userLatestPage"]) {
+                userLatestPage = [prevDocument.properties[@"userLatestPage"] integerValue];
+            }
+            [prevDocument deleteDocument:nil];
+        }
+        CBLDocument *document = [[self histories] createDocument];
+        hentaiInfo.timeStamp = @([[NSDate date] timeIntervalSince1970]);
+        [document putProperties:[hentaiInfo storeContents] error:nil];
+        return userLatestPage;
+    }
+}
+
++ (void)updateUserLatestPage:(HentaiInfo *)hentaiInfo userLatestPage:(NSInteger)userLatestPage {
+    NSString *key = [NSString stringWithFormat:@"%@-%@", hentaiInfo.gid, hentaiInfo.token];
+    CBLQuery *query = [[[self histories] viewNamed:@"query"] createQuery];
+    query.keys = @[ key ];
+    NSError *error;
+    CBLQueryEnumerator *results = [query run:&error];
+    if (error) {
+        NSLog(@"updateUserLatestPage Fail");
+    }
+    else {
+        if (results.count) {
+            CBLDocument *document = [results rowAtIndex:0].document;
+            [document update: ^BOOL(CBLUnsavedRevision *rev) {
+                rev[@"userLatestPage"] = @(userLatestPage);
+                return YES;
+            } error:nil];
+        }
+    }
+}
+
++ (NSArray<NSDictionary *> *)historiesFrom:(NSInteger)start to:(NSInteger)end {
+    CBLQuery *query = [[[self histories] viewNamed:@"sort"] createQuery];
+    query.skip = start;
+    query.limit = end - start;
+    query.descending = YES;
+    NSError *error;
+    CBLQueryEnumerator *results = [query run:&error];
+    if (error) {
+        NSLog(@"historiesFrom Fail");
+        return nil;
+    }
+    else {
+        if (results.count == 0) {
+            return nil;
+        }
+        else {
+            NSMutableArray *histories = [NSMutableArray array];
+            for (NSInteger index = 0; index < results.count; index++) {
+                NSDictionary *properties = [results rowAtIndex:index].document.properties;
+                HentaiInfo *info = [HentaiInfo new];
+                [info restoreContents:[NSMutableDictionary dictionaryWithDictionary:properties] defaultContent:nil];
+                [histories addObject:info];
+            }
+            return histories;
         }
     }
 }
