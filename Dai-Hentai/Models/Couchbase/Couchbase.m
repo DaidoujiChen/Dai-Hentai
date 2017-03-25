@@ -163,15 +163,20 @@
     else {
         NSInteger userLatestPage = 0;
         if (results.count) {
-            CBLDocument *prevDocument = [results rowAtIndex:0].document;
-            if (prevDocument.properties[@"userLatestPage"]) {
-                userLatestPage = [prevDocument.properties[@"userLatestPage"] integerValue];
+            CBLDocument *document = [results rowAtIndex:0].document;
+            if (document.properties[@"userLatestPage"]) {
+                userLatestPage = [document.properties[@"userLatestPage"] integerValue];
             }
-            [prevDocument deleteDocument:nil];
+            [document update: ^BOOL(CBLUnsavedRevision *rev) {
+                rev[@"timeStamp"] = @([[NSDate date] timeIntervalSince1970]);
+                return YES;
+            } error:nil];
         }
-        CBLDocument *document = [[self histories] createDocument];
-        hentaiInfo.timeStamp = @([[NSDate date] timeIntervalSince1970]);
-        [document putProperties:[hentaiInfo storeContents] error:nil];
+        else {
+            CBLDocument *document = [[self histories] createDocument];
+            hentaiInfo.timeStamp = @([[NSDate date] timeIntervalSince1970]);
+            [document putProperties:[hentaiInfo storeContents] error:nil];
+        }
         return userLatestPage;
     }
 }
