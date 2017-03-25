@@ -13,6 +13,7 @@
 #import "FilesManager.h"
 #import "Couchbase.h"
 #import "NSTimer+Block.h"
+#import "UIAlertController+Block.h"
 
 @interface GalleryViewController () <GalleryCollectionViewHandlerDelegate>
 
@@ -399,14 +400,11 @@
     NSInteger userLatestPage = [Couchbase fetchUserLatestPage:self.info];
     if (userLatestPage) {
         __weak GalleryViewController *weakSelf = self;
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"O3O" message:@"您曾經閱讀過此作品" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *continueAction = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"繼續從 %td 頁看起", userLatestPage] style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
-            [weakSelf scrollToIndex:userLatestPage];
+        UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:@"您曾經閱讀過此作品" defaultOptions:@[ [NSString stringWithFormat:@"繼續從 %td 頁看起", userLatestPage] ] cancelOption:@"我要從頭看" handler: ^(NSInteger optionIndex) {
+            if (optionIndex) {
+                [weakSelf scrollToIndex:userLatestPage];
+            }
         }];
-        [alert addAction:continueAction];
-        
-        UIAlertAction *giveupAction = [UIAlertAction actionWithTitle:@"我要從頭看" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:giveupAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
     [self initValues];
