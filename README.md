@@ -37,3 +37,5 @@ https://s3-ap-northeast-1.amazonaws.com/dai-hentai-ipa/bitrise/{版本號}_{Buil
 ## 1 鎂捐獻箱
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N86FK92G3V4BS)
 <img alt="" border="0" src="https://www.paypalobjects.com/zh_TW/i/scr/pixel.gif" width="1" height="1">
+
+[捐獻紀錄表](https://docs.google.com/spreadsheets/d/17eY6Hi2Ol-tbb3pL11yRoAg6SeNKa-plj4VJvSuPQY8/edit#gid=0)
