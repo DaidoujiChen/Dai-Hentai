@@ -32,13 +32,13 @@ urlString = [NSString stringWithFormat:@"%@g/%@/%@/?p=%ld", [self domain], gid, 
 urlString; \
 })
 
-#define completionToMainThread(arg1, arg2) \
+#define completionToMainThread(arg1, args...) \
 if ([NSThread isMainThread]) { \
-    completion(arg1, arg2); \
+    completion(arg1, ## args); \
 } \
 else { \
     dispatch_async(dispatch_get_main_queue(), ^{ \
-        completion(arg1, arg2); \
+        completion(arg1, ## args); \
     }); \
 }
 
@@ -243,11 +243,19 @@ else { \
     }] resume];
 }
 
-+ (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(HentaiParserStatus status, NSArray<NSString *> *imagePages))completion {
++ (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages))completion {
     
-    NSArray<NSString *> *pages = [Couchbase galleryBy:info.gid token:info.token index:index];
-    if (pages) {
-        completionToMainThread(HentaiParserStatusSuccess, pages);
+    NSMutableArray<NSString *> *pages = [NSMutableArray array];
+    NSArray<NSString *> *cachePages;
+    NSInteger cacheIndex = index;
+    do {
+        cachePages = [Couchbase galleryBy:info.gid token:info.token index:cacheIndex++];
+        if (cachePages) {
+            [pages addObjectsFromArray:cachePages];
+        }
+    } while (cachePages);
+    if (pages.count) {
+        completionToMainThread(HentaiParserStatusSuccess, cacheIndex, pages);
     }
     else {
         //網址的範例
@@ -257,7 +265,7 @@ else { \
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error) {
-                completionToMainThread(HentaiParserStatusNetworkFail, nil);
+                completionToMainThread(HentaiParserStatusNetworkFail, index, nil);
             }
             else {
                 TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
@@ -272,11 +280,11 @@ else { \
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [Couchbase addGalleryBy:info.gid token:info.token index:index pages:newPages];
-                        completionToMainThread(HentaiParserStatusSuccess, newPages);
+                        completionToMainThread(HentaiParserStatusSuccess, index + 1, newPages);
                     });
                 }
                 else {
-                    completionToMainThread(HentaiParserStatusParseFail, nil);
+                    completionToMainThread(HentaiParserStatusParseFail, index, nil);
                 }
             }
         }] resume];

@@ -282,7 +282,7 @@
     if ([self.pageLocker tryLock] && self.currentPageIndex <= self.totalPageIndex) {
         
         __weak GalleryViewController *weakSelf = self;
-        [EHentaiParser requestImagePagesBy:self.info atIndex:self.currentPageIndex completion: ^(HentaiParserStatus status, NSArray<NSString *> *imagePages) {
+        [EHentaiParser requestImagePagesBy:self.info atIndex:self.currentPageIndex completion: ^(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages) {
             if (weakSelf) {
                 __strong GalleryViewController *strongSelf = weakSelf;
                 if (status == HentaiParserStatusSuccess) {
@@ -292,7 +292,7 @@
                     else if (strongSelf.currentPageIndex == 0 && imagePages.count != 0) {
                         [strongSelf foundLatestPage];
                     }
-                    strongSelf.currentPageIndex++;
+                    strongSelf.currentPageIndex = nextIndex;
                     [strongSelf.imagePages addObjectsFromArray:imagePages];
                     
                     for (NSString *imagePage in imagePages) {

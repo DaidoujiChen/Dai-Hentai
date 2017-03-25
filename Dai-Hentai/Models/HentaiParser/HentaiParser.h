@@ -29,7 +29,7 @@ typedef enum {
 + (void)requestListUsingFilter:(NSString *)filter completion:(void (^)(HentaiParserStatus status, NSArray<HentaiInfo *> *infos))completion;
 
 // 取得 gallery 圖片頁面們
-+ (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(HentaiParserStatus status, NSArray<NSString *> *imagePages))completion;
++ (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages))completion;
 
 // 取得圖片頁面中, 真實圖片網址
 + (void)requestImageURL:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSString *imageURL))completion;
