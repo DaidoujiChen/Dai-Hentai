@@ -128,6 +128,26 @@
 
 #pragma mark - Private Instance Method
 
+#pragma mark * 提示窗
+
+- (void)galleryNotAppear {
+    UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:@"這部作品好像不見囉" defaultOptions:nil cancelOption:@"好 O3O" handler:nil];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)foundLatestPage {
+    NSInteger userLatestPage = [Couchbase fetchUserLatestPage:self.info];
+    if (userLatestPage > 1) {
+        __weak GalleryViewController *weakSelf = self;
+        UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:@"您曾經閱讀過此作品" defaultOptions:@[ [NSString stringWithFormat:@"繼續從 %td 頁看起", userLatestPage] ] cancelOption:@"我要從頭看" handler: ^(NSInteger optionIndex) {
+            if (optionIndex) {
+                [weakSelf scrollToIndex:userLatestPage];
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
 #pragma mark * 刷新顯示相關
 
 // 自動滑到某頁
@@ -266,6 +286,12 @@
             if (weakSelf) {
                 __strong GalleryViewController *strongSelf = weakSelf;
                 if (status == HentaiParserStatusSuccess) {
+                    if (strongSelf.currentPageIndex == 0 && imagePages.count == 0) {
+                        [strongSelf galleryNotAppear];
+                    }
+                    else if (strongSelf.currentPageIndex == 0 && imagePages.count != 0) {
+                        [strongSelf foundLatestPage];
+                    }
                     strongSelf.currentPageIndex++;
                     [strongSelf.imagePages addObjectsFromArray:imagePages];
                     
@@ -397,16 +423,6 @@
 - (void)viewDidLoad {
     NSLog(@"===== %@, %@", [FilesManager documentFolder].currentPath, self.info.filecount);
     [super viewDidLoad];
-    NSInteger userLatestPage = [Couchbase fetchUserLatestPage:self.info];
-    if (userLatestPage) {
-        __weak GalleryViewController *weakSelf = self;
-        UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:@"您曾經閱讀過此作品" defaultOptions:@[ [NSString stringWithFormat:@"繼續從 %td 頁看起", userLatestPage] ] cancelOption:@"我要從頭看" handler: ^(NSInteger optionIndex) {
-            if (optionIndex) {
-                [weakSelf scrollToIndex:userLatestPage];
-            }
-        }];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
     [self initValues];
     [self loadPages];
 }
