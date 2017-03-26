@@ -1,6 +1,12 @@
 ![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/icon180.png)
 ======
 
+3.0 傳送門
+======
+努力生長中的 [3.0 版本](https://github.com/DaidoujiChen/Dai-Hentai/tree/3.0_master)
+
+2.x 預覽圖
+======
 預覽圖大約 5mb, 請等一下下
 
 ![image](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/Dai-Hentai_20141030.gif)
