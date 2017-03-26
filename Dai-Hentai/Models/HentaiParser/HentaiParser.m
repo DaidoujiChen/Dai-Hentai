@@ -249,9 +249,10 @@ else { \
     NSArray<NSString *> *cachePages;
     NSInteger cacheIndex = index;
     do {
-        cachePages = [Couchbase galleryBy:info.gid token:info.token index:cacheIndex++];
+        cachePages = [Couchbase galleryBy:info.gid token:info.token index:cacheIndex];
         if (cachePages) {
             [pages addObjectsFromArray:cachePages];
+            cacheIndex++;
         }
     } while (cachePages);
     if (pages.count) {
