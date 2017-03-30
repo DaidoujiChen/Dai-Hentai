@@ -13,14 +13,17 @@
 
 #pragma mark - Method to Override
 
+#define pageCout 40
+
 - (void)fetchGalleries {
     if ([self.pageLocker tryLock]) {
-        NSArray *hentaiInfos = [Couchbase historiesFrom:self.pageIndex to:self.pageIndex + 20];
+        NSInteger index = self.pageIndex * pageCout;
+        NSArray *hentaiInfos = [Couchbase historiesFrom:index length:pageCout];
         if (hentaiInfos && hentaiInfos.count) {
             [self.galleries addObjectsFromArray:hentaiInfos];
             [self.collectionView reloadData];
             self.pageIndex++;
-            self.isEndOfGalleries = hentaiInfos.count < 20;
+            self.isEndOfGalleries = hentaiInfos.count < 40;
         }
         else {
             self.isEndOfGalleries = YES;
@@ -32,6 +35,7 @@
 #pragma mark - IBAction
 
 - (IBAction)refreshAction:(id)sender {
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
     [self reloadGalleries];
 }
 

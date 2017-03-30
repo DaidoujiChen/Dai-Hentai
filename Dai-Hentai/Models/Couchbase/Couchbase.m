@@ -201,10 +201,10 @@
     }
 }
 
-+ (NSArray<NSDictionary *> *)historiesFrom:(NSInteger)start to:(NSInteger)end {
++ (NSArray<NSDictionary *> *)historiesFrom:(NSInteger)start length:(NSInteger)length {
     CBLQuery *query = [[[self histories] viewNamed:@"sort"] createQuery];
     query.skip = start;
-    query.limit = end - start;
+    query.limit = length;
     query.descending = YES;
     NSError *error;
     CBLQueryEnumerator *results = [query run:&error];
