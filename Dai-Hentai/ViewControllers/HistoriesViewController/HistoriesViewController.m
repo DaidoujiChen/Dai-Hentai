@@ -35,7 +35,9 @@
 #pragma mark - IBAction
 
 - (IBAction)refreshAction:(id)sender {
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    if (self.galleries.count) {
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    }
     [self reloadGalleries];
 }
 
