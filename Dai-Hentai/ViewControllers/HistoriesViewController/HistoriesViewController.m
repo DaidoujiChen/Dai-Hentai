@@ -73,22 +73,28 @@
 - (IBAction)deleteAllHistoriesAction:(id)sender {
     if (!self.isDeleting) {
         self.isDeleting = YES;
-        self.deletingMessage = @"作品刪除中...";
-        [self.galleries removeAllObjects];
-        [self.collectionView reloadData];
         
         __weak HistoriesViewController *weakSelf = self;
-        [Couchbase deleteAllHistories: ^BOOL(NSInteger total, NSInteger index, HentaiInfo *info) {
-            weakSelf.deletingMessage = [NSString stringWithFormat:@"作品刪除中 ( %td / %td )", index, total];
-            [weakSelf.collectionView reloadData];
-            NSString *folder = info.title_jpn.length ? info.title_jpn : info.title;
-            folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
-            [[FilesManager documentFolder] rd:folder];
-            return YES;
-        } onFinish: ^(BOOL successed) {
-            weakSelf.isDeleting = NO;
-            [weakSelf.collectionView reloadData];
+        UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:@"我們現在要刪除所有觀看紀錄囉!" defaultOptions:@[ @"好 O3Ob" ] cancelOption:@"先不要好了 OwO\"" handler: ^(NSInteger optionIndex) {
+            if (optionIndex) {
+                weakSelf.deletingMessage = @"作品刪除中...";
+                [weakSelf.galleries removeAllObjects];
+                [weakSelf.collectionView reloadData];
+                
+                [Couchbase deleteAllHistories: ^BOOL(NSInteger total, NSInteger index, HentaiInfo *info) {
+                    weakSelf.deletingMessage = [NSString stringWithFormat:@"作品刪除中 ( %td / %td )", index, total];
+                    [weakSelf.collectionView reloadData];
+                    NSString *folder = info.title_jpn.length ? info.title_jpn : info.title;
+                    folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
+                    [[FilesManager documentFolder] rd:folder];
+                    return YES;
+                } onFinish: ^(BOOL successed) {
+                    weakSelf.isDeleting = NO;
+                    [weakSelf.collectionView reloadData];
+                }];
+            }
         }];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
