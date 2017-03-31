@@ -12,4 +12,6 @@
 
 + (UIAlertController *)alertTitle:(NSString *)title message:(NSString *)message defaultOptions:(NSArray<NSString *> *)defaultOptions cancelOption:(NSString *)cancelOption handler:(void (^)(NSInteger optionIndex))handler;
 
+- (void)dismissAfterDelay:(NSTimeInterval)delay;
+
 @end

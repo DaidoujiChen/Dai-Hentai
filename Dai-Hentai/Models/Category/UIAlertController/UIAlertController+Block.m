@@ -18,21 +18,25 @@
     [alert setHandler:[handler copy]];
 
     __weak UIAlertController *weakAlert = alert;
-    for (NSInteger index = 0; index < defaultOptions.count; index++) {
-        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:defaultOptions[index] style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
+    if (defaultOptions) {
+        for (NSInteger index = 0; index < defaultOptions.count; index++) {
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:defaultOptions[index] style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
+                if ([weakAlert handler]) {
+                    [weakAlert handler](index + 1);
+                }
+            }];
+            [alert addAction:defaultAction];
+        }
+    }
+    
+    if (cancelOption) {
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelOption style:UIAlertActionStyleCancel handler: ^(UIAlertAction *action) {
             if ([weakAlert handler]) {
-                [weakAlert handler](index + 1);
+                [weakAlert handler](0);
             }
         }];
-        [alert addAction:defaultAction];
+        [alert addAction:cancelAction];
     }
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelOption style:UIAlertActionStyleCancel handler: ^(UIAlertAction *action) {
-        if ([weakAlert handler]) {
-            [weakAlert handler](0);
-        }
-    }];
-    [alert addAction:cancelAction];
-    
     return alert;
 }
 
@@ -44,6 +48,16 @@
 
 - (void (^)(NSInteger optionIndex))handler {
     return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)selfDismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Instance Method
+
+- (void)dismissAfterDelay:(NSTimeInterval)delay {
+    [self performSelector:@selector(selfDismiss) withObject:nil afterDelay:delay];
 }
 
 @end

@@ -110,12 +110,18 @@
 
 // 顯示方向橫直轉
 - (IBAction)toggleDirection:(id)sender {
+    NSString *alertMessage;
     if (self.scrollDirect == UICollectionViewScrollDirectionVertical) {
         self.scrollDirect = UICollectionViewScrollDirectionHorizontal;
+        alertMessage = @"閱讀方向改為橫向";
     }
     else {
         self.scrollDirect = UICollectionViewScrollDirectionVertical;
+        alertMessage = @"閱讀方向改為直向";
     }
+    UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:alertMessage defaultOptions:nil cancelOption:nil handler:nil];
+    [self presentViewController:alert animated:YES completion:nil];
+    [alert dismissAfterDelay:0.75f];
     
     NSInteger userCurrentIndex = self.userCurrentIndex;
     self.collectionView.pagingEnabled = self.scrollDirect == UICollectionViewScrollDirectionHorizontal;
@@ -378,6 +384,24 @@
     }];
 }
 
+- (void)handleSwipeGesture:(UISwipeGestureRecognizer *)recognizer {
+    switch (recognizer.direction) {
+        case UISwipeGestureRecognizerDirectionDown:
+        case UISwipeGestureRecognizerDirectionUp:
+            if (self.scrollDirect == UICollectionViewScrollDirectionHorizontal) {
+                [self toggleDirection:nil];
+            }
+            break;
+            
+        case UISwipeGestureRecognizerDirectionLeft:
+        case UISwipeGestureRecognizerDirectionRight:
+            if (self.scrollDirect == UICollectionViewScrollDirectionVertical) {
+                [self toggleDirection:nil];
+            }
+            break;
+    }
+}
+
 #pragma mark * init
 
 // 初始化參數們
@@ -416,6 +440,12 @@
     self.isBarsHidden = NO;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self.view addGestureRecognizer:tapGesture];
+    
+    for (UISwipeGestureRecognizerDirection direction = UISwipeGestureRecognizerDirectionRight; direction <= UISwipeGestureRecognizerDirectionDown; direction <<= 1) {
+        UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+        [swipe setDirection:direction];
+        [self.collectionView addGestureRecognizer:swipe];
+    }
 }
 
 #pragma mark - Life Cycle
