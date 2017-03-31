@@ -8,6 +8,7 @@
 
 #import "ListViewController.h"
 #import "Couchbase.h"
+#import "MessageCell.h"
 
 @interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -18,7 +19,9 @@
 @property (nonatomic, assign) NSInteger pageIndex;
 @property (nonatomic, strong) NSLock *pageLocker;
 @property (nonatomic, assign) BOOL isEndOfGalleries;
+@property (nonatomic, assign) BOOL isLoading;
 
+- (void)showMessageTo:(MessageCell *)cell onLoading:(BOOL)isLoading;
 - (void)reloadGalleries;
 
 @end

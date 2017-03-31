@@ -33,6 +33,7 @@
 		1CA270811E50BA0B0054AA6E /* ExHentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA270801E50BA0B0054AA6E /* ExHentaiParser.m */; };
 		1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */; };
 		1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60831E4D9ABC000CA9E5 /* FMStream.m */; };
+		1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCE36651E8E2D5F00A82935 /* MessageCell.m */; };
 		1CE8E5E21E4D7A24005B1B18 /* Couchbase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8E5E11E4D7A24005B1B18 /* Couchbase.m */; };
 		1CEC12BE1E500E9A00F3E3C4 /* DaiStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12B11E500E9A00F3E3C4 /* DaiStorage.m */; };
 		1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12B31E500E9A00F3E3C4 /* DaiStorageArray.m */; };
@@ -100,6 +101,8 @@
 		1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesManager.m; sourceTree = "<group>"; };
 		1CBF60821E4D9ABC000CA9E5 /* FMStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMStream.h; sourceTree = "<group>"; };
 		1CBF60831E4D9ABC000CA9E5 /* FMStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMStream.m; sourceTree = "<group>"; };
+		1CCE36641E8E2D5F00A82935 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		1CCE36651E8E2D5F00A82935 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		1CE8E5E01E4D7A24005B1B18 /* Couchbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Couchbase.h; sourceTree = "<group>"; };
 		1CE8E5E11E4D7A24005B1B18 /* Couchbase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Couchbase.m; sourceTree = "<group>"; };
 		1CEC12B01E500E9A00F3E3C4 /* DaiStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiStorage.h; sourceTree = "<group>"; };
@@ -308,6 +311,7 @@
 			children = (
 				1C97CB2F1E5EBF00000A8874 /* SearchBaseCell */,
 				1C9294E91E4C49EC001AB1CE /* ListCell */,
+				1CCE36631E8E2D3F00A82935 /* MessageCell */,
 				1C0608441E534AC000E6A285 /* GalleryCell */,
 			);
 			path = Views;
@@ -377,6 +381,15 @@
 				1CBF60831E4D9ABC000CA9E5 /* FMStream.m */,
 			);
 			path = FilesManager;
+			sourceTree = "<group>";
+		};
+		1CCE36631E8E2D3F00A82935 /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				1CCE36641E8E2D5F00A82935 /* MessageCell.h */,
+				1CCE36651E8E2D5F00A82935 /* MessageCell.m */,
+			);
+			path = MessageCell;
 			sourceTree = "<group>";
 		};
 		1CE8E5DF1E4D7A03005B1B18 /* Couchbase */ = {
@@ -623,6 +636,7 @@
 				1C3DDE021E6094A00034B3E2 /* CategoryItem.m in Sources */,
 				1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */,
 				1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */,
+				1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */,
 				1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */,
 				1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */,
 				1C33D1111E5F391A00F0EB12 /* SearchCategoryCell.m in Sources */,

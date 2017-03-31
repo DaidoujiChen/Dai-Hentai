@@ -32,6 +32,11 @@
     }
 }
 
+- (void)showMessageTo:(MessageCell *)cell onLoading:(BOOL)isLoading {
+    cell.activityView.hidden = YES;
+    cell.messageLabel.text = @"你還沒有看過任何作品呦 O3O";
+}
+
 #pragma mark - IBAction
 
 - (IBAction)refreshAction:(id)sender {

@@ -291,13 +291,52 @@
                                             <outlet property="title" destination="W7h-bb-iFS" id="ftJ-Ve-tZD"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="kNY-mH-Ss9" customClass="MessageCell">
+                                        <rect key="frame" x="0.0" y="160" width="375" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="oHM-kh-WC0">
+                                                    <rect key="frame" x="177" y="30" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="uCc-TZ-94T"/>
+                                                        <constraint firstAttribute="height" constant="20" id="uME-xk-lRi"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeg-h2-DtN">
+                                                    <rect key="frame" x="9.5" y="60" width="355" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="2dB-9G-7Ka"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="jeg-h2-DtN" firstAttribute="centerX" secondItem="kNY-mH-Ss9" secondAttribute="centerX" id="8od-xZ-Ysl"/>
+                                            <constraint firstItem="oHM-kh-WC0" firstAttribute="centerX" secondItem="kNY-mH-Ss9" secondAttribute="centerX" id="8ra-kG-J0Q"/>
+                                            <constraint firstItem="jeg-h2-DtN" firstAttribute="top" secondItem="oHM-kh-WC0" secondAttribute="bottom" constant="10" id="cL7-HD-mgu"/>
+                                            <constraint firstItem="jeg-h2-DtN" firstAttribute="width" secondItem="kNY-mH-Ss9" secondAttribute="width" constant="-20" id="ooK-U9-aGJ"/>
+                                            <constraint firstItem="jeg-h2-DtN" firstAttribute="centerY" secondItem="kNY-mH-Ss9" secondAttribute="centerY" id="xKf-2k-gsi"/>
+                                        </constraints>
+                                        <size key="customSize" width="375" height="140"/>
+                                        <connections>
+                                            <outlet property="activityView" destination="oHM-kh-WC0" id="aZ1-WJ-N0F"/>
+                                            <outlet property="messageLabel" destination="jeg-h2-DtN" id="Dr5-91-Y4J"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Cxw-tp-SWJ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="10"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gcy-o5-oAv">
-                                    <rect key="frame" x="0.0" y="150" width="375" height="10"/>
+                                    <rect key="frame" x="0.0" y="300" width="375" height="10"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
@@ -417,13 +456,52 @@
                                             <outlet property="title" destination="iAx-2e-EID" id="o7x-WY-hBJ"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="rbB-AL-afz" customClass="MessageCell">
+                                        <rect key="frame" x="0.0" y="160" width="375" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CrM-nm-uX5">
+                                                    <rect key="frame" x="177" y="30" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="9uk-5b-0z1"/>
+                                                        <constraint firstAttribute="height" constant="20" id="a94-AK-Cj1"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOU-Fd-bMh">
+                                                    <rect key="frame" x="9.5" y="60" width="355" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="qXe-dy-lnh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="CrM-nm-uX5" firstAttribute="centerX" secondItem="rbB-AL-afz" secondAttribute="centerX" id="6er-jt-lim"/>
+                                            <constraint firstItem="LOU-Fd-bMh" firstAttribute="centerX" secondItem="rbB-AL-afz" secondAttribute="centerX" id="N9t-xu-bBO"/>
+                                            <constraint firstItem="LOU-Fd-bMh" firstAttribute="centerY" secondItem="rbB-AL-afz" secondAttribute="centerY" id="PmQ-Ba-XDx"/>
+                                            <constraint firstItem="LOU-Fd-bMh" firstAttribute="top" secondItem="CrM-nm-uX5" secondAttribute="bottom" constant="10" id="qBw-8A-JFP"/>
+                                            <constraint firstItem="LOU-Fd-bMh" firstAttribute="width" secondItem="rbB-AL-afz" secondAttribute="width" constant="-20" id="vpz-r5-cC8"/>
+                                        </constraints>
+                                        <size key="customSize" width="375" height="140"/>
+                                        <connections>
+                                            <outlet property="activityView" destination="CrM-nm-uX5" id="HfK-Pl-PbB"/>
+                                            <outlet property="messageLabel" destination="LOU-Fd-bMh" id="3zd-KV-O6U"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uoE-iD-i7W">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="10"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aNA-AY-DSK">
-                                    <rect key="frame" x="0.0" y="150" width="375" height="10"/>
+                                    <rect key="frame" x="0.0" y="300" width="375" height="10"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
@@ -658,6 +736,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="87c-oO-NHA"/>
+        <segue reference="sFK-aE-S2c"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -23,23 +23,37 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.galleries.count;
+    BOOL extraCell = self.galleries.count == 0;
+    return self.galleries.count + extraCell;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.isEndOfGalleries && indexPath.row + 20 >= self.galleries.count) {
         [self fetchGalleries];
     }
-    ListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ListCell" forIndexPath:indexPath];
+    
+    UICollectionViewCell *cell;
+    if (self.galleries.count == 0) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
+    }
+    else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ListCell" forIndexPath:indexPath];
+    }
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(ListCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    HentaiInfo *info = self.galleries[indexPath.row];
-    cell.title.text = info.title_jpn.length ? info.title_jpn : info.title;
-    cell.category.text = info.category;
-    cell.rating.text = info.rating;
-    [cell.thumbImageView sd_setImageWithURL:[NSURL URLWithString:info.thumb] placeholderImage:nil options:SDWebImageHandleCookies];
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell isKindOfClass:[ListCell class]]) {
+        ListCell *listCell = (ListCell *)cell;
+        HentaiInfo *info = self.galleries[indexPath.row];
+        listCell.title.text = info.title_jpn.length ? info.title_jpn : info.title;
+        listCell.category.text = info.category;
+        listCell.rating.text = info.rating;
+        [listCell.thumbImageView sd_setImageWithURL:[NSURL URLWithString:info.thumb] placeholderImage:nil options:SDWebImageHandleCookies];
+    }
+    else if ([cell isKindOfClass:[MessageCell class]]) {
+        [self showMessageTo:(MessageCell *)cell onLoading:self.isLoading];
+    }
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -65,6 +79,19 @@
     self.pageIndex = 0;
     self.pageLocker = [NSLock new];
     self.isEndOfGalleries = NO;
+    self.isLoading = YES;
+}
+
+- (void)showMessageTo:(MessageCell *)cell onLoading:(BOOL)isLoading {
+    cell.activityView.hidden = !isLoading;
+    if (isLoading) {
+        [cell.activityView startAnimating];
+        cell.messageLabel.text = @"列表載入中...";
+    }
+    else {
+        [cell.activityView stopAnimating];
+        cell.messageLabel.text = @"找不到相關作品呦";
+    }
 }
 
 - (void)reloadGalleries {
@@ -72,6 +99,7 @@
     [self.collectionView reloadData];
     self.pageIndex = 0;
     self.isEndOfGalleries = NO;
+    self.isLoading = YES;
     [self fetchGalleries];
 }
 
@@ -84,10 +112,14 @@
                 __strong ListViewController *strongSelf = weakSelf;
                 if (status == HentaiParserStatusSuccess) {
                     [strongSelf.galleries addObjectsFromArray:infos];
-                    [strongSelf.collectionView reloadData];
                     strongSelf.pageIndex++;
                     strongSelf.isEndOfGalleries = infos.count == 0;
                 }
+                else {
+                    strongSelf.isEndOfGalleries = YES;
+                }
+                strongSelf.isLoading = NO;
+                [strongSelf.collectionView reloadData];
             }
             [weakSelf.pageLocker unlock];
         }];
