@@ -59,8 +59,10 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    HentaiInfo *info = self.galleries[indexPath.row];
-    [self performSegueWithIdentifier:@"PushToGallery" sender:info];
+    if (self.galleries.count) {
+        HentaiInfo *info = self.galleries[indexPath.row];
+        [self performSegueWithIdentifier:@"PushToGallery" sender:info];
+    }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
