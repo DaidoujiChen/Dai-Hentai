@@ -8,6 +8,7 @@
 
 #import "ListViewController.h"
 #import "Couchbase.h"
+#import "UIAlertController+Block.h"
 #import "MessageCell.h"
 
 @interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -21,6 +22,7 @@
 @property (nonatomic, assign) BOOL isEndOfGalleries;
 @property (nonatomic, assign) BOOL isLoading;
 
+- (void)initValues;
 - (void)showMessageTo:(MessageCell *)cell onLoading:(BOOL)isLoading;
 - (void)reloadGalleries;
 

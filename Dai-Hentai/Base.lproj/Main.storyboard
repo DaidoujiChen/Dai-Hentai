@@ -524,6 +524,11 @@
                                 <action selector="refreshAction:" destination="pF1-Ho-r1p" id="P9Q-Jk-CbP"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="1HV-bc-6an">
+                            <connections>
+                                <action selector="deleteAllHistoriesAction:" destination="pF1-Ho-r1p" id="cuo-nd-YtL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="tBI-Jc-UA4" id="vt9-M4-zRK"/>
