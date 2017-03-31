@@ -14,6 +14,8 @@
 #import "GalleryViewController.h"
 #import "SearchViewController.h"
 
+#define color(r, g, b) [UIColor colorWithRed:(CGFloat)r / 255.0f green:(CGFloat)g / 255.0f blue:(CGFloat)b / 255.0f alpha:1.0f]
+
 @implementation ListViewController
 
 #pragma mark - UICollectionViewDataSource
@@ -48,6 +50,7 @@
         HentaiInfo *info = self.galleries[indexPath.row];
         listCell.title.text = info.title_jpn.length ? info.title_jpn : info.title;
         listCell.category.text = info.category;
+        listCell.category.textColor = [self categoryColor:info.category];
         listCell.rating.text = info.rating;
         [listCell.thumbImageView sd_setImageWithURL:[NSURL URLWithString:info.thumb] placeholderImage:nil options:SDWebImageHandleCookies];
     }
@@ -126,6 +129,23 @@
             [weakSelf.pageLocker unlock];
         }];
     }
+}
+
+- (UIColor *)categoryColor:(NSString *)category {
+    static NSDictionary *colorMapping = nil;
+    if (!colorMapping) {
+        colorMapping = @{ @"Doujinshi": color(255, 59, 59),
+                          @"Manga": color(255, 186, 59),
+                          @"Artist CG Sets": color(234, 220, 59),
+                          @"Game CG Sets": color(59, 157, 59),
+                          @"Western": color(164, 255, 76),
+                          @"Non-H": color(76, 180, 255),
+                          @"Image Sets": color(59, 59, 255),
+                          @"Cosplay": color(117, 59, 159),
+                          @"Asian Porn": color(243, 176, 243),
+                          @"Misc": color(212, 212, 212)};
+    }
+    return colorMapping[category];
 }
 
 #pragma mark - Life Cycle
