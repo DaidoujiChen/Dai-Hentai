@@ -22,6 +22,6 @@
 + (NSInteger)fetchUserLatestPage:(HentaiInfo *)hentaiInfo;
 + (void)updateUserLatestPage:(HentaiInfo *)hentaiInfo userLatestPage:(NSInteger)userLatestPage;
 + (NSArray<NSDictionary *> *)historiesFrom:(NSInteger)start length:(NSInteger)length;
-+ (void)deleteAllHistories:(BOOL (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish;
++ (void)deleteAllHistories:(void (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish;
 
 @end

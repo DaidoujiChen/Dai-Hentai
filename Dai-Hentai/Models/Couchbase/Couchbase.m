@@ -229,7 +229,7 @@
     }
 }
 
-+ (void)deleteAllHistories:(BOOL (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish {
++ (void)deleteAllHistories:(void (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish {
     CBLQuery *query = [[self histories] createAllDocumentsQuery];
     NSError *error;
     CBLQueryEnumerator *results = [query run:&error];
@@ -249,10 +249,8 @@
                 
                 if (handler) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        BOOL isNeedToDelete = handler(results.count, index, info);
-                        if (isNeedToDelete) {
-                            [document deleteDocument:nil];
-                        }
+                        handler(results.count, index, info);
+                        [document deleteDocument:nil];
                     });
                 }
             }
