@@ -82,4 +82,29 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    UIView *firstResponder = [self findFirstResponder:self.view];
+    if (firstResponder) {
+        [firstResponder resignFirstResponder];
+    }
+}
+
+#pragma mark - Private Instance Method
+
+- (UIView *)findFirstResponder:(UIView *)view {
+    if (view.isFirstResponder) {
+        return view;
+    }
+    
+    for (UIView *subview in view.subviews) {
+        UIView *foundView = [self findFirstResponder:subview];
+        if (foundView) {
+            return foundView;
+        }
+    }
+    return nil;
+}
+
 @end
