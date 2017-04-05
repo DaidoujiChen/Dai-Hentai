@@ -25,5 +25,6 @@
 - (void)initValues;
 - (void)showMessageTo:(MessageCell *)cell onLoading:(BOOL)isLoading;
 - (void)reloadGalleries;
+- (void)onCellBeSelectedAction:(HentaiInfo *)info;
 
 @end

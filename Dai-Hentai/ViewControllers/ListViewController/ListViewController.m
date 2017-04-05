@@ -13,6 +13,7 @@
 #import "ExHentaiParser.h"
 #import "GalleryViewController.h"
 #import "SearchViewController.h"
+#import "RelatedViewController.h"
 
 #define color(r, g, b) [UIColor colorWithRed:(CGFloat)r / 255.0f green:(CGFloat)g / 255.0f blue:(CGFloat)b / 255.0f alpha:1.0f]
 
@@ -64,7 +65,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.galleries.count) {
         HentaiInfo *info = self.galleries[indexPath.row];
-        [self performSegueWithIdentifier:@"PushToGallery" sender:info];
+        [self onCellBeSelectedAction:info];
     }
 }
 
@@ -131,6 +132,26 @@
     }
 }
 
+- (void)onCellBeSelectedAction:(HentaiInfo *)info {
+    __weak ListViewController *weakSelf = self;
+    UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:[NSString stringWithFormat:@"這部作品有 %@ 頁呦", info.filecount] defaultOptions:@[ @"我要現在看", @"用相關字詞搜尋" ] cancelOption:@"都不要 O3O" handler: ^(NSInteger optionIndex) {
+        __strong ListViewController *strongSelf = weakSelf;
+        switch (optionIndex) {
+            case 1:
+                [strongSelf performSegueWithIdentifier:@"PushToGallery" sender:info];
+                break;
+                
+            case 2:
+                [strongSelf performSegueWithIdentifier:@"PushToRelated" sender:info];
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (UIColor *)categoryColor:(NSString *)category {
     static NSDictionary *colorMapping = nil;
     if (!colorMapping) {
@@ -175,13 +196,26 @@
         SearchViewController *searchViewController = (SearchViewController *)segue.destinationViewController;
         searchViewController.info = [Couchbase searchInfo];
     }
+    else if ([segue.identifier isEqualToString:@"PushToRelated"]) {
+        RelatedViewController *relatedViewController = (RelatedViewController *)segue.destinationViewController;
+        relatedViewController.info = sender;
+    }
 }
 
 - (IBAction)unwindFromSearch:(UIStoryboardSegue *)segue {
-    if ([segue.identifier isEqualToString:@"PopToList"]) {
+    if ([segue.identifier isEqualToString:@"PopFromSearch"]) {
         SearchViewController *searchViewController = (SearchViewController *)segue.sourceViewController;
         [Couchbase setSearchInfo:searchViewController.info];
         [self reloadGalleries];
+    }
+    else if ([segue.identifier isEqualToString:@"PopFromRelated"]) {
+        RelatedViewController *relatedViewController = (RelatedViewController *)segue.sourceViewController;
+        if (relatedViewController.selectedWords.count) {
+            SearchInfo *searchInfo = [Couchbase searchInfo];
+            searchInfo.keyword = [relatedViewController.selectedWords componentsJoinedByString:@" "];
+            [Couchbase setSearchInfo:searchInfo];
+            [self reloadGalleries];
+        }
     }
 }
 
