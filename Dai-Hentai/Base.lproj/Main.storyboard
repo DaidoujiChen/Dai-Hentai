@@ -788,13 +788,7 @@
                             <constraint firstItem="lH0-qQ-rWK" firstAttribute="centerX" secondItem="gMu-pf-AGX" secondAttribute="centerX" id="Xz6-18-97R"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="畫廊" id="fse-z3-OS9">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="NAB-bR-akD">
-                            <connections>
-                                <action selector="toggleDirection:" destination="ePr-gK-ENO" id="n7E-Rh-lUB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="畫廊" id="fse-z3-OS9"/>
                     <connections>
                         <outlet property="collectionView" destination="lH0-qQ-rWK" id="jiH-Qi-MeW"/>
                     </connections>

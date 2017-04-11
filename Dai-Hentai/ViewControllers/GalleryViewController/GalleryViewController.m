@@ -106,10 +106,12 @@
     [self refreshTitle];
 }
 
-#pragma mark - IBAction
+#pragma mark - Private Instance Method
+
+#pragma mark * 轉向控制
 
 // 顯示方向橫直轉
-- (IBAction)toggleDirection:(id)sender {
+- (void)toggleDirection {
     NSString *alertMessage;
     if (self.scrollDirect == UICollectionViewScrollDirectionVertical) {
         self.scrollDirect = UICollectionViewScrollDirectionHorizontal;
@@ -131,8 +133,6 @@
     
     [self scrollToIndex:userCurrentIndex];
 }
-
-#pragma mark - Private Instance Method
 
 #pragma mark * 提示窗
 
@@ -389,14 +389,14 @@
         case UISwipeGestureRecognizerDirectionDown:
         case UISwipeGestureRecognizerDirectionUp:
             if (self.scrollDirect == UICollectionViewScrollDirectionHorizontal) {
-                [self toggleDirection:nil];
+                [self toggleDirection];
             }
             break;
             
         case UISwipeGestureRecognizerDirectionLeft:
         case UISwipeGestureRecognizerDirectionRight:
             if (self.scrollDirect == UICollectionViewScrollDirectionVertical) {
-                [self toggleDirection:nil];
+                [self toggleDirection];
             }
             break;
     }
