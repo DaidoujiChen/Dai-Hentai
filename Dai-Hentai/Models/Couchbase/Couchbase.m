@@ -242,7 +242,14 @@
     else {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             for (NSInteger index = 0; index < results.count; index++) {
-                CBLDocument *document = [results rowAtIndex:index].document;
+                __block CBLDocument *document = nil;
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    document = [results rowAtIndex:index].document;
+                });
+                if (!document) {
+                    continue;
+                }
+                
                 NSDictionary *properties = document.properties;
                 HentaiInfo *info = [HentaiInfo new];
                 [info restoreContents:[NSMutableDictionary dictionaryWithDictionary:properties] defaultContent:nil];
@@ -250,7 +257,7 @@
                 if (handler) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         handler(results.count, index, info);
-                        [document deleteDocument:nil];
+                        [document purgeDocument:nil];
                     });
                 }
             }
