@@ -79,7 +79,7 @@
         self.isDeleting = YES;
         
         __weak HistoriesViewController *weakSelf = self;
-        UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:@"我們現在要刪除所有觀看紀錄囉!" defaultOptions:@[ @"好 O3Ob" ] cancelOption:@"先不要好了 OwO\"" handler: ^(NSInteger optionIndex) {
+        [UIAlertController showAlertTitle:@"O3O" message:@"我們現在要刪除所有觀看紀錄囉!" defaultOptions:@[ @"好 O3Ob" ] cancelOption:@"先不要好了 OwO\"" handler: ^(NSInteger optionIndex) {
             if (optionIndex) {
                 weakSelf.deletingMessage = @"作品刪除中...";
                 [weakSelf.galleries removeAllObjects];
@@ -97,7 +97,6 @@
                 }];
             }
         }];
-        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

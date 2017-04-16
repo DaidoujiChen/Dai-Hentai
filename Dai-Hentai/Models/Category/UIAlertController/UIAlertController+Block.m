@@ -13,7 +13,7 @@
 
 #pragma mark - Class Method
 
-+ (UIAlertController *)alertTitle:(NSString *)title message:(NSString *)message defaultOptions:(NSArray<NSString *> *)defaultOptions cancelOption:(NSString *)cancelOption handler:(void (^)(NSInteger optionIndex))handler {
++ (UIAlertController *)showAlertTitle:(NSString *)title message:(NSString *)message defaultOptions:(NSArray<NSString *> *)defaultOptions cancelOption:(NSString *)cancelOption handler:(void (^)(NSInteger optionIndex))handler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     [alert setHandler:[handler copy]];
 
@@ -37,6 +37,9 @@
         }];
         [alert addAction:cancelAction];
     }
+    
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [rootViewController presentViewController:alert animated:YES completion:nil];
     return alert;
 }
 
@@ -56,8 +59,12 @@
 
 #pragma mark - Instance Method
 
-- (void)dismissAfterDelay:(NSTimeInterval)delay {
-    [self performSelector:@selector(selfDismiss) withObject:nil afterDelay:delay];
+- (UIAlertController *(^)(NSTimeInterval time))dismissAfter {
+    __weak UIAlertController *weakSelf = self;
+    return ^UIAlertController *(NSTimeInterval time) {
+        [weakSelf performSelector:@selector(selfDismiss) withObject:nil afterDelay:time];
+        return weakSelf;
+    };
 }
 
 @end

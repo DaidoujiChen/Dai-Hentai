@@ -121,9 +121,7 @@
         self.scrollDirect = UICollectionViewScrollDirectionVertical;
         alertMessage = @"閱讀方向改為直向";
     }
-    UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:alertMessage defaultOptions:nil cancelOption:nil handler:nil];
-    [self presentViewController:alert animated:YES completion:nil];
-    [alert dismissAfterDelay:0.75f];
+    [UIAlertController showAlertTitle:@"O3O" message:alertMessage defaultOptions:nil cancelOption:nil handler:nil].dismissAfter(0.75f);
     
     NSInteger userCurrentIndex = self.userCurrentIndex;
     self.collectionView.pagingEnabled = self.scrollDirect == UICollectionViewScrollDirectionHorizontal;
@@ -137,20 +135,18 @@
 #pragma mark * 提示窗
 
 - (void)galleryNotAppear {
-    UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:@"這部作品好像不見囉" defaultOptions:nil cancelOption:@"好 O3O" handler:nil];
-    [self presentViewController:alert animated:YES completion:nil];
+    [UIAlertController showAlertTitle:@"O3O" message:@"這部作品好像不見囉" defaultOptions:nil cancelOption:@"好 O3O" handler:nil];
 }
 
 - (void)foundLatestPage {
     NSInteger userLatestPage = [Couchbase fetchUserLatestPage:self.info];
     if (userLatestPage > 1) {
         __weak GalleryViewController *weakSelf = self;
-        UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:@"您曾經閱讀過此作品" defaultOptions:@[ [NSString stringWithFormat:@"繼續從 %td 頁看起", userLatestPage] ] cancelOption:@"我要從頭看" handler: ^(NSInteger optionIndex) {
+        [UIAlertController showAlertTitle:@"O3O" message:@"您曾經閱讀過此作品" defaultOptions:@[ [NSString stringWithFormat:@"繼續從 %td 頁看起", userLatestPage] ] cancelOption:@"我要從頭看" handler: ^(NSInteger optionIndex) {
             if (optionIndex) {
                 [weakSelf scrollToIndex:userLatestPage];
             }
         }];
-        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

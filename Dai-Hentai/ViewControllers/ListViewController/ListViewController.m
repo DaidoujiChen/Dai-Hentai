@@ -134,7 +134,7 @@
 
 - (void)onCellBeSelectedAction:(HentaiInfo *)info {
     __weak ListViewController *weakSelf = self;
-    UIAlertController *alert = [UIAlertController alertTitle:@"O3O" message:[NSString stringWithFormat:@"這部作品有 %@ 頁呦", info.filecount] defaultOptions:@[ @"我要現在看", @"用相關字詞搜尋" ] cancelOption:@"都不要 O3O" handler: ^(NSInteger optionIndex) {
+    [UIAlertController showAlertTitle:@"O3O" message:[NSString stringWithFormat:@"這部作品有 %@ 頁呦", info.filecount] defaultOptions:@[ @"我要現在看", @"用相關字詞搜尋" ] cancelOption:@"都不要 O3O" handler: ^(NSInteger optionIndex) {
         __strong ListViewController *strongSelf = weakSelf;
         switch (optionIndex) {
             case 1:
@@ -149,7 +149,6 @@
                 break;
         }
     }];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (UIColor *)categoryColor:(NSString *)category {

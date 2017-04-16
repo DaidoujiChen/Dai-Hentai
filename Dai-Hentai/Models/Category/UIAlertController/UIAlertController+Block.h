@@ -10,8 +10,8 @@
 
 @interface UIAlertController (Block)
 
-+ (UIAlertController *)alertTitle:(NSString *)title message:(NSString *)message defaultOptions:(NSArray<NSString *> *)defaultOptions cancelOption:(NSString *)cancelOption handler:(void (^)(NSInteger optionIndex))handler;
++ (UIAlertController *)showAlertTitle:(NSString *)title message:(NSString *)message defaultOptions:(NSArray<NSString *> *)defaultOptions cancelOption:(NSString *)cancelOption handler:(void (^)(NSInteger optionIndex))handler;
 
-- (void)dismissAfterDelay:(NSTimeInterval)delay;
+@property (nonatomic, readonly) UIAlertController *(^dismissAfter)(NSTimeInterval time);
 
 @end
