@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSLock *pageLocker;
 @property (nonatomic, assign) BOOL rotating;
 @property (nonatomic, assign) BOOL isBarsHidden;
+@property (nonatomic, assign) CGFloat fixedStatusBarMinY;
 
 @end
 
@@ -327,7 +328,12 @@
         newFrame.origin.y = -CGRectGetHeight(newFrame);
     }
     else {
-        newFrame.origin.y = 0;
+        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            newFrame.origin.y = self.fixedStatusBarMinY;
+        }
+        else {
+            newFrame.origin.y = 0;
+        }
     }
     self.navigationController.navigationBar.frame = newFrame;
     [self.navigationController.navigationBar layoutSubviews];
@@ -441,6 +447,18 @@
         UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
         [swipe setDirection:direction];
         [self.collectionView addGestureRecognizer:swipe];
+    }
+    
+    // 超 workaround 的寫法 =w="
+    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        switch ((NSInteger)[UIScreen mainScreen].nativeBounds.size.height) {
+            case 2436:
+                self.fixedStatusBarMinY = 44;
+                break;
+            default:
+                self.fixedStatusBarMinY = 0;
+                break;
+        }
     }
 }
 
