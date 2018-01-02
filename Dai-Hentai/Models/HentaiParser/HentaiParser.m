@@ -27,7 +27,7 @@ if (index == 0) \
 { \
 urlString = [NSString stringWithFormat:@"%@g/%@/%@/", [self domain], gid, token]; \
 } else { \
-urlString = [NSString stringWithFormat:@"%@g/%@/%@/?p=%ld", [self domain], gid, token, (NSInteger)index]; \
+urlString = [NSString stringWithFormat:@"%@g/%@/%@/?p=%@", [self domain], gid, token, @(index)]; \
 } \
 urlString; \
 })

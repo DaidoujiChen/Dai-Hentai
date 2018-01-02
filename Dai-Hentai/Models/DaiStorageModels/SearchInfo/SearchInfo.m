@@ -13,10 +13,10 @@
 #pragma mark - Instance Method
 
 - (NSString *)query:(NSInteger)page {
-    NSMutableString *query = [NSMutableString stringWithFormat:@"?page=%ld&f_doujinshi=%@&f_manga=%@&f_artistcg=%@&f_gamecg=%@&f_western=%@&f_non-h=%@&f_imageset=%@&f_cosplay=%@&f_asianporn=%@&f_misc=%@&f_search=%@&f_apply=Apply+Filter", page, self.doujinshi, self.manga, self.artistcg, self.gamecg, self.western, self.non_h, self.imageset, self.cosplay, self.asianporn, self.misc, [[self.keyword componentsSeparatedByString:@" "] componentsJoinedByString:@"+"]];
+    NSMutableString *query = [NSMutableString stringWithFormat:@"?page=%@&f_doujinshi=%@&f_manga=%@&f_artistcg=%@&f_gamecg=%@&f_western=%@&f_non-h=%@&f_imageset=%@&f_cosplay=%@&f_asianporn=%@&f_misc=%@&f_search=%@&f_apply=Apply+Filter", @(page), self.doujinshi, self.manga, self.artistcg, self.gamecg, self.western, self.non_h, self.imageset, self.cosplay, self.asianporn, self.misc, [[self.keyword componentsSeparatedByString:@" "] componentsJoinedByString:@"+"]];
     
     if ([self.rating compare:@(0)] != NSOrderedSame) {
-        [query appendFormat:@"&advsearch=1&f_sname=on&f_stags=on&f_sr=on&f_srdd=%ld", self.rating.integerValue + 1];
+        [query appendFormat:@"&advsearch=1&f_sname=on&f_stags=on&f_sr=on&f_srdd=%@", @(self.rating.integerValue + 1)];
     }
     return [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }

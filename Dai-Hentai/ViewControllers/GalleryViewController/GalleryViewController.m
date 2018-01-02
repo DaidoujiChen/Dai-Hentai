@@ -189,7 +189,7 @@
 
 // 重新顯示 title
 - (void)refreshTitle {
-    self.title = [NSString stringWithFormat:@"%ld(%ld/%ld/%@)", self.userCurrentIndex, self.maxAllowScrollIndex, self.heights.count, self.info.filecount];
+    self.title = [NSString stringWithFormat:@"%@(%@/%@/%@)", @(self.userCurrentIndex), @(self.maxAllowScrollIndex), @(self.heights.count), self.info.filecount];
 }
 
 #pragma mark * 讀取圖片相關

@@ -92,7 +92,7 @@
 }
 
 + (NSArray<NSString *> *)galleryBy:(NSString *)gid token:(NSString *)token index:(NSInteger)index {
-    NSString *key = [NSString stringWithFormat:@"%@-%@-%ld", gid, token, index];
+    NSString *key = [NSString stringWithFormat:@"%@-%@-%@", gid, token, @(index)];
     CBLQuery *query = [[[self galleries] viewNamed:@"query"] createQuery];
     query.keys = @[ key ];
     NSError *error;
@@ -101,7 +101,7 @@
         return nil;
     }
     else {
-        NSLog(@"Found Gallery Pages : %@, %@, %ld", gid, token, index);
+        NSLog(@"Found Gallery Pages : %@, %@, %@", gid, token, @(index));
         return [results rowAtIndex:0].document.properties[@"pages"];
     }
 }
