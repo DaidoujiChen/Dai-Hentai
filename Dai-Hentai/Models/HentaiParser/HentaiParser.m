@@ -293,7 +293,9 @@ else { \
 }
 
 + (void)requestImageURL:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSString *imageURL))completion {
-    [[self showKeyQueue] addOperation:[[ImageURLOperation alloc] initWithURLString:urlString completion:completion]];
+    ImageURLOperation *newOperation = [[ImageURLOperation alloc] initWithURLString:urlString completion:completion];
+    newOperation.parser = self;
+    [[self showKeyQueue] addOperation:newOperation];
 }
 
 @end

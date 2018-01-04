@@ -8,7 +8,7 @@
 
 #import "ImageURLOperation.h"
 #import <objc/runtime.h>
-#import "EHentaiParser.h"
+#import "HentaiParser.h"
 
 @interface HentaiParser (PrivateMethods)
 
@@ -66,7 +66,7 @@
     }
     else {
         __weak ImageURLOperation *weakSelf = self;
-        [EHentaiParser parseShowKey:self.urlString completion: ^(HentaiParserStatus status, NSString *showKey) {
+        [self.parser parseShowKey:self.urlString completion: ^(HentaiParserStatus status, NSString *showKey) {
             if (weakSelf) {
                 __strong ImageURLOperation *strongSelf = weakSelf;
                 if (status == HentaiParserStatusSuccess) {
@@ -109,7 +109,7 @@
     
     NSString *showKey = [ImageURLOperation showKeys][gid];
     __weak ImageURLOperation *weakSelf = self;
-    [EHentaiParser parseImageURL:gid page:page imgkey:imgkey showKey:showKey completion: ^(HentaiParserStatus status, NSString *imageURL) {
+    [self.parser parseImageURL:gid page:page imgkey:imgkey showKey:showKey completion: ^(HentaiParserStatus status, NSString *imageURL) {
         if (weakSelf) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (weakSelf) {

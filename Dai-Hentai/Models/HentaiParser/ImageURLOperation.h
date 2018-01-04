@@ -11,6 +11,8 @@
 
 @interface ImageURLOperation : NSOperation
 
+@property (nonatomic, strong) Class parser;
+
 - (instancetype)initWithURLString:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSString *imageURL))completion;
 
 @end

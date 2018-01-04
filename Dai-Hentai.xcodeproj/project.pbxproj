@@ -43,6 +43,8 @@
 		1CEC12C21E500E9A00F3E3C4 /* DaiStorageProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12BB1E500E9A00F3E3C4 /* DaiStorageProperty.m */; };
 		1CEC12C31E500E9A00F3E3C4 /* DaiStorageTypeChecking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12BD1E500E9A00F3E3C4 /* DaiStorageTypeChecking.m */; };
 		1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12C71E500F9300F3E3C4 /* HentaiInfo.m */; };
+		1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE730E1FFE2A930018172F /* LoginViewController.m */; };
+		1CFE73131FFE32AE0018172F /* ExCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE73121FFE32AE0018172F /* ExCookie.m */; };
 		4DC6F4FDFFA849038487E4D8 /* libPods-Dai-Hentai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +125,10 @@
 		1CEC12BD1E500E9A00F3E3C4 /* DaiStorageTypeChecking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiStorageTypeChecking.m; sourceTree = "<group>"; };
 		1CEC12C61E500F9300F3E3C4 /* HentaiInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiInfo.h; sourceTree = "<group>"; };
 		1CEC12C71E500F9300F3E3C4 /* HentaiInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiInfo.m; sourceTree = "<group>"; };
+		1CFE730D1FFE2A930018172F /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		1CFE730E1FFE2A930018172F /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		1CFE73111FFE32AE0018172F /* ExCookie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExCookie.h; sourceTree = "<group>"; };
+		1CFE73121FFE32AE0018172F /* ExCookie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExCookie.m; sourceTree = "<group>"; };
 		88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dai-Hentai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -287,6 +293,7 @@
 		1C7CA7281E49B95200D94CFB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1CFE730C1FFE2A720018172F /* LoginViewController */,
 				1C7CA72B1E49C10400D94CFB /* ListViewController */,
 				1CA192D21E926B3100D352B3 /* RelatedViewController */,
 				1C0867F81E5C8F2100E361B5 /* SearchViewController */,
@@ -301,6 +308,7 @@
 			children = (
 				1CAF38951E85623800A4C0DD /* Category */,
 				1C7CA72C1E49C13400D94CFB /* HentaiParser */,
+				1CFE73101FFE328D0018172F /* ExCookieChecker */,
 				1CBF607F1E4D9ABC000CA9E5 /* FilesManager */,
 				1CEC12AE1E500E9A00F3E3C4 /* DaiStorage */,
 				1CEC12C41E500F4400F3E3C4 /* DaiStorageModels */,
@@ -466,6 +474,24 @@
 				1CEC12C71E500F9300F3E3C4 /* HentaiInfo.m */,
 			);
 			path = HentaiInfo;
+			sourceTree = "<group>";
+		};
+		1CFE730C1FFE2A720018172F /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1CFE730D1FFE2A930018172F /* LoginViewController.h */,
+				1CFE730E1FFE2A930018172F /* LoginViewController.m */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		1CFE73101FFE328D0018172F /* ExCookieChecker */ = {
+			isa = PBXGroup;
+			children = (
+				1CFE73111FFE32AE0018172F /* ExCookie.h */,
+				1CFE73121FFE32AE0018172F /* ExCookie.m */,
+			);
+			path = ExCookieChecker;
 			sourceTree = "<group>";
 		};
 		32F097A2BD19786DC4F7D842 /* Pods */ = {
@@ -637,6 +663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C1AD0371E49B79800544217 /* AppDelegate.m in Sources */,
+				1CFE73131FFE32AE0018172F /* ExCookie.m in Sources */,
 				1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */,
 				1CE8E5E21E4D7A24005B1B18 /* Couchbase.m in Sources */,
 				1C1AD0341E49B79800544217 /* main.m in Sources */,
@@ -660,6 +687,7 @@
 				1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */,
 				1CEC12C11E500E9A00F3E3C4 /* DaiStoragePropertiesInObject.m in Sources */,
 				1C9294EC1E4C4A0D001AB1CE /* ListCell.m in Sources */,
+				1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */,
 				1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */,
 				1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */,
 				1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */,

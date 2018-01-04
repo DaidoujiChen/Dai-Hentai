@@ -8,8 +8,7 @@
 
 #import "GalleryViewController.h"
 #import "GalleryCollectionViewHandler.h"
-#import "EHentaiParser.h"
-#import "ExHentaiParser.h"
+#import "HentaiParser.h"
 #import "FilesManager.h"
 #import "Couchbase.h"
 #import "NSTimer+Block.h"
@@ -248,7 +247,7 @@
     if (![self.loadingImagePages containsObject:imagePage]) {
         [self.loadingImagePages addObject:imagePage];
         __weak GalleryViewController *weakSelf = self;
-        [EHentaiParser requestImageURL:imagePage completion: ^(HentaiParserStatus status, NSString *imageURL) {
+        [self.parser requestImageURL:imagePage completion: ^(HentaiParserStatus status, NSString *imageURL) {
             if (weakSelf) {
                 if (status == HentaiParserStatusSuccess) {
                     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]];
@@ -285,7 +284,7 @@
     if ([self.pageLocker tryLock] && self.currentPageIndex <= self.totalPageIndex) {
         
         __weak GalleryViewController *weakSelf = self;
-        [EHentaiParser requestImagePagesBy:self.info atIndex:self.currentPageIndex completion: ^(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages) {
+        [self.parser requestImagePagesBy:self.info atIndex:self.currentPageIndex completion: ^(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages) {
             if (weakSelf) {
                 __strong GalleryViewController *strongSelf = weakSelf;
                 if (status == HentaiParserStatusSuccess) {

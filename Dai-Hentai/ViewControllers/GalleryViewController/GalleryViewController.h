@@ -12,5 +12,6 @@
 @interface GalleryViewController : UIViewController
 
 @property (nonatomic, strong) HentaiInfo *info;
+@property (nonatomic, strong) Class parser;
 
 @end

@@ -9,11 +9,12 @@
 #import "PrivateListViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ListCell.h"
-#import "EHentaiParser.h"
-#import "ExHentaiParser.h"
+#import "HentaiParser.h"
 #import "GalleryViewController.h"
 #import "SearchViewController.h"
 #import "RelatedViewController.h"
+#import "LoginViewController.h"
+#import "ExCookie.h"
 
 #define color(r, g, b) [UIColor colorWithRed:(CGFloat)r / 255.0f green:(CGFloat)g / 255.0f blue:(CGFloat)b / 255.0f alpha:1.0f]
 
@@ -80,7 +81,9 @@
 #pragma mark - Private Instance Method
 
 - (void)initValues {
-    self.parser = [HentaiParser parserType:HentaiParserTypeEh];
+    BOOL isExExist = [ExCookie isExist];
+    HentaiParserType type = isExExist ? HentaiParserTypeEx : HentaiParserTypeEh;
+    self.parser = [HentaiParser parserType:type];
     self.galleries = [NSMutableArray array];
     self.pageIndex = 0;
     self.pageLocker = [NSLock new];
@@ -168,12 +171,52 @@
     return colorMapping[category];
 }
 
+#pragma mark - IBAction
+
+- (IBAction)unwindFromSearch:(UIStoryboardSegue *)segue {
+    if ([segue.identifier isEqualToString:@"PopFromSearch"]) {
+        SearchViewController *searchViewController = (SearchViewController *)segue.sourceViewController;
+        [Couchbase setSearchInfo:searchViewController.info];
+        [self reloadGalleries];
+    }
+    else if ([segue.identifier isEqualToString:@"PopFromRelated"]) {
+        RelatedViewController *relatedViewController = (RelatedViewController *)segue.sourceViewController;
+        if (relatedViewController.selectedWords.count) {
+            SearchInfo *searchInfo = [Couchbase searchInfo];
+            searchInfo.keyword = [relatedViewController.selectedWords componentsJoinedByString:@" "];
+            [Couchbase setSearchInfo:searchInfo];
+            [self reloadGalleries];
+        }
+    }
+}
+
+- (IBAction)loginToExAction:(id)sender {
+    __weak ListViewController *weakSelf = self;
+    LoginWebViewController *loginWebViewController = [[LoginWebViewController alloc] initWithCompletion: ^{
+        if (!weakSelf) {
+            return;
+        }
+        __strong ListViewController *strongSelf = weakSelf;
+        strongSelf.parser = [HentaiParser parserType:HentaiParserTypeEx];
+        [strongSelf reloadGalleries];
+    }];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginWebViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initValues];
     [self reloadGalleries];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([ExCookie isExist]) {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
 }
 
 - (void)viewWillLayoutSubviews {
@@ -190,6 +233,7 @@
     if ([segue.identifier isEqualToString:@"PushToGallery"]) {
         GalleryViewController *galleryViewController = (GalleryViewController *)segue.destinationViewController;
         galleryViewController.info = sender;
+        galleryViewController.parser = self.parser;
     }
     else if ([segue.identifier isEqualToString:@"PushToSearch"]) {
         SearchViewController *searchViewController = (SearchViewController *)segue.destinationViewController;
@@ -198,23 +242,6 @@
     else if ([segue.identifier isEqualToString:@"PushToRelated"]) {
         RelatedViewController *relatedViewController = (RelatedViewController *)segue.destinationViewController;
         relatedViewController.info = sender;
-    }
-}
-
-- (IBAction)unwindFromSearch:(UIStoryboardSegue *)segue {
-    if ([segue.identifier isEqualToString:@"PopFromSearch"]) {
-        SearchViewController *searchViewController = (SearchViewController *)segue.sourceViewController;
-        [Couchbase setSearchInfo:searchViewController.info];
-        [self reloadGalleries];
-    }
-    else if ([segue.identifier isEqualToString:@"PopFromRelated"]) {
-        RelatedViewController *relatedViewController = (RelatedViewController *)segue.sourceViewController;
-        if (relatedViewController.selectedWords.count) {
-            SearchInfo *searchInfo = [Couchbase searchInfo];
-            searchInfo.keyword = [relatedViewController.selectedWords componentsJoinedByString:@" "];
-            [Couchbase setSearchInfo:searchInfo];
-            [self reloadGalleries];
-        }
     }
 }
 
