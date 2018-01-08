@@ -10,9 +10,12 @@
 
 @interface ListCell : UICollectionViewCell
 
+@property (nonatomic, strong) NSTimer *progressTimer;
+
 @property (weak, nonatomic) IBOutlet UIImageView *thumbImageView;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *category;
 @property (weak, nonatomic) IBOutlet UILabel *rating;
+@property (weak, nonatomic) IBOutlet UILabel *progress;
 
 @end

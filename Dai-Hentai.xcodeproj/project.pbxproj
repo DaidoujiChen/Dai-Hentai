@@ -24,6 +24,7 @@
 		1C3DDE021E6094A00034B3E2 /* CategoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DDE011E6094A00034B3E2 /* CategoryItem.m */; };
 		1C4D8B291E861B4100113D0E /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B281E861B4100113D0E /* NSTimer+Block.m */; };
 		1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */; };
+		1C630F0D2005037F0068879F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C630F0C2005037F0068879F /* TabBarController.m */; };
 		1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CA72E1E49C13400D94CFB /* HentaiParser.m */; };
 		1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */; };
 		1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9294E71E4C4330001AB1CE /* ListViewController.m */; };
@@ -35,6 +36,8 @@
 		1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */; };
 		1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60831E4D9ABC000CA9E5 /* FMStream.m */; };
 		1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCE36651E8E2D5F00A82935 /* MessageCell.m */; };
+		1CE4D1B6200461E200F8B79A /* HentaiDownloadCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE4D1B5200461E200F8B79A /* HentaiDownloadCenter.m */; };
+		1CE4D1B9200462ED00F8B79A /* HentaiImagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE4D1B8200462ED00F8B79A /* HentaiImagesManager.m */; };
 		1CE8E5E21E4D7A24005B1B18 /* Couchbase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8E5E11E4D7A24005B1B18 /* Couchbase.m */; };
 		1CEC12BE1E500E9A00F3E3C4 /* DaiStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12B11E500E9A00F3E3C4 /* DaiStorage.m */; };
 		1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12B31E500E9A00F3E3C4 /* DaiStorageArray.m */; };
@@ -83,6 +86,8 @@
 		1C4D8B281E861B4100113D0E /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
 		1C4D8B2B1E86201100113D0E /* UIAlertController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Block.h"; sourceTree = "<group>"; };
 		1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Block.m"; sourceTree = "<group>"; };
+		1C630F0B2005037F0068879F /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		1C630F0C2005037F0068879F /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		1C7CA72D1E49C13400D94CFB /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
 		1C7CA72E1E49C13400D94CFB /* HentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiParser.m; sourceTree = "<group>"; };
 		1C9288AD1E5594B8004E796B /* GalleryCollectionViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCollectionViewHandler.h; sourceTree = "<group>"; };
@@ -108,6 +113,10 @@
 		1CBF60831E4D9ABC000CA9E5 /* FMStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMStream.m; sourceTree = "<group>"; };
 		1CCE36641E8E2D5F00A82935 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		1CCE36651E8E2D5F00A82935 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		1CE4D1B4200461E200F8B79A /* HentaiDownloadCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HentaiDownloadCenter.h; sourceTree = "<group>"; };
+		1CE4D1B5200461E200F8B79A /* HentaiDownloadCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HentaiDownloadCenter.m; sourceTree = "<group>"; };
+		1CE4D1B7200462ED00F8B79A /* HentaiImagesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HentaiImagesManager.h; sourceTree = "<group>"; };
+		1CE4D1B8200462ED00F8B79A /* HentaiImagesManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HentaiImagesManager.m; sourceTree = "<group>"; };
 		1CE8E5E01E4D7A24005B1B18 /* Couchbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Couchbase.h; sourceTree = "<group>"; };
 		1CE8E5E11E4D7A24005B1B18 /* Couchbase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Couchbase.m; sourceTree = "<group>"; };
 		1CEC12B01E500E9A00F3E3C4 /* DaiStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiStorage.h; sourceTree = "<group>"; };
@@ -290,9 +299,19 @@
 			path = UIAlertController;
 			sourceTree = "<group>";
 		};
+		1C630F07200502870068879F /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				1C630F0B2005037F0068879F /* TabBarController.h */,
+				1C630F0C2005037F0068879F /* TabBarController.m */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
 		1C7CA7281E49B95200D94CFB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1C630F07200502870068879F /* TabBarController */,
 				1CFE730C1FFE2A720018172F /* LoginViewController */,
 				1C7CA72B1E49C10400D94CFB /* ListViewController */,
 				1CA192D21E926B3100D352B3 /* RelatedViewController */,
@@ -308,6 +327,7 @@
 			children = (
 				1CAF38951E85623800A4C0DD /* Category */,
 				1C7CA72C1E49C13400D94CFB /* HentaiParser */,
+				1CE4D1B3200461C200F8B79A /* HentaiDownloadCenter */,
 				1CFE73101FFE328D0018172F /* ExCookieChecker */,
 				1CBF607F1E4D9ABC000CA9E5 /* FilesManager */,
 				1CEC12AE1E500E9A00F3E3C4 /* DaiStorage */,
@@ -411,6 +431,17 @@
 				1CCE36651E8E2D5F00A82935 /* MessageCell.m */,
 			);
 			path = MessageCell;
+			sourceTree = "<group>";
+		};
+		1CE4D1B3200461C200F8B79A /* HentaiDownloadCenter */ = {
+			isa = PBXGroup;
+			children = (
+				1CE4D1B4200461E200F8B79A /* HentaiDownloadCenter.h */,
+				1CE4D1B5200461E200F8B79A /* HentaiDownloadCenter.m */,
+				1CE4D1B7200462ED00F8B79A /* HentaiImagesManager.h */,
+				1CE4D1B8200462ED00F8B79A /* HentaiImagesManager.m */,
+			);
+			path = HentaiDownloadCenter;
 			sourceTree = "<group>";
 		};
 		1CE8E5DF1E4D7A03005B1B18 /* Couchbase */ = {
@@ -665,6 +696,7 @@
 				1C1AD0371E49B79800544217 /* AppDelegate.m in Sources */,
 				1CFE73131FFE32AE0018172F /* ExCookie.m in Sources */,
 				1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */,
+				1C630F0D2005037F0068879F /* TabBarController.m in Sources */,
 				1CE8E5E21E4D7A24005B1B18 /* Couchbase.m in Sources */,
 				1C1AD0341E49B79800544217 /* main.m in Sources */,
 				1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */,
@@ -677,6 +709,8 @@
 				1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */,
 				1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */,
 				1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */,
+				1CE4D1B6200461E200F8B79A /* HentaiDownloadCenter.m in Sources */,
+				1CE4D1B9200462ED00F8B79A /* HentaiImagesManager.m in Sources */,
 				1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */,
 				1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */,
 				1C33D1111E5F391A00F0EB12 /* SearchCategoryCell.m in Sources */,

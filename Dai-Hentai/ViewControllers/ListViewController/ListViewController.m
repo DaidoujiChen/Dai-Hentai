@@ -15,6 +15,8 @@
 #import "RelatedViewController.h"
 #import "LoginViewController.h"
 #import "ExCookie.h"
+#import "NSTimer+Block.h"
+#import "HentaiDownloadCenter.h"
 
 #define color(r, g, b) [UIColor colorWithRed:(CGFloat)r / 255.0f green:(CGFloat)g / 255.0f blue:(CGFloat)b / 255.0f alpha:1.0f]
 
@@ -54,6 +56,15 @@
         listCell.category.text = info.category;
         listCell.category.textColor = [self categoryColor:info.category];
         listCell.rating.text = info.rating;
+        listCell.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f repeats:YES usingBlock: ^{
+            NSInteger progress = [HentaiDownloadCenter downloadProgress:info] * 100;
+            if (labs(progress) != 100) {
+                listCell.progress.text = [NSString stringWithFormat:@"DL: %@ %%", @(progress)];
+            }
+            else {
+                listCell.progress.text = @"";
+            }
+        }];
         [listCell.thumbImageView sd_setImageWithURL:[NSURL URLWithString:info.thumb] placeholderImage:nil options:SDWebImageHandleCookies];
     }
     else if ([cell isKindOfClass:[MessageCell class]]) {
@@ -137,7 +148,7 @@
 
 - (void)onCellBeSelectedAction:(HentaiInfo *)info {
     __weak ListViewController *weakSelf = self;
-    [UIAlertController showAlertTitle:@"O3O" message:[NSString stringWithFormat:@"這部作品有 %@ 頁呦", info.filecount] defaultOptions:@[ @"我要現在看", @"用相關字詞搜尋" ] cancelOption:@"都不要 O3O" handler: ^(NSInteger optionIndex) {
+    [UIAlertController showAlertTitle:@"O3O" message:[NSString stringWithFormat:@"這部作品有 %@ 頁呦", info.filecount] defaultOptions:@[ @"我要現在看", @"我要下載", @"用相關字詞搜尋" ] cancelOption:@"都不要 O3O" handler: ^(NSInteger optionIndex) {
         __strong ListViewController *strongSelf = weakSelf;
         switch (optionIndex) {
             case 1:
@@ -145,6 +156,15 @@
                 break;
                 
             case 2:
+            {
+                HentaiImagesManager *manager = [HentaiDownloadCenter manager:info andParser:self.parser];
+                manager.downloadAll = YES;
+                [manager fetch:nil];
+                [Couchbase fetchUserLatestPage:info];
+                break;
+            }
+                
+            case 3:
                 [strongSelf performSegueWithIdentifier:@"PushToRelated" sender:info];
                 break;
                 
@@ -214,7 +234,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([ExCookie isExist]) {
+    NSString *className = [NSString stringWithFormat:@"%s", object_getClassName(self)];
+    if ([ExCookie isExist] && [className isEqualToString:@"ListViewController"]) {
         self.navigationItem.leftBarButtonItem = nil;
     }
 }

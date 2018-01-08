@@ -11,27 +11,21 @@
 #import "HentaiParser.h"
 #import "FilesManager.h"
 #import "Couchbase.h"
-#import "NSTimer+Block.h"
 #import "UIAlertController+Block.h"
+#import "HentaiDownloadCenter.h"
 
-@interface GalleryViewController () <GalleryCollectionViewHandlerDelegate>
+@interface GalleryViewController () <GalleryCollectionViewHandlerDelegate, HentaiImagesManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, assign) UICollectionViewScrollDirection scrollDirect;
 @property (nonatomic, strong) GalleryCollectionViewHandler *collectionViewHandler;
-@property (nonatomic, assign) NSInteger totalPageIndex;
-@property (nonatomic, assign) NSInteger currentPageIndex;
 @property (nonatomic, assign) NSInteger maxAllowScrollIndex;
 @property (nonatomic, assign) NSInteger userCurrentIndex;
-@property (nonatomic, strong) FMStream *manager;
-@property (nonatomic, strong) NSMutableArray<NSString *> *imagePages;
-@property (nonatomic, strong) NSMutableArray<NSString *> *loadingImagePages;
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSDictionary<NSString *, NSNumber *> *> *heights;
-@property (nonatomic, strong) NSLock *pageLocker;
 @property (nonatomic, assign) BOOL rotating;
 @property (nonatomic, assign) BOOL isBarsHidden;
 @property (nonatomic, assign) CGFloat fixedStatusBarMinY;
+@property (nonatomic, strong) HentaiImagesManager *manager;
 
 @end
 
@@ -46,31 +40,23 @@
 
 // 觸發讀取圖片
 - (void)toggleLoadPages {
-    if (self.currentPageIndex <= self.totalPageIndex && self.userCurrentIndex + 20 >= self.imagePages.count) {
-        [self loadPages];
+    if (self.userCurrentIndex + 20 >= self.manager.imagePages.count) {
+        [self.manager fetch:nil];
     }
 }
 
 // 觸發顯示圖片
 - (void)toggleDisplayImageAt:(NSIndexPath *)indexPath inCell:(GalleryCell *)cell {
-    if ([self isFailedImageAtIndex:indexPath.row]) {
-        cell.galleryImageView.backgroundColor = [UIColor whiteColor];
-        cell.galleryImageView.image = [UIImage imageNamed:@"placeholder"];
-        [self loadImage:self.imagePages[indexPath.row]];
+    if ([self.manager isReadyAt:indexPath.row]) {
+        [self.manager loadImageAt:indexPath.row completion: ^(UIImage *image) {
+            cell.galleryImageView.image = image;
+        }];
+        return;
     }
-    else {
-        __weak GalleryViewController *weakSelf = self;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            if (weakSelf) {
-                __strong GalleryViewController *strongSelf = weakSelf;
-                NSString *filename = strongSelf.imagePages[indexPath.row].lastPathComponent;
-                UIImage *image = [UIImage imageWithData:[strongSelf.manager read:filename]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    cell.galleryImageView.image = image;
-                });
-            }
-        });
-    }
+    
+    cell.galleryImageView.backgroundColor = [UIColor whiteColor];
+    cell.galleryImageView.image = [UIImage imageNamed:@"placeholder"];
+    [self.manager downloadImageAt:indexPath.row];
 }
 
 // 取得該 cell 大小
@@ -83,14 +69,14 @@
     CGFloat height;
     if (self.scrollDirect == UICollectionViewScrollDirectionVertical) {
         CGSize imageSize;
-        if (self.heights[@(indexPath.row)][@"width"].floatValue == 0 && self.heights[@(indexPath.row)][@"height"].floatValue == 0) {
+        if ([self.manager isReadyAt:indexPath.row]) {
+            imageSize.width = self.manager.heights[@(indexPath.row)][@"width"].floatValue;
+            imageSize.height = self.manager.heights[@(indexPath.row)][@"height"].floatValue;
+        }
+        else {
             UIImage *placeholderImage = [UIImage imageNamed:@"placeholder"];
             imageSize.width = placeholderImage.size.width;
             imageSize.height = placeholderImage.size.height;
-        }
-        else {
-            imageSize.width = self.heights[@(indexPath.row)][@"width"].floatValue;
-            imageSize.height = self.heights[@(indexPath.row)][@"height"].floatValue;
         }
         height = imageSize.height * (width / imageSize.width);
     }
@@ -103,6 +89,13 @@
 // 回傳使用者正看到第幾頁
 - (void)userCurrentIndex:(NSInteger)index {
     self.userCurrentIndex = index;
+    [self refreshTitle];
+}
+
+#pragma mark - HentaiImagesManager
+
+- (void)imageDownloaded {
+    [self refreshMaxIndexAndReload];
     [self refreshTitle];
 }
 
@@ -164,7 +157,7 @@
 // 刷新新 load 好的頁面
 - (void)refreshMaxIndexAndReload {
     NSInteger preMaxAllowScrollIndex = self.maxAllowScrollIndex;
-    NSArray<NSNumber *> *sortKeys = [self.heights.allKeys sortedArrayUsingComparator: ^NSComparisonResult(id obj1, id obj2) {
+    NSArray<NSNumber *> *sortKeys = [self.manager.heights.allKeys sortedArrayUsingComparator: ^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2];
     }];
     
@@ -188,133 +181,7 @@
 
 // 重新顯示 title
 - (void)refreshTitle {
-    self.title = [NSString stringWithFormat:@"%@(%@/%@/%@)", @(self.userCurrentIndex), @(self.maxAllowScrollIndex), @(self.heights.count), self.info.filecount];
-}
-
-#pragma mark * 讀取圖片相關
-
-// 判斷是否為讀取失敗的圖片
-- (BOOL)isFailedImageAtIndex:(NSInteger)index {
-    return (self.heights[@(index)][@"width"].floatValue == 0 && self.heights[@(index)][@"height"].floatValue == 0);
-}
-
-// 處理完圖片做顯示
-- (void)displayImage:(NSString *)imagePage data:(NSData *)data isNeedWriteFile:(BOOL)isNeedWriteFile {
-    NSString *filename = imagePage.lastPathComponent;
-    NSInteger pageIndex = [[filename componentsSeparatedByString:@"-"][1] integerValue] - 1;
-    
-    CGFloat imageWidth = 0;
-    CGFloat imageHeight = 0;
-    if (data) {
-        UIImage *image = [UIImage imageWithData:data];
-        imageWidth = image.size.width;
-        imageHeight = image.size.height;
-    }
-    
-    __weak GalleryViewController *weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (weakSelf) {
-            __strong GalleryViewController *strongSelf = weakSelf;
-            if (data && isNeedWriteFile) {
-                [strongSelf.manager write:data filename:filename];
-            }
-            strongSelf.heights[@(pageIndex)] = @{ @"width": @(imageWidth), @"height": @(imageHeight) };
-            [strongSelf refreshMaxIndexAndReload];
-            [strongSelf refreshTitle];
-        }
-    });
-}
-
-// 當圖片準備好時
-- (void)onImageReady:(NSString *)imagePage data:(NSData *)data isNeedWriteFile:(BOOL)isNeedWriteFile {
-    if ([NSThread isMainThread]) {
-        __weak GalleryViewController *weakSelf = self;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            if (weakSelf) {
-                __strong GalleryViewController *strongSelf = weakSelf;
-                [strongSelf displayImage:imagePage data:data isNeedWriteFile:isNeedWriteFile];
-            }
-        });
-    }
-    else {
-        [self displayImage:imagePage data:data isNeedWriteFile:isNeedWriteFile];
-    }
-}
-
-// 從 https://e-hentai.org/s/107f1048f2/1030726-1 頁面中
-// 取得真實的圖片連結 ex: http://114.33.249.224:18053/h/e6d61323621dc2c578266d3192578edb66ad1517-99131-1280-845-jpg/keystamp=1487226600-fd28acd1f7;fileindex=50314533;xres=1280/60785277_p0.jpg
-- (void)loadImage:(NSString *)imagePage {
-    if (![self.loadingImagePages containsObject:imagePage]) {
-        [self.loadingImagePages addObject:imagePage];
-        __weak GalleryViewController *weakSelf = self;
-        [self.parser requestImageURL:imagePage completion: ^(HentaiParserStatus status, NSString *imageURL) {
-            if (weakSelf) {
-                if (status == HentaiParserStatusSuccess) {
-                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]];
-                    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
-                        if (weakSelf) {
-                            __strong GalleryViewController *strongSelf = weakSelf;
-                            [strongSelf onImageReady:imagePage data:data isNeedWriteFile:YES];
-                        }
-                        
-                        if (error) {
-                            NSLog(@"===== Load imagePage Fail : %@, %@", imagePage, imageURL);
-                        }
-                        [weakSelf.loadingImagePages removeObject:imagePage];
-                    }];
-                    [task resume];
-                    [NSTimer scheduledTimerWithTimeInterval:30.0f repeats:NO usingBlock: ^{
-                        if (task.state != NSURLSessionTaskStateCompleted) {
-                            [task cancel];
-                        }
-                    }];
-                }
-                else {
-                    NSLog(@"===== requestImageURLWithURLString fail");
-                    [weakSelf.loadingImagePages removeObject:imagePage];
-                }
-            }
-        }];
-    }
-}
-
-// 從 https://e-hentai.org/g/1030726/c854450405/ 大頁中
-// 讀取每個分別的小頁 ex: https://e-hentai.org/s/107f1048f2/1030726-1
-- (void)loadPages {
-    if ([self.pageLocker tryLock] && self.currentPageIndex <= self.totalPageIndex) {
-        
-        __weak GalleryViewController *weakSelf = self;
-        [self.parser requestImagePagesBy:self.info atIndex:self.currentPageIndex completion: ^(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages) {
-            if (weakSelf) {
-                __strong GalleryViewController *strongSelf = weakSelf;
-                if (status == HentaiParserStatusSuccess) {
-                    if (strongSelf.currentPageIndex == 0 && imagePages.count == 0) {
-                        [strongSelf galleryNotAppear];
-                    }
-                    else if (strongSelf.currentPageIndex == 0 && imagePages.count != 0) {
-                        [strongSelf foundLatestPage];
-                    }
-                    strongSelf.currentPageIndex = nextIndex;
-                    [strongSelf.imagePages addObjectsFromArray:imagePages];
-                    
-                    for (NSString *imagePage in imagePages) {
-                        NSString *filename = imagePage.lastPathComponent;
-                        NSData *existData = [strongSelf.manager read:filename];
-                        if (existData) {
-                            [strongSelf onImageReady:imagePage data:existData isNeedWriteFile:NO];
-                        }
-                        else {
-                            [strongSelf loadImage:imagePage];
-                        }
-                    }
-                }
-                else {
-                    NSLog(@"===== requestImagePagesBy fail");
-                }
-                [strongSelf.pageLocker unlock];
-            }
-        }];
-    }
+    self.title = [NSString stringWithFormat:@"%@(%@/%@/%@)", @(self.userCurrentIndex), @(self.maxAllowScrollIndex), @(self.manager.heights.count), self.info.filecount];
 }
 
 #pragma mark * Show / Hidden Bars Animation
@@ -373,12 +240,18 @@
     self.isBarsHidden = !self.isBarsHidden;
     __weak GalleryViewController *weakSelf = self;
     [UIView animateWithDuration:0.3f animations: ^{
-        if (weakSelf) {
-            __strong GalleryViewController *strongSelf = weakSelf;
-            [strongSelf layoutBars];
+        if (!weakSelf) {
+            return;
         }
+        
+        __strong GalleryViewController *strongSelf = weakSelf;
+        [strongSelf layoutBars];
     } completion: ^(BOOL finished) {
-        if (weakSelf && finished) {
+        if (!weakSelf) {
+            return;
+        }
+        
+        if (finished) {
             __strong GalleryViewController *strongSelf = weakSelf;
             [strongSelf layoutCollectionView];
         }
@@ -403,6 +276,12 @@
     }
 }
 
+#pragma mark * navigation bar button action
+
+- (void)downloadAll {
+    self.manager.downloadAll = YES;
+}
+
 #pragma mark * init
 
 // 初始化參數們
@@ -420,19 +299,19 @@
     layout.scrollDirection = self.scrollDirect;
     
     // 讀取頁面相關設定
-    self.pageLocker = [NSLock new];
-    self.imagePages = [NSMutableArray array];
-    self.loadingImagePages = [NSMutableArray array];
-    self.heights = [NSMutableDictionary dictionary];
-    self.totalPageIndex = floor(self.info.filecount.floatValue / 40.0f);
-    self.currentPageIndex = 0;
     self.maxAllowScrollIndex = 0;
     
-    // 儲存位置設定
+    // 下載器
+    self.manager = [HentaiDownloadCenter manager:self.info andParser:self.parser];
+    self.manager.delegate = self;
+    
+    // 設定 navigation bar 上的標題
     NSString *folder = self.info.title_jpn.length ? self.info.title_jpn : self.info.title;
-    folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
-    self.manager = [[FilesManager documentFolder] fcd:folder];
     self.navigationItem.prompt = folder;
+    
+    // 在 navigation bar 上加一個下載的按鈕, TODO: 這個按鈕出現與否, 會從 db 判定
+    UIBarButtonItem *downloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(downloadAll)];
+    self.navigationItem.rightBarButtonItem = downloadButton;
     
     // 轉向時的判斷
     self.rotating = NO;
@@ -467,12 +346,27 @@
     NSLog(@"===== %@, %@", [FilesManager documentFolder].currentPath, self.info.filecount);
     [super viewDidLoad];
     [self initValues];
-    [self loadPages];
+    
+    __weak GalleryViewController *weakSelf = self;
+    [self.manager fetch: ^(BOOL isExist) {
+        if (!weakSelf) {
+            return;
+        }
+        
+        __strong GalleryViewController *strongSelf = weakSelf;
+        if (isExist) {
+            [strongSelf foundLatestPage];
+        }
+        else {
+            [strongSelf galleryNotAppear];
+        }
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [Couchbase updateUserLatestPage:self.info userLatestPage:self.userCurrentIndex];
+    [HentaiDownloadCenter bye:self.info];
 }
 
 // 當轉向時需要處理 cell 的 size, 避免產生不必要的 warning
@@ -484,13 +378,15 @@
     
     __weak GalleryViewController *weakSelf = self;
     [coordinator animateAlongsideTransition:nil completion: ^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        if (weakSelf) {
-            __strong GalleryViewController *strongSelf = weakSelf;
-            strongSelf.rotating = NO;
-            [strongSelf layoutBars];
-            [strongSelf layoutCollectionView];
-            [strongSelf scrollToIndex:userCurrentIndex];
+        if (!weakSelf) {
+            return;
         }
+        
+        __strong GalleryViewController *strongSelf = weakSelf;
+        strongSelf.rotating = NO;
+        [strongSelf layoutBars];
+        [strongSelf layoutCollectionView];
+        [strongSelf scrollToIndex:userCurrentIndex];
     }];
 }
 
@@ -512,7 +408,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"===== dealloc");
+    NSLog(@"===== GalleryViewController dealloc");
 }
 
 @end

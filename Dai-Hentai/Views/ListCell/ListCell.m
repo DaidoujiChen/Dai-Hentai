@@ -29,6 +29,9 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     self.thumbImageView.image = nil;
+    self.progress.text = @"";
+    [self.progressTimer invalidate];
+    self.progressTimer = nil;
 }
 
 @end
