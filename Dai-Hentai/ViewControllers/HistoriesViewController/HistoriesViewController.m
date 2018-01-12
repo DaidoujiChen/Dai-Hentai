@@ -9,6 +9,7 @@
 #import "HistoriesViewController.h"
 #import "PrivateListViewController.h"
 #import "FilesManager.h"
+#import "DBGallery.h"
 
 @interface HistoriesViewController ()
 
@@ -26,7 +27,7 @@
 - (void)fetchGalleries {
     if ([self.pageLocker tryLock]) {
         NSInteger index = self.pageIndex * pageCout;
-        NSArray *hentaiInfos = [Couchbase historiesFrom:index length:pageCout];
+        NSArray *hentaiInfos = [DBGallery historiesFrom:index length:pageCout];
         if (hentaiInfos && hentaiInfos.count) {
             [self.galleries addObjectsFromArray:hentaiInfos];
             [self.collectionView reloadData];
@@ -85,7 +86,7 @@
                 [weakSelf.galleries removeAllObjects];
                 [weakSelf.collectionView reloadData];
                 
-                [Couchbase deleteAllHistories: ^(NSInteger total, NSInteger index, HentaiInfo *info) {
+                [DBGallery deleteAllHistories: ^(NSInteger total, NSInteger index, HentaiInfo *info) {
                     weakSelf.deletingMessage = [NSString stringWithFormat:@"作品刪除中 ( %td / %td )", index, total];
                     [weakSelf.collectionView reloadData];
                     NSString *folder = info.title_jpn.length ? info.title_jpn : info.title;

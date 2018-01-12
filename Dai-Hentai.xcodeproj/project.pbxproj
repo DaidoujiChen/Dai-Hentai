@@ -24,8 +24,12 @@
 		1C3DDE021E6094A00034B3E2 /* CategoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DDE011E6094A00034B3E2 /* CategoryItem.m */; };
 		1C4D8B291E861B4100113D0E /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B281E861B4100113D0E /* NSTimer+Block.m */; };
 		1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */; };
+		1C5BF266200CA3AE00FB260A /* DownloadedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */; };
 		1C630F0D2005037F0068879F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C630F0C2005037F0068879F /* TabBarController.m */; };
 		1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CA72E1E49C13400D94CFB /* HentaiParser.m */; };
+		1C8DEE82200896B400C479F4 /* DBSearchSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE81200896B400C479F4 /* DBSearchSetting.m */; };
+		1C8DEE85200898E500C479F4 /* DBGalleryPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE84200898E500C479F4 /* DBGalleryPage.m */; };
+		1C8DEE8820089A3100C479F4 /* DBGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE8720089A3100C479F4 /* DBGallery.m */; };
 		1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */; };
 		1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9294E71E4C4330001AB1CE /* ListViewController.m */; };
 		1C9294EC1E4C4A0D001AB1CE /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9294EB1E4C4A0D001AB1CE /* ListCell.m */; };
@@ -36,9 +40,9 @@
 		1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */; };
 		1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60831E4D9ABC000CA9E5 /* FMStream.m */; };
 		1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCE36651E8E2D5F00A82935 /* MessageCell.m */; };
+		1CD02DFD200C749200B3F717 /* CBLDatabase+RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD02DFC200C749200B3F717 /* CBLDatabase+RefreshView.m */; };
 		1CE4D1B6200461E200F8B79A /* HentaiDownloadCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE4D1B5200461E200F8B79A /* HentaiDownloadCenter.m */; };
 		1CE4D1B9200462ED00F8B79A /* HentaiImagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE4D1B8200462ED00F8B79A /* HentaiImagesManager.m */; };
-		1CE8E5E21E4D7A24005B1B18 /* Couchbase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8E5E11E4D7A24005B1B18 /* Couchbase.m */; };
 		1CEC12BE1E500E9A00F3E3C4 /* DaiStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12B11E500E9A00F3E3C4 /* DaiStorage.m */; };
 		1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12B31E500E9A00F3E3C4 /* DaiStorageArray.m */; };
 		1CEC12C01E500E9A00F3E3C4 /* DaiStoragePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12B71E500E9A00F3E3C4 /* DaiStoragePath.m */; };
@@ -86,10 +90,18 @@
 		1C4D8B281E861B4100113D0E /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
 		1C4D8B2B1E86201100113D0E /* UIAlertController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Block.h"; sourceTree = "<group>"; };
 		1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Block.m"; sourceTree = "<group>"; };
+		1C5BF264200CA3AE00FB260A /* DownloadedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadedsViewController.h; sourceTree = "<group>"; };
+		1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedsViewController.m; sourceTree = "<group>"; };
 		1C630F0B2005037F0068879F /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		1C630F0C2005037F0068879F /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		1C7CA72D1E49C13400D94CFB /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
 		1C7CA72E1E49C13400D94CFB /* HentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiParser.m; sourceTree = "<group>"; };
+		1C8DEE80200896B400C479F4 /* DBSearchSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSearchSetting.h; sourceTree = "<group>"; };
+		1C8DEE81200896B400C479F4 /* DBSearchSetting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBSearchSetting.m; sourceTree = "<group>"; };
+		1C8DEE83200898E500C479F4 /* DBGalleryPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBGalleryPage.h; sourceTree = "<group>"; };
+		1C8DEE84200898E500C479F4 /* DBGalleryPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBGalleryPage.m; sourceTree = "<group>"; };
+		1C8DEE8620089A3100C479F4 /* DBGallery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBGallery.h; sourceTree = "<group>"; };
+		1C8DEE8720089A3100C479F4 /* DBGallery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBGallery.m; sourceTree = "<group>"; };
 		1C9288AD1E5594B8004E796B /* GalleryCollectionViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCollectionViewHandler.h; sourceTree = "<group>"; };
 		1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCollectionViewHandler.m; sourceTree = "<group>"; };
 		1C9294E61E4C4330001AB1CE /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
@@ -113,12 +125,12 @@
 		1CBF60831E4D9ABC000CA9E5 /* FMStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMStream.m; sourceTree = "<group>"; };
 		1CCE36641E8E2D5F00A82935 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		1CCE36651E8E2D5F00A82935 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		1CD02DFB200C749200B3F717 /* CBLDatabase+RefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CBLDatabase+RefreshView.h"; sourceTree = "<group>"; };
+		1CD02DFC200C749200B3F717 /* CBLDatabase+RefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CBLDatabase+RefreshView.m"; sourceTree = "<group>"; };
 		1CE4D1B4200461E200F8B79A /* HentaiDownloadCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HentaiDownloadCenter.h; sourceTree = "<group>"; };
 		1CE4D1B5200461E200F8B79A /* HentaiDownloadCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HentaiDownloadCenter.m; sourceTree = "<group>"; };
 		1CE4D1B7200462ED00F8B79A /* HentaiImagesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HentaiImagesManager.h; sourceTree = "<group>"; };
 		1CE4D1B8200462ED00F8B79A /* HentaiImagesManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HentaiImagesManager.m; sourceTree = "<group>"; };
-		1CE8E5E01E4D7A24005B1B18 /* Couchbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Couchbase.h; sourceTree = "<group>"; };
-		1CE8E5E11E4D7A24005B1B18 /* Couchbase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Couchbase.m; sourceTree = "<group>"; };
 		1CEC12B01E500E9A00F3E3C4 /* DaiStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiStorage.h; sourceTree = "<group>"; };
 		1CEC12B11E500E9A00F3E3C4 /* DaiStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiStorage.m; sourceTree = "<group>"; };
 		1CEC12B21E500E9A00F3E3C4 /* DaiStorageArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiStorageArray.h; sourceTree = "<group>"; };
@@ -299,6 +311,15 @@
 			path = UIAlertController;
 			sourceTree = "<group>";
 		};
+		1C5BF263200CA3AE00FB260A /* DownloadedsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C5BF264200CA3AE00FB260A /* DownloadedsViewController.h */,
+				1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */,
+			);
+			path = DownloadedsViewController;
+			sourceTree = "<group>";
+		};
 		1C630F07200502870068879F /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +338,7 @@
 				1CA192D21E926B3100D352B3 /* RelatedViewController */,
 				1C0867F81E5C8F2100E361B5 /* SearchViewController */,
 				1C0CF4951E82D449005ADDFA /* HistoriesViewController */,
+				1C5BF263200CA3AE00FB260A /* DownloadedsViewController */,
 				1C0608401E53471100E6A285 /* GalleryViewController */,
 			);
 			path = ViewControllers;
@@ -407,6 +429,7 @@
 		1CAF38951E85623800A4C0DD /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				1CD02DFA200C747D00B3F717 /* CBLDatabase */,
 				1C4D8B2A1E861FF900113D0E /* UIAlertController */,
 				1C4D8B261E861B2100113D0E /* NSTimer */,
 			);
@@ -433,6 +456,15 @@
 			path = MessageCell;
 			sourceTree = "<group>";
 		};
+		1CD02DFA200C747D00B3F717 /* CBLDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				1CD02DFB200C749200B3F717 /* CBLDatabase+RefreshView.h */,
+				1CD02DFC200C749200B3F717 /* CBLDatabase+RefreshView.m */,
+			);
+			path = CBLDatabase;
+			sourceTree = "<group>";
+		};
 		1CE4D1B3200461C200F8B79A /* HentaiDownloadCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,8 +479,12 @@
 		1CE8E5DF1E4D7A03005B1B18 /* Couchbase */ = {
 			isa = PBXGroup;
 			children = (
-				1CE8E5E01E4D7A24005B1B18 /* Couchbase.h */,
-				1CE8E5E11E4D7A24005B1B18 /* Couchbase.m */,
+				1C8DEE80200896B400C479F4 /* DBSearchSetting.h */,
+				1C8DEE81200896B400C479F4 /* DBSearchSetting.m */,
+				1C8DEE83200898E500C479F4 /* DBGalleryPage.h */,
+				1C8DEE84200898E500C479F4 /* DBGalleryPage.m */,
+				1C8DEE8620089A3100C479F4 /* DBGallery.h */,
+				1C8DEE8720089A3100C479F4 /* DBGallery.m */,
 			);
 			path = Couchbase;
 			sourceTree = "<group>";
@@ -697,7 +733,6 @@
 				1CFE73131FFE32AE0018172F /* ExCookie.m in Sources */,
 				1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */,
 				1C630F0D2005037F0068879F /* TabBarController.m in Sources */,
-				1CE8E5E21E4D7A24005B1B18 /* Couchbase.m in Sources */,
 				1C1AD0341E49B79800544217 /* main.m in Sources */,
 				1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */,
 				1C0608471E534ADF00E6A285 /* GalleryCell.m in Sources */,
@@ -717,6 +752,7 @@
 				1C4D8B291E861B4100113D0E /* NSTimer+Block.m in Sources */,
 				1CEC12C21E500E9A00F3E3C4 /* DaiStorageProperty.m in Sources */,
 				1C000ED91E570F9C004060A5 /* ImageURLOperation.m in Sources */,
+				1C5BF266200CA3AE00FB260A /* DownloadedsViewController.m in Sources */,
 				1C0608431E53473500E6A285 /* GalleryViewController.m in Sources */,
 				1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */,
 				1CEC12C11E500E9A00F3E3C4 /* DaiStoragePropertiesInObject.m in Sources */,
@@ -724,11 +760,15 @@
 				1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */,
 				1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */,
 				1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */,
+				1CD02DFD200C749200B3F717 /* CBLDatabase+RefreshView.m in Sources */,
 				1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */,
 				1CA192D51E926B4A00D352B3 /* RelatedViewController.m in Sources */,
 				1C0CF4981E82D466005ADDFA /* HistoriesViewController.m in Sources */,
 				1CA2707E1E50B9F80054AA6E /* EHentaiParser.m in Sources */,
+				1C8DEE8820089A3100C479F4 /* DBGallery.m in Sources */,
 				1C33D10B1E5F34BC00F0EB12 /* SearchKeywordCell.m in Sources */,
+				1C8DEE85200898E500C479F4 /* DBGalleryPage.m in Sources */,
+				1C8DEE82200896B400C479F4 /* DBSearchSetting.m in Sources */,
 				1CA270811E50BA0B0054AA6E /* ExHentaiParser.m in Sources */,
 				1CEC12BE1E500E9A00F3E3C4 /* DaiStorage.m in Sources */,
 			);

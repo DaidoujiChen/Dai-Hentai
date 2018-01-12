@@ -10,7 +10,7 @@
 #import "GalleryCollectionViewHandler.h"
 #import "HentaiParser.h"
 #import "FilesManager.h"
-#import "Couchbase.h"
+#import "DBGallery.h"
 #import "UIAlertController+Block.h"
 #import "HentaiDownloadCenter.h"
 
@@ -132,7 +132,7 @@
 }
 
 - (void)foundLatestPage {
-    NSInteger userLatestPage = [Couchbase fetchUserLatestPage:self.info];
+    NSInteger userLatestPage = [self.info latestPage];
     if (userLatestPage > 1) {
         __weak GalleryViewController *weakSelf = self;
         [UIAlertController showAlertTitle:@"O3O" message:@"您曾經閱讀過此作品" defaultOptions:@[ [NSString stringWithFormat:@"繼續從 %td 頁看起", userLatestPage] ] cancelOption:@"我要從頭看" handler: ^(NSInteger optionIndex) {
@@ -280,6 +280,7 @@
 
 - (void)downloadAll {
     self.manager.downloadAll = YES;
+    [self.info moveToDownloaded];
 }
 
 #pragma mark * init
@@ -309,9 +310,14 @@
     NSString *folder = self.info.title_jpn.length ? self.info.title_jpn : self.info.title;
     self.navigationItem.prompt = folder;
     
-    // 在 navigation bar 上加一個下載的按鈕, TODO: 這個按鈕出現與否, 會從 db 判定
-    UIBarButtonItem *downloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(downloadAll)];
-    self.navigationItem.rightBarButtonItem = downloadButton;
+    // 在 navigation bar 上加一個下載的按鈕
+    if ([self.info isDownloaded]) {
+        self.manager.downloadAll = YES;
+    }
+    else {
+        UIBarButtonItem *downloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(downloadAll)];
+        self.navigationItem.rightBarButtonItem = downloadButton;
+    }
     
     // 轉向時的判斷
     self.rotating = NO;
@@ -365,7 +371,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [Couchbase updateUserLatestPage:self.info userLatestPage:self.userCurrentIndex];
+    [self.info setLatestPage:self.userCurrentIndex];
     [HentaiDownloadCenter bye:self.info];
 }
 

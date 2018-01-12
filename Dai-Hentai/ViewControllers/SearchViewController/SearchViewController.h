@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Couchbase.h"
+#import "DBSearchSetting.h"
 
 @interface SearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

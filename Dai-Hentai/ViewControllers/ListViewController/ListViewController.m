@@ -125,7 +125,7 @@
 
 - (void)fetchGalleries {
     if ([self.pageLocker tryLock]) {
-        SearchInfo *info = [Couchbase searchInfo];
+        SearchInfo *info = [DBSearchSetting info];
         __weak ListViewController *weakSelf = self;
         [self.parser requestListUsingFilter:[info query:self.pageIndex] completion: ^(HentaiParserStatus status, NSArray<HentaiInfo *> *infos) {
             if (weakSelf) {
@@ -146,31 +146,65 @@
     }
 }
 
-- (void)onCellBeSelectedAction:(HentaiInfo *)info {
+- (NSMutableArray<NSDictionary<NSString *, void(^)(void)> *> *)behaviorsForInfo:(HentaiInfo *)info {
+    
     __weak ListViewController *weakSelf = self;
-    [UIAlertController showAlertTitle:@"O3O" message:[NSString stringWithFormat:@"這部作品有 %@ 頁呦", info.filecount] defaultOptions:@[ @"我要現在看", @"我要下載", @"用相關字詞搜尋" ] cancelOption:@"都不要 O3O" handler: ^(NSInteger optionIndex) {
-        __strong ListViewController *strongSelf = weakSelf;
-        switch (optionIndex) {
-            case 1:
-                [strongSelf performSegueWithIdentifier:@"PushToGallery" sender:info];
-                break;
-                
-            case 2:
-            {
-                HentaiImagesManager *manager = [HentaiDownloadCenter manager:info andParser:self.parser];
-                manager.downloadAll = YES;
-                [manager fetch:nil];
-                [Couchbase fetchUserLatestPage:info];
-                break;
-            }
-                
-            case 3:
-                [strongSelf performSegueWithIdentifier:@"PushToRelated" sender:info];
-                break;
-                
-            default:
-                break;
+    NSMutableArray<NSDictionary<NSString *, void(^)(void)> *> *behaviors = [NSMutableArray array];
+    [behaviors addObject:@{ @"我要現在看": ^(void) {
+        if (!weakSelf) {
+            return;
         }
+        __strong ListViewController *strongSelf = weakSelf;
+        [strongSelf performSegueWithIdentifier:@"PushToGallery" sender:info];
+    } }];
+    
+    if (![info isDownloaded]) {
+        [behaviors addObject:@{ @"我要下載": ^(void) {
+            if (!weakSelf) {
+                return;
+            }
+            __strong ListViewController *strongSelf = weakSelf;
+            HentaiImagesManager *manager = [HentaiDownloadCenter manager:info andParser:strongSelf.parser];
+            manager.downloadAll = YES;
+            [manager fetch:nil];
+            [info latestPage];
+            [info moveToDownloaded];
+        } }];
+    }
+    
+    [behaviors addObject:@{ @"用相關字詞搜尋": ^(void) {
+        if (!weakSelf) {
+            return;
+        }
+        __strong ListViewController *strongSelf = weakSelf;
+        [strongSelf performSegueWithIdentifier:@"PushToRelated" sender:info];
+    } }];
+    
+    return behaviors;
+}
+
+- (void)onCellBeSelectedAction:(HentaiInfo *)info {
+    
+    __weak ListViewController *weakSelf = self;
+    NSMutableArray<NSDictionary<NSString *, void(^)(void)> *> *behaviors = [self behaviorsForInfo:info];
+    
+    NSMutableArray<NSString *> *options = [NSMutableArray array];
+    for (NSInteger index = 0; index < behaviors.count; index++) {
+        [options addObject:behaviors[index].allKeys.firstObject];
+    }
+    
+    [UIAlertController showAlertTitle:@"O3O" message:[NSString stringWithFormat:@"這部作品有 %@ 頁呦", info.filecount] defaultOptions:options cancelOption:@"都不要 O3O" handler: ^(NSInteger optionIndex) {
+        if (!weakSelf) {
+            return;
+        }
+        
+        NSInteger fixOptionIndex = optionIndex - 1;
+        if (fixOptionIndex >= behaviors.count) {
+            return;
+        }
+        
+        void (^invoke)(void) = behaviors[fixOptionIndex].allValues.firstObject;
+        invoke();
     }];
 }
 
@@ -196,15 +230,15 @@
 - (IBAction)unwindFromSearch:(UIStoryboardSegue *)segue {
     if ([segue.identifier isEqualToString:@"PopFromSearch"]) {
         SearchViewController *searchViewController = (SearchViewController *)segue.sourceViewController;
-        [Couchbase setSearchInfo:searchViewController.info];
+        [DBSearchSetting setInfo:searchViewController.info];
         [self reloadGalleries];
     }
     else if ([segue.identifier isEqualToString:@"PopFromRelated"]) {
         RelatedViewController *relatedViewController = (RelatedViewController *)segue.sourceViewController;
         if (relatedViewController.selectedWords.count) {
-            SearchInfo *searchInfo = [Couchbase searchInfo];
+            SearchInfo *searchInfo = [DBSearchSetting info];
             searchInfo.keyword = [relatedViewController.selectedWords componentsJoinedByString:@" "];
-            [Couchbase setSearchInfo:searchInfo];
+            [DBSearchSetting setInfo:searchInfo];
             [self reloadGalleries];
         }
     }
@@ -258,7 +292,7 @@
     }
     else if ([segue.identifier isEqualToString:@"PushToSearch"]) {
         SearchViewController *searchViewController = (SearchViewController *)segue.destinationViewController;
-        searchViewController.info = [Couchbase searchInfo];
+        searchViewController.info = [DBSearchSetting info];
     }
     else if ([segue.identifier isEqualToString:@"PushToRelated"]) {
         RelatedViewController *relatedViewController = (RelatedViewController *)segue.destinationViewController;

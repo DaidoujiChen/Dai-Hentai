@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <hpple/TFHpple.h>
-#import "Couchbase.h"
+#import "DBGalleryPage.h"
 #import "EHentaiParser.h"
 #import "ExHentaiParser.h"
 #import "ImageURLOperation.h"
@@ -249,7 +249,7 @@ else { \
     NSArray<NSString *> *cachePages;
     NSInteger cacheIndex = index;
     do {
-        cachePages = [Couchbase galleryBy:info.gid token:info.token index:cacheIndex];
+        cachePages = [DBGalleryPage by:info.gid token:info.token index:cacheIndex];
         if (cachePages) {
             [pages addObjectsFromArray:cachePages];
             cacheIndex++;
@@ -280,7 +280,7 @@ else { \
                     }
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [Couchbase addGalleryBy:info.gid token:info.token index:index pages:newPages];
+                        [DBGalleryPage add:info.gid token:info.token index:index pages:newPages];
                         completionToMainThread(HentaiParserStatusSuccess, index + 1, newPages);
                     });
                 }

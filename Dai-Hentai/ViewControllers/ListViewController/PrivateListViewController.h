@@ -7,9 +7,9 @@
 //
 
 #import "ListViewController.h"
-#import "Couchbase.h"
 #import "UIAlertController+Block.h"
 #import "MessageCell.h"
+#import "DBGallery.h"
 
 @interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
