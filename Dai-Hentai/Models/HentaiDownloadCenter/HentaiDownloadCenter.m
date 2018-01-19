@@ -35,6 +35,10 @@
     return objc_getAssociatedObject(self, _cmd);
 }
 
++ (void)itemsInCenter:(NSInteger)items {
+    [UIApplication sharedApplication].idleTimerDisabled = items > 0;
+}
+
 #pragma mark - Class Method
 
 // 取回舊的, 或是建立一個新的 HentaiImagesManager
@@ -45,6 +49,7 @@
         manager = [[HentaiImagesManager alloc] initWith:info andParser:parser];
         manager.internalDelegate = (id<HentaiImagesManagerInternalDelegate>)self;
         [self center][key] = manager;
+        [self itemsInCenter:[self center].count];
     }
     return manager;
 }
@@ -61,6 +66,7 @@
     manager.delegate = nil;
     if (!manager.downloadAll) {
         [[self center] removeObjectForKey:key];
+        [self itemsInCenter:[self center].count];
     }
 }
 
