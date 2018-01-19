@@ -25,6 +25,7 @@
 + (NSArray<NSDictionary *> *)downloadedsFrom:(NSInteger)start length:(NSInteger)length;
 
 // 刪除
++ (void)deleteDownloaded:(HentaiInfo *)info handler:(void (^)(void))handler onFinish:(void (^)(BOOL successed))finish;
 + (void)deleteAllHistories:(void (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish;
 
 @end

@@ -26,6 +26,7 @@
 @property (nonatomic, assign) BOOL isBarsHidden;
 @property (nonatomic, assign) CGFloat fixedStatusBarMinY;
 @property (nonatomic, strong) HentaiImagesManager *manager;
+@property (nonatomic, assign) BOOL leaveByDelete;
 
 @end
 
@@ -278,6 +279,31 @@
 
 #pragma mark * navigation bar button action
 
+- (void)deleteThis {
+    __weak GalleryViewController *weakSelf = self;
+    [UIAlertController showAlertTitle:@"O3O" message:@"我們現在這部作品囉!" defaultOptions:@[ @"好 O3Ob" ] cancelOption:@"先不要好了 OwO\"" handler: ^(NSInteger optionIndex) {
+        if (!weakSelf) {
+            return;
+        }
+        
+        __strong GalleryViewController *strongSelf = weakSelf;
+        if (optionIndex) {
+            strongSelf.leaveByDelete = YES;
+            strongSelf.manager.downloadAll = NO;
+            [HentaiDownloadCenter bye:strongSelf.info];
+            
+            [DBGallery deleteDownloaded:strongSelf.info handler: ^{
+                NSString *folder = strongSelf.info.title_jpn.length ? strongSelf.info.title_jpn : strongSelf.info.title;
+                folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
+                [[FilesManager documentFolder] rd:folder];
+            } onFinish: ^(BOOL successed) {
+                [strongSelf.delegate helpToReloadList];
+                [strongSelf.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+    }];
+}
+
 - (void)downloadAll {
     self.manager.downloadAll = YES;
     [self.info moveToDownloaded];
@@ -305,14 +331,17 @@
     // 下載器
     self.manager = [HentaiDownloadCenter manager:self.info andParser:self.parser];
     self.manager.delegate = self;
+    self.leaveByDelete = NO;
     
     // 設定 navigation bar 上的標題
     NSString *folder = self.info.title_jpn.length ? self.info.title_jpn : self.info.title;
     self.navigationItem.prompt = folder;
     
-    // 在 navigation bar 上加一個下載的按鈕
+    // 在 navigation bar 上加一個下載的按鈕, 或是刪除掉的按鈕
     if ([self.info isDownloaded]) {
         self.manager.downloadAll = YES;
+        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteThis)];
+        self.navigationItem.rightBarButtonItem = deleteButton;
     }
     else {
         UIBarButtonItem *downloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(downloadAll)];
@@ -371,7 +400,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.info setLatestPage:self.userCurrentIndex];
+    if (!self.leaveByDelete) {
+        [self.info setLatestPage:self.userCurrentIndex];
+    }
     [HentaiDownloadCenter bye:self.info];
 }
 

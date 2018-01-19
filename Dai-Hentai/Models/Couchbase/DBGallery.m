@@ -99,6 +99,50 @@ typedef enum {
     return [self list:DBGalleryTypeDownloadeds from:start length:length];
 }
 
++ (void)deleteDownloaded:(HentaiInfo *)info handler:(void (^)(void))handler onFinish:(void (^)(BOOL successed))finish {
+    NSString *key = [NSString stringWithFormat:@"%@-%@", info.gid, info.token];
+    CBLQuery *query = [[[DBGallery galleries] viewNamed:@"query"] createQuery];
+    query.keys = @[ key ];
+    NSError *error;
+    CBLQueryEnumerator *results = [query run:&error];
+    if (error) {
+        NSLog(@"deleteDownloaded Fail");
+        if (finish) {
+            finish(NO);
+        }
+        return;
+    }
+    
+    if (!results.count) {
+        if (finish) {
+            finish(NO);
+        }
+        return;
+    }
+    
+    BOOL isDownloaded = NO;
+    CBLDocument *document = [results rowAtIndex:0].document;
+    if (document.properties[@"downloaded"]) {
+        isDownloaded = [document.properties[@"downloaded"] boolValue];
+    }
+    
+    if (!isDownloaded) {
+        if (finish) {
+            finish(NO);
+        }
+        return;
+    }
+    
+    if (handler) {
+        handler();
+        [document purgeDocument:nil];
+    }
+    
+    if (finish) {
+        finish(YES);
+    }
+}
+
 + (void)deleteAllHistories:(void (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish {
     CBLQuery *query = [[[self galleries] viewNamed:@"sort"] createQuery];
     query.postFilter = [NSPredicate predicateWithFormat:@"value == 0"];

@@ -10,7 +10,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ListCell.h"
 #import "HentaiParser.h"
-#import "GalleryViewController.h"
 #import "SearchViewController.h"
 #import "RelatedViewController.h"
 #import "LoginViewController.h"
@@ -21,6 +20,12 @@
 #define color(r, g, b) [UIColor colorWithRed:(CGFloat)r / 255.0f green:(CGFloat)g / 255.0f blue:(CGFloat)b / 255.0f alpha:1.0f]
 
 @implementation ListViewController
+
+#pragma mark - GalleryViewControllerDelegate
+
+- (void)helpToReloadList {
+    [self reloadGalleries];
+}
 
 #pragma mark - UICollectionViewDataSource
 
@@ -287,6 +292,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"PushToGallery"]) {
         GalleryViewController *galleryViewController = (GalleryViewController *)segue.destinationViewController;
+        galleryViewController.delegate = self;
         galleryViewController.info = sender;
         galleryViewController.parser = self.parser;
     }

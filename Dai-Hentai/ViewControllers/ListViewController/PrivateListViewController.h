@@ -10,8 +10,9 @@
 #import "UIAlertController+Block.h"
 #import "MessageCell.h"
 #import "DBGallery.h"
+#import "GalleryViewController.h"
 
-@interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GalleryViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
