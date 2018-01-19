@@ -307,6 +307,8 @@
 - (void)downloadAll {
     self.manager.downloadAll = YES;
     [self.info moveToDownloaded];
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteThis)];
+    self.navigationItem.rightBarButtonItem = deleteButton;
 }
 
 #pragma mark * init
