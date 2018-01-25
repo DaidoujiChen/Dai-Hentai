@@ -207,6 +207,7 @@ typedef enum {
     [self.allItems addObject:rate];
     
     NSMutableArray<SearchItem *> *categories = [NSMutableArray array];
+    [categories addObject:[SearchItem itemWith:@"Chinese" getter:@"isChinese"]];
     [categories addObject:[SearchItem itemWith:@"Doujinshi" getter:@"doujinshi"]];
     [categories addObject:[SearchItem itemWith:@"Manga" getter:@"manga"]];
     [categories addObject:[SearchItem itemWith:@"Artist CG" getter:@"artistcg"]];
