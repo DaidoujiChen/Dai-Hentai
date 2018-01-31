@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "HentaiInfo.h"
 
+extern NSNotificationName const DBGalleryTimeStampUpdateNotification;
+extern NSNotificationName const DBGalleryDownloadedUpdateNotification;
+
 @interface HentaiInfo (Status)
 
 - (BOOL)isDownloaded;

@@ -10,6 +10,10 @@
 #import <objc/runtime.h>
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "CBLDatabase+RefreshView.h"
+#import "EXTScope.h"
+
+NSNotificationName const DBGalleryTimeStampUpdateNotification = @"DBGalleryTimeStampUpdateNotification";
+NSNotificationName const DBGalleryDownloadedUpdateNotification = @"DBGalleryDownloadedUpdateNotification";
 
 typedef enum {
     DBGalleryTypeHistories,
@@ -141,6 +145,8 @@ typedef enum {
     if (finish) {
         finish(YES);
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:DBGalleryDownloadedUpdateNotification object:self];
 }
 
 + (void)deleteAllHistories:(void (^)(NSInteger total, NSInteger index, HentaiInfo *info))handler onFinish:(void (^)(BOOL successed))finish {
@@ -221,13 +227,16 @@ typedef enum {
         return;
     }
     
-    if (results.count) {
-        CBLDocument *document = [results rowAtIndex:0].document;
-        [document update: ^BOOL(CBLUnsavedRevision *rev) {
-            rev[@"downloaded"] = @(1);
-            return YES;
-        } error:nil];
+    if (!results.count) {
+        return;
     }
+    
+    CBLDocument *document = [results rowAtIndex:0].document;
+    [document update: ^BOOL(CBLUnsavedRevision *rev) {
+        rev[@"downloaded"] = @(1);
+        return YES;
+    } error:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DBGalleryDownloadedUpdateNotification object:self];
 }
 
 - (NSInteger)latestPage {
@@ -240,6 +249,10 @@ typedef enum {
         NSLog(@"fetchUserLatestPage Fail");
         return 0;
     }
+    
+    @onExit {
+        [[NSNotificationCenter defaultCenter] postNotificationName:DBGalleryTimeStampUpdateNotification object:self];
+    };
     
     NSInteger userLatestPage = 0;
     if (results.count) {

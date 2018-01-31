@@ -285,13 +285,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Jw4-Xp-Hlg"/>
                     </view>
-                    <navigationItem key="navigationItem" title="下載" id="veQ-BN-uHB">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="wTd-pv-Sq9">
-                            <connections>
-                                <action selector="refreshAction:" destination="7O4-IR-1ix" id="Xp9-8H-eUS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="下載" id="veQ-BN-uHB"/>
                     <connections>
                         <outlet property="collectionView" destination="aQf-Ua-g2u" id="Ab2-6S-wi4"/>
                         <segue destination="ePr-gK-ENO" kind="show" identifier="PushToGallery" id="ZPJ-2t-pAf"/>
@@ -690,11 +684,6 @@
                         <viewLayoutGuide key="safeArea" id="M2L-ad-Fbm"/>
                     </view>
                     <navigationItem key="navigationItem" title="歷史" id="862-Pc-VDZ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="ZRN-rG-H4B">
-                            <connections>
-                                <action selector="refreshAction:" destination="pF1-Ho-r1p" id="P9Q-Jk-CbP"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="1HV-bc-6an">
                             <connections>
                                 <action selector="deleteAllHistoriesAction:" destination="pF1-Ho-r1p" id="cuo-nd-YtL"/>
@@ -958,6 +947,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZPJ-2t-pAf"/>
+        <segue reference="sFK-aE-S2c"/>
     </inferredMetricsTieBreakers>
 </document>

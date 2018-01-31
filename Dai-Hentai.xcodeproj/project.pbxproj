@@ -94,6 +94,8 @@
 		1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedsViewController.m; sourceTree = "<group>"; };
 		1C630F0B2005037F0068879F /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		1C630F0C2005037F0068879F /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		1C7ABF5D2021BBF8006313C3 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
+		1C7ABF5E2021BBF8006313C3 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
 		1C7CA72D1E49C13400D94CFB /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
 		1C7CA72E1E49C13400D94CFB /* HentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiParser.m; sourceTree = "<group>"; };
 		1C8DEE80200896B400C479F4 /* DBSearchSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSearchSetting.h; sourceTree = "<group>"; };
@@ -329,6 +331,15 @@
 			path = TabBarController;
 			sourceTree = "<group>";
 		};
+		1C7ABF5C2021BBF8006313C3 /* ReactiveCocoaMacros */ = {
+			isa = PBXGroup;
+			children = (
+				1C7ABF5D2021BBF8006313C3 /* EXTScope.h */,
+				1C7ABF5E2021BBF8006313C3 /* metamacros.h */,
+			);
+			path = ReactiveCocoaMacros;
+			sourceTree = "<group>";
+		};
 		1C7CA7281E49B95200D94CFB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +367,7 @@
 				1CEC12C41E500F4400F3E3C4 /* DaiStorageModels */,
 				1C3DDDFF1E6094A00034B3E2 /* CategoryItem */,
 				1CE8E5DF1E4D7A03005B1B18 /* Couchbase */,
+				1C7ABF5C2021BBF8006313C3 /* ReactiveCocoaMacros */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -16,6 +16,15 @@
 
 @implementation DownloadedsViewController
 
+#pragma mark - Private Instance Method
+
+- (void)refreshAction {
+    if (self.galleries.count) {
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
+    [self reloadGalleries];
+}
+
 #pragma mark - Method to Override
 
 #define pageCout 40
@@ -48,15 +57,8 @@
 
 - (void)initValues {
     [super initValues];
-}
-
-#pragma mark - IBAction
-
-- (IBAction)refreshAction:(id)sender {
-    if (self.galleries.count) {
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-    }
-    [self reloadGalleries];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAction) name:DBGalleryTimeStampUpdateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAction) name:DBGalleryDownloadedUpdateNotification object:nil];
 }
 
 @end
