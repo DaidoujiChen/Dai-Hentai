@@ -32,7 +32,7 @@
 - (void)fetchGalleries {
     if ([self.pageLocker tryLock]) {
         NSInteger index = self.pageIndex * pageCout;
-        NSArray *hentaiInfos = [DBGallery downloadedsFrom:index length:pageCout];
+        NSArray<HentaiInfo *> *hentaiInfos = [DBGallery downloadedsFrom:index length:pageCout];
         if (hentaiInfos && hentaiInfos.count) {
             [self.galleries addObjectsFromArray:hentaiInfos];
             [self.collectionView reloadData];

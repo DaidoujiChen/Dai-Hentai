@@ -55,7 +55,7 @@ typedef enum {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-+ (NSArray<NSDictionary *> *)list:(DBGalleryType)type from:(NSInteger)start length:(NSInteger)length {
++ (NSArray<HentaiInfo *> *)list:(DBGalleryType)type from:(NSInteger)start length:(NSInteger)length {
     CBLQuery *query = [[[self galleries] viewNamed:@"sort"] createQuery];
     query.skip = start;
     query.limit = length;
@@ -83,7 +83,7 @@ typedef enum {
         return nil;
     }
     
-    NSMutableArray *items = [NSMutableArray array];
+    NSMutableArray<HentaiInfo *> *items = [NSMutableArray array];
     for (NSInteger index = 0; index < results.count; index++) {
         NSDictionary *properties = [results rowAtIndex:index].document.properties;
         HentaiInfo *info = [HentaiInfo new];
@@ -95,11 +95,34 @@ typedef enum {
 
 #pragma mark - Class Method
 
-+ (NSArray<NSDictionary *> *)historiesFrom:(NSInteger)start length:(NSInteger)length {
++ (NSArray<HentaiInfo *> *)all {
+    CBLQuery *query = [[self galleries] createAllDocumentsQuery];
+    NSError *error;
+    CBLQueryEnumerator *results = [query run:&error];
+    if (error) {
+        NSLog(@"all Fail");
+        return nil;
+    }
+    
+    if (results.count == 0) {
+        return nil;
+    }
+    
+    NSMutableArray *items = [NSMutableArray array];
+    for (NSInteger index = 0; index < results.count; index++) {
+        NSDictionary *properties = [results rowAtIndex:index].document.properties;
+        HentaiInfo *info = [HentaiInfo new];
+        [info restoreContents:[NSMutableDictionary dictionaryWithDictionary:properties] defaultContent:nil];
+        [items addObject:info];
+    }
+    return items;
+}
+
++ (NSArray<HentaiInfo *> *)historiesFrom:(NSInteger)start length:(NSInteger)length {
     return [self list:DBGalleryTypeHistories from:start length:length];
 }
 
-+ (NSArray<NSDictionary *> *)downloadedsFrom:(NSInteger)start length:(NSInteger)length {
++ (NSArray<HentaiInfo *> *)downloadedsFrom:(NSInteger)start length:(NSInteger)length {
     return [self list:DBGalleryTypeDownloadeds from:start length:length];
 }
 

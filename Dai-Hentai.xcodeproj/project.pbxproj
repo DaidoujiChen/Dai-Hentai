@@ -26,6 +26,7 @@
 		1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */; };
 		1C5BF266200CA3AE00FB260A /* DownloadedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */; };
 		1C630F0D2005037F0068879F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C630F0C2005037F0068879F /* TabBarController.m */; };
+		1C7ABF622021C73F006313C3 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7ABF612021C73F006313C3 /* SettingViewController.m */; };
 		1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CA72E1E49C13400D94CFB /* HentaiParser.m */; };
 		1C8DEE82200896B400C479F4 /* DBSearchSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE81200896B400C479F4 /* DBSearchSetting.m */; };
 		1C8DEE85200898E500C479F4 /* DBGalleryPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE84200898E500C479F4 /* DBGalleryPage.m */; };
@@ -96,6 +97,8 @@
 		1C630F0C2005037F0068879F /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		1C7ABF5D2021BBF8006313C3 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		1C7ABF5E2021BBF8006313C3 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		1C7ABF602021C73F006313C3 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		1C7ABF612021C73F006313C3 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		1C7CA72D1E49C13400D94CFB /* HentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiParser.h; sourceTree = "<group>"; };
 		1C7CA72E1E49C13400D94CFB /* HentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiParser.m; sourceTree = "<group>"; };
 		1C8DEE80200896B400C479F4 /* DBSearchSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSearchSetting.h; sourceTree = "<group>"; };
@@ -340,6 +343,15 @@
 			path = ReactiveCocoaMacros;
 			sourceTree = "<group>";
 		};
+		1C7ABF5F2021C71D006313C3 /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C7ABF602021C73F006313C3 /* SettingViewController.h */,
+				1C7ABF612021C73F006313C3 /* SettingViewController.m */,
+			);
+			path = SettingViewController;
+			sourceTree = "<group>";
+		};
 		1C7CA7281E49B95200D94CFB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +362,7 @@
 				1C0867F81E5C8F2100E361B5 /* SearchViewController */,
 				1C0CF4951E82D449005ADDFA /* HistoriesViewController */,
 				1C5BF263200CA3AE00FB260A /* DownloadedsViewController */,
+				1C7ABF5F2021C71D006313C3 /* SettingViewController */,
 				1C0608401E53471100E6A285 /* GalleryViewController */,
 			);
 			path = ViewControllers;
@@ -758,6 +771,7 @@
 				1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */,
 				1CE4D1B6200461E200F8B79A /* HentaiDownloadCenter.m in Sources */,
 				1CE4D1B9200462ED00F8B79A /* HentaiImagesManager.m in Sources */,
+				1C7ABF622021C73F006313C3 /* SettingViewController.m in Sources */,
 				1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */,
 				1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */,
 				1C33D1111E5F391A00F0EB12 /* SearchCategoryCell.m in Sources */,
