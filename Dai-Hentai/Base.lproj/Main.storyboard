@@ -152,9 +152,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-Ua-g2u">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-Ua-g2u">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Umn-a9-gwa">
                                     <size key="itemSize" width="375" height="140"/>
@@ -297,6 +296,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aQf-Ua-g2u" firstAttribute="centerX" secondItem="9Ti-4N-CDh" secondAttribute="centerX" id="HSD-cn-CyK"/>
+                            <constraint firstItem="aQf-Ua-g2u" firstAttribute="width" secondItem="9Ti-4N-CDh" secondAttribute="width" id="PhO-0B-jvc"/>
+                            <constraint firstItem="aQf-Ua-g2u" firstAttribute="centerY" secondItem="9Ti-4N-CDh" secondAttribute="centerY" id="dTh-ea-KgQ"/>
+                            <constraint firstItem="aQf-Ua-g2u" firstAttribute="height" secondItem="9Ti-4N-CDh" secondAttribute="height" id="dnf-0s-VCl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Jw4-Xp-Hlg"/>
                     </view>
                     <navigationItem key="navigationItem" title="下載" id="veQ-BN-uHB"/>
@@ -533,9 +538,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Eu4-wQ-awF">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Eu4-wQ-awF">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ict-U7-XX8">
                                     <size key="itemSize" width="375" height="140"/>
@@ -678,6 +682,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eu4-wQ-awF" firstAttribute="height" secondItem="RGl-60-OPW" secondAttribute="height" id="3AG-gj-FRf"/>
+                            <constraint firstItem="Eu4-wQ-awF" firstAttribute="centerX" secondItem="RGl-60-OPW" secondAttribute="centerX" id="Deg-Bk-ReB"/>
+                            <constraint firstItem="Eu4-wQ-awF" firstAttribute="centerY" secondItem="RGl-60-OPW" secondAttribute="centerY" id="E9r-3A-4Kz"/>
+                            <constraint firstItem="Eu4-wQ-awF" firstAttribute="width" secondItem="RGl-60-OPW" secondAttribute="width" id="jkV-wf-DNR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="M2L-ad-Fbm"/>
                     </view>
                     <navigationItem key="navigationItem" title="歷史" id="862-Pc-VDZ">
