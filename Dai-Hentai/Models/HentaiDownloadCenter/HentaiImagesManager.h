@@ -21,7 +21,7 @@
 @property (nonatomic, weak) id<HentaiImagesManagerInternalDelegate> internalDelegate;
 @property (nonatomic, readonly) NSMutableArray<NSString *> *imagePages;
 @property (nonatomic, readonly) NSMutableDictionary<NSNumber *, NSDictionary<NSString *, NSNumber *> *> *heights;
-@property (nonatomic, assign) BOOL downloadAll;
+@property (nonatomic, readonly) BOOL aliveForDownload;
 @property (nonatomic, readonly) CGFloat downloadProgress;
 
 + (UIImage *)placeholder;
@@ -31,6 +31,8 @@
 - (void)downloadImageAt:(NSInteger)index;
 - (void)loadImageAt:(NSInteger)index completion:(void (^)(UIImage *image))completion;
 - (BOOL)isReadyAt:(NSInteger)index;
+- (void)giveMeAll;
+- (void)stop;
 
 @end
 

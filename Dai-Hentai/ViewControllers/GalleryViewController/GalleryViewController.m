@@ -288,7 +288,7 @@
         __strong GalleryViewController *strongSelf = weakSelf;
         if (optionIndex) {
             strongSelf.leaveByDelete = YES;
-            strongSelf.manager.downloadAll = NO;
+            [strongSelf.manager stop];
             [HentaiDownloadCenter bye:strongSelf.info];
             
             [DBGallery deleteDownloaded:strongSelf.info handler: ^{
@@ -303,8 +303,8 @@
     }];
 }
 
-- (void)downloadAll {
-    self.manager.downloadAll = YES;
+- (void)giveMeAll {
+    [self.manager giveMeAll];
     [self.info moveToDownloaded];
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteThis)];
     self.navigationItem.rightBarButtonItem = deleteButton;
@@ -340,12 +340,12 @@
     
     // 在 navigation bar 上加一個下載的按鈕, 或是刪除掉的按鈕
     if ([self.info isDownloaded]) {
-        self.manager.downloadAll = YES;
+        [self.manager giveMeAll];
         UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteThis)];
         self.navigationItem.rightBarButtonItem = deleteButton;
     }
     else {
-        UIBarButtonItem *downloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(downloadAll)];
+        UIBarButtonItem *downloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(giveMeAll)];
         self.navigationItem.rightBarButtonItem = downloadButton;
     }
     

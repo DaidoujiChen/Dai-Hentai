@@ -170,7 +170,7 @@
             }
             __strong ListViewController *strongSelf = weakSelf;
             HentaiImagesManager *manager = [HentaiDownloadCenter manager:info andParser:strongSelf.parser];
-            manager.downloadAll = YES;
+            [manager giveMeAll];
             [manager fetch:nil];
             [info latestPage];
             [info moveToDownloaded];

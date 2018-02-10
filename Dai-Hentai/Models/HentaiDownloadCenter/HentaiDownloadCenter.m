@@ -64,7 +64,7 @@
     
     // 如果不需要完整下載, 則直接從託管移除掉
     manager.delegate = nil;
-    if (!manager.downloadAll) {
+    if (!manager.aliveForDownload) {
         [[self center] removeObjectForKey:key];
         [self itemsInCenter:[self center].count];
     }

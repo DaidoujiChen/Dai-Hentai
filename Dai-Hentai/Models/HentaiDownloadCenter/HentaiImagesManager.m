@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSDictionary<NSString *, NSNumber *> *> *heights;
 @property (nonatomic, strong) FMStream *storage;
 @property (nonatomic, strong) NSNumber *isExist;
+@property (nonatomic, assign) BOOL aliveForDownload;
+@property (nonatomic, readonly) BOOL isDownloadFinish;
 
 @end
 
@@ -62,14 +64,14 @@
         strongSelf.heights[@(pageIndex)] = @{ @"width": @(imageWidth), @"height": @(imageHeight) };
         [strongSelf.delegate imageDownloaded];
         
-        if (strongSelf.downloadAll) {
+        if (strongSelf.aliveForDownload) {
             NSInteger totalImages = strongSelf.heights.count;
             if (totalImages + 20 >= strongSelf.imagePages.count) {
                 [strongSelf fetch:nil];
             }
             
-            if (totalImages == strongSelf.imagePages.count) {
-                strongSelf.downloadAll = NO;
+            if (strongSelf.isDownloadFinish) {
+                strongSelf.aliveForDownload = NO;
                 [strongSelf.internalDelegate downloadFinish:strongSelf.info];
             }
         }
@@ -140,6 +142,10 @@
             [weakSelf.loadingImagePages removeObject:imagePage];
         }
     }];
+}
+
+- (BOOL)isDownloadFinish {
+    return self.heights.count == self.imagePages.count;
 }
 
 #pragma mark - Instance Method
@@ -220,6 +226,16 @@
     return !(self.heights[@(index)][@"width"].floatValue == 0 && self.heights[@(index)][@"height"].floatValue == 0);
 }
 
+- (void)giveMeAll {
+    if (!self.isDownloadFinish) {
+        self.aliveForDownload = YES;
+    }
+}
+
+- (void)stop {
+    self.aliveForDownload = NO;
+}
+
 - (CGFloat)downloadProgress {
     return ((CGFloat)self.heights.count) / self.info.filecount.floatValue;
 }
@@ -240,7 +256,7 @@
         NSString *folder = info.title_jpn.length ? info.title_jpn : info.title;
         folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
         self.storage = [[FilesManager documentFolder] fcd:folder];
-        self.downloadAll = NO;
+        self.aliveForDownload = NO;
     }
     return self;
 }
