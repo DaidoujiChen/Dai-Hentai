@@ -56,7 +56,7 @@
     }
     
     cell.galleryImageView.backgroundColor = [UIColor whiteColor];
-    cell.galleryImageView.image = [UIImage imageNamed:@"placeholder"];
+    cell.galleryImageView.image = [HentaiImagesManager placeholder];
     [self.manager downloadImageAt:indexPath.row];
 }
 
@@ -75,9 +75,8 @@
             imageSize.height = self.manager.heights[@(indexPath.row)][@"height"].floatValue;
         }
         else {
-            UIImage *placeholderImage = [UIImage imageNamed:@"placeholder"];
-            imageSize.width = placeholderImage.size.width;
-            imageSize.height = placeholderImage.size.height;
+            imageSize.width = [HentaiImagesManager placeholder].size.width;
+            imageSize.height = [HentaiImagesManager placeholder].size.height;
         }
         height = imageSize.height * (width / imageSize.width);
     }

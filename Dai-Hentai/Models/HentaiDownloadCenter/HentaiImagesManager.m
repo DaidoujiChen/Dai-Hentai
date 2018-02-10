@@ -7,6 +7,7 @@
 //
 
 #import "HentaiImagesManager.h"
+#import <objc/runtime.h>
 #import "NSTimer+Block.h"
 
 @interface HentaiImagesManager ()
@@ -25,6 +26,16 @@
 @end
 
 @implementation HentaiImagesManager
+
+#pragma mark - Class Method
+
++ (UIImage *)placeholder {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [UIImage imageNamed:@"placeholder"], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
+}
 
 #pragma mark - Private Instance Method
 

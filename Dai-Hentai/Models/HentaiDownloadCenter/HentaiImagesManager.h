@@ -24,6 +24,8 @@
 @property (nonatomic, assign) BOOL downloadAll;
 @property (nonatomic, readonly) CGFloat downloadProgress;
 
++ (UIImage *)placeholder;
+
 - (instancetype)initWith:(HentaiInfo *)info andParser:(Class)parser;
 - (void)fetch:(void (^)(BOOL isExist))result;
 - (void)downloadImageAt:(NSInteger)index;
