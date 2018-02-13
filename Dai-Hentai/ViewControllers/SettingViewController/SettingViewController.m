@@ -11,16 +11,38 @@
 #import "DBGallery.h"
 #import "FilesManager.h"
 
-@interface SettingViewController ()
+@interface SettingViewController () <UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *historySizeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *downloadSizeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scrollDirectionLabel;
 
 @property (nonatomic, strong) NSLock *sizeLock;
 
 @end
 
 @implementation SettingViewController
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.reuseIdentifier isEqualToString:@"ScrollDirectionCell"]) {
+        if (self.info.scrollDirection.integerValue == UICollectionViewScrollDirectionVertical) {
+            self.info.scrollDirection = @(UICollectionViewScrollDirectionHorizontal);
+        }
+        else {
+            self.info.scrollDirection = @(UICollectionViewScrollDirectionVertical);
+        }
+        [self displayCurrentScrollDirectionText];
+    }
+    else {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        return;
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 #pragma mark - Private Instance Method
 
@@ -84,16 +106,28 @@
     });
 }
 
+- (void)displayCurrentScrollDirectionText {
+    if (self.info.scrollDirection.integerValue == UICollectionViewScrollDirectionVertical) {
+        self.scrollDirectionLabel.text = @"上下捲動";
+    }
+    else {
+        self.scrollDirectionLabel.text = @"左右捲動";
+    }
+}
+
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.delegate = self;
     self.sizeLock = [NSLock new];
+    self.info = [DBUserPreference info];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self sizeCalculator];
+    [self displayCurrentScrollDirectionText];
 }
 
 @end

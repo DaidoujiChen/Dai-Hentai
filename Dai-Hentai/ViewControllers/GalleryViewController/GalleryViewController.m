@@ -13,6 +13,7 @@
 #import "DBGallery.h"
 #import "UIAlertController+Block.h"
 #import "HentaiDownloadCenter.h"
+#import "DBUserPreference.h"
 
 @interface GalleryViewController () <GalleryCollectionViewHandlerDelegate, HentaiImagesManagerDelegate>
 
@@ -321,7 +322,7 @@
     self.collectionView.dataSource = self.collectionViewHandler;
     self.collectionView.delegate = self.collectionViewHandler;
     self.collectionViewHandler.delegate = self;
-    self.scrollDirect = UICollectionViewScrollDirectionVertical;
+    self.scrollDirect = [DBUserPreference info].scrollDirection.integerValue;
     self.collectionView.pagingEnabled = self.scrollDirect == UICollectionViewScrollDirectionHorizontal;
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     layout.scrollDirection = self.scrollDirect;

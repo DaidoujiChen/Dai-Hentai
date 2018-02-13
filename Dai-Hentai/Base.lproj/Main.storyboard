@@ -48,7 +48,7 @@
                         <sections>
                             <tableViewSection headerTitle="用量" id="YW9-An-RFl">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DownloadedSizeCell" textLabel="k3f-9d-KdJ" detailTextLabel="i0A-cz-KPL" style="IBUITableViewCellStyleValue1" id="rA3-2p-aSh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistorySizeCell" textLabel="k3f-9d-KdJ" detailTextLabel="i0A-cz-KPL" style="IBUITableViewCellStyleValue1" id="rA3-2p-aSh">
                                         <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rA3-2p-aSh" id="JNh-iF-wcD">
@@ -98,12 +98,41 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="觀看習慣" id="5bE-DS-dhU">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScrollDirectionCell" textLabel="eqa-Ue-yhb" detailTextLabel="c1R-X7-l6v" style="IBUITableViewCellStyleValue1" id="BvQ-hb-GJR">
+                                        <rect key="frame" x="0.0" y="199.33333333333334" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BvQ-hb-GJR" id="xol-fU-ruz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="滑動方向切換" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eqa-Ue-yhb">
+                                                    <rect key="frame" x="16" y="11.999999999999998" width="104" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="讀取中..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c1R-X7-l6v">
+                                                    <rect key="frame" x="293" y="11.999999999999998" width="66" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="fEv-YZ-L6B"/>
                     <connections>
                         <outlet property="downloadSizeLabel" destination="p6l-zm-oCo" id="OFh-68-Qei"/>
                         <outlet property="historySizeLabel" destination="i0A-cz-KPL" id="VhX-jR-ouj"/>
+                        <outlet property="scrollDirectionLabel" destination="c1R-X7-l6v" id="dd8-bG-bLb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5F-6j-bkh" userLabel="First Responder" sceneMemberID="firstResponder"/>

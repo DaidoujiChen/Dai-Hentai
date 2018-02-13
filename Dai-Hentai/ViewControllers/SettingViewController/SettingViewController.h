@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBUserPreference.h"
 
 @interface SettingViewController : UITableViewController
+
+@property (nonatomic, strong) UserPreference *info;
 
 @end

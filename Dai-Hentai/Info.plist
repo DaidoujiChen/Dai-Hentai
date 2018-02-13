@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>3.1</string>
 	<key>CFBundleVersion</key>
-	<string>20180210</string>
+	<string>20180213</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

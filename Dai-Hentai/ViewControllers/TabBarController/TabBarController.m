@@ -8,6 +8,7 @@
 
 #import "TabBarController.h"
 #import "GalleryViewController.h"
+#import "SettingViewController.h"
 
 @interface TabBarController () <UITabBarControllerDelegate>
 
@@ -24,12 +25,14 @@
         }
         
         UINavigationController *navigation = (UINavigationController *)controller;
-        if (![navigation.topViewController isKindOfClass:[GalleryViewController class]]) {
-            continue;
+        if ([navigation.topViewController isKindOfClass:[GalleryViewController class]]) {
+            GalleryViewController *gallery = (GalleryViewController *)navigation.topViewController;
+            [gallery.navigationController popViewControllerAnimated:NO];
         }
-        
-        GalleryViewController *gallery = (GalleryViewController *)navigation.topViewController;
-        [gallery.navigationController popViewControllerAnimated:NO];
+        else if ([navigation.topViewController isKindOfClass:[SettingViewController class]]) {
+            SettingViewController *setting = (SettingViewController *)navigation.topViewController;
+            [DBUserPreference setInfo:setting.info];
+        }
     }
 }
 
