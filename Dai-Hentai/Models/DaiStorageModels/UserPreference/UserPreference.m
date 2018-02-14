@@ -17,6 +17,7 @@
     self = [super init];
     if (self) {
         self.scrollDirection = @(UICollectionViewScrollDirectionVertical);
+        self.isLockThisApp = @(NO);
     }
     return self;
 }

@@ -11,6 +11,7 @@
 @interface UserPreference : DaiStorage
 
 @property (nonatomic, strong) NSNumber *scrollDirection;
+@property (nonatomic, strong) NSNumber *isLockThisApp;
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *, id> *)dictionary;
 

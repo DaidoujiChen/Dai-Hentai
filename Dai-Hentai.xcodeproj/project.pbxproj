@@ -40,6 +40,7 @@
 		1CA255FB203143040040B73F /* UserPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA255FA203143040040B73F /* UserPreference.m */; };
 		1CA2707E1E50B9F80054AA6E /* EHentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA2707D1E50B9F80054AA6E /* EHentaiParser.m */; };
 		1CA270811E50BA0B0054AA6E /* ExHentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA270801E50BA0B0054AA6E /* ExHentaiParser.m */; };
+		1CBBDB422032DB0600BC51BF /* AuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBBDB412032DB0600BC51BF /* AuthHelper.m */; };
 		1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */; };
 		1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60831E4D9ABC000CA9E5 /* FMStream.m */; };
 		1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCE36651E8E2D5F00A82935 /* MessageCell.m */; };
@@ -130,6 +131,8 @@
 		1CA707141E85050D00AF24EF /* VersionGenerator.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = VersionGenerator.sh; sourceTree = "<group>"; };
 		1CA707171E850FEB00AF24EF /* CopyMobileProvision.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CopyMobileProvision.sh; sourceTree = "<group>"; };
 		1CAF38941E854B8500A4C0DD /* PrivateListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateListViewController.h; sourceTree = "<group>"; };
+		1CBBDB402032DB0600BC51BF /* AuthHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthHelper.h; sourceTree = "<group>"; };
+		1CBBDB412032DB0600BC51BF /* AuthHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthHelper.m; sourceTree = "<group>"; };
 		1CBF60801E4D9ABC000CA9E5 /* FilesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesManager.h; sourceTree = "<group>"; };
 		1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesManager.m; sourceTree = "<group>"; };
 		1CBF60821E4D9ABC000CA9E5 /* FMStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMStream.h; sourceTree = "<group>"; };
@@ -387,6 +390,7 @@
 				1C3DDDFF1E6094A00034B3E2 /* CategoryItem */,
 				1CE8E5DF1E4D7A03005B1B18 /* Couchbase */,
 				1C7ABF5C2021BBF8006313C3 /* ReactiveCocoaMacros */,
+				1CBBDB3F2032DAE700BC51BF /* AuthHelper */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -474,6 +478,15 @@
 				1C4D8B261E861B2100113D0E /* NSTimer */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		1CBBDB3F2032DAE700BC51BF /* AuthHelper */ = {
+			isa = PBXGroup;
+			children = (
+				1CBBDB402032DB0600BC51BF /* AuthHelper.h */,
+				1CBBDB412032DB0600BC51BF /* AuthHelper.m */,
+			);
+			path = AuthHelper;
 			sourceTree = "<group>";
 		};
 		1CBF607F1E4D9ABC000CA9E5 /* FilesManager */ = {
@@ -657,7 +670,7 @@
 				TargetAttributes = {
 					1C1AD02E1E49B79800544217 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = W4PBB7Y8TV;
+						DevelopmentTeam = XLP7NJ2T65;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -817,6 +830,7 @@
 				1C8DEE82200896B400C479F4 /* DBSearchSetting.m in Sources */,
 				1CA270811E50BA0B0054AA6E /* ExHentaiParser.m in Sources */,
 				1CEC12BE1E500E9A00F3E3C4 /* DaiStorage.m in Sources */,
+				1CBBDB422032DB0600BC51BF /* AuthHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,7 +965,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W4PBB7Y8TV;
+				DEVELOPMENT_TEAM = XLP7NJ2T65;
 				INFOPLIST_FILE = "Dai-Hentai/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -968,7 +982,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W4PBB7Y8TV;
+				DEVELOPMENT_TEAM = XLP7NJ2T65;
 				INFOPLIST_FILE = "Dai-Hentai/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

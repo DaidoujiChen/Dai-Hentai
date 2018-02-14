@@ -126,18 +126,47 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="隱私設定" id="FhW-tE-SAa">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LockThisAppCell" textLabel="C0U-US-FLf" detailTextLabel="kNQ-rS-KxB" style="IBUITableViewCellStyleValue1" id="e7h-ZX-gcy">
+                                        <rect key="frame" x="0.0" y="299.33333333333337" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e7h-ZX-gcy" id="UGt-aS-tWq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="App 上鎖" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C0U-US-FLf">
+                                                    <rect key="frame" x="16" y="11.999999999999998" width="70.333333333333329" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="讀取中..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kNQ-rS-KxB">
+                                                    <rect key="frame" x="293" y="11.999999999999998" width="66" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="fEv-YZ-L6B"/>
                     <connections>
                         <outlet property="downloadSizeLabel" destination="p6l-zm-oCo" id="OFh-68-Qei"/>
                         <outlet property="historySizeLabel" destination="i0A-cz-KPL" id="VhX-jR-ouj"/>
+                        <outlet property="lockThisAppLabel" destination="kNQ-rS-KxB" id="LZy-pS-5y0"/>
                         <outlet property="scrollDirectionLabel" destination="c1R-X7-l6v" id="dd8-bG-bLb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5F-6j-bkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="94" y="2323"/>
+            <point key="canvasLocation" x="294" y="2322"/>
         </scene>
         <!--設定-->
         <scene sceneID="en3-rZ-TW5">
