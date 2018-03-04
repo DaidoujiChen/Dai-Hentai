@@ -1,20 +1,63 @@
-# Dai-Hentai 3.0 (icon, 進場圖募集中!!!!! 價可議)
+# Dai-Hentai 3.0
 
-點擊縮圖可以導向 youtube 觀看影片
+## 總覽
+這個專案是一個讓 iOS 裝置方便閱讀, 使用, 收藏 e / ex hentai 網站內容的 App, 由於該網站的內容多半是成人觀看, 如果不喜歡這些內容的話, 請勿使用 >x<, 感恩
+
+當然, 撇開內容的部分不談, 程式碼的部分或是使用上有任何問題, 都歡迎提出指教 >w<
+
+下面的縮圖點擊後可以導向 youtube 觀看大致上功能使用的影片
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=DqkIxhpzP9s
 " target="_blank"><img src="http://img.youtube.com/vi/DqkIxhpzP9s/0.jpg" 
 alt="newHentai" width="240" height="180" border="10" /></a>
 
-版面跟內容重新規劃, 因為生活忙碌所以沒有確切的完成日期, >w<"
+整體的使用體驗應該會比 2.x 來的穩定跟快速, 也加上了上鎖的功能, 讓大家在使用上可以更安心一些 =w=
 
-## 最新版本試玩
+## 原生 Xcode 直接安裝方法
+1. 獲取專案（兩種方法）
+ a) 使用 `Download ZIP` 或 `Release` 下載專案打包並解壓縮；
+ b) 通過 `$ git clone https://github.com/DaidoujiChen/Dai-Hentai.git` 複製專案數據庫；
+2. 重建（還原） `Pods`
+  ![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-12-07+%E4%B8%8A%E5%8D%8810.27.08.png)
+
+ ```bash
+ $ cd Dai-Hentai # 進入專案目錄
+ $ pod install # 不要使用 pod update
+```
+
+ *如果無法使用 `pod` 指令, 請先安裝 [CocoaPods](https://cocoapods.org/)*
+
+ ```bash
+ sudo gem install cocoapods
+```
+3. 開啓專案
+  **請選擇 `e-Hentai.xcworkspace` 而非 `e-Hentai.xcodeproj` 呦**
+
+  ![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-10-22+%E4%B8%8B%E5%8D%8810.26.35.png)
+  
+## Windows / Linux 不需 JB 安裝方法
+由 [codexss](https://github.com/codexss) 提供不需要 JB 也可以安裝的方法, 因為第三方的軟件沒有開源, 所以不保證整個使用過程的安全性喔, 請要使用的人自行斟酌,
+
+1. 從 [Release](https://github.com/DaidoujiChen/Dai-Hentai/releases) 下載最新版本的 ipa 檔案
+2. 從 [Cydia Impactor](http://www.cydiaimpactor.com/) 下載重新打證工具
+3. 插上 iPhone 打開 Cydia Impactor 
+4. 將 `e-Hentai.ipa` 拖放進 Cydia Impactor 軟件
+5. 登上你的蘋果id(安全性待考證)
+6. 點擊開始，等待你的手機出現 Dai-Hentai 吧
+
+**需要注意的一點, 這種安裝方式只有七天的賞味期喔, 需要在期限內再裝一次才行**
+
+## 支援
+- iOS9.0 以上
+- iPhone / iPad
+
+## 最新測試版本試玩
 
 [點我導向 appetize](https://appetize.io/embed/qk23vcyrmbtecy7n12h6118wa4?device=iphone7&scale=100&orientation=portrait&osVersion=10.0&deviceColor=white)
 
 但是由於是免費帳號, 所以試玩一個月只有 100 分鐘的額度, 付費每一分鐘 0.05 鎂, 成本實在過高, 有玩到的人只能說有拜拜, 沒有玩到的人可以直接用下面的 IPA 檔案...如果能的話啦 O3Ob
 
-## 最新版本 IPA
+## 最新測試版本 IPA
 
 因為懶惰所以懶得每次一直手動發布版本, 所以用了一個自動生產 ipa 的服務, 會在每當有新的 commit 時運作
 
