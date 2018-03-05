@@ -645,7 +645,6 @@
 				1C1AD02B1E49B79800544217 /* Sources */,
 				1C1AD02C1E49B79800544217 /* Frameworks */,
 				1C8A5EE01E71863F00A6095F /* ShellScript */,
-				1CA707181E85100400AF24EF /* ShellScript */,
 				1C1AD02D1E49B79800544217 /* Resources */,
 				8242C7F3CAE38698E20FDCC6 /* [CP] Embed Pods Frameworks */,
 				E4A04B382EE4A3F56A06DA93 /* [CP] Copy Pods Resources */,
@@ -719,19 +718,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "chmod 755 $SRCROOT/Dai-Hentai/VersionGenerator.sh\n$SRCROOT/Dai-Hentai/VersionGenerator.sh";
-		};
-		1CA707181E85100400AF24EF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "chmod 755 $SRCROOT/Dai-Hentai/CopyMobileProvision.sh\n$SRCROOT/Dai-Hentai/CopyMobileProvision.sh";
 		};
 		5F6B103CB5164C6D1B5F3CB2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
