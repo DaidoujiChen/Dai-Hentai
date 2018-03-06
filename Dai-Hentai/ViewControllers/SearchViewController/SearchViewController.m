@@ -168,6 +168,11 @@ typedef enum {
         }
     }
     
+    NSArray<NSString *> *badWords = [NSArray arrayWithObjects:@"chinese",@"translated",@"中国翻訳", nil];
+    for (NSString *item in badWords) {
+        [recentKeywords removeObjectForKey:item];
+    }
+    
     // 依照出現的次數多 -> 寡排序
     return [recentKeywords keysSortedByValueUsingComparator:^NSComparisonResult(NSNumber *obj1, NSNumber *obj2) {
         return [obj2 compare:obj1];
