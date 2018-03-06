@@ -145,6 +145,11 @@
 }
 
 - (BOOL)isDownloadFinish {
+    // 當第一次進入時 heights / imagePages 會是 0
+    // 直接被判斷為已完成下載, 所以當 imagePages 為 0 時, 應該回還沒有下載完成
+    if (self.imagePages.count == 0) {
+        return NO;
+    }
     return self.heights.count == self.imagePages.count;
 }
 
