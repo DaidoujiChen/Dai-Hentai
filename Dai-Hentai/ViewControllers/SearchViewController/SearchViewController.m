@@ -46,12 +46,15 @@ typedef enum {
             return @"手動輸入關鍵字";
             
         case 1:
-            return @"從近期標題選取";
+            return @"";
             
         case 2:
-            return @"從近期 Tag 選取";
+            return @"從近期標題選取";
             
         case 3:
+            return @"從近期 Tag 選取";
+            
+        case 4:
             return @"評分要求";
             
         default:
@@ -68,13 +71,13 @@ typedef enum {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SearchKeywordCell"];
             break;
             
-        case 1:
         case 2:
+        case 3:
             cell = [tableView dequeueReusableCellWithIdentifier:@"SearchHintCell"];
             cell.textLabel.text = item.title;
             break;
             
-        case 3:
+        case 4:
             cell = [tableView dequeueReusableCellWithIdentifier:@"SearchRatingCell"];
             break;
             
@@ -168,10 +171,8 @@ typedef enum {
         }
     }
     
-    NSArray<NSString *> *badWords = [NSArray arrayWithObjects:@"chinese",@"translated",@"中国翻訳", nil];
-    for (NSString *item in badWords) {
-        [recentKeywords removeObjectForKey:item];
-    }
+    NSArray<NSString *> *ignoreWords = @[ @"chinese", @"translated", @"中国翻訳" ];
+    [recentKeywords removeObjectsForKeys:ignoreWords];
     
     // 依照出現的次數多 -> 寡排序
     return [recentKeywords keysSortedByValueUsingComparator:^NSComparisonResult(NSNumber *obj1, NSNumber *obj2) {
@@ -194,6 +195,9 @@ typedef enum {
     NSMutableArray<SearchItem *> *input = [NSMutableArray arrayWithObject:[SearchItem itemWith:@"Keyword" getter:@"keyword"]];
     [self.allItems addObject:input];
     
+    NSMutableArray<SearchItem *> *chineseOnly = [NSMutableArray arrayWithObject:[SearchItem itemWith:@"只搜尋中文內容" getter:@"chineseOnly"]];
+    [self.allItems addObject:chineseOnly];
+    
     NSMutableArray<SearchItem *> *titleHints = [NSMutableArray array];
     NSArray *recentTitles = [self recentTitles];
     for (NSInteger index = 0; index < MIN(recentTitles.count, 5); index++) {
@@ -212,7 +216,6 @@ typedef enum {
     [self.allItems addObject:rate];
     
     NSMutableArray<SearchItem *> *categories = [NSMutableArray array];
-    [categories addObject:[SearchItem itemWith:@"Chinese" getter:@"isChinese"]];
     [categories addObject:[SearchItem itemWith:@"Doujinshi" getter:@"doujinshi"]];
     [categories addObject:[SearchItem itemWith:@"Manga" getter:@"manga"]];
     [categories addObject:[SearchItem itemWith:@"Artist CG" getter:@"artistcg"]];
