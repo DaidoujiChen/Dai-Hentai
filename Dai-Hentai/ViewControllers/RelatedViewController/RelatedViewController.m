@@ -108,26 +108,15 @@ typedef enum {
 
 #pragma mark - Private Instance Method
 
-- (NSArray<NSString *> *)titleSplit:(NSString *)title {
-    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"=♥~【】&/!#,.;:|{}[]() "];
-    NSMutableArray *allowResults = [NSMutableArray array];
-    for (NSString *splitString in [title componentsSeparatedByCharactersInSet:characterSet]) {
-        if (splitString.length && [splitString rangeOfString:@"-"].location == NSNotFound) {
-            [allowResults addObject:splitString];
-        }
-    }
-    return allowResults;
-}
-
 - (void)initValues {
     NSMutableArray *sections = [NSMutableArray array];
-    NSArray *words = [self titleSplit:self.info.title];
+    NSArray *words = [self.info engTitleSplit];
     if (words.count) {
         self.engWords = words;
         [sections addObject:@(SectionTypeEng)];
     }
     
-    words = [self titleSplit:self.info.title_jpn];
+    words = [self.info jpnTitleSplit];
     if (words.count) {
         self.jpnWords = words;
         [sections addObject:@(SectionTypeJpn)];

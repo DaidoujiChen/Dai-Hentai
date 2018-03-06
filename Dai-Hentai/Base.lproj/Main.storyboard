@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRn-zh-zZh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRn-zh-zZh">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -574,7 +574,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="Wyq-M7-u37">
                             <connections>
-                                <segue destination="iU1-BP-ghw" kind="show" identifier="PushToSearch" id="q7v-Bg-M1E"/>
+                                <segue destination="bLr-Ua-73U" kind="show" identifier="PushToSearch" id="sFK-HJ-oA3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -823,127 +823,131 @@
             <point key="canvasLocation" x="94" y="-940"/>
         </scene>
         <!--搜尋-->
-        <scene sceneID="O0V-57-eIb">
+        <scene sceneID="9mO-G5-4LD">
             <objects>
-                <viewController id="iU1-BP-ghw" customClass="SearchViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KsQ-9e-8O3">
+                <tableViewController id="bLr-Ua-73U" customClass="SearchViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="bD8-mi-5eJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g62-f2-hog">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchKeywordCell" id="AaR-Ua-7wX" customClass="SearchKeywordCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AaR-Ua-7wX" id="BCp-VP-WBP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="輸入要搜尋的字串" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hh2-La-VKU">
-                                                    <rect key="frame" x="10" y="10" width="355" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="ysl-ar-Fli"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="AaR-Ua-7wX" id="l8T-Sc-YTK"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchKeywordCell" id="AdL-n9-snb" customClass="SearchKeywordCell">
+                                <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AdL-n9-snb" id="ksK-qB-k9g">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="輸入要搜尋的字串" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eMq-kh-cgZ">
+                                            <rect key="frame" x="10" y="7" width="355" height="30"/>
                                             <constraints>
-                                                <constraint firstItem="hh2-La-VKU" firstAttribute="centerX" secondItem="BCp-VP-WBP" secondAttribute="centerX" id="GZ6-X8-Adk"/>
-                                                <constraint firstItem="hh2-La-VKU" firstAttribute="width" secondItem="BCp-VP-WBP" secondAttribute="width" constant="-20" id="JLx-ae-bcE"/>
-                                                <constraint firstItem="hh2-La-VKU" firstAttribute="centerY" secondItem="BCp-VP-WBP" secondAttribute="centerY" id="XfH-fZ-4gz"/>
+                                                <constraint firstAttribute="height" constant="30" id="qAJ-KP-ZHi"/>
                                             </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="searchKeywordTextField" destination="hh2-La-VKU" id="RGn-dZ-KUr"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchRatingCell" id="c0l-vu-316" customClass="SearchRatingCell">
-                                        <rect key="frame" x="0.0" y="78" width="375" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c0l-vu-316" id="iSx-hw-bB5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JOe-er-XHw">
-                                                    <rect key="frame" x="10" y="11" width="355" height="29"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="tMd-Ow-M72"/>
-                                                    </constraints>
-                                                    <segments>
-                                                        <segment title="不限"/>
-                                                        <segment title="2星以上"/>
-                                                        <segment title="3星以上"/>
-                                                        <segment title="4星以上"/>
-                                                        <segment title="滿星"/>
-                                                    </segments>
-                                                    <connections>
-                                                        <action selector="onRatingChangeAction:" destination="c0l-vu-316" eventType="valueChanged" id="Ri0-Lf-gmr"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="JOe-er-XHw" firstAttribute="centerY" secondItem="iSx-hw-bB5" secondAttribute="centerY" id="Sjb-R6-LzI"/>
-                                                <constraint firstItem="JOe-er-XHw" firstAttribute="centerX" secondItem="iSx-hw-bB5" secondAttribute="centerX" id="eBR-es-ISa"/>
-                                                <constraint firstItem="JOe-er-XHw" firstAttribute="width" secondItem="iSx-hw-bB5" secondAttribute="width" constant="-20" id="pQI-Dy-02u"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="ratingSegment" destination="JOe-er-XHw" id="S8L-Qv-gcj"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCategoryCell" textLabel="xGN-nu-fgT" style="IBUITableViewCellStyleDefault" id="zn1-Sk-ZY1" customClass="SearchCategoryCell">
-                                        <rect key="frame" x="0.0" y="128" width="375" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zn1-Sk-ZY1" id="cAh-GQ-FYD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Doujinshi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xGN-nu-fgT">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <sections/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="AdL-n9-snb" id="lFs-ID-prL"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="eMq-kh-cgZ" firstAttribute="centerY" secondItem="ksK-qB-k9g" secondAttribute="centerY" id="1HK-E1-uvH"/>
+                                        <constraint firstItem="eMq-kh-cgZ" firstAttribute="width" secondItem="ksK-qB-k9g" secondAttribute="width" constant="-20" id="PBA-re-nwh"/>
+                                        <constraint firstItem="eMq-kh-cgZ" firstAttribute="centerX" secondItem="ksK-qB-k9g" secondAttribute="centerX" id="wEg-tw-eEP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dataSource" destination="iU1-BP-ghw" id="6S6-jG-E4a"/>
-                                    <outlet property="delegate" destination="iU1-BP-ghw" id="VaP-Jk-LUm"/>
+                                    <outlet property="searchKeywordTextField" destination="eMq-kh-cgZ" id="VZc-l9-rcz"/>
                                 </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="g62-f2-hog" firstAttribute="centerY" secondItem="KsQ-9e-8O3" secondAttribute="centerY" id="9Y9-HI-92s"/>
-                            <constraint firstItem="g62-f2-hog" firstAttribute="height" secondItem="KsQ-9e-8O3" secondAttribute="height" id="Iwa-3N-FC6"/>
-                            <constraint firstItem="g62-f2-hog" firstAttribute="width" secondItem="KsQ-9e-8O3" secondAttribute="width" id="RAX-6i-OES"/>
-                            <constraint firstItem="g62-f2-hog" firstAttribute="centerX" secondItem="Sy5-aH-C2L" secondAttribute="centerX" id="bck-WU-PX3"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Sy5-aH-C2L"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="搜尋" id="Xhl-Sw-NnC">
-                        <barButtonItem key="rightBarButtonItem" title="好" id="KkV-5x-XJi">
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchHintCell" textLabel="Gu6-zr-6a1" style="IBUITableViewCellStyleDefault" id="iLl-Ms-Zgm" customClass="SearchHintCell">
+                                <rect key="frame" x="0.0" y="99.333333333333343" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iLl-Ms-Zgm" id="97j-Gj-PxL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gu6-zr-6a1">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchRatingCell" id="52F-5m-aSZ" customClass="SearchRatingCell">
+                                <rect key="frame" x="0.0" y="143.33333333333334" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="52F-5m-aSZ" id="woE-iW-9GS">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8YM-cS-beR">
+                                            <rect key="frame" x="10" y="8" width="355" height="29"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="28" id="0Hi-Be-UbZ"/>
+                                            </constraints>
+                                            <segments>
+                                                <segment title="不限"/>
+                                                <segment title="2星以上"/>
+                                                <segment title="3星以上"/>
+                                                <segment title="4星以上"/>
+                                                <segment title="滿星"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="onRatingChangeAction:" destination="52F-5m-aSZ" eventType="valueChanged" id="dVt-VJ-5nu"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8YM-cS-beR" firstAttribute="centerX" secondItem="woE-iW-9GS" secondAttribute="centerX" id="CR1-uE-J6d"/>
+                                        <constraint firstItem="8YM-cS-beR" firstAttribute="centerY" secondItem="woE-iW-9GS" secondAttribute="centerY" id="Dap-O7-dSO"/>
+                                        <constraint firstItem="8YM-cS-beR" firstAttribute="width" secondItem="woE-iW-9GS" secondAttribute="width" constant="-20" id="keF-BI-XSx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ratingSegment" destination="8YM-cS-beR" id="zy0-sl-kQ6"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCategoryCell" textLabel="XDq-JJ-b65" style="IBUITableViewCellStyleDefault" id="V32-pR-Hr8" customClass="SearchCategoryCell">
+                                <rect key="frame" x="0.0" y="187.33333333333334" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V32-pR-Hr8" id="juq-47-PGk">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Doujinshi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XDq-JJ-b65">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="bLr-Ua-73U" id="X39-i6-9Xh"/>
+                            <outlet property="delegate" destination="bLr-Ua-73U" id="hyT-va-tib"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="搜尋" id="dpT-vd-fTM">
+                        <barButtonItem key="rightBarButtonItem" title="好" id="owM-5P-MQu">
                             <connections>
-                                <segue destination="GhL-1z-KfH" kind="unwind" identifier="PopFromSearch" unwindAction="unwindFromSearch:" id="SYG-cb-2XU"/>
+                                <segue destination="Pwf-Ts-FG0" kind="unwind" identifier="PopFromSearch" unwindAction="unwindFromSearch:" id="97R-XS-mGc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="epK-SU-L3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="GhL-1z-KfH" userLabel="Exit" sceneMemberID="exit"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bVT-iK-5tg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Pwf-Ts-FG0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="897" y="-939"/>
+            <point key="canvasLocation" x="897" y="-941"/>
         </scene>
         <!--畫廊-->
         <scene sceneID="BI7-by-2sq">
@@ -1012,6 +1016,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sFK-aE-S2c"/>
+        <segue reference="87c-oO-NHA"/>
     </inferredMetricsTieBreakers>
 </document>

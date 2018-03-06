@@ -17,7 +17,8 @@ NSNotificationName const DBGalleryDownloadedUpdateNotification = @"DBGalleryDown
 
 typedef enum {
     DBGalleryTypeHistories,
-    DBGalleryTypeDownloadeds
+    DBGalleryTypeDownloadeds,
+    DBGalleryTypeAll
 } DBGalleryType;
 
 @implementation DBGallery
@@ -67,6 +68,10 @@ typedef enum {
             
         case DBGalleryTypeDownloadeds:
             query.postFilter = [NSPredicate predicateWithFormat:@"value == 1"];
+            break;
+        
+        // 不設 filter 只拉出按照時間排序的歷史和下載
+        case DBGalleryTypeAll:
             break;
             
         default:
@@ -124,6 +129,10 @@ typedef enum {
 
 + (NSArray<HentaiInfo *> *)downloadedsFrom:(NSInteger)start length:(NSInteger)length {
     return [self list:DBGalleryTypeDownloadeds from:start length:length];
+}
+
++ (NSArray<HentaiInfo *> *)allFrom:(NSInteger)start length:(NSInteger)length {
+    return [self list:DBGalleryTypeAll from:start length:length];
 }
 
 + (void)deleteDownloaded:(HentaiInfo *)info handler:(void (^)(void))handler onFinish:(void (^)(BOOL successed))finish {

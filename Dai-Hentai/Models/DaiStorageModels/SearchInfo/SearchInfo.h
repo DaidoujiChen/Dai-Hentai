@@ -25,5 +25,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *, id> *)dictionary;
 - (NSString *)query:(NSInteger)page;
+- (NSMutableArray<NSString *> *)hints;
+- (void)setHints:(NSString *)hint;
 
 @end

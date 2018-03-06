@@ -31,4 +31,7 @@ DaiStorageArrayConverter(NSString)
 // 只要有寫入 db 的就會算在歷史, 下載需要另外打 flag
 @property (nonatomic, strong) NSNumber *downloaded;
 
+- (NSArray<NSString *> *)engTitleSplit;
+- (NSArray<NSString *> *)jpnTitleSplit;
+
 @end

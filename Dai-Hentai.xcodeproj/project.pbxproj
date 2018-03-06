@@ -21,11 +21,12 @@
 		1C33D10B1E5F34BC00F0EB12 /* SearchKeywordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D1091E5F34BC00F0EB12 /* SearchKeywordCell.m */; };
 		1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D10D1E5F35A600F0EB12 /* SearchRatingCell.m */; };
 		1C33D1111E5F391A00F0EB12 /* SearchCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D1101E5F391A00F0EB12 /* SearchCategoryCell.m */; };
-		1C3DDE021E6094A00034B3E2 /* CategoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DDE011E6094A00034B3E2 /* CategoryItem.m */; };
+		1C3DDE021E6094A00034B3E2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DDE011E6094A00034B3E2 /* SearchItem.m */; };
 		1C4D8B291E861B4100113D0E /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B281E861B4100113D0E /* NSTimer+Block.m */; };
 		1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */; };
 		1C5BF266200CA3AE00FB260A /* DownloadedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */; };
 		1C630F0D2005037F0068879F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C630F0C2005037F0068879F /* TabBarController.m */; };
+		1C6A96AB204E42A800151ECE /* SearchHintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A96AA204E42A800151ECE /* SearchHintCell.m */; };
 		1C7ABF622021C73F006313C3 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7ABF612021C73F006313C3 /* SettingViewController.m */; };
 		1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CA72E1E49C13400D94CFB /* HentaiParser.m */; };
 		1C8DEE82200896B400C479F4 /* DBSearchSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE81200896B400C479F4 /* DBSearchSetting.m */; };
@@ -88,8 +89,8 @@
 		1C33D10D1E5F35A600F0EB12 /* SearchRatingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRatingCell.m; sourceTree = "<group>"; };
 		1C33D10F1E5F391A00F0EB12 /* SearchCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryCell.h; sourceTree = "<group>"; };
 		1C33D1101E5F391A00F0EB12 /* SearchCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryCell.m; sourceTree = "<group>"; };
-		1C3DDE001E6094A00034B3E2 /* CategoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryItem.h; sourceTree = "<group>"; };
-		1C3DDE011E6094A00034B3E2 /* CategoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryItem.m; sourceTree = "<group>"; };
+		1C3DDE001E6094A00034B3E2 /* SearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItem.h; sourceTree = "<group>"; };
+		1C3DDE011E6094A00034B3E2 /* SearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItem.m; sourceTree = "<group>"; };
 		1C4D8B271E861B4100113D0E /* NSTimer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
 		1C4D8B281E861B4100113D0E /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
 		1C4D8B2B1E86201100113D0E /* UIAlertController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Block.h"; sourceTree = "<group>"; };
@@ -98,6 +99,8 @@
 		1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedsViewController.m; sourceTree = "<group>"; };
 		1C630F0B2005037F0068879F /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		1C630F0C2005037F0068879F /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		1C6A96A9204E42A800151ECE /* SearchHintCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHintCell.h; sourceTree = "<group>"; };
+		1C6A96AA204E42A800151ECE /* SearchHintCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHintCell.m; sourceTree = "<group>"; };
 		1C7ABF5D2021BBF8006313C3 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		1C7ABF5E2021BBF8006313C3 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
 		1C7ABF602021C73F006313C3 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -298,13 +301,13 @@
 			path = SearchRatingCell;
 			sourceTree = "<group>";
 		};
-		1C3DDDFF1E6094A00034B3E2 /* CategoryItem */ = {
+		1C3DDDFF1E6094A00034B3E2 /* SearchItem */ = {
 			isa = PBXGroup;
 			children = (
-				1C3DDE001E6094A00034B3E2 /* CategoryItem.h */,
-				1C3DDE011E6094A00034B3E2 /* CategoryItem.m */,
+				1C3DDE001E6094A00034B3E2 /* SearchItem.h */,
+				1C3DDE011E6094A00034B3E2 /* SearchItem.m */,
 			);
-			path = CategoryItem;
+			path = SearchItem;
 			sourceTree = "<group>";
 		};
 		1C4D8B261E861B2100113D0E /* NSTimer */ = {
@@ -341,6 +344,15 @@
 				1C630F0C2005037F0068879F /* TabBarController.m */,
 			);
 			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		1C6A96A8204E428900151ECE /* SearchHintCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C6A96A9204E42A800151ECE /* SearchHintCell.h */,
+				1C6A96AA204E42A800151ECE /* SearchHintCell.m */,
+			);
+			path = SearchHintCell;
 			sourceTree = "<group>";
 		};
 		1C7ABF5C2021BBF8006313C3 /* ReactiveCocoaMacros */ = {
@@ -387,7 +399,7 @@
 				1CBF607F1E4D9ABC000CA9E5 /* FilesManager */,
 				1CEC12AE1E500E9A00F3E3C4 /* DaiStorage */,
 				1CEC12C41E500F4400F3E3C4 /* DaiStorageModels */,
-				1C3DDDFF1E6094A00034B3E2 /* CategoryItem */,
+				1C3DDDFF1E6094A00034B3E2 /* SearchItem */,
 				1CE8E5DF1E4D7A03005B1B18 /* Couchbase */,
 				1C7ABF5C2021BBF8006313C3 /* ReactiveCocoaMacros */,
 				1CBBDB3F2032DAE700BC51BF /* AuthHelper */,
@@ -443,6 +455,7 @@
 		1C97CB2F1E5EBF00000A8874 /* SearchBaseCell */ = {
 			isa = PBXGroup;
 			children = (
+				1C6A96A8204E428900151ECE /* SearchHintCell */,
 				1C33D1061E5F34BC00F0EB12 /* SearchCategoryCell */,
 				1C33D1071E5F34BC00F0EB12 /* SearchKeywordCell */,
 				1C33D10A1E5F34BC00F0EB12 /* SearchRatingCell */,
@@ -783,7 +796,7 @@
 				1CEC12C31E500E9A00F3E3C4 /* DaiStorageTypeChecking.m in Sources */,
 				1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */,
 				1CEC12C01E500E9A00F3E3C4 /* DaiStoragePath.m in Sources */,
-				1C3DDE021E6094A00034B3E2 /* CategoryItem.m in Sources */,
+				1C3DDE021E6094A00034B3E2 /* SearchItem.m in Sources */,
 				1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */,
 				1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */,
 				1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */,
@@ -807,6 +820,7 @@
 				1CD02DFD200C749200B3F717 /* CBLDatabase+RefreshView.m in Sources */,
 				1CA255F7203142300040B73F /* DBUserPreference.m in Sources */,
 				1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */,
+				1C6A96AB204E42A800151ECE /* SearchHintCell.m in Sources */,
 				1CA192D51E926B4A00D352B3 /* RelatedViewController.m in Sources */,
 				1C0CF4981E82D466005ADDFA /* HistoriesViewController.m in Sources */,
 				1CA2707E1E50B9F80054AA6E /* EHentaiParser.m in Sources */,

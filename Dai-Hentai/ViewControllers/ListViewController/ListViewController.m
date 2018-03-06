@@ -235,6 +235,16 @@
 - (IBAction)unwindFromSearch:(UIStoryboardSegue *)segue {
     if ([segue.identifier isEqualToString:@"PopFromSearch"]) {
         SearchViewController *searchViewController = (SearchViewController *)segue.sourceViewController;
+        
+        // 這段重新整理 keyword 搜尋, 並且把額外的提示關鍵字加入, 如果有重複的則不再加
+        NSString *newKeyword = searchViewController.info.keyword;
+        for (NSString *hint in [searchViewController.info hints]) {
+            NSRange range = [newKeyword.lowercaseString rangeOfString:hint.lowercaseString];
+            if (range.location == NSNotFound) {
+                newKeyword = [NSString stringWithFormat:@"%@ %@", hint, newKeyword];
+            }
+        }
+        searchViewController.info.keyword = newKeyword;
         [DBSearchSetting setInfo:searchViewController.info];
         [self reloadGalleries];
     }

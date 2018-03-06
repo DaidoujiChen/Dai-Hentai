@@ -1,5 +1,5 @@
 //
-//  CategoryItem.h
+//  SearchItem.h
 //  Dai-Hentai
 //
 //  Created by DaidoujiChen on 2017/2/24.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CategoryItem : NSObject
+@interface SearchItem : NSObject
 
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) SEL getterSEL;

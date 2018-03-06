@@ -10,4 +10,27 @@
 
 @implementation HentaiInfo
 
+#pragma mark - Private Instance Method
+
+- (NSArray<NSString *> *)titleSplit:(NSString *)title {
+    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"=♥~【】&/!#,.;:|{}[]() "];
+    NSMutableArray *allowResults = [NSMutableArray array];
+    for (NSString *splitString in [title componentsSeparatedByCharactersInSet:characterSet]) {
+        if (splitString.length && [splitString rangeOfString:@"-"].location == NSNotFound) {
+            [allowResults addObject:splitString];
+        }
+    }
+    return allowResults;
+}
+
+#pragma mark - Instance Method
+
+- (NSArray<NSString *> *)engTitleSplit {
+    return [self titleSplit:self.title];
+}
+
+- (NSArray<NSString *> *)jpnTitleSplit {
+    return [self titleSplit:self.title_jpn];
+}
+
 @end

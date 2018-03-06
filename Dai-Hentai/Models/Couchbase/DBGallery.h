@@ -27,6 +27,7 @@ extern NSNotificationName const DBGalleryDownloadedUpdateNotification;
 + (NSArray<HentaiInfo *> *)all;
 + (NSArray<HentaiInfo *> *)historiesFrom:(NSInteger)start length:(NSInteger)length;
 + (NSArray<HentaiInfo *> *)downloadedsFrom:(NSInteger)start length:(NSInteger)length;
++ (NSArray<HentaiInfo *> *)allFrom:(NSInteger)start length:(NSInteger)length;
 
 // 刪除
 + (void)deleteDownloaded:(HentaiInfo *)info handler:(void (^)(void))handler onFinish:(void (^)(BOOL successed))finish;

@@ -7,6 +7,7 @@
 //
 
 #import "SearchInfo.h"
+#import <objc/runtime.h>
 
 @implementation SearchInfo
 
@@ -19,6 +20,29 @@
         [query appendFormat:@"&advsearch=1&f_sname=on&f_stags=on&f_sr=on&f_srdd=%@", @(self.rating.integerValue + 1)];
     }
     return [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (NSMutableArray<NSString *> *)hints {
+    NSMutableArray *hints = objc_getAssociatedObject(self, _cmd);
+    if (!hints) {
+        return [NSMutableArray array];
+    }
+    return hints;
+}
+
+- (void)setHints:(NSString *)hint {
+    NSMutableArray *hints = objc_getAssociatedObject(self, @selector(hints));
+    if (!hints) {
+        hints = [NSMutableArray array];
+    }
+    
+    if ([hints containsObject:hint]) {
+        [hints removeObject:hint];
+    }
+    else {
+        [hints addObject:hint];
+    }
+    objc_setAssociatedObject(self, @selector(hints), hints, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - Life Cycle

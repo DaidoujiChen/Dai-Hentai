@@ -1,26 +1,26 @@
 //
-//  CategoryItem.m
+//  SearchItem.m
 //  Dai-Hentai
 //
 //  Created by DaidoujiChen on 2017/2/24.
 //  Copyright © 2017年 DaidoujiChen. All rights reserved.
 //
 
-#import "CategoryItem.h"
+#import "SearchItem.h"
 
-@interface CategoryItem ()
+@interface SearchItem ()
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *getterString;
 
 @end
 
-@implementation CategoryItem
+@implementation SearchItem
 
 #pragma mark - Class Method
 
 + (instancetype)itemWith:(NSString *)title getter:(NSString *)getter {
-    return [[CategoryItem alloc] initWith:title getter:getter];
+    return [[SearchItem alloc] initWith:title getter:getter];
 }
 
 #pragma mark - Readonly Properties

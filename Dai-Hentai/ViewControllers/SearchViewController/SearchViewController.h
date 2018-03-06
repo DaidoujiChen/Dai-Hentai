@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DBSearchSetting.h"
 
-@interface SearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SearchViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) SearchInfo *info;
 
