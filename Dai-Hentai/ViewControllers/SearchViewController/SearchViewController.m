@@ -14,9 +14,16 @@
 #import "SearchItem.h"
 #import "DBGallery.h"
 
+typedef enum {
+    RecentHintTypeTag,
+    RecentHintTypeTitle
+} RecentHintType;
+
+
 @interface SearchViewController ()
 
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<SearchItem *> *> *allItems;
+@property (nonatomic, strong) NSArray<HentaiInfo *> *recentHentaiInfos;
 
 @end
 
@@ -39,9 +46,12 @@
             return @"手動輸入關鍵字";
             
         case 1:
-            return @"從近期高頻關鍵字選取";
+            return @"從近期標題選取";
             
         case 2:
+            return @"從近期 Tag 選取";
+            
+        case 3:
             return @"評分要求";
             
         default:
@@ -59,11 +69,12 @@
             break;
             
         case 1:
+        case 2:
             cell = [tableView dequeueReusableCellWithIdentifier:@"SearchHintCell"];
             cell.textLabel.text = item.title;
             break;
             
-        case 2:
+        case 3:
             cell = [tableView dequeueReusableCellWithIdentifier:@"SearchRatingCell"];
             break;
             
@@ -118,18 +129,32 @@
     return nil;
 }
 
-- (NSArray<NSString *> *)recentKeywords {
+- (NSArray<NSString *> *)recent:(RecentHintType)type {
     NSMutableDictionary<NSString *, NSNumber *> *recentKeywords = [NSMutableDictionary dictionary];
     
-    // 找出最近期的 10 部作品
-    NSArray<HentaiInfo *> *recentHentaiInfos = [DBGallery allFrom:0 length:10];
-    for (HentaiInfo *info in recentHentaiInfos) {
+    // 利用近期 10 部作品來做統計
+    for (HentaiInfo *info in self.recentHentaiInfos) {
         
-        // 將每部作品的英文名 / 日文名 / tags 整理起來, 最後用 set 裝起來避免同一部作品重複太多同樣的字詞
         NSMutableArray<NSString *> *allWords = [NSMutableArray array];
-        [allWords addObjectsFromArray:[info engTitleSplit]];
-        [allWords addObjectsFromArray:[info jpnTitleSplit]];
-        [allWords addObjectsFromArray:info.tags];
+        switch (type) {
+            // tag 的部分
+            case RecentHintTypeTag:
+                [allWords addObjectsFromArray:info.tags];
+                break;
+            
+            // 標題的部分, 如果有日文則用日文的, 反之才用一般的
+            case RecentHintTypeTitle:
+            {
+                NSArray<NSString *> *titles = [info jpnTitleSplit];
+                if (titles.count) {
+                    [allWords addObjectsFromArray:titles];
+                }
+                else {
+                    [allWords addObjectsFromArray:[info engTitleSplit]];
+                }
+                break;
+            }
+        }
         NSSet<NSString *> *recentSet = [NSSet setWithArray:[allWords valueForKey:@"lowercaseString"]];
         
         // 將計算完的字詞紀錄出現頻率
@@ -149,18 +174,34 @@
     }];
 }
 
+- (NSArray<NSString *> *)recentTags {
+    return [self recent:RecentHintTypeTag];
+}
+
+- (NSArray<NSString *> *)recentTitles {
+    return [self recent:RecentHintTypeTitle];
+}
+
 - (void)setupCategories {
+    self.recentHentaiInfos = [DBGallery allFrom:0 length:10];
     self.allItems = [NSMutableArray array];
     
     NSMutableArray<SearchItem *> *input = [NSMutableArray arrayWithObject:[SearchItem itemWith:@"Keyword" getter:@"keyword"]];
     [self.allItems addObject:input];
     
-    NSMutableArray<SearchItem *> *hints = [NSMutableArray array];
-    NSArray *recentHints = [self recentKeywords];
-    for (NSInteger index = 0; index < MIN(recentHints.count, 5); index++) {
-        [hints addObject:[SearchItem itemWith:recentHints[index] getter:@"hints"]];
+    NSMutableArray<SearchItem *> *titleHints = [NSMutableArray array];
+    NSArray *recentTitles = [self recentTitles];
+    for (NSInteger index = 0; index < MIN(recentTitles.count, 5); index++) {
+        [titleHints addObject:[SearchItem itemWith:recentTitles[index] getter:@"hints"]];
     }
-    [self.allItems addObject:hints];
+    [self.allItems addObject:titleHints];
+    
+    NSMutableArray<SearchItem *> *tagHints = [NSMutableArray array];
+    NSArray *recentTags = [self recentTags];
+    for (NSInteger index = 0; index < MIN(recentTags.count, 5); index++) {
+        [tagHints addObject:[SearchItem itemWith:recentTags[index] getter:@"hints"]];
+    }
+    [self.allItems addObject:tagHints];
     
     NSMutableArray<SearchItem *> *rate = [NSMutableArray arrayWithObject:[SearchItem itemWith:@"Rating" getter:@"rating"]];
     [self.allItems addObject:rate];
