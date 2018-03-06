@@ -173,8 +173,11 @@
         if (!weakSelf) {
             return;
         }
-        
         __strong HentaiImagesManager *strongSelf = weakSelf;
+        
+        // 提早解鎖, 避免卡住的現象
+        [strongSelf.pageLocker unlock];
+        
         if (status == HentaiParserStatusSuccess) {
             if (strongSelf.currentPageIndex == 0) {
                 strongSelf.isExist = @(imagePages.count != 0);
@@ -199,7 +202,6 @@
         else {
             NSLog(@"===== requestImagePagesBy fail");
         }
-        [strongSelf.pageLocker unlock];
     }];
 }
 
