@@ -245,9 +245,22 @@ else { \
 
 + (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages))completion {
     
-    NSArray<NSString *> *pages = [DBGalleryPage by:info.gid token:info.token index:index];
+    NSMutableArray<NSString *> *pages = [NSMutableArray array];
+    NSArray<NSString *> *cachePages;
+    NSInteger cacheIndex = index;
+    do {
+        cachePages = [DBGalleryPage by:info.gid token:info.token index:cacheIndex];
+        if (cachePages) {
+            [pages addObjectsFromArray:cachePages];
+            cacheIndex++;
+        }
+        
+        if (pages.count > info.userLatestPage.integerValue) {
+            break;
+        }
+    } while (cachePages);
     if (pages.count) {
-        completionToMainThread(HentaiParserStatusSuccess, index + 1, pages);
+        completionToMainThread(HentaiParserStatusSuccess, cacheIndex, pages);
     }
     else {
         //網址的範例

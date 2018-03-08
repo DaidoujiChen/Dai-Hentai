@@ -190,9 +190,16 @@
             
             for (NSString *imagePage in imagePages) {
                 NSString *filename = imagePage.lastPathComponent;
+                NSInteger currentPage = [[filename componentsSeparatedByString:@"-"][1] integerValue];
                 NSData *existData = [strongSelf.storage read:filename];
                 if (existData) {
                     [strongSelf onImageReady:imagePage data:existData];
+                }
+                // 當看過的頁面到比較後面, 可是這前面有沒有讀取完的圖片, 會導致在跳頁的時候發生 crash 的問題
+                // 所以這邊我們先用一張空圖來避免掉這個問題, 並且在這個同時把他放到下載的 queue 裡面
+                else if (currentPage <= strongSelf.info.userLatestPage.integerValue) {
+                    [strongSelf onImageReady:imagePage data:nil];
+                    [strongSelf downloadImage:imagePage];
                 }
                 else {
                     [strongSelf downloadImage:imagePage];
