@@ -406,6 +406,11 @@
         [self.info setLatestPage:self.userCurrentIndex];
     }
     [HentaiDownloadCenter bye:self.info];
+    
+    // 離開這個畫面前, 都要讓隱藏的 bar 長出來
+    if (self.isBarsHidden) {
+        [self handleTapGesture:nil];
+    }
 }
 
 // 當轉向時需要處理 cell 的 size, 避免產生不必要的 warning
