@@ -24,6 +24,7 @@
 		1C3DDE021E6094A00034B3E2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DDE011E6094A00034B3E2 /* SearchItem.m */; };
 		1C4D8B291E861B4100113D0E /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B281E861B4100113D0E /* NSTimer+Block.m */; };
 		1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */; };
+		1C5203A92054301F000B6F45 /* CheckExViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5203A82054301F000B6F45 /* CheckExViewController.m */; };
 		1C5BF266200CA3AE00FB260A /* DownloadedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */; };
 		1C630F0D2005037F0068879F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C630F0C2005037F0068879F /* TabBarController.m */; };
 		1C6A96AB204E42A800151ECE /* SearchHintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A96AA204E42A800151ECE /* SearchHintCell.m */; };
@@ -95,6 +96,8 @@
 		1C4D8B281E861B4100113D0E /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
 		1C4D8B2B1E86201100113D0E /* UIAlertController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Block.h"; sourceTree = "<group>"; };
 		1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Block.m"; sourceTree = "<group>"; };
+		1C5203A72054301F000B6F45 /* CheckExViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckExViewController.h; sourceTree = "<group>"; };
+		1C5203A82054301F000B6F45 /* CheckExViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckExViewController.m; sourceTree = "<group>"; };
 		1C5BF264200CA3AE00FB260A /* DownloadedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadedsViewController.h; sourceTree = "<group>"; };
 		1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedsViewController.m; sourceTree = "<group>"; };
 		1C630F0B2005037F0068879F /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -328,6 +331,15 @@
 			path = UIAlertController;
 			sourceTree = "<group>";
 		};
+		1C5203A620543005000B6F45 /* CheckExViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C5203A72054301F000B6F45 /* CheckExViewController.h */,
+				1C5203A82054301F000B6F45 /* CheckExViewController.m */,
+			);
+			path = CheckExViewController;
+			sourceTree = "<group>";
+		};
 		1C5BF263200CA3AE00FB260A /* DownloadedsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +390,7 @@
 			children = (
 				1C630F07200502870068879F /* TabBarController */,
 				1CFE730C1FFE2A720018172F /* LoginViewController */,
+				1C5203A620543005000B6F45 /* CheckExViewController */,
 				1C7CA72B1E49C10400D94CFB /* ListViewController */,
 				1CA192D21E926B3100D352B3 /* RelatedViewController */,
 				1C0867F81E5C8F2100E361B5 /* SearchViewController */,
@@ -796,6 +809,7 @@
 				1CEC12C31E500E9A00F3E3C4 /* DaiStorageTypeChecking.m in Sources */,
 				1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */,
 				1CEC12C01E500E9A00F3E3C4 /* DaiStoragePath.m in Sources */,
+				1C5203A92054301F000B6F45 /* CheckExViewController.m in Sources */,
 				1C3DDE021E6094A00034B3E2 /* SearchItem.m in Sources */,
 				1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */,
 				1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */,
