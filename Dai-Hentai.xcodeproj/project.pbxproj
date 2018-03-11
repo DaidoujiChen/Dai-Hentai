@@ -47,6 +47,10 @@
 		1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60831E4D9ABC000CA9E5 /* FMStream.m */; };
 		1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCE36651E8E2D5F00A82935 /* MessageCell.m */; };
 		1CD02DFD200C749200B3F717 /* CBLDatabase+RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD02DFC200C749200B3F717 /* CBLDatabase+RefreshView.m */; };
+		1CE09D3D20557B8C0064D54B /* SettingViewController+SizeCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE09D3B20557B8C0064D54B /* SettingViewController+SizeCalculator.m */; };
+		1CE09D4120557C710064D54B /* SettingViewController+ListAndAPIStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE09D4020557C710064D54B /* SettingViewController+ListAndAPIStatus.m */; };
+		1CE09D45205587E50064D54B /* SettingViewController+ScrollDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE09D44205587E50064D54B /* SettingViewController+ScrollDirection.m */; };
+		1CE09D4920558B760064D54B /* SettingViewController+Lock.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE09D4820558B760064D54B /* SettingViewController+Lock.m */; };
 		1CE4D1B6200461E200F8B79A /* HentaiDownloadCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE4D1B5200461E200F8B79A /* HentaiDownloadCenter.m */; };
 		1CE4D1B9200462ED00F8B79A /* HentaiImagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE4D1B8200462ED00F8B79A /* HentaiImagesManager.m */; };
 		1CEC12BE1E500E9A00F3E3C4 /* DaiStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12B11E500E9A00F3E3C4 /* DaiStorage.m */; };
@@ -147,6 +151,15 @@
 		1CCE36651E8E2D5F00A82935 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		1CD02DFB200C749200B3F717 /* CBLDatabase+RefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CBLDatabase+RefreshView.h"; sourceTree = "<group>"; };
 		1CD02DFC200C749200B3F717 /* CBLDatabase+RefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CBLDatabase+RefreshView.m"; sourceTree = "<group>"; };
+		1CE09D332055777D0064D54B /* PrivateSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateSettingViewController.h; sourceTree = "<group>"; };
+		1CE09D3B20557B8C0064D54B /* SettingViewController+SizeCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SettingViewController+SizeCalculator.m"; sourceTree = "<group>"; };
+		1CE09D3C20557B8C0064D54B /* SettingViewController+SizeCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SettingViewController+SizeCalculator.h"; sourceTree = "<group>"; };
+		1CE09D3F20557C710064D54B /* SettingViewController+ListAndAPIStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SettingViewController+ListAndAPIStatus.h"; sourceTree = "<group>"; };
+		1CE09D4020557C710064D54B /* SettingViewController+ListAndAPIStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SettingViewController+ListAndAPIStatus.m"; sourceTree = "<group>"; };
+		1CE09D43205587E50064D54B /* SettingViewController+ScrollDirection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SettingViewController+ScrollDirection.h"; sourceTree = "<group>"; };
+		1CE09D44205587E50064D54B /* SettingViewController+ScrollDirection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SettingViewController+ScrollDirection.m"; sourceTree = "<group>"; };
+		1CE09D4720558B760064D54B /* SettingViewController+Lock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SettingViewController+Lock.h"; sourceTree = "<group>"; };
+		1CE09D4820558B760064D54B /* SettingViewController+Lock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SettingViewController+Lock.m"; sourceTree = "<group>"; };
 		1CE4D1B4200461E200F8B79A /* HentaiDownloadCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HentaiDownloadCenter.h; sourceTree = "<group>"; };
 		1CE4D1B5200461E200F8B79A /* HentaiDownloadCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HentaiDownloadCenter.m; sourceTree = "<group>"; };
 		1CE4D1B7200462ED00F8B79A /* HentaiImagesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HentaiImagesManager.h; sourceTree = "<group>"; };
@@ -380,7 +393,12 @@
 			isa = PBXGroup;
 			children = (
 				1C7ABF602021C73F006313C3 /* SettingViewController.h */,
+				1CE09D332055777D0064D54B /* PrivateSettingViewController.h */,
 				1C7ABF612021C73F006313C3 /* SettingViewController.m */,
+				1CE09D3E20557C410064D54B /* ListAndAPIStatus */,
+				1CE09D3A20557B8C0064D54B /* SizeCalculator */,
+				1CE09D42205587CE0064D54B /* ScrollDirection */,
+				1CE09D4620558B640064D54B /* Lock */,
 			);
 			path = SettingViewController;
 			sourceTree = "<group>";
@@ -542,6 +560,42 @@
 				1CD02DFC200C749200B3F717 /* CBLDatabase+RefreshView.m */,
 			);
 			path = CBLDatabase;
+			sourceTree = "<group>";
+		};
+		1CE09D3A20557B8C0064D54B /* SizeCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				1CE09D3B20557B8C0064D54B /* SettingViewController+SizeCalculator.m */,
+				1CE09D3C20557B8C0064D54B /* SettingViewController+SizeCalculator.h */,
+			);
+			path = SizeCalculator;
+			sourceTree = "<group>";
+		};
+		1CE09D3E20557C410064D54B /* ListAndAPIStatus */ = {
+			isa = PBXGroup;
+			children = (
+				1CE09D3F20557C710064D54B /* SettingViewController+ListAndAPIStatus.h */,
+				1CE09D4020557C710064D54B /* SettingViewController+ListAndAPIStatus.m */,
+			);
+			path = ListAndAPIStatus;
+			sourceTree = "<group>";
+		};
+		1CE09D42205587CE0064D54B /* ScrollDirection */ = {
+			isa = PBXGroup;
+			children = (
+				1CE09D43205587E50064D54B /* SettingViewController+ScrollDirection.h */,
+				1CE09D44205587E50064D54B /* SettingViewController+ScrollDirection.m */,
+			);
+			path = ScrollDirection;
+			sourceTree = "<group>";
+		};
+		1CE09D4620558B640064D54B /* Lock */ = {
+			isa = PBXGroup;
+			children = (
+				1CE09D4720558B760064D54B /* SettingViewController+Lock.h */,
+				1CE09D4820558B760064D54B /* SettingViewController+Lock.m */,
+			);
+			path = Lock;
 			sourceTree = "<group>";
 		};
 		1CE4D1B3200461C200F8B79A /* HentaiDownloadCenter */ = {
@@ -811,7 +865,9 @@
 				1CEC12C01E500E9A00F3E3C4 /* DaiStoragePath.m in Sources */,
 				1C5203A92054301F000B6F45 /* CheckPageViewController.m in Sources */,
 				1C3DDE021E6094A00034B3E2 /* SearchItem.m in Sources */,
+				1CE09D4120557C710064D54B /* SettingViewController+ListAndAPIStatus.m in Sources */,
 				1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */,
+				1CE09D4920558B760064D54B /* SettingViewController+Lock.m in Sources */,
 				1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */,
 				1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */,
 				1CE4D1B6200461E200F8B79A /* HentaiDownloadCenter.m in Sources */,
@@ -829,7 +885,9 @@
 				1CEC12C11E500E9A00F3E3C4 /* DaiStoragePropertiesInObject.m in Sources */,
 				1C9294EC1E4C4A0D001AB1CE /* ListCell.m in Sources */,
 				1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */,
+				1CE09D45205587E50064D54B /* SettingViewController+ScrollDirection.m in Sources */,
 				1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */,
+				1CE09D3D20557B8C0064D54B /* SettingViewController+SizeCalculator.m in Sources */,
 				1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */,
 				1CD02DFD200C749200B3F717 /* CBLDatabase+RefreshView.m in Sources */,
 				1CA255F7203142300040B73F /* DBUserPreference.m in Sources */,
