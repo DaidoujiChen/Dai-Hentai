@@ -13,7 +13,6 @@
 #import "SearchViewController.h"
 #import "RelatedViewController.h"
 #import "LoginViewController.h"
-#import "CheckPageViewController.h"
 #import "ExCookie.h"
 #import "NSTimer+Block.h"
 #import "HentaiDownloadCenter.h"
@@ -274,12 +273,6 @@
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
-- (void)checkExAction:(id)sender {
-    CheckPageViewController *checkExViewController = [[CheckPageViewController alloc] initWithURLString:@"https://exhentai.org/"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:checkExViewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
-}
-
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {
@@ -292,8 +285,7 @@
     [super viewWillAppear:animated];
     NSString *className = [NSString stringWithFormat:@"%s", object_getClassName(self)];
     if ([ExCookie isExist] && [className isEqualToString:@"ListViewController"]) {
-        UIBarButtonItem *checkEx = [[UIBarButtonItem alloc] initWithTitle:@"CheckEx" style:UIBarButtonItemStylePlain target:self action:@selector(checkExAction:)];
-        self.navigationItem.leftBarButtonItem = checkEx;
+        self.navigationItem.leftBarButtonItem = nil;
     }
 }
 
