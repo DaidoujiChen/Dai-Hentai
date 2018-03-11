@@ -1,5 +1,5 @@
 //
-//  CheckExViewController.h
+//  CheckPageViewController.h
 //  Dai-Hentai
 //
 //  Created by DaidoujiChen on 2018/3/10.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CheckExViewController : UIViewController
+@interface CheckPageViewController : UIViewController
+
+- (instancetype)initWithURLString:(NSString *)urlString;
 
 @end

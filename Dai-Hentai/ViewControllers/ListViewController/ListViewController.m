@@ -13,7 +13,7 @@
 #import "SearchViewController.h"
 #import "RelatedViewController.h"
 #import "LoginViewController.h"
-#import "CheckExViewController.h"
+#import "CheckPageViewController.h"
 #import "ExCookie.h"
 #import "NSTimer+Block.h"
 #import "HentaiDownloadCenter.h"
@@ -275,7 +275,7 @@
 }
 
 - (void)checkExAction:(id)sender {
-    CheckExViewController *checkExViewController = [CheckExViewController new];
+    CheckPageViewController *checkExViewController = [[CheckPageViewController alloc] initWithURLString:@"https://exhentai.org/"];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:checkExViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
