@@ -36,4 +36,13 @@
     return YES;
 }
 
+#pragma mark - Life Cycle
+
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    [super willMoveToSuperview:newSuperview];
+    if (newSuperview) {
+        self.searchKeywordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    }
+}
+
 @end
