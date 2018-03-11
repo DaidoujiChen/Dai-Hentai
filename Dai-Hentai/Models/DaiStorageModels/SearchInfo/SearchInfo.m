@@ -15,7 +15,9 @@
 
 - (NSString *)query:(NSInteger)page {
     NSString *keyword = self.chineseOnly.boolValue ? [self.keyword stringByAppendingString:@" language:Chinese"] : self.keyword;
-    NSMutableString *query = [NSMutableString stringWithFormat:@"?page=%@&f_doujinshi=%@&f_manga=%@&f_artistcg=%@&f_gamecg=%@&f_western=%@&f_non-h=%@&f_imageset=%@&f_cosplay=%@&f_asianporn=%@&f_misc=%@&f_search=%@&f_apply=Apply+Filter", @(page), self.doujinshi, self.manga, self.artistcg, self.gamecg, self.western, self.non_h, self.imageset, self.cosplay, self.asianporn, self.misc, [[keyword componentsSeparatedByString:@" "] componentsJoinedByString:@"+"]];
+    //https://e-hentai.org/?inline_set=dm_l 列表
+    //https://e-hentai.org/?inline_set=dm_t 縮圖
+    NSMutableString *query = [NSMutableString stringWithFormat:@"?page=%@&f_doujinshi=%@&f_manga=%@&f_artistcg=%@&f_gamecg=%@&f_western=%@&f_non-h=%@&f_imageset=%@&f_cosplay=%@&f_asianporn=%@&f_misc=%@&f_search=%@&f_apply=Apply+Filter&inline_set=dm_l", @(page), self.doujinshi, self.manga, self.artistcg, self.gamecg, self.western, self.non_h, self.imageset, self.cosplay, self.asianporn, self.misc, [[keyword componentsSeparatedByString:@" "] componentsJoinedByString:@"+"]];
     
     if ([self.rating compare:@(0)] != NSOrderedSame) {
         [query appendFormat:@"&advsearch=1&f_sname=on&f_stags=on&f_sr=on&f_srdd=%@", @(self.rating.integerValue + 1)];
