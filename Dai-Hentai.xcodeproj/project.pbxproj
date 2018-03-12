@@ -60,6 +60,8 @@
 		1CEC12C21E500E9A00F3E3C4 /* DaiStorageProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12BB1E500E9A00F3E3C4 /* DaiStorageProperty.m */; };
 		1CEC12C31E500E9A00F3E3C4 /* DaiStorageTypeChecking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12BD1E500E9A00F3E3C4 /* DaiStorageTypeChecking.m */; };
 		1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12C71E500F9300F3E3C4 /* HentaiInfo.m */; };
+		1CEE14712056D834005983B0 /* Translator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE14702056D834005983B0 /* Translator.m */; };
+		1CEE14732056D84E005983B0 /* translator.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE14722056D84E005983B0 /* translator.json */; };
 		1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE730E1FFE2A930018172F /* LoginViewController.m */; };
 		1CFE73131FFE32AE0018172F /* ExCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE73121FFE32AE0018172F /* ExCookie.m */; };
 		4DC6F4FDFFA849038487E4D8 /* libPods-Dai-Hentai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */; };
@@ -179,6 +181,9 @@
 		1CEC12BD1E500E9A00F3E3C4 /* DaiStorageTypeChecking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiStorageTypeChecking.m; sourceTree = "<group>"; };
 		1CEC12C61E500F9300F3E3C4 /* HentaiInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HentaiInfo.h; sourceTree = "<group>"; };
 		1CEC12C71E500F9300F3E3C4 /* HentaiInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HentaiInfo.m; sourceTree = "<group>"; };
+		1CEE146F2056D834005983B0 /* Translator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Translator.h; sourceTree = "<group>"; };
+		1CEE14702056D834005983B0 /* Translator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Translator.m; sourceTree = "<group>"; };
+		1CEE14722056D84E005983B0 /* translator.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = translator.json; sourceTree = "<group>"; };
 		1CFE730D1FFE2A930018172F /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1CFE730E1FFE2A930018172F /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1CFE73111FFE32AE0018172F /* ExCookie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExCookie.h; sourceTree = "<group>"; };
@@ -434,6 +439,7 @@
 				1CE8E5DF1E4D7A03005B1B18 /* Couchbase */,
 				1C7ABF5C2021BBF8006313C3 /* ReactiveCocoaMacros */,
 				1CBBDB3F2032DAE700BC51BF /* AuthHelper */,
+				1CEE146E2056D819005983B0 /* Translator */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -679,6 +685,16 @@
 			path = HentaiInfo;
 			sourceTree = "<group>";
 		};
+		1CEE146E2056D819005983B0 /* Translator */ = {
+			isa = PBXGroup;
+			children = (
+				1CEE146F2056D834005983B0 /* Translator.h */,
+				1CEE14702056D834005983B0 /* Translator.m */,
+				1CEE14722056D84E005983B0 /* translator.json */,
+			);
+			path = Translator;
+			sourceTree = "<group>";
+		};
 		1CFE730C1FFE2A720018172F /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +794,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C1AD0421E49B79800544217 /* LaunchScreen.storyboard in Resources */,
+				1CEE14732056D84E005983B0 /* translator.json in Resources */,
 				1C1AD03F1E49B79800544217 /* Assets.xcassets in Resources */,
 				1C1AD03D1E49B79800544217 /* Main.storyboard in Resources */,
 			);
@@ -871,6 +888,7 @@
 				1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */,
 				1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */,
 				1CE4D1B6200461E200F8B79A /* HentaiDownloadCenter.m in Sources */,
+				1CEE14712056D834005983B0 /* Translator.m in Sources */,
 				1CE4D1B9200462ED00F8B79A /* HentaiImagesManager.m in Sources */,
 				1C7ABF622021C73F006313C3 /* SettingViewController.m in Sources */,
 				1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */,

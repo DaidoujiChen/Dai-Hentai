@@ -7,6 +7,7 @@
 //
 
 #import "SearchHintCell.h"
+#import "Translator.h"
 
 @implementation SearchHintCell
 
@@ -15,7 +16,8 @@
 #pragma mark * Method Need to Override
 
 - (void)setSearchValue:(NSArray<NSString *> *)values {
-    if ([values containsObject:self.textLabel.text]) {
+    NSString *originText = [Translator remove:self.textLabel.text];
+    if ([values containsObject:originText]) {
         self.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -31,7 +33,8 @@
         else {
             self.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-        [self onValueChange](self.textLabel.text);
+        NSString *originText = [Translator remove:self.textLabel.text];
+        [self onValueChange](originText);
     }
 }
 

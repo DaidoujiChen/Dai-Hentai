@@ -13,6 +13,7 @@
 #import "SearchCategoryCell.h"
 #import "SearchItem.h"
 #import "DBGallery.h"
+#import "Translator.h"
 
 typedef enum {
     RecentHintTypeTag,
@@ -73,9 +74,12 @@ typedef enum {
             
         case 2:
         case 3:
+        {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SearchHintCell"];
-            cell.textLabel.text = item.title;
+            NSString *translator = [Translator from:item.title];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@", item.title, translator];
             break;
+        }
             
         case 4:
             cell = [tableView dequeueReusableCellWithIdentifier:@"SearchRatingCell"];
