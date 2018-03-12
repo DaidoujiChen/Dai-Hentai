@@ -36,6 +36,11 @@
     return YES;
 }
 
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    [self onValueChange](@"");
+    return YES;
+}
+
 #pragma mark - Life Cycle
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
