@@ -13,6 +13,9 @@ alt="newHentai" width="240" height="180" border="10" /></a>
 
 整體的使用體驗應該會比 2.x 來的穩定跟快速, 也加上了上鎖的功能, 讓大家在使用上可以更安心一些 =w=
 
+## Tag 中文轉換
+感謝隔壁的朋友有整理好的 tag 可以查找了, 所以這邊的轉換參考內容都是從 [https://github.com/Mapaler/EhTagTranslator](https://github.com/Mapaler/EhTagTranslator) 來的, 深表感謝
+
 ## 原生 Xcode 直接安裝方法
 1. 獲取專案（兩種方法）
 

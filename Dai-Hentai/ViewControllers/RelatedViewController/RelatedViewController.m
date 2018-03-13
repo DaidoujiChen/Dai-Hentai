@@ -8,6 +8,7 @@
 
 #import "RelatedViewController.h"
 #import "SearchCategoryCell.h"
+#import "Translator.h"
 
 typedef enum {
     SectionTypeEng = 0,
@@ -80,7 +81,8 @@ typedef enum {
             }
         }
     }];
-    cell.textLabel.text = word;
+    NSString *translator = [Translator from:word];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@%@", word, translator];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
