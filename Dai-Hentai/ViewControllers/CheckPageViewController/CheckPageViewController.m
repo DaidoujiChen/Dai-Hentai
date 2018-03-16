@@ -27,9 +27,9 @@
     self.navigationItem.rightBarButtonItem = cancelButton;
     
     // 開一個頁面
-    UIWebView *checkExWebView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    [checkExWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
-    [self.view addSubview:checkExWebView];
+    UIWebView *checkWebView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [checkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
+    [self.view addSubview:checkWebView];
 }
 
 #pragma mark - Life Cycle

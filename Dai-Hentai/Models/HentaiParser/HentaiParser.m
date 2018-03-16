@@ -25,9 +25,9 @@
 NSString *urlString; \
 if (index == 0) \
 { \
-urlString = [NSString stringWithFormat:@"%@g/%@/%@/", [self domain], gid, token]; \
+urlString = [NSString stringWithFormat:@"%@g/%@/%@/?inline_set=ts_m", [self domain], gid, token]; \
 } else { \
-urlString = [NSString stringWithFormat:@"%@g/%@/%@/?p=%@", [self domain], gid, token, @(index)]; \
+urlString = [NSString stringWithFormat:@"%@g/%@/%@/?p=%@&inline_set=ts_m", [self domain], gid, token, @(index)]; \
 } \
 urlString; \
 })
