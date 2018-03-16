@@ -11,6 +11,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <hpple/TFHpple.h>
 #import "DBGalleryPage.h"
+#import "DBGallery.h"
 #import "EHentaiParser.h"
 #import "ExHentaiParser.h"
 #import "ImageURLOperation.h"
@@ -255,7 +256,7 @@ else { \
             cacheIndex++;
         }
         
-        if (pages.count > info.userLatestPage.integerValue) {
+        if (pages.count > [info latestPage]) {
             break;
         }
     } while (cachePages);
