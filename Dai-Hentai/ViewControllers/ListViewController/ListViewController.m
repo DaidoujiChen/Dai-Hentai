@@ -235,17 +235,20 @@
 - (IBAction)unwindFromSearch:(UIStoryboardSegue *)segue {
     if ([segue.identifier isEqualToString:@"PopFromSearch"]) {
         SearchViewController *searchViewController = (SearchViewController *)segue.sourceViewController;
+        SearchInfo *info = searchViewController.info;
         
-        // 這段重新整理 keyword 搜尋, 並且把額外的提示關鍵字加入, 如果有重複的則不再加
-        NSString *newKeyword = searchViewController.info.keyword;
-        for (NSString *hint in [searchViewController.info hints]) {
-            NSRange range = [newKeyword.lowercaseString rangeOfString:hint.lowercaseString];
-            if (range.location == NSNotFound) {
-                newKeyword = [NSString stringWithFormat:@"%@ %@", hint, newKeyword];
+        // 如果有從提示中選取, 將 keyword 改為提示字選取的內容
+        if ([info hints].count) {
+            NSMutableString *newKeyword = [NSMutableString string];
+            for (NSString *hint in [info hints]) {
+                NSRange range = [newKeyword.lowercaseString rangeOfString:hint.lowercaseString];
+                if (range.location == NSNotFound) {
+                    [newKeyword appendFormat:@"%@ ", hint];
+                }
             }
+            info.keyword = newKeyword;
         }
-        searchViewController.info.keyword = newKeyword;
-        [DBSearchSetting setInfo:searchViewController.info];
+        [DBSearchSetting setInfo:info];
         [self reloadGalleries];
     }
     else if ([segue.identifier isEqualToString:@"PopFromRelated"]) {
