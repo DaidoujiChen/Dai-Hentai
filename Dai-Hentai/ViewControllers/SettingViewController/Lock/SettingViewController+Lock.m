@@ -9,6 +9,7 @@
 #import "SettingViewController+Lock.h"
 #import "UIAlertController+Block.h"
 #import "AuthHelper.h"
+#import "DBUserPreference.h"
 
 @implementation SettingViewController (Lock)
 
@@ -21,9 +22,11 @@
             if (pass) {
                 self.info.isLockThisApp = @(NO);
                 [self displayLockThisAppText];
+                [DBUserPreference setInfo:self.info];
+                [AuthHelper refreshAuth];
             }
             else {
-                [UIAlertController showAlertTitle:@"解除失敗" message:nil defaultOptions:nil cancelOption:@"QwQ 好8" handler:nil];
+                exit(0);
             }
         }];
         return;
@@ -40,6 +43,7 @@
         if ([AuthHelper canLock]) {
             self.info.isLockThisApp = @(YES);
             [self displayLockThisAppText];
+            [DBUserPreference setInfo:self.info];
         }
     }];
 }
