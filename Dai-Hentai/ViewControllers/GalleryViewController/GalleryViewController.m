@@ -182,7 +182,19 @@
 
 // 重新顯示 title
 - (void)refreshTitle {
-    self.title = [NSString stringWithFormat:@"%@(%@/%@/%@)", @(self.userCurrentIndex), @(self.maxAllowScrollIndex), @(self.manager.heights.count), self.info.filecount];
+    if (self.manager.heights.count == 0) {
+        self.title = @"===== 讀取中 =====";
+        return;
+    }
+    
+    NSMutableString *title = [NSMutableString stringWithFormat:@"當前:%@ ", @(self.userCurrentIndex)];
+    if (self.maxAllowScrollIndex != self.manager.imagePages.count) {
+        [title appendFormat:@"卡在:%@ ", @(self.maxAllowScrollIndex + 1)];
+    }
+    else {
+        [title appendFormat:@"總共:%@ ", self.info.filecount];
+    }
+    self.title = title;
 }
 
 #pragma mark * Show / Hidden Bars Animation
