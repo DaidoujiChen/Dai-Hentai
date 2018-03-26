@@ -305,9 +305,7 @@
             [HentaiDownloadCenter bye:strongSelf.info];
             
             [DBGallery deleteDownloaded:strongSelf.info handler: ^{
-                NSString *folder = strongSelf.info.title_jpn.length ? strongSelf.info.title_jpn : strongSelf.info.title;
-                folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
-                [[FilesManager documentFolder] rd:folder];
+                [[FilesManager documentFolder] rd:[strongSelf.info folder]];
             } onFinish: ^(BOOL successed) {
                 [strongSelf.delegate helpToReloadList];
                 [strongSelf.navigationController popViewControllerAnimated:YES];
@@ -348,8 +346,7 @@
     self.leaveByDelete = NO;
     
     // 設定 navigation bar 上的標題
-    NSString *folder = self.info.title_jpn.length ? self.info.title_jpn : self.info.title;
-    self.navigationItem.prompt = folder;
+    self.navigationItem.prompt = [self.info bestTitle];
     
     // 在 navigation bar 上加一個下載的按鈕, 或是刪除掉的按鈕
     if ([self.info isDownloaded]) {

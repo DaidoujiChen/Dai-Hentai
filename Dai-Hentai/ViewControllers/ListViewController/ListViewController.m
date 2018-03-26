@@ -57,7 +57,7 @@
     if ([cell isKindOfClass:[ListCell class]]) {
         ListCell *listCell = (ListCell *)cell;
         HentaiInfo *info = self.galleries[indexPath.row];
-        listCell.title.text = info.title_jpn.length ? info.title_jpn : info.title;
+        listCell.title.text = [info bestTitle];
         listCell.category.text = info.category;
         listCell.category.textColor = [self categoryColor:info.category];
         listCell.rating.text = info.rating;

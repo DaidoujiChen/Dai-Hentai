@@ -93,9 +93,7 @@
                 [DBGallery deleteAllHistories: ^(NSInteger total, NSInteger index, HentaiInfo *info) {
                     weakSelf.deletingMessage = [NSString stringWithFormat:@"作品刪除中 ( %td / %td )", index, total];
                     [weakSelf.collectionView reloadData];
-                    NSString *folder = info.title_jpn.length ? info.title_jpn : info.title;
-                    folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
-                    [[FilesManager documentFolder] rd:folder];
+                    [[FilesManager documentFolder] rd:[info folder]];
                 } onFinish: ^(BOOL successed) {
                     weakSelf.isDeleting = NO;
                     [weakSelf.collectionView reloadData];

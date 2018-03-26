@@ -268,9 +268,7 @@
         self.imagePages = [NSMutableArray array];
         self.loadingImagePages = [NSMutableArray array];
         self.heights = [NSMutableDictionary dictionary];
-        NSString *folder = info.title_jpn.length ? info.title_jpn : info.title;
-        folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
-        self.storage = [[FilesManager documentFolder] fcd:folder];
+        self.storage = [[FilesManager documentFolder] fcd:[info folder]];
         self.aliveForDownload = NO;
     }
     return self;

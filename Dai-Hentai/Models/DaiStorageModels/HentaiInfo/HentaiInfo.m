@@ -25,6 +25,16 @@
 
 #pragma mark - Instance Method
 
+- (NSString *)bestTitle {
+    NSString *bestTitle = self.title_jpn.length ? self.title_jpn : self.title;
+    return bestTitle;
+}
+
+- (NSString *)folder {
+    NSString *folder = [[[self bestTitle] componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
+    return folder;
+}
+
 - (NSArray<NSString *> *)engTitleSplit {
     return [self titleSplit:self.title];
 }

@@ -34,9 +34,7 @@
         NSInteger downloadCount = 0;
         
         for (HentaiInfo *info in hentaiInfos) {
-            NSString *folder = info.title_jpn.length ? info.title_jpn : info.title;
-            folder = [[folder componentsSeparatedByString:@"/"] componentsJoinedByString:@"-"];
-            NSString *path = [[FilesManager documentFolder] cd:folder].currentPath;
+            NSString *path = [[FilesManager documentFolder] cd:[info folder]].currentPath;
             totalFileSize = 0;
             for (NSString *fileName in [fileManager enumeratorAtPath:path]) {
                 attributes = [fileManager attributesOfItemAtPath:[path stringByAppendingPathComponent:fileName] error:NULL];
