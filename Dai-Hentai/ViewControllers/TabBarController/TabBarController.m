@@ -41,6 +41,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
+    
+    __block NSMutableArray *titles = [NSMutableArray arrayWithObjects:@"列表", @"歷史", @"下載", @"設定", nil];
+    [self.tabBar.subviews enumerateObjectsUsingBlock: ^(UIView *v, NSUInteger tabBarIndex, BOOL *tabBarStop) {
+        if ([v isKindOfClass:NSClassFromString(@"UITabBarButton")] && v.subviews.count == 2) {
+            [v.subviews enumerateObjectsUsingBlock: ^(UIView *buttonSubView, NSUInteger buttonIndex, BOOL *buttonStop) {
+                if ([buttonSubView isKindOfClass:NSClassFromString(@"UITabBarButtonLabel")]) {
+                    [buttonSubView performSelector:@selector(setText:) withObject:titles.firstObject];
+                    [buttonSubView sizeToFit];
+                    [titles removeObjectAtIndex:0];
+                    *buttonStop = YES;
+                }
+            }];
+        }
+    }];
 }
 
 @end
