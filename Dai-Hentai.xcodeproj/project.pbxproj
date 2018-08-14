@@ -740,7 +740,6 @@
 				5F6B103CB5164C6D1B5F3CB2 /* [CP] Check Pods Manifest.lock */,
 				1C1AD02B1E49B79800544217 /* Sources */,
 				1C1AD02C1E49B79800544217 /* Frameworks */,
-				1C8A5EE01E71863F00A6095F /* ShellScript */,
 				1C1AD02D1E49B79800544217 /* Resources */,
 				8242C7F3CAE38698E20FDCC6 /* [CP] Embed Pods Frameworks */,
 				E4A04B382EE4A3F56A06DA93 /* [CP] Copy Pods Resources */,
@@ -816,19 +815,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7de17834758164bee76de1104c48ccff26a7a1d7 84216198fa8eaf529539af1e16bcff531a45816a5469ff16948ba11469b70ebf";
-		};
-		1C8A5EE01E71863F00A6095F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "chmod 755 $SRCROOT/Dai-Hentai/VersionGenerator.sh\n$SRCROOT/Dai-Hentai/VersionGenerator.sh";
 		};
 		5F6B103CB5164C6D1B5F3CB2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1070,6 +1056,7 @@
 			baseConfigurationReference = 19DB5C474C0FD71A14F15120 /* Pods-Dai-Hentai.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XLP7NJ2T65;
@@ -1078,6 +1065,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tw.daidouji.Dai-Hentai";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -1087,6 +1075,7 @@
 			baseConfigurationReference = 1A6E9F07B9A9588FE4ECFCA8 /* Pods-Dai-Hentai.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XLP7NJ2T65;
@@ -1095,6 +1084,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tw.daidouji.Dai-Hentai";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
