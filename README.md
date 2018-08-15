@@ -66,7 +66,7 @@ alt="newHentai" width="240" height="180" border="10" /></a>
 
 因為懶惰所以懶得每次一直手動發布版本, 所以用了一個自動生產 ipa 的服務, 會在每當有新的 commit 時運作
 
-![](https://www.bitrise.io/app/446db4b9b316a724.svg?token=I0YMFQ8S5i30cN95ZVgvhw&branch=3.0_master)
+![](https://app.bitrise.io/app/446db4b9b316a724.svg?token=I0YMFQ8S5i30cN95ZVgvhw)
 
 ^^^^^^^^^^^^^ 上面這串文字為 `Bitrise Passing` 時, 可以取得最新的版本
 
