@@ -197,14 +197,17 @@ typedef enum {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         for (NSInteger index = 0; index < results.count; index++) {
             __block CBLDocument *document = nil;
+            __block NSDictionary *properties = nil;
             dispatch_sync(dispatch_get_main_queue(), ^{
                 document = [results rowAtIndex:index].document;
+                if (document) {
+                    properties = document.properties;
+                }
             });
-            if (!document) {
+            if (!properties) {
                 continue;
             }
             
-            NSDictionary *properties = document.properties;
             HentaiInfo *info = [HentaiInfo new];
             [info restoreContents:[NSMutableDictionary dictionaryWithDictionary:properties] defaultContent:nil];
             
