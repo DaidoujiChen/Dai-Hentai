@@ -14,6 +14,7 @@
 #import "SearchItem.h"
 #import "DBGallery.h"
 #import "Translator.h"
+#import "EXTScope.h"
 
 typedef enum {
     RecentHintTypeTag,
@@ -25,6 +26,7 @@ typedef enum {
 
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<SearchItem *> *> *allItems;
 @property (nonatomic, strong) NSArray<HentaiInfo *> *recentHentaiInfos;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *languages;
 
 @end
 
@@ -47,7 +49,7 @@ typedef enum {
             return @"手動輸入關鍵字";
             
         case 1:
-            return @"";
+            return @"只搜尋固定語言";
             
         case 2:
             return @"從近期標題選取";
@@ -91,14 +93,14 @@ typedef enum {
             break;
     }
     
-    __weak SearchViewController *weakSelf = self;
+    @weakify(self);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [cell setSeachValue:[self.info performSelector:item.getterSEL] onChange: ^(id newValue) {
-        if (weakSelf) {
-            __strong SearchViewController *strongSelf = weakSelf;
-            [strongSelf.info performSelector:item.setterSEL withObject:newValue];
-        }
+        @strongify(self);
+        [self willChangeValueForKey:@"info"];
+        [self.info performSelector:item.setterSEL withObject:newValue];
+        [self didChangeValueForKey:@"info"];
     }];
 #pragma clang diagnostic pop
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -199,8 +201,11 @@ typedef enum {
     NSMutableArray<SearchItem *> *input = [NSMutableArray arrayWithObject:[SearchItem itemWith:@"Keyword" getter:@"keyword"]];
     [self.allItems addObject:input];
     
-    NSMutableArray<SearchItem *> *chineseOnly = [NSMutableArray arrayWithObject:[SearchItem itemWith:@"只搜尋中文內容" getter:@"chineseOnly"]];
-    [self.allItems addObject:chineseOnly];
+    NSMutableArray<SearchItem *> *language = [NSMutableArray array];
+    [self.languages enumerateKeysAndObjectsUsingBlock: ^(NSString *key, NSString *obj, BOOL *stop) {
+        [language addObject:[SearchItem itemWith:obj getter:key]];
+    }];
+    [self.allItems addObject:language];
     
     NSMutableArray<SearchItem *> *titleHints = [NSMutableArray array];
     NSArray *recentTitles = [self recentTitles];
@@ -233,10 +238,60 @@ typedef enum {
     [self.allItems addObject:categories];
 }
 
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    
+    if (object != self.info) {
+        return;
+    }
+    
+    __block NSInteger count = 0;
+    @weakify(self);
+    [self.languages.allKeys enumerateObjectsUsingBlock: ^(NSString *obj, NSUInteger idx, BOOL *stop) {
+        @strongify(self);
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        NSNumber *value = (NSNumber *)[self.info performSelector:NSSelectorFromString(obj)];
+#pragma clang diagnostic pop
+        if (value.boolValue) {
+            count++;
+        }
+    }];
+    if (count <= 1) {
+        return;
+    }
+    
+    SearchCategoryCell *(^searchCategoryCell)(NSIndexPath *indexPath) = ^SearchCategoryCell *(NSIndexPath *indexPath) {
+        @strongify(self);
+        return (SearchCategoryCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    };
+    
+    [self.languages.allKeys enumerateObjectsUsingBlock: ^(NSString *obj, NSUInteger idx, BOOL *stop) {
+        
+        if ([obj isEqualToString:keyPath]) {
+            return;
+        }
+        
+        SearchCategoryCell *cell = searchCategoryCell([NSIndexPath indexPathForRow:idx inSection:1]);
+        [cell setSelected:YES animated:YES];
+    }];
+    
+}
+
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.languages = @{ @"chineseOnly": @"中文",
+                        @"originalOnly": @"原汁原味不翻譯" };
+    
+    @weakify(self);
+    [self.languages.allKeys enumerateObjectsUsingBlock: ^(NSString *obj, NSUInteger idx, BOOL *stop) {
+        @strongify(self);
+        [self.info addObserver:self forKeyPath:obj options:NSKeyValueObservingOptionNew context:nil];
+    }];
     [self setupCategories];
 }
 

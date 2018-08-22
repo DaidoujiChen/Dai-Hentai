@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSNumber *asianporn;
 @property (nonatomic, strong) NSNumber *misc;
 @property (nonatomic, strong) NSNumber *chineseOnly;
+@property (nonatomic, strong) NSNumber *originalOnly;
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *, id> *)dictionary;
 - (NSString *)query:(NSInteger)page;

@@ -14,7 +14,14 @@
 #pragma mark - Instance Method
 
 - (NSString *)query:(NSInteger)page {
-    NSString *keyword = self.chineseOnly.boolValue ? [self.keyword stringByAppendingString:@" language:Chinese"] : self.keyword;
+    NSString *keyword = self.keyword;
+    if (self.chineseOnly.boolValue) {
+        keyword = [keyword stringByAppendingString:@" language:Chinese"];
+    }
+    else if (self.originalOnly.boolValue) {
+        keyword = [keyword stringByAppendingString:@" -translated -rewite"];
+    }
+    
     //https://e-hentai.org/?inline_set=dm_l 列表
     //https://e-hentai.org/?inline_set=dm_t 縮圖
     NSMutableString *query = [NSMutableString stringWithFormat:@"?page=%@&f_doujinshi=%@&f_manga=%@&f_artistcg=%@&f_gamecg=%@&f_western=%@&f_non-h=%@&f_imageset=%@&f_cosplay=%@&f_asianporn=%@&f_misc=%@&f_search=%@&f_apply=Apply+Filter&inline_set=dm_l", @(page), self.doujinshi, self.manga, self.artistcg, self.gamecg, self.western, self.non_h, self.imageset, self.cosplay, self.asianporn, self.misc, [[keyword componentsSeparatedByString:@" "] componentsJoinedByString:@"+"]];
@@ -66,6 +73,7 @@
         self.asianporn = @(1);
         self.misc = @(1);
         self.chineseOnly = @(0);
+        self.originalOnly = @(0);
     }
     return self;
 }
