@@ -63,7 +63,7 @@
         
         __strong HentaiImagesManager *strongSelf = weakSelf;
         strongSelf.heights[@(pageIndex)] = @{ @"width": @(imageWidth), @"height": @(imageHeight) };
-        [strongSelf.delegate imageDownloaded];
+        [strongSelf.delegate imageHeightChangedAtPageIndex:pageIndex];
         
         if (strongSelf.aliveForDownload) {
             NSInteger totalImages = strongSelf.heights.count;

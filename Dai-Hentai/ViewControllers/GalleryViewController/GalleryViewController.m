@@ -95,8 +95,8 @@
 
 #pragma mark - HentaiImagesManager
 
-- (void)imageDownloaded {
-    [self refreshMaxIndexAndReload];
+- (void)imageHeightChangedAtPageIndex:(NSInteger)pageIndex {
+    [self refreshMaxIndexAndReload:pageIndex];
     [self refreshTitle];
 }
 
@@ -156,18 +156,18 @@
 }
 
 // 刷新新 load 好的頁面
-- (void)refreshMaxIndexAndReload {
+- (void)refreshMaxIndexAndReload:(NSInteger)pageIndex {
     NSInteger preMaxAllowScrollIndex = self.maxAllowScrollIndex;
     NSArray<NSNumber *> *sortKeys = [self.manager.heights.allKeys sortedArrayUsingComparator: ^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2];
     }];
     
-    NSMutableArray *reloadIndexPaths = [NSMutableArray array];
+    NSMutableArray *insertIndexPaths = [NSMutableArray array];
     NSInteger index;
     for (index = preMaxAllowScrollIndex; index < sortKeys.count; index++) {
         NSNumber *sortKey = sortKeys[index];
         if ([@(index) compare:sortKey] == NSOrderedSame) {
-            [reloadIndexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+            [insertIndexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
         }
         else {
             break;
@@ -175,8 +175,18 @@
     }
     self.maxAllowScrollIndex = index;
     
+    NSMutableArray *reloadIndexPaths = [NSMutableArray array];
+    for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        if (indexPath && indexPath.row == pageIndex) {
+            [reloadIndexPaths addObject:indexPath];
+            break;
+        }
+    }
+    
     [self.collectionView performBatchUpdates: ^{
-        [self.collectionView insertItemsAtIndexPaths:reloadIndexPaths];
+        [self.collectionView reloadItemsAtIndexPaths:reloadIndexPaths];
+        [self.collectionView insertItemsAtIndexPaths:insertIndexPaths];
     } completion:nil];
 }
 

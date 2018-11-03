@@ -39,7 +39,7 @@
 @protocol HentaiImagesManagerDelegate <NSObject>
 
 @required
-- (void)imageDownloaded;
+- (void)imageHeightChangedAtPageIndex:(NSInteger)pageIndex;
 
 @end
 
