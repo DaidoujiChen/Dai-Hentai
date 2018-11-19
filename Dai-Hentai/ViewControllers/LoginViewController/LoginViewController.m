@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "ExCookie.h"
+#import "Dai_Hentai-Swift.h"
 
 @interface LoginWebViewController ()
 

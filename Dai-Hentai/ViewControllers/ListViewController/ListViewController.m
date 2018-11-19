@@ -13,11 +13,17 @@
 #import "SearchViewController.h"
 #import "RelatedViewController.h"
 #import "LoginViewController.h"
-#import "ExCookie.h"
+#import "Dai_Hentai-Swift.h"
 #import "NSTimer+Block.h"
 #import "HentaiDownloadCenter.h"
 
 #define color(r, g, b) [UIColor colorWithRed:(CGFloat)r / 255.0f green:(CGFloat)g / 255.0f blue:(CGFloat)b / 255.0f alpha:1.0f]
+
+@interface ListViewController ()
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *exLoginBarButtonItem;
+
+@end
 
 @implementation ListViewController
 
@@ -230,6 +236,26 @@
     return colorMapping[category];
 }
 
+- (void)resetButtonAndParser {
+    NSString *className = [NSString stringWithFormat:@"%s", object_getClassName(self)];
+    if ([className isEqualToString:@"ListViewController"]) {
+        Class newParser;
+        if ([ExCookie isExist]) {
+            self.navigationItem.leftBarButtonItem = nil;
+            newParser = [HentaiParser parserType:HentaiParserTypeEx];
+        }
+        else {
+            self.navigationItem.leftBarButtonItem = self.exLoginBarButtonItem;
+            newParser = [HentaiParser parserType:HentaiParserTypeEh];
+        }
+        
+        if (newParser != self.parser) {
+            self.parser = newParser;
+            [self reloadGalleries];
+        }
+    }
+}
+
 #pragma mark - IBAction
 
 - (IBAction)unwindFromSearch:(UIStoryboardSegue *)segue {
@@ -269,8 +295,7 @@
             return;
         }
         __strong ListViewController *strongSelf = weakSelf;
-        strongSelf.parser = [HentaiParser parserType:HentaiParserTypeEx];
-        [strongSelf reloadGalleries];
+        [strongSelf resetButtonAndParser];
     }];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginWebViewController];
     [self presentViewController:navigationController animated:YES completion:nil];

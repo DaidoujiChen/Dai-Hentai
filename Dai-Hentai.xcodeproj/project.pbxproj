@@ -26,6 +26,7 @@
 		1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */; };
 		1C5203A92054301F000B6F45 /* CheckPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5203A82054301F000B6F45 /* CheckPageViewController.m */; };
 		1C5BF266200CA3AE00FB260A /* DownloadedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */; };
+		1C5DFDDF219BB7380044EDA9 /* ExCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5DFDDE219BB7380044EDA9 /* ExCookie.swift */; };
 		1C630F0D2005037F0068879F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C630F0C2005037F0068879F /* TabBarController.m */; };
 		1C6A96AB204E42A800151ECE /* SearchHintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A96AA204E42A800151ECE /* SearchHintCell.m */; };
 		1C7ABF622021C73F006313C3 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7ABF612021C73F006313C3 /* SettingViewController.m */; };
@@ -63,7 +64,7 @@
 		1CEE14712056D834005983B0 /* Translator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE14702056D834005983B0 /* Translator.m */; };
 		1CEE14732056D84E005983B0 /* translator.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE14722056D84E005983B0 /* translator.json */; };
 		1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE730E1FFE2A930018172F /* LoginViewController.m */; };
-		1CFE73131FFE32AE0018172F /* ExCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE73121FFE32AE0018172F /* ExCookie.m */; };
+		1CFE73131FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE73121FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h */; };
 		4DC6F4FDFFA849038487E4D8 /* libPods-Dai-Hentai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,7 @@
 		1C5203A82054301F000B6F45 /* CheckPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckPageViewController.m; sourceTree = "<group>"; };
 		1C5BF264200CA3AE00FB260A /* DownloadedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadedsViewController.h; sourceTree = "<group>"; };
 		1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedsViewController.m; sourceTree = "<group>"; };
+		1C5DFDDE219BB7380044EDA9 /* ExCookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCookie.swift; sourceTree = "<group>"; };
 		1C630F0B2005037F0068879F /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		1C630F0C2005037F0068879F /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		1C6A96A9204E42A800151ECE /* SearchHintCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHintCell.h; sourceTree = "<group>"; };
@@ -186,8 +188,7 @@
 		1CEE14722056D84E005983B0 /* translator.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = translator.json; sourceTree = "<group>"; };
 		1CFE730D1FFE2A930018172F /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1CFE730E1FFE2A930018172F /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		1CFE73111FFE32AE0018172F /* ExCookie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExCookie.h; sourceTree = "<group>"; };
-		1CFE73121FFE32AE0018172F /* ExCookie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExCookie.m; sourceTree = "<group>"; };
+		1CFE73121FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dai-Hentai-Bridging-Header.h"; sourceTree = "<group>"; };
 		88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dai-Hentai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -280,6 +281,7 @@
 				1C1AD03E1E49B79800544217 /* Assets.xcassets */,
 				1C1AD0401E49B79800544217 /* LaunchScreen.storyboard */,
 				1C1AD0431E49B79800544217 /* Info.plist */,
+				1CFE73121FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h */,
 				1C1AD0321E49B79800544217 /* Supporting Files */,
 			);
 			path = "Dai-Hentai";
@@ -707,8 +709,7 @@
 		1CFE73101FFE328D0018172F /* ExCookieChecker */ = {
 			isa = PBXGroup;
 			children = (
-				1CFE73111FFE32AE0018172F /* ExCookie.h */,
-				1CFE73121FFE32AE0018172F /* ExCookie.m */,
+				1C5DFDDE219BB7380044EDA9 /* ExCookie.swift */,
 			);
 			path = ExCookieChecker;
 			sourceTree = "<group>";
@@ -766,6 +767,7 @@
 					1C1AD02E1E49B79800544217 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = XLP7NJ2T65;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -872,7 +874,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C1AD0371E49B79800544217 /* AppDelegate.m in Sources */,
-				1CFE73131FFE32AE0018172F /* ExCookie.m in Sources */,
+				1CFE73131FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h in Sources */,
 				1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */,
 				1CA255FB203143040040B73F /* UserPreference.m in Sources */,
 				1C630F0D2005037F0068879F /* TabBarController.m in Sources */,
@@ -917,6 +919,7 @@
 				1CA192D51E926B4A00D352B3 /* RelatedViewController.m in Sources */,
 				1C0CF4981E82D466005ADDFA /* HistoriesViewController.m in Sources */,
 				1CA2707E1E50B9F80054AA6E /* EHentaiParser.m in Sources */,
+				1C5DFDDF219BB7380044EDA9 /* ExCookie.swift in Sources */,
 				1C8DEE8820089A3100C479F4 /* DBGallery.m in Sources */,
 				1C33D10B1E5F34BC00F0EB12 /* SearchKeywordCell.m in Sources */,
 				1C8DEE85200898E500C479F4 /* DBGalleryPage.m in Sources */,
@@ -1056,6 +1059,7 @@
 			baseConfigurationReference = 19DB5C474C0FD71A14F15120 /* Pods-Dai-Hentai.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1067,6 +1071,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Dai-Hentai/Dai-Hentai-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1075,6 +1082,7 @@
 			baseConfigurationReference = 1A6E9F07B9A9588FE4ECFCA8 /* Pods-Dai-Hentai.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1086,6 +1094,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Dai-Hentai/Dai-Hentai-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

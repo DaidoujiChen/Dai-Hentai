@@ -11,7 +11,7 @@
 #import "CheckPageViewController.h"
 #import "EHentaiParser.h"
 #import "ExHentaiParser.h"
-#import "ExCookie.h"
+#import "Dai_Hentai-Swift.h"
 
 typedef enum {
     LocalStatusTypeInit = 100,

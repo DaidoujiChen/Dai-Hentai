@@ -11,6 +11,7 @@
 #import "SettingViewController+SizeCalculator.h"
 #import "SettingViewController+ScrollDirection.h"
 #import "SettingViewController+Lock.h"
+#import "Dai_Hentai-Swift.h"
 
 @implementation SettingViewController
 
@@ -26,6 +27,16 @@
     }
     else if ([cell.reuseIdentifier isEqualToString:@"EhListCheckCell"] || [cell.reuseIdentifier isEqualToString:@"ExListCheckCell"]) {
         [self presentViewController:[self checkViewControllerBy:cell.reuseIdentifier] animated:YES completion:nil];
+    }
+    else if ([cell.reuseIdentifier isEqualToString:@"ExFailCell"]) {
+        [ExCookie clean];
+        [self displayListAndAPIStatus];
+        for (UINavigationController *controller in self.tabBarController.viewControllers) {
+            SEL resetButtonAndParser = NSSelectorFromString(@"resetButtonAndParser");
+            if ([controller.topViewController respondsToSelector:resetButtonAndParser]) {
+                [controller.topViewController performSelector:resetButtonAndParser];
+            }
+        }
     }
     else {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
