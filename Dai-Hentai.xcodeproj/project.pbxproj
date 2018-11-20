@@ -14,7 +14,6 @@
 		1C0867FF1E5C96B100E361B5 /* SearchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0867FE1E5C96B100E361B5 /* SearchInfo.m */; };
 		1C0CF4981E82D466005ADDFA /* HistoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0CF4971E82D466005ADDFA /* HistoriesViewController.m */; };
 		1C1AD0341E49B79800544217 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1AD0331E49B79800544217 /* main.m */; };
-		1C1AD0371E49B79800544217 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1AD0361E49B79800544217 /* AppDelegate.m */; };
 		1C1AD03D1E49B79800544217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD03B1E49B79800544217 /* Main.storyboard */; };
 		1C1AD03F1E49B79800544217 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD03E1E49B79800544217 /* Assets.xcassets */; };
 		1C1AD0421E49B79800544217 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1AD0401E49B79800544217 /* LaunchScreen.storyboard */; };
@@ -22,6 +21,7 @@
 		1C33D10E1E5F35A600F0EB12 /* SearchRatingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D10D1E5F35A600F0EB12 /* SearchRatingCell.m */; };
 		1C33D1111E5F391A00F0EB12 /* SearchCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33D1101E5F391A00F0EB12 /* SearchCategoryCell.m */; };
 		1C3DDE021E6094A00034B3E2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DDE011E6094A00034B3E2 /* SearchItem.m */; };
+		1C4243ED21A450A800A2661A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4243EC21A450A800A2661A /* AppDelegate.swift */; };
 		1C4D8B291E861B4100113D0E /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B281E861B4100113D0E /* NSTimer+Block.m */; };
 		1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */; };
 		1C5203A92054301F000B6F45 /* CheckPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5203A82054301F000B6F45 /* CheckPageViewController.m */; };
@@ -85,8 +85,6 @@
 		1C0CF4971E82D466005ADDFA /* HistoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoriesViewController.m; sourceTree = "<group>"; };
 		1C1AD02F1E49B79800544217 /* Dai-Hentai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dai-Hentai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C1AD0331E49B79800544217 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1C1AD0351E49B79800544217 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1C1AD0361E49B79800544217 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1C1AD03C1E49B79800544217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C1AD03E1E49B79800544217 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C1AD0411E49B79800544217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +97,7 @@
 		1C33D1101E5F391A00F0EB12 /* SearchCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryCell.m; sourceTree = "<group>"; };
 		1C3DDE001E6094A00034B3E2 /* SearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItem.h; sourceTree = "<group>"; };
 		1C3DDE011E6094A00034B3E2 /* SearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItem.m; sourceTree = "<group>"; };
+		1C4243EC21A450A800A2661A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C4D8B271E861B4100113D0E /* NSTimer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
 		1C4D8B281E861B4100113D0E /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
 		1C4D8B2B1E86201100113D0E /* UIAlertController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Block.h"; sourceTree = "<group>"; };
@@ -275,8 +274,7 @@
 				1C7CA7291E49BFB600D94CFB /* Models */,
 				1C7CA72A1E49BFB600D94CFB /* Views */,
 				1C7CA7281E49B95200D94CFB /* ViewControllers */,
-				1C1AD0351E49B79800544217 /* AppDelegate.h */,
-				1C1AD0361E49B79800544217 /* AppDelegate.m */,
+				1C4243EC21A450A800A2661A /* AppDelegate.swift */,
 				1C1AD03B1E49B79800544217 /* Main.storyboard */,
 				1C1AD03E1E49B79800544217 /* Assets.xcassets */,
 				1C1AD0401E49B79800544217 /* LaunchScreen.storyboard */,
@@ -873,7 +871,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C1AD0371E49B79800544217 /* AppDelegate.m in Sources */,
 				1CFE73131FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h in Sources */,
 				1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */,
 				1CA255FB203143040040B73F /* UserPreference.m in Sources */,
@@ -906,6 +903,7 @@
 				1C0608431E53473500E6A285 /* GalleryViewController.m in Sources */,
 				1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */,
 				1CEC12C11E500E9A00F3E3C4 /* DaiStoragePropertiesInObject.m in Sources */,
+				1C4243ED21A450A800A2661A /* AppDelegate.swift in Sources */,
 				1C9294EC1E4C4A0D001AB1CE /* ListCell.m in Sources */,
 				1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */,
 				1CE09D45205587E50064D54B /* SettingViewController+ScrollDirection.m in Sources */,

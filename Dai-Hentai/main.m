@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+#import "Dai_Hentai-Swift.h"
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
