@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let allowOnce = allowOnce {
             if allowOnce {
                 self.allowOnce = nil
-                AuthHelper.refreshAuth()
+                AuthHelper.refresh()
                 window?.makeKeyAndVisible()
                 return
             }

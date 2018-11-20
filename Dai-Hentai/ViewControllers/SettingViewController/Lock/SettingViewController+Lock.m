@@ -8,7 +8,7 @@
 
 #import "SettingViewController+Lock.h"
 #import "UIAlertController+Block.h"
-#import "AuthHelper.h"
+#import "Dai_Hentai-Swift.h"
 #import "DBUserPreference.h"
 
 @implementation SettingViewController (Lock)
@@ -23,7 +23,7 @@
                 self.info.isLockThisApp = @(NO);
                 [self displayLockThisAppText];
                 [DBUserPreference setInfo:self.info];
-                [AuthHelper refreshAuth];
+                [AuthHelper refresh];
             }
             else {
                 exit(0);
