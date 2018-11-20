@@ -12,7 +12,6 @@
 #import "HentaiParser.h"
 #import "SearchViewController.h"
 #import "RelatedViewController.h"
-#import "LoginViewController.h"
 #import "Dai_Hentai-Swift.h"
 #import "NSTimer+Block.h"
 #import "HentaiDownloadCenter.h"
@@ -290,14 +289,14 @@
 
 - (IBAction)loginToExAction:(id)sender {
     __weak ListViewController *weakSelf = self;
-    LoginWebViewController *loginWebViewController = [[LoginWebViewController alloc] initWithCompletion: ^{
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithCompletion: ^{
         if (!weakSelf) {
             return;
         }
         __strong ListViewController *strongSelf = weakSelf;
         [strongSelf resetButtonAndParser];
     }];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginWebViewController];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 

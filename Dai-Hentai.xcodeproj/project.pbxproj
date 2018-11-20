@@ -23,6 +23,7 @@
 		1C3DDE021E6094A00034B3E2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DDE011E6094A00034B3E2 /* SearchItem.m */; };
 		1C4243ED21A450A800A2661A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4243EC21A450A800A2661A /* AppDelegate.swift */; };
 		1C4632CC21A45C5F000D466F /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4632CB21A45C5F000D466F /* AuthHelper.swift */; };
+		1C4632CE21A462CE000D466F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4632CD21A462CE000D466F /* LoginViewController.swift */; };
 		1C4D8B291E861B4100113D0E /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B281E861B4100113D0E /* NSTimer+Block.m */; };
 		1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D8B2C1E86201100113D0E /* UIAlertController+Block.m */; };
 		1C5203A92054301F000B6F45 /* CheckPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5203A82054301F000B6F45 /* CheckPageViewController.m */; };
@@ -63,7 +64,6 @@
 		1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC12C71E500F9300F3E3C4 /* HentaiInfo.m */; };
 		1CEE14712056D834005983B0 /* Translator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE14702056D834005983B0 /* Translator.m */; };
 		1CEE14732056D84E005983B0 /* translator.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CEE14722056D84E005983B0 /* translator.json */; };
-		1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE730E1FFE2A930018172F /* LoginViewController.m */; };
 		1CFE73131FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE73121FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h */; };
 		4DC6F4FDFFA849038487E4D8 /* libPods-Dai-Hentai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */; };
 /* End PBXBuildFile section */
@@ -99,6 +99,7 @@
 		1C3DDE011E6094A00034B3E2 /* SearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItem.m; sourceTree = "<group>"; };
 		1C4243EC21A450A800A2661A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C4632CB21A45C5F000D466F /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
+		1C4632CD21A462CE000D466F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C4D8B271E861B4100113D0E /* NSTimer+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Block.h"; sourceTree = "<group>"; };
 		1C4D8B281E861B4100113D0E /* NSTimer+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Block.m"; sourceTree = "<group>"; };
 		1C4D8B2B1E86201100113D0E /* UIAlertController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Block.h"; sourceTree = "<group>"; };
@@ -184,8 +185,6 @@
 		1CEE146F2056D834005983B0 /* Translator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Translator.h; sourceTree = "<group>"; };
 		1CEE14702056D834005983B0 /* Translator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Translator.m; sourceTree = "<group>"; };
 		1CEE14722056D84E005983B0 /* translator.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = translator.json; sourceTree = "<group>"; };
-		1CFE730D1FFE2A930018172F /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		1CFE730E1FFE2A930018172F /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1CFE73121FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dai-Hentai-Bridging-Header.h"; sourceTree = "<group>"; };
 		88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dai-Hentai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -696,8 +695,7 @@
 		1CFE730C1FFE2A720018172F /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1CFE730D1FFE2A930018172F /* LoginViewController.h */,
-				1CFE730E1FFE2A930018172F /* LoginViewController.m */,
+				1C4632CD21A462CE000D466F /* LoginViewController.swift */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -904,7 +902,6 @@
 				1CEC12C11E500E9A00F3E3C4 /* DaiStoragePropertiesInObject.m in Sources */,
 				1C4243ED21A450A800A2661A /* AppDelegate.swift in Sources */,
 				1C9294EC1E4C4A0D001AB1CE /* ListCell.m in Sources */,
-				1CFE730F1FFE2A930018172F /* LoginViewController.m in Sources */,
 				1CE09D45205587E50064D54B /* SettingViewController+ScrollDirection.m in Sources */,
 				1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */,
 				1CE09D3D20557B8C0064D54B /* SettingViewController+SizeCalculator.m in Sources */,
@@ -912,6 +909,7 @@
 				1CD02DFD200C749200B3F717 /* CBLDatabase+RefreshView.m in Sources */,
 				1CA255F7203142300040B73F /* DBUserPreference.m in Sources */,
 				1CEC12BF1E500E9A00F3E3C4 /* DaiStorageArray.m in Sources */,
+				1C4632CE21A462CE000D466F /* LoginViewController.swift in Sources */,
 				1C6A96AB204E42A800151ECE /* SearchHintCell.m in Sources */,
 				1CA192D51E926B4A00D352B3 /* RelatedViewController.m in Sources */,
 				1C0CF4981E82D466005ADDFA /* HistoriesViewController.m in Sources */,
