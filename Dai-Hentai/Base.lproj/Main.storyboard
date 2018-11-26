@@ -13,7 +13,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="RPj-P2-Cxo">
             <objects>
-                <tabBarController id="sRn-zh-zZh" customClass="TabBarController" sceneMemberID="viewController">
+                <tabBarController id="sRn-zh-zZh" customClass="TabBarController" customModule="Dai_Hentai" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Soy-LI-qqi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

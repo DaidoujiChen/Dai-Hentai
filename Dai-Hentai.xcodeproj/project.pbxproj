@@ -29,7 +29,6 @@
 		1C5203A92054301F000B6F45 /* CheckPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5203A82054301F000B6F45 /* CheckPageViewController.m */; };
 		1C5BF266200CA3AE00FB260A /* DownloadedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */; };
 		1C5DFDDF219BB7380044EDA9 /* ExCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5DFDDE219BB7380044EDA9 /* ExCookie.swift */; };
-		1C630F0D2005037F0068879F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C630F0C2005037F0068879F /* TabBarController.m */; };
 		1C6A96AB204E42A800151ECE /* SearchHintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A96AA204E42A800151ECE /* SearchHintCell.m */; };
 		1C7ABF622021C73F006313C3 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7ABF612021C73F006313C3 /* SettingViewController.m */; };
 		1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CA72E1E49C13400D94CFB /* HentaiParser.m */; };
@@ -49,6 +48,7 @@
 		1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF60831E4D9ABC000CA9E5 /* FMStream.m */; };
 		1CCE36661E8E2D5F00A82935 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCE36651E8E2D5F00A82935 /* MessageCell.m */; };
 		1CD02DFD200C749200B3F717 /* CBLDatabase+RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD02DFC200C749200B3F717 /* CBLDatabase+RefreshView.m */; };
+		1CD2401021AC526100D074AB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2400F21AC526100D074AB /* TabBarController.swift */; };
 		1CE09D3D20557B8C0064D54B /* SettingViewController+SizeCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE09D3B20557B8C0064D54B /* SettingViewController+SizeCalculator.m */; };
 		1CE09D4120557C710064D54B /* SettingViewController+ListAndAPIStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE09D4020557C710064D54B /* SettingViewController+ListAndAPIStatus.m */; };
 		1CE09D45205587E50064D54B /* SettingViewController+ScrollDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE09D44205587E50064D54B /* SettingViewController+ScrollDirection.m */; };
@@ -109,8 +109,6 @@
 		1C5BF264200CA3AE00FB260A /* DownloadedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadedsViewController.h; sourceTree = "<group>"; };
 		1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedsViewController.m; sourceTree = "<group>"; };
 		1C5DFDDE219BB7380044EDA9 /* ExCookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCookie.swift; sourceTree = "<group>"; };
-		1C630F0B2005037F0068879F /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
-		1C630F0C2005037F0068879F /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		1C6A96A9204E42A800151ECE /* SearchHintCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHintCell.h; sourceTree = "<group>"; };
 		1C6A96AA204E42A800151ECE /* SearchHintCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHintCell.m; sourceTree = "<group>"; };
 		1C7ABF5D2021BBF8006313C3 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
@@ -154,6 +152,7 @@
 		1CCE36651E8E2D5F00A82935 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		1CD02DFB200C749200B3F717 /* CBLDatabase+RefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CBLDatabase+RefreshView.h"; sourceTree = "<group>"; };
 		1CD02DFC200C749200B3F717 /* CBLDatabase+RefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CBLDatabase+RefreshView.m"; sourceTree = "<group>"; };
+		1CD2400F21AC526100D074AB /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1CE09D332055777D0064D54B /* PrivateSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateSettingViewController.h; sourceTree = "<group>"; };
 		1CE09D3B20557B8C0064D54B /* SettingViewController+SizeCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SettingViewController+SizeCalculator.m"; sourceTree = "<group>"; };
 		1CE09D3C20557B8C0064D54B /* SettingViewController+SizeCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SettingViewController+SizeCalculator.h"; sourceTree = "<group>"; };
@@ -368,8 +367,7 @@
 		1C630F07200502870068879F /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				1C630F0B2005037F0068879F /* TabBarController.h */,
-				1C630F0C2005037F0068879F /* TabBarController.m */,
+				1CD2400F21AC526100D074AB /* TabBarController.swift */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -870,7 +868,6 @@
 				1CFE73131FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h in Sources */,
 				1CBF60841E4D9ABC000CA9E5 /* FilesManager.m in Sources */,
 				1CA255FB203143040040B73F /* UserPreference.m in Sources */,
-				1C630F0D2005037F0068879F /* TabBarController.m in Sources */,
 				1C1AD0341E49B79800544217 /* main.m in Sources */,
 				1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */,
 				1C0608471E534ADF00E6A285 /* GalleryCell.m in Sources */,
@@ -880,6 +877,7 @@
 				1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */,
 				1CEC12C01E500E9A00F3E3C4 /* DaiStoragePath.m in Sources */,
 				1C5203A92054301F000B6F45 /* CheckPageViewController.m in Sources */,
+				1CD2401021AC526100D074AB /* TabBarController.swift in Sources */,
 				1C3DDE021E6094A00034B3E2 /* SearchItem.m in Sources */,
 				1CE09D4120557C710064D54B /* SettingViewController+ListAndAPIStatus.m in Sources */,
 				1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */,
