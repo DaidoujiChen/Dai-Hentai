@@ -24,8 +24,6 @@
 @property (nonatomic, assign) NSInteger maxAllowScrollIndex;
 @property (nonatomic, assign) NSInteger userCurrentIndex;
 @property (nonatomic, assign) BOOL rotating;
-@property (nonatomic, assign) BOOL isBarsHidden;
-@property (nonatomic, assign) CGFloat fixedStatusBarMinY;
 @property (nonatomic, strong) HentaiImagesManager *manager;
 @property (nonatomic, assign) BOOL leaveByDelete;
 
@@ -209,78 +207,6 @@
 
 #pragma mark * Show / Hidden Bars Animation
 
-- (void)layoutBars {
-    CGRect newFrame = self.navigationController.navigationBar.frame;
-    
-    // navigation bar 伸縮
-    if (self.isBarsHidden) {
-        newFrame.origin.y = -CGRectGetHeight(newFrame);
-    }
-    else {
-        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-            newFrame.origin.y = self.fixedStatusBarMinY;
-        }
-        else {
-            newFrame.origin.y = 0;
-        }
-    }
-    self.navigationController.navigationBar.frame = newFrame;
-    [self.navigationController.navigationBar layoutSubviews];
-    
-    // tabbar 伸縮
-    CGFloat screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
-    newFrame = self.tabBarController.tabBar.frame;
-    if (self.isBarsHidden) {
-        newFrame.origin.y = screenHeight;
-    }
-    else {
-        newFrame.origin.y = screenHeight - CGRectGetHeight(newFrame);
-    }
-    self.tabBarController.tabBar.frame = newFrame;
-    [self.tabBarController.tabBar layoutSubviews];
-}
-
-- (void)layoutCollectionView {
-    
-    // collection view 伸縮
-    UIEdgeInsets newInsets = self.collectionView.contentInset;
-    if (self.isBarsHidden) {
-        newInsets.top = 0;
-        newInsets.bottom = 0;
-    }
-    else {
-        newInsets.top = CGRectGetHeight(self.navigationController.navigationBar.frame);
-        newInsets.bottom = CGRectGetHeight(self.tabBarController.tabBar.frame);
-    }
-    self.collectionView.contentInset = newInsets;
-    [self.collectionView.collectionViewLayout invalidateLayout];
-}
-
-- (void)handleTapGesture:(UITapGestureRecognizer *)recognizer {
-    [self.navigationController.navigationBar.layer removeAllAnimations];
-    [self.tabBarController.tabBar.layer removeAllAnimations];
-    
-    self.isBarsHidden = !self.isBarsHidden;
-    __weak GalleryViewController *weakSelf = self;
-    [UIView animateWithDuration:0.3f animations: ^{
-        if (!weakSelf) {
-            return;
-        }
-        
-        __strong GalleryViewController *strongSelf = weakSelf;
-        [strongSelf layoutBars];
-    } completion: ^(BOOL finished) {
-        if (!weakSelf) {
-            return;
-        }
-        
-        if (finished) {
-            __strong GalleryViewController *strongSelf = weakSelf;
-            [strongSelf layoutCollectionView];
-        }
-    }];
-}
-
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)recognizer {
     switch (recognizer.direction) {
         case UISwipeGestureRecognizerDirectionDown:
@@ -373,26 +299,10 @@
     self.rotating = NO;
     
     // 顯示相關
-    self.isBarsHidden = NO;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-    [self.view addGestureRecognizer:tapGesture];
-    
     for (UISwipeGestureRecognizerDirection direction = UISwipeGestureRecognizerDirectionRight; direction <= UISwipeGestureRecognizerDirectionDown; direction <<= 1) {
         UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
         [swipe setDirection:direction];
         [self.collectionView addGestureRecognizer:swipe];
-    }
-    
-    // 超 workaround 的寫法 =w="
-    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        switch ((NSInteger)[UIScreen mainScreen].nativeBounds.size.height) {
-            case 2436:
-                self.fixedStatusBarMinY = 44;
-                break;
-            default:
-                self.fixedStatusBarMinY = 0;
-                break;
-        }
     }
 }
 
@@ -419,17 +329,20 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.hidesBarsOnTap = YES;
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (!self.leaveByDelete) {
         [self.info setLatestPage:self.userCurrentIndex];
     }
     [HentaiDownloadCenter bye:self.info];
-    
-    // 離開這個畫面前, 都要讓隱藏的 bar 長出來
-    if (self.isBarsHidden) {
-        [self handleTapGesture:nil];
-    }
+
+    self.navigationController.hidesBarsOnTap = NO;
 }
 
 // 當轉向時需要處理 cell 的 size, 避免產生不必要的 warning
@@ -437,7 +350,6 @@
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     NSInteger userCurrentIndex = self.userCurrentIndex;
     self.rotating = YES;
-    [self.collectionView.collectionViewLayout invalidateLayout];
     
     __weak GalleryViewController *weakSelf = self;
     [coordinator animateAlongsideTransition:nil completion: ^(id<UIViewControllerTransitionCoordinatorContext> context) {
@@ -447,8 +359,7 @@
         
         __strong GalleryViewController *strongSelf = weakSelf;
         strongSelf.rotating = NO;
-        [strongSelf layoutBars];
-        [strongSelf layoutCollectionView];
+        [strongSelf.collectionView.collectionViewLayout invalidateLayout];
         [strongSelf scrollToIndex:userCurrentIndex];
     }];
 }

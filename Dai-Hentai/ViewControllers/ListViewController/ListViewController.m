@@ -332,6 +332,7 @@
         galleryViewController.delegate = self;
         galleryViewController.info = sender;
         galleryViewController.parser = self.parser;
+        galleryViewController.hidesBottomBarWhenPushed = YES;
     }
     else if ([segue.identifier isEqualToString:@"PushToSearch"]) {
         SearchViewController *searchViewController = (SearchViewController *)segue.destinationViewController;
