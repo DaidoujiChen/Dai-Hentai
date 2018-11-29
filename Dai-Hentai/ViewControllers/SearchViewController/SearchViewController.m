@@ -295,4 +295,13 @@ typedef enum {
     [self setupCategories];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    @weakify(self);
+    [self.languages.allKeys enumerateObjectsUsingBlock: ^(NSString *obj, NSUInteger idx, BOOL *stop) {
+        @strongify(self);
+        [self.info removeObserver:self forKeyPath:obj];
+    }];
+}
+
 @end
