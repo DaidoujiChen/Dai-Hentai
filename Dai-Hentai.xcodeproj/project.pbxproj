@@ -142,7 +142,6 @@
 		1CA2707F1E50BA0B0054AA6E /* ExHentaiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExHentaiParser.h; sourceTree = "<group>"; };
 		1CA270801E50BA0B0054AA6E /* ExHentaiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExHentaiParser.m; sourceTree = "<group>"; };
 		1CA707141E85050D00AF24EF /* VersionGenerator.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = VersionGenerator.sh; sourceTree = "<group>"; };
-		1CA707171E850FEB00AF24EF /* CopyMobileProvision.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CopyMobileProvision.sh; sourceTree = "<group>"; };
 		1CAF38941E854B8500A4C0DD /* PrivateListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateListViewController.h; sourceTree = "<group>"; };
 		1CBF60801E4D9ABC000CA9E5 /* FilesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesManager.h; sourceTree = "<group>"; };
 		1CBF60811E4D9ABC000CA9E5 /* FilesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesManager.m; sourceTree = "<group>"; };
@@ -287,7 +286,6 @@
 			children = (
 				1C1AD0331E49B79800544217 /* main.m */,
 				1CA707141E85050D00AF24EF /* VersionGenerator.sh */,
-				1CA707171E850FEB00AF24EF /* CopyMobileProvision.sh */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
