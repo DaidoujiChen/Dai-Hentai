@@ -19,7 +19,7 @@
         keyword = [keyword stringByAppendingString:@" language:Chinese"];
     }
     else if (self.originalOnly.boolValue) {
-        keyword = [keyword stringByAppendingString:@" -translated -rewite"];
+        keyword = [keyword stringByAppendingString:@" -translated -rewrite"];
     }
     
     //https://e-hentai.org/?inline_set=dm_l 列表
