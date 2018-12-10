@@ -8,7 +8,6 @@
 
 #import "SettingViewController+ListAndAPIStatus.h"
 #import <objc/runtime.h>
-#import "CheckPageViewController.h"
 #import "EHentaiParser.h"
 #import "ExHentaiParser.h"
 #import "Dai_Hentai-Swift.h"
@@ -50,10 +49,10 @@ typedef enum {
 - (UIViewController *)checkViewControllerBy:(NSString *)reuseIdentifier {
     CheckPageViewController *checkViewController;
     if ([reuseIdentifier isEqualToString:@"EhListCheckCell"]) {
-        checkViewController = [[CheckPageViewController alloc] initWithURLString:@"https://e-hentai.org/"];
+        checkViewController = [[CheckPageViewController alloc] initWithUrlString:@"https://e-hentai.org/"];
     }
     else {
-        checkViewController = [[CheckPageViewController alloc] initWithURLString:@"https://exhentai.org/"];
+        checkViewController = [[CheckPageViewController alloc] initWithUrlString:@"https://exhentai.org/"];
     }
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:checkViewController];
     return navigationController;
