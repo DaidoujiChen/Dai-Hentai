@@ -1089,7 +1089,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="0Fn-aR-acR" customClass="GalleryCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="0Fn-aR-acR" customClass="GalleryCell" customModule="Dai_Hentai" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1108,7 +1108,7 @@
                                             <constraint firstItem="D2N-wN-DCa" firstAttribute="centerX" secondItem="0Fn-aR-acR" secondAttribute="centerX" id="tRN-SJ-TM0"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="galleryImageView" destination="D2N-wN-DCa" id="bH8-k4-Opr"/>
+                                            <outlet property="imageView" destination="D2N-wN-DCa" id="otE-y2-ysy"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

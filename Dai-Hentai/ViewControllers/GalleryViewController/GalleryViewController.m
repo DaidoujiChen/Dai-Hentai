@@ -49,13 +49,13 @@
 - (void)toggleDisplayImageAt:(NSIndexPath *)indexPath inCell:(GalleryCell *)cell {
     if ([self.manager isReadyAt:indexPath.row]) {
         [self.manager loadImageAt:indexPath.row completion: ^(UIImage *image) {
-            cell.galleryImageView.image = image;
+            cell.imageView.image = image;
         }];
         return;
     }
     
-    cell.galleryImageView.backgroundColor = [UIColor whiteColor];
-    cell.galleryImageView.image = [HentaiImagesManager placeholder];
+    cell.imageView.backgroundColor = [UIColor whiteColor];
+    cell.imageView.image = [HentaiImagesManager placeholder];
     [self.manager downloadImageAt:indexPath.row];
 }
 

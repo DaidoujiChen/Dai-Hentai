@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "GalleryCell.h"
+#import "Dai_Hentai-Swift.h"
 
 @protocol GalleryCollectionViewHandlerDelegate;
 
