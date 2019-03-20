@@ -197,7 +197,7 @@ else { \
             
             //這段是從 e hentai 的網頁 parse 列表
             TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
-            NSArray<TFHppleElement *> *photoURLs = [xpathParser searchWithXPathQuery:@"//div [@class='it5']//a"];
+            NSArray<TFHppleElement *> *photoURLs = [xpathParser searchWithXPathQuery:@"//td [@class='gl3c glname']//a"];
             
             //如果 parse 有結果, 才做 request api 的動作, 反之 callback HentaiParserStatusParseFail
             if (photoURLs.count) {
