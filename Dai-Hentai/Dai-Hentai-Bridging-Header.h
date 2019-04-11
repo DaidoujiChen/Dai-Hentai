@@ -10,7 +10,7 @@
 @interface NSObject (OwO)
 
 - (BOOL)respondsOwO:(NSString *)selector;
-- (id)performOwO:(NSString *)aSelector withObject:(id)object;
+- (void)performVoidOwO:(NSString *)aSelector withObject:(id)object;
 
 @end
 
@@ -20,8 +20,11 @@
     return [self respondsToSelector:NSSelectorFromString(selector)];
 }
 
-- (id)performOwO:(NSString *)aSelector withObject:(id)object {
-    return [self performSelector:NSSelectorFromString(aSelector) withObject:object];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+- (void)performVoidOwO:(NSString *)aSelector withObject:(id)object {
+    [self performSelector:NSSelectorFromString(aSelector) withObject:object];
 }
+#pragma clang diagnostic pop
 
 @end

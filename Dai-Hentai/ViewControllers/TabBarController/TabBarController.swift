@@ -29,7 +29,7 @@ class TabBarController: UITabBarController {
                         let tabBarButtonLabel = NSClassFromString("UITabBarButtonLabel"),
                         subview.isKind(of: tabBarButtonLabel),
                         subview.respondsOwO("setText:") {
-                        subview.performOwO("setText:", with: titles.first ?? "")
+                        subview.performVoidOwO("setText:", with: titles.first ?? "")
                         subview.sizeToFit()
                         titles.remove(at: 0)
                         break
