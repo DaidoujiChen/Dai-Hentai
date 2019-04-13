@@ -29,9 +29,9 @@ daidoujichen@gmail.com
 
 原生 Xcode 直接安裝方法
 ======
-1. 獲取專案（兩種方法）
- a) 使用 `Download ZIP` 或 `Release` 下載專案打包並解壓縮；
- b) 通過 `$ git clone https://github.com/DaidoujiChen/Dai-Hentai.git` 複製專案數據庫；
+1. 獲取專案(兩種方法)  
+  a) 使用 `Download ZIP` 或 `Release` 下載專案打包並解壓縮;  
+  b) 通過 `$ git clone https://github.com/DaidoujiChen/Dai-Hentai.git` 複製專案數據庫;  
 2. 重建（還原） `Pods`
   ![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-12-07+%E4%B8%8A%E5%8D%8810.27.08.png)
 
