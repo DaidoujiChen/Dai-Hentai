@@ -43,7 +43,7 @@
     //設置一些簡易的開關們
     [root addSection:[self switchsSection]];
     
-    //设置网络使用相关
+    //設置網絡使用相關
     [root addSection:[self networkSection]];
     
     //更換顏色
@@ -76,21 +76,21 @@
 }
 
 - (QSection *)networkSection{
-    //网络使用的 section
-    QSection *networkSection = [[QSection alloc] initWithTitle:@"网络使用"];
+    //網絡使用的 section
+    QSection *networkSection = [[QSection alloc] initWithTitle:@"網絡使用"];
     
-    //最大重试次数
-    QEntryElement *retryTimesElement = [[QEntryElement alloc] initWithTitle:@"允许重试次数" Value:[[Setting shared].retryTimes stringValue] Placeholder:@"输入一个整数"];
+    //最大重試次數
+    QEntryElement *retryTimesElement = [[QEntryElement alloc] initWithTitle:@"允許重試次數" Value:[[Setting shared].retryTimes stringValue] Placeholder:@"輸入一個整數"];
     retryTimesElement.controllerAction = @"retryTimesChange:";
     [networkSection addElement:retryTimesElement];
     
-    //下载超时时间
-    QEntryElement *timeoutSecondsElement = [[QEntryElement alloc] initWithTitle:@"图片下载超时时间" Value:[[Setting shared].timeoutSeconds stringValue] Placeholder:@"以秒为单位"];
+    //下載超時時間
+    QEntryElement *timeoutSecondsElement = [[QEntryElement alloc] initWithTitle:@"圖片下載超時時間" Value:[[Setting shared].timeoutSeconds stringValue] Placeholder:@"以秒為單位"];
     timeoutSecondsElement.controllerAction = @"timeoutSecondsChange:";
     [networkSection addElement:timeoutSecondsElement];
     
-    //同时下载图片数量
-    QEntryElement *loadingPicsAtSameTimeElement = [[QEntryElement alloc] initWithTitle:@"允许同时下载图片数量" Value:[[Setting shared].loadingPicsAtSameTime stringValue] Placeholder:@"输入一个整数"];
+    //同時下載圖片數量
+    QEntryElement *loadingPicsAtSameTimeElement = [[QEntryElement alloc] initWithTitle:@"允許同時下載圖片數量" Value:[[Setting shared].loadingPicsAtSameTime stringValue] Placeholder:@"輸入一個整數"];
     loadingPicsAtSameTimeElement.controllerAction = @"loadingPicsAtSameTimeChange:";
     [networkSection addElement:loadingPicsAtSameTimeElement];
     
