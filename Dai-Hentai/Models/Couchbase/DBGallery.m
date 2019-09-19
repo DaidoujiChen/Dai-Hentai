@@ -217,7 +217,6 @@ typedef enum {
                     [document purgeDocument:nil];
                 });
             }
-            [NSThread sleepForTimeInterval:0.5f];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (finish) {

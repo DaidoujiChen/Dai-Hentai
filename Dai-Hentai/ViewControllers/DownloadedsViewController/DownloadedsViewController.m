@@ -30,6 +30,7 @@
 #define pageCout 40
 
 - (void)fetchGalleries {
+    self.isLoading = YES;
     if ([self.pageLocker tryLock]) {
         NSInteger index = self.pageIndex * pageCout;
         NSArray<HentaiInfo *> *hentaiInfos = [DBGallery downloadedsFrom:index length:pageCout];
@@ -42,6 +43,7 @@
         else {
             self.isEndOfGalleries = YES;
         }
+        self.isLoading = NO;
         [self.pageLocker unlock];
     }
 }

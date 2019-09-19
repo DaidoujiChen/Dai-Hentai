@@ -44,18 +44,20 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.isLoading) {
+        return [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
+    }
+    
     if (!self.isEndOfGalleries && indexPath.row + 20 >= self.galleries.count) {
         [self fetchGalleries];
     }
     
-    UICollectionViewCell *cell;
     if (self.galleries.count == 0) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
+        return [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
     }
-    else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ListCell" forIndexPath:indexPath];
-    }
-    return cell;
+
+    return [collectionView dequeueReusableCellWithReuseIdentifier:@"ListCell" forIndexPath:indexPath];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -129,11 +131,11 @@
     [self.collectionView reloadData];
     self.pageIndex = 0;
     self.isEndOfGalleries = NO;
-    self.isLoading = YES;
     [self fetchGalleries];
 }
 
 - (void)fetchGalleries {
+    self.isLoading = YES;
     if ([self.pageLocker tryLock]) {
         SearchInfo *info = [DBSearchSetting info];
         __weak ListViewController *weakSelf = self;
