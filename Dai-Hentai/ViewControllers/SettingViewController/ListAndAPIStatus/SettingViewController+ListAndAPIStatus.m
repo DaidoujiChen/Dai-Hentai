@@ -55,6 +55,7 @@ typedef enum {
         checkViewController = [[CheckPageViewController alloc] initWithUrlString:@"https://exhentai.org/"];
     }
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:checkViewController];
+    navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
     return navigationController;
 }
 
