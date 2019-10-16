@@ -9,7 +9,7 @@
 #import "SettingViewController.h"
 #import "EXTScope.h"
 
-@interface SettingViewController () <UITableViewDelegate>
+@interface SettingViewController () <UITableViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *ehListCheckLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ehAPICheckLabel;
@@ -22,5 +22,6 @@
 
 @property (nonatomic, strong) NSLock *sizeLock;
 @property (nonatomic, strong) NSLock *statusCheckLock;
+@property (nonatomic, strong) UITextField *cookieTextField;
 
 @end

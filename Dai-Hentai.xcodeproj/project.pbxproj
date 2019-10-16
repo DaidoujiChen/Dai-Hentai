@@ -66,6 +66,7 @@
 		1CFE73131FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE73121FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h */; };
 		1CFEE1E921CA76DD00D6010C /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFEE1E821CA76DD00D6010C /* GalleryCell.swift */; };
 		4DC6F4FDFFA849038487E4D8 /* libPods-Dai-Hentai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */; };
+		E48D1A672357652E005F1439 /* SettingViewController+LoginUsingExKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E48D1A662357652E005F1439 /* SettingViewController+LoginUsingExKey.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +184,8 @@
 		1CFE73121FFE32AE0018172F /* Dai-Hentai-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dai-Hentai-Bridging-Header.h"; sourceTree = "<group>"; };
 		1CFEE1E821CA76DD00D6010C /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dai-Hentai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E48D1A662357652E005F1439 /* SettingViewController+LoginUsingExKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SettingViewController+LoginUsingExKey.m"; sourceTree = "<group>"; };
+		E48D1A6823576554005F1439 /* SettingViewController+LoginUsingExKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SettingViewController+LoginUsingExKey.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +394,7 @@
 				1CE09D332055777D0064D54B /* PrivateSettingViewController.h */,
 				1C7ABF612021C73F006313C3 /* SettingViewController.m */,
 				1CE09D3E20557C410064D54B /* ListAndAPIStatus */,
+				E48D1A6323576286005F1439 /* LoginUsingExKey */,
 				1CE09D3A20557B8C0064D54B /* SizeCalculator */,
 				1CE09D42205587CE0064D54B /* ScrollDirection */,
 				1CE09D4620558B640064D54B /* Lock */,
@@ -717,6 +721,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E48D1A6323576286005F1439 /* LoginUsingExKey */ = {
+			isa = PBXGroup;
+			children = (
+				E48D1A6823576554005F1439 /* SettingViewController+LoginUsingExKey.h */,
+				E48D1A662357652E005F1439 /* SettingViewController+LoginUsingExKey.m */,
+			);
+			path = LoginUsingExKey;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -865,6 +878,7 @@
 				1C1AD0341E49B79800544217 /* main.m in Sources */,
 				1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */,
 				1C4632CC21A45C5F000D466F /* AuthHelper.swift in Sources */,
+				E48D1A672357652E005F1439 /* SettingViewController+LoginUsingExKey.m in Sources */,
 				1C0867FF1E5C96B100E361B5 /* SearchInfo.m in Sources */,
 				1CEC12C31E500E9A00F3E3C4 /* DaiStorageTypeChecking.m in Sources */,
 				1CBF60851E4D9ABC000CA9E5 /* FMStream.m in Sources */,
