@@ -11,6 +11,7 @@
 #import "SettingViewController+SizeCalculator.h"
 #import "SettingViewController+ScrollDirection.h"
 #import "SettingViewController+Lock.h"
+#import "SettingViewController+LoginUsingExKey.h"
 #import "Dai_Hentai-Swift.h"
 
 @implementation SettingViewController
@@ -37,6 +38,9 @@
                 [controller.topViewController performSelector:resetButtonAndParser];
             }
         }
+    }
+    else if ([cell.reuseIdentifier isEqualToString:@"ExKeyLoginCell"]) {
+        [self onLoginUsingExKeyPress];
     }
     else {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];

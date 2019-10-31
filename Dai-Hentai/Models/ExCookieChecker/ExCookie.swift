@@ -44,6 +44,33 @@ class ExCookie: NSObject {
             shared.deleteCookie(cookie)
         }
     }
+        
+    @objc static func manuallyAddCookie(exKey: String) {
+        let exKeySplitted = exKey.components(separatedBy: "x")
+        guard exKeySplitted.count == 2 else {
+            return // 這不是一個合法的Exkey
+        }
+        
+        let memberPart = exKeySplitted[0]
+        let memberIdStartIndex = memberPart.index(memberPart.startIndex, offsetBy: 32)
+        let memberIdCookie = createCookie(name: "ipb_member_id", value: String(memberPart[memberIdStartIndex...]))
+        let passHashCookie = createCookie(name: "ipb_pass_hash", value: String(memberPart.prefix(32)))
+        let igneous = createCookie(name: "igneous", value: exKeySplitted[1])
+        
+        let cookieList = [memberIdCookie, passHashCookie, igneous]
+        
+        for theCookie in cookieList {
+            HTTPCookieStorage.shared.setCookie(theCookie)
+            guard var properties = theCookie.properties else {
+                continue
+            }
+            
+            properties[.domain] = ".e-hentai.org" // 將同樣的Cookie也添加到表站
+            if let newCookie = HTTPCookie(properties: properties) {
+                HTTPCookieStorage.shared.setCookie(newCookie)
+            }
+        }
+    }
     
     // MARK: - Private Static Function
     
@@ -63,5 +90,12 @@ class ExCookie: NSObject {
             }
         }
     }
-
+    
+    private static func createCookie(name: String, value: String) -> HTTPCookie {
+        return HTTPCookie(properties: [.domain: ".exhentai.org",
+        HTTPCookiePropertyKey.name: name,
+        HTTPCookiePropertyKey.value: value,
+        HTTPCookiePropertyKey.path: "/",
+        HTTPCookiePropertyKey.expires: Date(timeInterval: 157784760, since: Date())])! // 5年後過期
+    }
 }
