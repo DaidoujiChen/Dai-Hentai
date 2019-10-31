@@ -346,9 +346,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-Ua-g2u">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-Ua-g2u">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Umn-a9-gwa">
                                     <size key="itemSize" width="375" height="140"/>
@@ -465,6 +464,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aQf-Ua-g2u" firstAttribute="leading" secondItem="Jw4-Xp-Hlg" secondAttribute="leading" id="8aa-07-Kah"/>
+                            <constraint firstAttribute="bottom" secondItem="aQf-Ua-g2u" secondAttribute="bottom" id="rMJ-1h-KLb"/>
+                            <constraint firstItem="aQf-Ua-g2u" firstAttribute="trailing" secondItem="Jw4-Xp-Hlg" secondAttribute="trailing" id="wLw-Iu-gHj"/>
+                            <constraint firstItem="aQf-Ua-g2u" firstAttribute="top" secondItem="9Ti-4N-CDh" secondAttribute="top" id="z5T-pL-l2c"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Jw4-Xp-Hlg"/>
                     </view>
                     <navigationItem key="navigationItem" title="下載" id="veQ-BN-uHB"/>
@@ -519,9 +524,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-jt-omR">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-jt-omR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZPO-XK-LZy">
                                     <size key="itemSize" width="375" height="140"/>
@@ -638,6 +642,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MIA-jt-omR" firstAttribute="trailing" secondItem="p2U-yp-HyG" secondAttribute="trailing" id="Fyw-lh-2VM"/>
+                            <constraint firstAttribute="bottom" secondItem="MIA-jt-omR" secondAttribute="bottom" id="GKb-rH-63r"/>
+                            <constraint firstItem="MIA-jt-omR" firstAttribute="leading" secondItem="p2U-yp-HyG" secondAttribute="leading" id="OUK-Gp-Gil"/>
+                            <constraint firstItem="MIA-jt-omR" firstAttribute="top" secondItem="n4U-10-lYg" secondAttribute="top" id="a3x-3x-7sx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="p2U-yp-HyG"/>
                     </view>
                     <navigationItem key="navigationItem" title="列表" id="9hQ-UG-t3A">
@@ -671,9 +681,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Eu4-wQ-awF">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Eu4-wQ-awF">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ict-U7-XX8">
                                     <size key="itemSize" width="375" height="140"/>
@@ -790,6 +799,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eu4-wQ-awF" firstAttribute="trailing" secondItem="M2L-ad-Fbm" secondAttribute="trailing" id="Jch-Id-BXq"/>
+                            <constraint firstAttribute="bottom" secondItem="Eu4-wQ-awF" secondAttribute="bottom" id="fQA-XU-r0C"/>
+                            <constraint firstItem="Eu4-wQ-awF" firstAttribute="leading" secondItem="M2L-ad-Fbm" secondAttribute="leading" id="ruh-ON-TfX"/>
+                            <constraint firstItem="Eu4-wQ-awF" firstAttribute="top" secondItem="RGl-60-OPW" secondAttribute="top" id="s3P-qk-Lb3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="M2L-ad-Fbm"/>
                     </view>
                     <navigationItem key="navigationItem" title="歷史" id="862-Pc-VDZ">
@@ -1059,6 +1074,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZPJ-2t-pAf"/>
+        <segue reference="87c-oO-NHA"/>
     </inferredMetricsTieBreakers>
 </document>
