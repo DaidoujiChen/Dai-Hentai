@@ -28,6 +28,7 @@
 		1C5BF266200CA3AE00FB260A /* DownloadedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BF265200CA3AE00FB260A /* DownloadedsViewController.m */; };
 		1C5DFDDF219BB7380044EDA9 /* ExCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5DFDDE219BB7380044EDA9 /* ExCookie.swift */; };
 		1C6A96AB204E42A800151ECE /* SearchHintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A96AA204E42A800151ECE /* SearchHintCell.m */; };
+		1C6B0DD2236A9F5800F2CECA /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6B0DD1236A9F5800F2CECA /* ListCell.swift */; };
 		1C7ABF622021C73F006313C3 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7ABF612021C73F006313C3 /* SettingViewController.m */; };
 		1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CA72E1E49C13400D94CFB /* HentaiParser.m */; };
 		1C8DEE82200896B400C479F4 /* DBSearchSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE81200896B400C479F4 /* DBSearchSetting.m */; };
@@ -35,7 +36,6 @@
 		1C8DEE8820089A3100C479F4 /* DBGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE8720089A3100C479F4 /* DBGallery.m */; };
 		1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */; };
 		1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9294E71E4C4330001AB1CE /* ListViewController.m */; };
-		1C9294EC1E4C4A0D001AB1CE /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9294EB1E4C4A0D001AB1CE /* ListCell.m */; };
 		1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97CB311E5EBF17000A8874 /* SearchBaseCell.m */; };
 		1CA192D51E926B4A00D352B3 /* RelatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA192D41E926B4A00D352B3 /* RelatedViewController.m */; };
 		1CA255F7203142300040B73F /* DBUserPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA255F6203142300040B73F /* DBUserPreference.m */; };
@@ -108,6 +108,7 @@
 		1C5DFDDE219BB7380044EDA9 /* ExCookie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCookie.swift; sourceTree = "<group>"; };
 		1C6A96A9204E42A800151ECE /* SearchHintCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHintCell.h; sourceTree = "<group>"; };
 		1C6A96AA204E42A800151ECE /* SearchHintCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHintCell.m; sourceTree = "<group>"; };
+		1C6B0DD1236A9F5800F2CECA /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		1C7ABF5D2021BBF8006313C3 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		1C7ABF5E2021BBF8006313C3 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
 		1C7ABF602021C73F006313C3 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -124,8 +125,6 @@
 		1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCollectionViewHandler.m; sourceTree = "<group>"; };
 		1C9294E61E4C4330001AB1CE /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		1C9294E71E4C4330001AB1CE /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
-		1C9294EA1E4C4A0D001AB1CE /* ListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCell.h; sourceTree = "<group>"; };
-		1C9294EB1E4C4A0D001AB1CE /* ListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCell.m; sourceTree = "<group>"; };
 		1C97CB301E5EBF17000A8874 /* SearchBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBaseCell.h; sourceTree = "<group>"; };
 		1C97CB311E5EBF17000A8874 /* SearchBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBaseCell.m; sourceTree = "<group>"; };
 		1CA192D31E926B4A00D352B3 /* RelatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelatedViewController.h; sourceTree = "<group>"; };
@@ -477,8 +476,7 @@
 		1C9294E91E4C49EC001AB1CE /* ListCell */ = {
 			isa = PBXGroup;
 			children = (
-				1C9294EA1E4C4A0D001AB1CE /* ListCell.h */,
-				1C9294EB1E4C4A0D001AB1CE /* ListCell.m */,
+				1C6B0DD1236A9F5800F2CECA /* ListCell.swift */,
 			);
 			path = ListCell;
 			sourceTree = "<group>";
@@ -906,7 +904,6 @@
 				1C4D8B2D1E86201100113D0E /* UIAlertController+Block.m in Sources */,
 				1CEC12C11E500E9A00F3E3C4 /* DaiStoragePropertiesInObject.m in Sources */,
 				1C4243ED21A450A800A2661A /* AppDelegate.swift in Sources */,
-				1C9294EC1E4C4A0D001AB1CE /* ListCell.m in Sources */,
 				1CE09D45205587E50064D54B /* SettingViewController+ScrollDirection.m in Sources */,
 				1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */,
 				1CE09D3D20557B8C0064D54B /* SettingViewController+SizeCalculator.m in Sources */,
@@ -917,6 +914,7 @@
 				1C4632CE21A462CE000D466F /* LoginViewController.swift in Sources */,
 				1C6A96AB204E42A800151ECE /* SearchHintCell.m in Sources */,
 				1CA192D51E926B4A00D352B3 /* RelatedViewController.m in Sources */,
+				1C6B0DD2236A9F5800F2CECA /* ListCell.swift in Sources */,
 				1C0CF4981E82D466005ADDFA /* HistoriesViewController.m in Sources */,
 				1CFEE1E921CA76DD00D6010C /* GalleryCell.swift in Sources */,
 				1CA2707E1E50B9F80054AA6E /* EHentaiParser.m in Sources */,

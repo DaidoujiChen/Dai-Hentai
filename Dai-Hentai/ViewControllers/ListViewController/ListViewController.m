@@ -8,7 +8,6 @@
 
 #import "PrivateListViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "ListCell.h"
 #import "HentaiParser.h"
 #import "SearchViewController.h"
 #import "RelatedViewController.h"
