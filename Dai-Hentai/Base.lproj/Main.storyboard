@@ -421,7 +421,7 @@
                                             <outlet property="title" destination="4TV-Uk-nfv" id="is6-cf-Que"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="aDc-dq-fyT" customClass="MessageCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="aDc-dq-fyT" customClass="MessageCell" customModule="Dai_Hentai" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="160" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -604,7 +604,7 @@
                                             <outlet property="title" destination="W7h-bb-iFS" id="ftJ-Ve-tZD"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="kNY-mH-Ss9" customClass="MessageCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="kNY-mH-Ss9" customClass="MessageCell" customModule="Dai_Hentai" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="160" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -766,7 +766,7 @@
                                             <outlet property="title" destination="o4w-zp-GHE" id="1YA-6U-gE1"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="7oD-1F-hR7" customClass="MessageCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCell" id="7oD-1F-hR7" customClass="MessageCell" customModule="Dai_Hentai" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="160" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
