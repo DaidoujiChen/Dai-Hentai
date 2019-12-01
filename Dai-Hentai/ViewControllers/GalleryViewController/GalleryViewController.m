@@ -14,6 +14,7 @@
 #import "UIAlertController+Block.h"
 #import "HentaiDownloadCenter.h"
 #import "DBUserPreference.h"
+#import "Dai_Hentai-Swift.h"
 
 @interface GalleryViewController () <GalleryCollectionViewHandlerDelegate, HentaiImagesManagerDelegate>
 
@@ -224,6 +225,19 @@
             break;
     }
 }
+#pragma mark * navigation bar buttons
+
+- (UIBarButtonItem *)deleteButton {
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteThis)];
+}
+
+- (UIBarButtonItem *)downloadButton {
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(giveMeAll)];
+}
+
+- (UIBarButtonItem *)shareButton {
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+}
 
 #pragma mark * navigation bar button action
 
@@ -253,8 +267,21 @@
 - (void)giveMeAll {
     [self.manager giveMeAll];
     [self.info moveToDownloaded];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteThis)];
-    self.navigationItem.rightBarButtonItem = deleteButton;
+    self.navigationItem.rightBarButtonItems = @[ [self deleteButton], [self shareButton] ];
+}
+
+- (void)share {
+    
+    NSMutableString *urlString = [NSMutableString string];
+    if ([ExCookie isExist]) {
+        [urlString appendFormat:@"https://exhentai.org/g/%@/%@", self.info.gid, self.info.token];
+    } else {
+        [urlString appendFormat:@"https://e-hentai.org/g/%@/%@", self.info.gid, self.info.token];
+    }
+    
+    NSString *shareInfo = [NSString stringWithFormat:@"%@\n%@", [self.info bestTitle], urlString];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[ shareInfo ] applicationActivities: nil];
+    [self presentViewController:activityViewController animated:true completion:nil];
 }
 
 #pragma mark * init
@@ -284,15 +311,14 @@
     // 設定 navigation bar 上的標題
     self.navigationItem.prompt = [self.info bestTitle];
     
-    // 在 navigation bar 上加一個下載的按鈕, 或是刪除掉的按鈕
+    // 在 navigation bar 上加一個下載的按鈕, 或是刪除掉的按鈕, 還有一個分享鈕
+    
     if ([self.info isDownloaded]) {
         [self.manager giveMeAll];
-        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteThis)];
-        self.navigationItem.rightBarButtonItem = deleteButton;
+        self.navigationItem.rightBarButtonItems = @[ [self deleteButton], [self shareButton] ];
     }
     else {
-        UIBarButtonItem *downloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(giveMeAll)];
-        self.navigationItem.rightBarButtonItem = downloadButton;
+        self.navigationItem.rightBarButtonItems = @[ [self downloadButton], [self shareButton] ];
     }
     
     // 轉向時的判斷
