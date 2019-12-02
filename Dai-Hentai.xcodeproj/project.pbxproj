@@ -34,7 +34,6 @@
 		1C8DEE82200896B400C479F4 /* DBSearchSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE81200896B400C479F4 /* DBSearchSetting.m */; };
 		1C8DEE85200898E500C479F4 /* DBGalleryPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE84200898E500C479F4 /* DBGalleryPage.m */; };
 		1C8DEE8820089A3100C479F4 /* DBGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DEE8720089A3100C479F4 /* DBGallery.m */; };
-		1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */; };
 		1C9294E81E4C4330001AB1CE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9294E71E4C4330001AB1CE /* ListViewController.m */; };
 		1C97CB321E5EBF17000A8874 /* SearchBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97CB311E5EBF17000A8874 /* SearchBaseCell.m */; };
 		1CA192D51E926B4A00D352B3 /* RelatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA192D41E926B4A00D352B3 /* RelatedViewController.m */; };
@@ -67,6 +66,7 @@
 		1CFEE1E921CA76DD00D6010C /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFEE1E821CA76DD00D6010C /* GalleryCell.swift */; };
 		4DC6F4FDFFA849038487E4D8 /* libPods-Dai-Hentai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */; };
 		E48D1A672357652E005F1439 /* SettingViewController+LoginUsingExKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E48D1A662357652E005F1439 /* SettingViewController+LoginUsingExKey.m */; };
+		E4D2013923948ED200BB7908 /* GalleryCollectionViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D2013823948ED200BB7908 /* GalleryCollectionViewHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,8 +121,6 @@
 		1C8DEE84200898E500C479F4 /* DBGalleryPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBGalleryPage.m; sourceTree = "<group>"; };
 		1C8DEE8620089A3100C479F4 /* DBGallery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBGallery.h; sourceTree = "<group>"; };
 		1C8DEE8720089A3100C479F4 /* DBGallery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBGallery.m; sourceTree = "<group>"; };
-		1C9288AD1E5594B8004E796B /* GalleryCollectionViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCollectionViewHandler.h; sourceTree = "<group>"; };
-		1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCollectionViewHandler.m; sourceTree = "<group>"; };
 		1C9294E61E4C4330001AB1CE /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		1C9294E71E4C4330001AB1CE /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		1C97CB301E5EBF17000A8874 /* SearchBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBaseCell.h; sourceTree = "<group>"; };
@@ -184,6 +182,7 @@
 		88F4AEC071F70AFD3813A609 /* libPods-Dai-Hentai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dai-Hentai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E48D1A662357652E005F1439 /* SettingViewController+LoginUsingExKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SettingViewController+LoginUsingExKey.m"; sourceTree = "<group>"; };
 		E48D1A6823576554005F1439 /* SettingViewController+LoginUsingExKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SettingViewController+LoginUsingExKey.h"; sourceTree = "<group>"; };
+		E4D2013823948ED200BB7908 /* GalleryCollectionViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,8 +202,7 @@
 			children = (
 				1C0608411E53473500E6A285 /* GalleryViewController.h */,
 				1C0608421E53473500E6A285 /* GalleryViewController.m */,
-				1C9288AD1E5594B8004E796B /* GalleryCollectionViewHandler.h */,
-				1C9288AE1E5594B8004E796B /* GalleryCollectionViewHandler.m */,
+				E4D2013823948ED200BB7908 /* GalleryCollectionViewHandler.swift */,
 			);
 			path = GalleryViewController;
 			sourceTree = "<group>";
@@ -886,6 +884,7 @@
 				1C0867FB1E5C8F3D00E361B5 /* SearchViewController.m in Sources */,
 				1CE09D4920558B760064D54B /* SettingViewController+Lock.m in Sources */,
 				1CEC12C81E500F9300F3E3C4 /* HentaiInfo.m in Sources */,
+				E4D2013923948ED200BB7908 /* GalleryCollectionViewHandler.swift in Sources */,
 				1CE4D1B6200461E200F8B79A /* HentaiDownloadCenter.m in Sources */,
 				1CEE14712056D834005983B0 /* Translator.m in Sources */,
 				1CE4D1B9200462ED00F8B79A /* HentaiImagesManager.m in Sources */,
@@ -902,7 +901,6 @@
 				1CEC12C11E500E9A00F3E3C4 /* DaiStoragePropertiesInObject.m in Sources */,
 				1C4243ED21A450A800A2661A /* AppDelegate.swift in Sources */,
 				1CE09D45205587E50064D54B /* SettingViewController+ScrollDirection.m in Sources */,
-				1C9288AF1E5594B8004E796B /* GalleryCollectionViewHandler.m in Sources */,
 				1CE09D3D20557B8C0064D54B /* SettingViewController+SizeCalculator.m in Sources */,
 				1C7CA72F1E49C13400D94CFB /* HentaiParser.m in Sources */,
 				1CD02DFD200C749200B3F717 /* CBLDatabase+RefreshView.m in Sources */,
