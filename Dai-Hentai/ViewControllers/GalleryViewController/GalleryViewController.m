@@ -39,14 +39,14 @@
 }
 
 // 觸發讀取圖片
-- (void)toggleLoadPages {
+- (void)loadPages {
     if (self.userCurrentIndex + 20 >= self.manager.imagePages.count) {
         [self.manager fetch:nil];
     }
 }
 
 // 觸發顯示圖片
-- (void)toggleDisplayImageAt:(NSIndexPath *)indexPath in:(GalleryCell *)cell {
+- (void)displayImageAt:(NSIndexPath *)indexPath in:(GalleryCell *)cell {
     if ([self.manager isReadyAt:indexPath.row]) {
         [self.manager loadImageAt:indexPath.row completion: ^(UIImage *image) {
             cell.imageView.image = image;
@@ -86,7 +86,7 @@
 }
 
 // 回傳使用者正看到第幾頁
-- (void)userCurrentIndex:(NSInteger)index {
+- (void)currentIndex:(NSInteger)index {
     self.userCurrentIndex = index;
     [self refreshTitle];
 }
