@@ -7,7 +7,6 @@
 //
 
 #import "GalleryViewController.h"
-#import "GalleryCollectionViewHandler.h"
 #import "HentaiParser.h"
 #import "FilesManager.h"
 #import "DBGallery.h"
@@ -47,7 +46,7 @@
 }
 
 // 觸發顯示圖片
-- (void)toggleDisplayImageAt:(NSIndexPath *)indexPath inCell:(GalleryCell *)cell {
+- (void)toggleDisplayImageAt:(NSIndexPath *)indexPath in:(GalleryCell *)cell {
     if ([self.manager isReadyAt:indexPath.row]) {
         [self.manager loadImageAt:indexPath.row completion: ^(UIImage *image) {
             cell.imageView.image = image;
@@ -61,7 +60,7 @@
 }
 
 // 取得該 cell 大小
-- (CGSize)cellSizeAt:(NSIndexPath *)indexPath inCollectionView:(UICollectionView *)collectionView {
+- (CGSize)cellSizeAt:(NSIndexPath *)indexPath in:(UICollectionView *)collectionView {
     if (self.rotating) {
         return CGSizeZero;
     }
