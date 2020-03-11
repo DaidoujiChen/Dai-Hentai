@@ -41,14 +41,7 @@ alt="newHentai" width="240" height="180" border="10" /></a>
   ![](https://s3-ap-northeast-1.amazonaws.com/daidoujiminecraft/Daidouji/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7+2016-10-22+%E4%B8%8B%E5%8D%8810.26.35.png)
   
 ## Windows / Linux 不需 JB 安裝方法
-由 [codexss](https://github.com/codexss) 提供不需要 JB 也可以安裝的方法, 因為第三方的軟件沒有開源, 所以不保證整個使用過程的安全性喔, 請要使用的人自行斟酌,
-
-1. 從 [Release](https://github.com/DaidoujiChen/Dai-Hentai/releases) 下載最新版本的 ipa 檔案
-2. 從 [Cydia Impactor](http://www.cydiaimpactor.com/) 下載重新打證工具
-3. 插上 iPhone 打開 Cydia Impactor 
-4. 將 `e-Hentai.ipa` 拖放進 Cydia Impactor 軟件
-5. 登上你的蘋果id(安全性待考證)
-6. 點擊開始，等待你的手機出現 Dai-Hentai 吧
+後來 [VVVVictorJ](https://github.com/VVVVictorJ) 提出 Cydia Impactor 已經沒有辦法安裝囉, 可以使用 [shinrenpan](https://github.com/shinrenpan) 提到的 [AltStore](https://altstore.io/) 試試
 
 **需要注意的一點, 這種安裝方式只有七天的賞味期喔, 需要在期限內再裝一次才行**
 
