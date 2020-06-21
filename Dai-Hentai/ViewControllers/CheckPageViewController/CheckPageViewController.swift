@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class CheckPageViewController: UIViewController {
     
@@ -41,8 +42,8 @@ class CheckPageViewController: UIViewController {
             return
         }
         // 開一個頁面
-        let webView = UIWebView(frame: view.bounds)
-        webView.loadRequest(URLRequest(url: url))
+        let webView = WKWebView(frame: view.bounds)
+        webView.load(URLRequest(url: url))
         view.addSubview(webView)
     }
     
