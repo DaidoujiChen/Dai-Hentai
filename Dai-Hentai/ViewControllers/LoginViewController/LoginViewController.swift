@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class LoginViewController: UIViewController {
     
@@ -41,8 +42,8 @@ class LoginViewController: UIViewController {
         // 開一個登入網頁
         if let url = URL(string: "https://forums.e-hentai.org/index.php?act=Login&CODE=01") {
             let request = URLRequest(url: url)
-            let webView = UIWebView(frame: view.bounds)
-            webView.loadRequest(request)
+            let webView = WKWebView(frame: view.bounds)
+            webView.load(request)
             view.addSubview(webView)
         }
         
