@@ -31,7 +31,7 @@
 
 // 產生過濾網址的 string
 - (NSString *)filterString {
-    return [self filterDependOnURL:@"http://g.e-hentai.org/?page=%lu"];
+    return [self filterDependOnURL:@"https://e-hentai.org/?page=%lu"];
 }
 
 - (BOOL) isExHentai {
