@@ -106,7 +106,7 @@
 #pragma mark - Class Method
 
 + (void)replaceCookies {
-    for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"http://g.e-hentai.org"]]) {
+    for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://e-hentai.org"]]) {
         NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:cookie.properties];
         if (properties) {
             properties[@"Domain"] = @".exhentai.org";
@@ -119,7 +119,7 @@
 }
 
 + (BOOL)checkCookie {
-    NSURL *hentaiURL = [NSURL URLWithString:@"http://g.e-hentai.org"];
+    NSURL *hentaiURL = [NSURL URLWithString:@"https://e-hentai.org"];
     for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:hentaiURL]) {
         if ([cookie.name isEqualToString:@"ipb_pass_hash"]) {
             if ([[NSDate date] compare:cookie.expiresDate] != NSOrderedAscending) {
