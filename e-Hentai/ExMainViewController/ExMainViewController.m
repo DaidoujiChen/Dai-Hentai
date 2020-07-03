@@ -81,7 +81,7 @@
 #pragma mark - dynamic
 
 - (NSString *)filterString {
-    avoidPerformSelectorWarning(NSString *filterString = [self performSelector:@selector(filterDependOnURL:) withObject:@"http://exhentai.org//?page=%lu"];)
+    avoidPerformSelectorWarning(NSString *filterString = [self performSelector:@selector(filterDependOnURL:) withObject:@"https://exhentai.org/?page=%lu"];)
     return filterString;
 }
 
