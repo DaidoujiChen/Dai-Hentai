@@ -60,6 +60,8 @@ typedef enum {
 }
 
 - (void)displayListAndAPIStatus {
+    BOOL cookieExist = [ExCookie isExist];
+    
     @weakify(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         @strongify(self);
@@ -73,7 +75,7 @@ typedef enum {
             [self statusCheck:HentaiParserTypeEh listLabel:self.ehListCheckLabel apiLabel:self.ehAPICheckLabel];
             
             // 如果沒有 cookies, 則直接設定字樣
-            if (![ExCookie isExist]) {
+            if (!cookieExist) {
                 [self localStatus:LocalStatusTypeExNotLogin listLabel:self.exListCheckLabel apiLabel:self.exAPICheckLabel];
             }
             // 測試 ex 是否正常
