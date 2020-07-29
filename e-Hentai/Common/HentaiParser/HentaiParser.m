@@ -10,8 +10,8 @@
 
 #import <objc/runtime.h>
 
-#define hentaiAPIURL @"https://e-hentai.org/api.php"
-#define exHentaiAPIURL @"https://exhentai.org/api.php"
+#define hentaiAPIURL @"https://e-hentai.org/api.php?inline_set=dm_l"
+#define exHentaiAPIURL @"https://exhentai.org/api.php?inline_set=dm_l"
 
 @implementation NSMutableArray (Hentai)
 
