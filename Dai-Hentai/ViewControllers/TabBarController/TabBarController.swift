@@ -18,6 +18,7 @@ class TabBarController: UITabBarController {
         
         self.delegate = self
         var titles = [ "列表", "歷史", "下載", "設定" ]
+        let selector = Selector(("setText:"))
         for view in tabBar.subviews {
             if
                 let tabBarButton = NSClassFromString("UITabBarButton"),
@@ -28,8 +29,9 @@ class TabBarController: UITabBarController {
                     if
                         let tabBarButtonLabel = NSClassFromString("UITabBarButtonLabel"),
                         subview.isKind(of: tabBarButtonLabel),
-                        subview.respondsOwO("setText:") {
-                        subview.performVoidOwO("setText:", with: titles.first ?? "")
+                        subview.responds(to: selector) {
+                        
+                        subview.perform(selector, with: titles.first ?? "")
                         subview.sizeToFit()
                         titles.remove(at: 0)
                         break
