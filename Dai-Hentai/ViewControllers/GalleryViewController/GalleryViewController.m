@@ -149,8 +149,10 @@
     if (!self.maxAllowScrollIndex) {
         return;
     }
+    self.collectionView.pagingEnabled = NO;
     UICollectionViewScrollPosition scrollDirection = self.scrollDirect == UICollectionViewScrollDirectionHorizontal ? UICollectionViewScrollPositionCenteredHorizontally : UICollectionViewScrollPositionCenteredVertically;
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index - 1 inSection:0] atScrollPosition:scrollDirection animated:NO];
+    self.collectionView.pagingEnabled = self.scrollDirect == UICollectionViewScrollDirectionHorizontal;
 }
 
 // 刷新新 load 好的頁面

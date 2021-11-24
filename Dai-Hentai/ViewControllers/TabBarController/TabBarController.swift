@@ -11,6 +11,8 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
+    weak var lastSelectedItem: UITabBarItem? = nil
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -52,6 +54,13 @@ extension TabBarController: UITabBarControllerDelegate {
             let settingViewController = navigationController.topViewController as? SettingViewController {
             DBUserPreference.setInfo(settingViewController.info)
         }
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if lastSelectedItem == item {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ListScrollToBottom"), object: nil)
+        }
+        lastSelectedItem = item
     }
     
 }
