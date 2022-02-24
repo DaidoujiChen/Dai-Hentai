@@ -21,6 +21,8 @@
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *exLoginBarButtonItem;
 
+- (void)scrollToBottom;
+
 @end
 
 @implementation ListViewController
@@ -307,6 +309,18 @@
     [super viewDidLoad];
     [self initValues];
     [self reloadGalleries];
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *navBarAppearance = [[UINavigationBarAppearance alloc] init];
+        navBarAppearance.backgroundColor = [UIColor redColor];
+        [navBarAppearance configureWithOpaqueBackground];
+        [UINavigationBar appearance].standardAppearance = navBarAppearance;
+        [UINavigationBar appearance].scrollEdgeAppearance = navBarAppearance;
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollToBottom) name:@"ListScrollToBottom" object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -343,6 +357,11 @@
         RelatedViewController *relatedViewController = (RelatedViewController *)segue.destinationViewController;
         relatedViewController.info = sender;
     }
+}
+
+- (void)scrollToBottom {
+    NSUInteger numberOfItems = [self.collectionView numberOfItemsInSection:0];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:numberOfItems - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:true];
 }
 
 @end
