@@ -140,7 +140,7 @@
     if ([self.pageLocker tryLock]) {
         SearchInfo *info = [DBSearchSetting info];
         __weak ListViewController *weakSelf = self;
-        [self.parser requestListUsingFilter:[info query:self.pageIndex] completion: ^(HentaiParserStatus status, NSArray<HentaiInfo *> *infos) {
+        [self.parser requestListUsingFilter:[info query:self.pageIndex next:self.galleries.lastObject.gid] completion: ^(HentaiParserStatus status, NSArray<HentaiInfo *> *infos) {
             if (weakSelf) {
                 __strong ListViewController *strongSelf = weakSelf;
                 if (status == HentaiParserStatusSuccess) {

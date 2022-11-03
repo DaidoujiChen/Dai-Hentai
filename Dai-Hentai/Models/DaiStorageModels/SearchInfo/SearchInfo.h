@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSNumber *originalOnly;
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *, id> *)dictionary;
-- (NSString *)query:(NSInteger)page;
+- (NSString *)query:(NSInteger)page next:(NSString *)next;
 - (NSMutableArray<NSString *> *)hints;
 - (void)setHints:(NSString *)hint;
 
