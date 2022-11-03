@@ -7,10 +7,8 @@ target 'Dai-Hentai' do
     project 'Dai-Hentai'
 
     pod 'hpple', '0.2.0'
-    pod 'couchbase-lite-ios', '1.3.1'
+    pod 'couchbase-lite-ios', '1.4.4'
     pod 'SDWebImage', '4.0.0'
-    pod 'Fabric'
-    pod 'Crashlytics'
 
 end
 

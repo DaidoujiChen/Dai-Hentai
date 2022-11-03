@@ -1,1 +1,0 @@
-../../../../couchbase-lite-ios/CouchbaseLite.framework/Headers/CBLAuthenticator.h

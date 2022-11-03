@@ -1,14 +1,6 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## Crashlytics
-
-Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2018 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt
-
-## Fabric
-
-Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt
-
 ## SDWebImage
 
 Copyright (c) 2016 Olivier Poitrey rs@dailymotion.com
@@ -43,7 +35,7 @@ IMPORTANT-READ CAREFULLY: BY CLICKING THE “I ACCEPT” BOX OR INSTALLING, DOWN
 
 Couchbase ®
 http://www.couchbase.com
-Copyright 2011 Couchbase, Inc.
+Copyright 2018 Couchbase, Inc.
 
 As used in this Agreement, “Software” means the object code version of the applicable elastic data management server software provided by Couchbase, Inc.
 

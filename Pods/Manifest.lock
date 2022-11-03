@@ -1,29 +1,28 @@
 PODS:
-  - couchbase-lite-ios (1.3.1):
-    - couchbase-lite-ios/SQLite (= 1.3.1)
-  - couchbase-lite-ios/SQLite (1.3.1)
-  - Crashlytics (3.10.1):
-    - Fabric (~> 1.7.5)
-  - Fabric (1.7.6)
+  - couchbase-lite-ios (1.4.4):
+    - couchbase-lite-ios/SQLite (= 1.4.4)
+  - couchbase-lite-ios/SQLite (1.4.4)
   - hpple (0.2.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
 
 DEPENDENCIES:
-  - couchbase-lite-ios (= 1.3.1)
-  - Crashlytics
-  - Fabric
+  - couchbase-lite-ios (= 1.4.4)
   - hpple (= 0.2.0)
   - SDWebImage (= 4.0.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - couchbase-lite-ios
+    - hpple
+    - SDWebImage
+
 SPEC CHECKSUMS:
-  couchbase-lite-ios: e4672e9c623e31584602c0300c299c363acebb05
-  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
-  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
+  couchbase-lite-ios: 6b586fca2c8a59c85e31df89a2528c92c40fc4dc
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: 9dd8c87c7f0b093c8dd707f63046db6b66acd813
+PODFILE CHECKSUM: 4a2a9fe449837742eadeb8309bb476ae7d36211f
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.11.3

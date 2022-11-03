@@ -40,7 +40,7 @@ typedef struct CBLManagerOptions {
       like SecRandomCopyBytes or CCRandomGenerateBytes.
     * Alternatively, the value may be an NSString containing a passphrase. This will be run through
       64,000 rounds of the PBKDF algorithm to securely convert it into an AES-256 key.
-    * On Mac OS only, the value may be @YES. This instructs Couchbase Lite to use a key stored in
+    * On Mac OS only, the value may be @@YES. This instructs Couchbase Lite to use a key stored in
       the user's Keychain, or generate one there if it doesn't exist yet.
     * A default nil value, of course, means the database is unencrypted. */
 @property (nonatomic, strong, nullable) id encryptionKey;
@@ -175,7 +175,7 @@ typedef struct CBLManagerOptions {
 /** Runs the block asynchronously on the database manager's dispatch queue or thread.
     Unlike the rest of the API, this can be called from any thread, and provides a limited form
     of multithreaded access to Couchbase Lite. */
-- (void) doAsync: (void (^)(void))block;
+- (void) doAsync: (void (^)())block;
 
 /** Asynchronously dispatches a block to run on a background thread. The block will be given a
     CBLDatabase instance to use; <em>it must use that database instead of any CBL objects that are

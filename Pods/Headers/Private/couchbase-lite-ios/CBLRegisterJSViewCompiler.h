@@ -1,0 +1,1 @@
+../../../couchbase-lite-ios/Extras/CBLRegisterJSViewCompiler.h

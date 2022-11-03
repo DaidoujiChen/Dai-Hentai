@@ -1,1 +1,0 @@
-../../../../couchbase-lite-ios/CouchbaseLiteListener.framework/Headers/CBLListener.h

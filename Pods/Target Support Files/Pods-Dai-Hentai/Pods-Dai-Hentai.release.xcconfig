@@ -1,10 +1,13 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Crashlytics/iOS" "${PODS_ROOT}/Fabric/iOS" "${PODS_ROOT}/couchbase-lite-ios"
+CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/couchbase-lite-ios"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(SDKROOT)/usr/include/libxml2 $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Crashlytics" "${PODS_ROOT}/Headers/Public/Fabric" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/couchbase-lite-ios" "${PODS_ROOT}/Headers/Public/hpple"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" "${PODS_CONFIGURATION_BUILD_DIR}/hpple"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Crashlytics" -isystem "${PODS_ROOT}/Headers/Public/Fabric" -isystem "${PODS_ROOT}/Headers/Public/SDWebImage" -isystem "${PODS_ROOT}/Headers/Public/couchbase-lite-ios" -isystem "${PODS_ROOT}/Headers/Public/hpple"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"SDWebImage" -l"c++" -l"hpple" -l"sqlite3" -l"xml2" -l"z" -framework "CFNetwork" -framework "CouchbaseLite" -framework "CouchbaseLiteListener" -framework "Crashlytics" -framework "Fabric" -framework "ImageIO" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/couchbase-lite-ios" "${PODS_ROOT}/Headers/Public/hpple" $(SDKROOT)/usr/include/libxml2
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" "${PODS_CONFIGURATION_BUILD_DIR}/hpple" "${PODS_ROOT}/couchbase-lite-ios/Extras"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/SDWebImage" -isystem "${PODS_ROOT}/Headers/Public/couchbase-lite-ios" -isystem "${PODS_ROOT}/Headers/Public/hpple" -iframework "${PODS_ROOT}/couchbase-lite-ios"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"CBLJSViewCompiler" -l"SDWebImage" -l"c++" -l"hpple" -l"sqlite3" -l"xml2" -l"z" -framework "CFNetwork" -framework "CouchbaseLite" -framework "CouchbaseLiteListener" -framework "ImageIO" -framework "JavaScriptCore" -framework "Security" -framework "SystemConfiguration"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
+PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES
