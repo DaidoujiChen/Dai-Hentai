@@ -275,15 +275,22 @@ else { \
             }
             else {
                 TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
-                NSArray<TFHppleElement *> *pageURLs  = [xpathParser searchWithXPathQuery:@"//div [@class='gt100']//a"];
+                // 使用更通用的 XPath 查詢，查找所有帶有 href 屬性的 a 標籤
+                NSArray<TFHppleElement *> *pageURLs = [xpathParser searchWithXPathQuery:@"//a[@href]"];
                 
-                //如果 parse 有結果, 才做 request api 的動作, 反之 callback HentaiParserStatusParseFail
-                if (pageURLs.count) {
-                    NSMutableArray<NSString *> *newPages = [NSMutableArray array];
-                    for (TFHppleElement *pageURLElement in pageURLs) {
-                        [newPages addObject:pageURLElement.attributes[@"href"]];
+                NSMutableArray<NSString *> *newPages = [NSMutableArray array];
+                NSString *pattern = @"^https?://(e-hentai|exhentai)\\.org/s/[a-f0-9]+/\\d+-\\d+$";
+                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+                
+                for (TFHppleElement *pageURLElement in pageURLs) {
+                    NSString *href = pageURLElement.attributes[@"href"];
+                    if (href && [regex numberOfMatchesInString:href options:0 range:NSMakeRange(0, href.length)] > 0) {
+                        [newPages addObject:href];
                     }
-                    
+                }
+                
+                // 如果找到有效的圖片鏈接
+                if (newPages.count) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [DBGalleryPage add:info.gid token:info.token index:index pages:newPages];
                         completionToMainThread(HentaiParserStatusSuccess, index + 1, newPages);
