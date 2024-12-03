@@ -3,7 +3,7 @@
 //  Dai-Hentai
 //
 //  Created by DaidoujiChen on 2018/1/9.
-//  Copyright © 2018年 DaidoujiChen. All rights reserved.
+//  Copyright 2018年 DaidoujiChen. All rights reserved.
 //
 
 #import "HentaiImagesManager.h"
@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) HentaiInfo *info;
 @property (nonatomic, strong) Class parser;
-@property (nonatomic, assign) NSInteger totalPageIndex;
+@property (nonatomic, assign) NSInteger pageSize;
 @property (nonatomic, assign) NSInteger currentPageIndex;
 @property (nonatomic, strong) NSLock *pageLocker;
 @property (nonatomic, strong) NSMutableArray<NSString *> *imagePages;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSNumber *isExist;
 @property (nonatomic, assign) BOOL aliveForDownload;
 @property (nonatomic, readonly) BOOL isDownloadFinish;
+@property (nonatomic, readonly) BOOL isEnded;
 
 @end
 
@@ -154,6 +155,11 @@
     return self.heights.count == self.imagePages.count;
 }
 
+- (BOOL)isEnded {
+    NSInteger currentLoadedItems = self.currentPageIndex * self.pageSize;
+    return currentLoadedItems >= self.info.filecount.integerValue;
+}
+
 #pragma mark - Instance Method
 
 - (void)fetch:(void (^)(BOOL isExist))result {
@@ -165,7 +171,7 @@
         return;
     }
     
-    if (self.currentPageIndex > self.totalPageIndex) {
+    if (self.isEnded) {
         return;
     }
     
@@ -185,6 +191,7 @@
                 if (result) {
                     result(strongSelf.isExist.boolValue);
                 }
+                strongSelf.pageSize = imagePages.count;
             }
             strongSelf.currentPageIndex = nextIndex;
             [strongSelf.imagePages addObjectsFromArray:imagePages];
@@ -262,8 +269,8 @@
     if (self) {
         self.info = info;
         self.parser = parser;
+        self.pageSize = 40;  // 默認每頁 40 個項目
         self.currentPageIndex = 0;
-        self.totalPageIndex = floor(info.filecount.floatValue / 40.0f);
         self.pageLocker = [NSLock new];
         self.imagePages = [NSMutableArray array];
         self.loadingImagePages = [NSMutableArray array];
