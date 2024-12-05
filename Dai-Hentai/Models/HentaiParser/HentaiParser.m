@@ -244,7 +244,7 @@ else { \
     }] resume];
 }
 
-+ (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages))completion {
++ (void)requestImagePagesBy:(HentaiInfo *)info atIndex:(NSInteger)index pageSize:(NSInteger)pageSize completion:(void (^)(HentaiParserStatus status, NSInteger nextIndex, NSInteger pageSize, NSArray<NSString *> *imagePages))completion {
     
     NSMutableArray<NSString *> *pages = [NSMutableArray array];
     NSArray<NSString *> *cachePages;
@@ -260,8 +260,16 @@ else { \
             break;
         }
     } while (cachePages);
+    
+    __block NSInteger resultPageSize = -1;
+    if (pageSize == -1) {
+        [self parseGallery:info atIndex:0 completion:^(NSInteger pageSize) {
+            resultPageSize = pageSize;
+        }];
+    }
+    
     if (pages.count) {
-        completionToMainThread(HentaiParserStatusSuccess, cacheIndex, pages);
+        completionToMainThread(HentaiParserStatusSuccess, cacheIndex, resultPageSize, pages);
     }
     else {
         //網址的範例
@@ -271,7 +279,7 @@ else { \
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error) {
-                completionToMainThread(HentaiParserStatusNetworkFail, index, nil);
+                completionToMainThread(HentaiParserStatusNetworkFail, index, resultPageSize, nil);
             }
             else {
                 TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
@@ -293,15 +301,64 @@ else { \
                 if (newPages.count) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [DBGalleryPage add:info.gid token:info.token index:index pages:newPages];
-                        completionToMainThread(HentaiParserStatusSuccess, index + 1, newPages);
+                        completionToMainThread(HentaiParserStatusSuccess, index + 1, resultPageSize, newPages);
                     });
                 }
                 else {
-                    completionToMainThread(HentaiParserStatusParseFail, index, nil);
+                    completionToMainThread(HentaiParserStatusParseFail, index, resultPageSize, nil);
                 }
             }
         }] resume];
     }
+}
+
++ (void)parseGallery:(HentaiInfo *)info atIndex:(NSInteger)index completion:(void (^)(NSInteger pageSize))completion {
+    //網址的範例
+    //https://e-hentai.org/g/735601/35fe0802c8/?p=2
+    NSString *urlString = galleryURLString(info.gid, info.token, index);
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error && data) {
+            TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
+            // 使用更通用的 XPath 查詢，查找所有帶有 href 屬性的 a 標籤
+            NSArray<TFHppleElement *> *pageURLs = [xpathParser searchWithXPathQuery:@"//a[@href]"];
+            
+            NSMutableArray<NSString *> *newPages = [NSMutableArray array];
+            NSString *pattern = @"^https?://(e-hentai|exhentai)\\.org/s/[a-f0-9]+/\\d+-\\d+$";
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+            
+            for (TFHppleElement *pageURLElement in pageURLs) {
+                NSString *href = pageURLElement.attributes[@"href"];
+                if (href && [regex numberOfMatchesInString:href options:0 range:NSMakeRange(0, href.length)] > 0) {
+                    [newPages addObject:href];
+                }
+            }
+            
+            // 如果找到有效的圖片鏈接
+            if (newPages.count > 0) {
+                if (completion) {
+                    completion(newPages.count);
+                }
+            }
+            else {
+                if (completion) {
+                    completion(-1);
+                }
+            }
+        }
+        else {
+            if (completion) {
+                completion(-1);
+            }
+        }
+        dispatch_semaphore_signal(semaphore);
+    }] resume];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
 
 + (void)requestImageURL:(NSString *)urlString completion:(void (^)(HentaiParserStatus status, NSString *imageURL))completion {
