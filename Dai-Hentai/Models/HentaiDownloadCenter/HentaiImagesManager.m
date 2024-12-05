@@ -156,6 +156,7 @@
 }
 
 - (BOOL)isEnded {
+    NSLog(@"===== isEnded: %ld, %ld", self.currentPageIndex, (long)self.pageSize);
     NSInteger currentLoadedItems = self.currentPageIndex * self.pageSize;
     return currentLoadedItems >= self.info.filecount.integerValue;
 }
@@ -176,7 +177,7 @@
     }
     
     __weak HentaiImagesManager *weakSelf = self;
-    [self.parser requestImagePagesBy:self.info atIndex:self.currentPageIndex completion: ^(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages) {
+    [self.parser requestImagePagesBy:self.info atIndex:self.currentPageIndex pageSize:self.pageSize completion: ^(HentaiParserStatus status, NSInteger nextIndex, NSInteger pageSize, NSArray<NSString *> *imagePages) {
         if (!weakSelf) {
             return;
         }
@@ -185,13 +186,14 @@
         // 提早解鎖, 避免卡住的現象
         [strongSelf.pageLocker unlock];
         
+        strongSelf.pageSize = fmax(pageSize, self.pageSize);
+        
         if (status == HentaiParserStatusSuccess) {
             if (strongSelf.currentPageIndex == 0) {
                 strongSelf.isExist = @(imagePages.count != 0);
                 if (result) {
                     result(strongSelf.isExist.boolValue);
                 }
-                strongSelf.pageSize = imagePages.count;
             }
             strongSelf.currentPageIndex = nextIndex;
             [strongSelf.imagePages addObjectsFromArray:imagePages];
@@ -269,7 +271,7 @@
     if (self) {
         self.info = info;
         self.parser = parser;
-        self.pageSize = 40;  // 默認每頁 40 個項目
+        self.pageSize = -1;
         self.currentPageIndex = 0;
         self.pageLocker = [NSLock new];
         self.imagePages = [NSMutableArray array];
