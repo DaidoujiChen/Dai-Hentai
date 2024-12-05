@@ -27,18 +27,18 @@
 
 #pragma mark - Method to Override
 
-#define pageCout 40
+#define pageCount 40
 
 - (void)fetchGalleries {
     self.isLoading = YES;
     if ([self.pageLocker tryLock]) {
-        NSInteger index = self.pageIndex * pageCout;
-        NSArray<HentaiInfo *> *hentaiInfos = [DBGallery downloadedsFrom:index length:pageCout];
+        NSInteger index = self.pageIndex * pageCount;
+        NSArray<HentaiInfo *> *hentaiInfos = [DBGallery downloadedsFrom:index length:pageCount];
         if (hentaiInfos && hentaiInfos.count) {
             [self.galleries addObjectsFromArray:hentaiInfos];
             [self.collectionView reloadData];
             self.pageIndex++;
-            self.isEndOfGalleries = hentaiInfos.count < 40;
+            self.isEndOfGalleries = hentaiInfos.count < pageCount;
         }
         else {
             self.isEndOfGalleries = YES;

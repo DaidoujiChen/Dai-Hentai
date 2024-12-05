@@ -54,8 +54,9 @@
         return nil;
     }
     
-    NSLog(@"Found Gallery Pages : %@, %@, %@", gid, token, @(index));
-    return [results rowAtIndex:0].document.properties[@"pages"];
+    NSArray<NSString *> *pages = [results rowAtIndex:0].document.properties[@"pages"];
+    NSLog(@"Found Gallery Pages : %@, %@, %@, %@", gid, token, @(index), @(pages.count));
+    return pages;
 }
 
 @end

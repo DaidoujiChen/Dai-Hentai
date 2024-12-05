@@ -3,7 +3,7 @@
 //  Dai-Hentai
 //
 //  Created by DaidoujiChen on 2018/1/9.
-//  Copyright © 2018年 DaidoujiChen. All rights reserved.
+//  Copyright 2018年 DaidoujiChen. All rights reserved.
 //
 
 #import "HentaiImagesManager.h"
@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) HentaiInfo *info;
 @property (nonatomic, strong) Class parser;
-@property (nonatomic, assign) NSInteger totalPageIndex;
+@property (nonatomic, assign) NSInteger pageSize;
 @property (nonatomic, assign) NSInteger currentPageIndex;
 @property (nonatomic, strong) NSLock *pageLocker;
 @property (nonatomic, strong) NSMutableArray<NSString *> *imagePages;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSNumber *isExist;
 @property (nonatomic, assign) BOOL aliveForDownload;
 @property (nonatomic, readonly) BOOL isDownloadFinish;
+@property (nonatomic, readonly) BOOL isEnded;
 
 @end
 
@@ -154,6 +155,12 @@
     return self.heights.count == self.imagePages.count;
 }
 
+- (BOOL)isEnded {
+    NSLog(@"===== isEnded: %ld, %ld", self.currentPageIndex, (long)self.pageSize);
+    NSInteger currentLoadedItems = self.currentPageIndex * self.pageSize;
+    return currentLoadedItems >= self.info.filecount.integerValue;
+}
+
 #pragma mark - Instance Method
 
 - (void)fetch:(void (^)(BOOL isExist))result {
@@ -165,12 +172,12 @@
         return;
     }
     
-    if (self.currentPageIndex > self.totalPageIndex) {
+    if (self.isEnded) {
         return;
     }
     
     __weak HentaiImagesManager *weakSelf = self;
-    [self.parser requestImagePagesBy:self.info atIndex:self.currentPageIndex completion: ^(HentaiParserStatus status, NSInteger nextIndex, NSArray<NSString *> *imagePages) {
+    [self.parser requestImagePagesBy:self.info atIndex:self.currentPageIndex pageSize:self.pageSize completion: ^(HentaiParserStatus status, NSInteger nextIndex, NSInteger pageSize, NSArray<NSString *> *imagePages) {
         if (!weakSelf) {
             return;
         }
@@ -178,6 +185,8 @@
         
         // 提早解鎖, 避免卡住的現象
         [strongSelf.pageLocker unlock];
+        
+        strongSelf.pageSize = fmax(pageSize, self.pageSize);
         
         if (status == HentaiParserStatusSuccess) {
             if (strongSelf.currentPageIndex == 0) {
@@ -262,8 +271,8 @@
     if (self) {
         self.info = info;
         self.parser = parser;
+        self.pageSize = -1;
         self.currentPageIndex = 0;
-        self.totalPageIndex = floor(info.filecount.floatValue / 40.0f);
         self.pageLocker = [NSLock new];
         self.imagePages = [NSMutableArray array];
         self.loadingImagePages = [NSMutableArray array];
